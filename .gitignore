@@ -1,0 +1,25 @@
+# Local and generated
+Temp/
+*.log
+*.tmp
+*.bak
+desktop.ini
+Thumbs.db
+
+# Environments and dependencies
+.env
+.venv/
+venv/
+env/
+node_modules/
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+dist/
+build/
+coverage/
+
+# Heavy/generated portfolio evidence
+ARTIFACTS/
+RADAR/ACTIVE/
+RADAR/HISTORY/
