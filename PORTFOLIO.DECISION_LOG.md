@@ -35,3 +35,12 @@ Test fixtures, generated evidence, and empty placeholders are not canonical port
 
 ## DEC-W4-012
 Classification confidence must be explicit; provisional classification is not human approval.
+
+## DEC-W4-013
+Wings3.0 assimilation is executed in controlled waves; root governance extraction precedes physical project migration.
+
+## DEC-W4-014
+No whole legacy folder is copied into Wings4.0 merely to preserve it. Semantic extraction, validation, and destination mapping are mandatory.
+
+## DEC-W4-015
+Wings3.0 retirement requires a final disposition for every root entry and portfolio entity.

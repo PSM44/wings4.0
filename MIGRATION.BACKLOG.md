@@ -14,3 +14,6 @@
 | MIG-010 | Resolve REValuation dirty state | P1 | BLOCKED | Worktree is clean or explicitly baselined. |
 | MIG-011 | Confirm portfolio relevance of provisional entities | P1 | NOT_STARTED | Human decisions recorded in registry. |
 | MIG-012 | Extract useful content from rejected/legacy entities | P2 | NOT_STARTED | Reusable content preserved before archive/delete decision. |
+| MIG-013 | Execute Wave 1 root governance extraction | P0 | NOT_STARTED | Each Wave 1 source has an approved extraction and destination map. |
+| MIG-014 | Build reusable doctrine register from legacy governance | P0 | NOT_STARTED | Useful principles are mapped without importing obsolete doctrine wholesale. |
+| MIG-015 | Build root archive and rejection register | P1 | NOT_STARTED | Snapshots, logs, exports, staging, and OS metadata have explicit dispositions. |
