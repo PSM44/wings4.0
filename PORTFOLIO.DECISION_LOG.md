@@ -44,3 +44,18 @@ No whole legacy folder is copied into Wings4.0 merely to preserve it. Semantic e
 
 ## DEC-W4-015
 Wings3.0 retirement requires a final disposition for every root entry and portfolio entity.
+
+## DEC-W4-016
+Legacy governance doctrine is adopted only through explicit item-level classification. Source files do not become canonical by reference or age.
+
+## DEC-W4-017
+Wings4.0 rejects AI-first readability, monotonic documentation growth, and universal prohibition of human editing.
+
+## DEC-W4-018
+CIS is classified as a legacy tool candidate, not as the mandatory change mechanism for Wings4.0 or the portfolio.
+
+## DEC-W4-019
+Empty legacy directories do not require migration merely to preserve historical structure.
+
+## DEC-W4-020
+The legacy Portafolio folder is personal GitHub-profile reference material and is outside portfolio-governance canon.

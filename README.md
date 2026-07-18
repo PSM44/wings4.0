@@ -2,19 +2,12 @@
 
 **Repository role:** Portfolio Architecture and Governance Repository
 **Repository ID:** WINGS4
-**Canonical root:** $TargetRoot
+**Canonical root:** `C:\01. GitHub\Wings4.0`
 
 Wings4.0 governs the portfolio without replacing the canonical repositories, products, systems, or execution environments of its members.
 
 ## Current phase
 
-WINGS4_FOUNDATION_001
+`WINGS4_WAVE1_CLOSE_PENDING_COMMIT`
 
-This foundation establishes:
-- human-first portfolio governance;
-- an initial registry of the Wings3.0 estate;
-- progressive conformance;
-- migration by review, not by bulk copy;
-- separation between governance migration and physical migration.
-
-Wings3.0 remains intact as a legacy source estate.
+Wave 1 has classified legacy governance doctrine and source disposition. The next product objective is `WINGS4_PRODUCT_001_MANAGEMENT_PORTFOLIO_MVP`.

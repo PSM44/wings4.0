@@ -1,0 +1,58 @@
+schema_version: 1
+register_id: WINGS3_WAVE1_SOURCE_DISPOSITION
+legacy_root: 'C:\01. GitHub\Wings3.0'
+whole_folder_migration_authorized: false
+sources:
+  - source: '00_SYSTEM'
+    classification: 'LEGACY_GOVERNANCE_SOURCE'
+    final_action: 'EXTRACT_DOCTRINE_AND_PRESERVE_AS_HISTORY'
+    target_layers:
+      - 'HUMAN'
+      - 'AI_ENVIRONMENT'
+      - 'IA.History'
+    migrate_whole: false
+    confidence: 'HIGH'
+  - source: '07_HUMAN.README'
+    classification: 'EMPTY_DIRECTORY'
+    final_action: 'REJECT_AS_CONTENT_SOURCE'
+    target_layers: []
+    migrate_whole: false
+    confidence: 'HIGH'
+  - source: 'IA.Standars'
+    classification: 'MIXED_LEGACY_GOVERNANCE_ESTATE'
+    final_action: 'DECOMPOSE_SELECTIVELY'
+    target_layers:
+      - 'HUMAN'
+      - 'AI_ENVIRONMENT'
+      - 'SKILLS_GRCS'
+      - 'TOOLS'
+      - 'IA.History'
+    migrate_whole: false
+    confidence: 'HIGH'
+  - source: 'IAPlan.History.Itheration'
+    classification: 'EMPTY_DIRECTORY'
+    final_action: 'REJECT_AS_CONTENT_SOURCE'
+    target_layers: []
+    migrate_whole: false
+    confidence: 'HIGH'
+  - source: 'Portafolio'
+    classification: 'PERSONAL_CAREER_REFERENCE'
+    final_action: 'ROUTE_OUTSIDE_PORTFOLIO_GOVERNANCE'
+    target_layers:
+      - 'PERSONAL_KNOWLEDGE_OR_CAREER'
+    migrate_whole: false
+    confidence: 'HIGH'
+  - source: 'IA.Standars.zip'
+    classification: 'LEGACY_SNAPSHOT'
+    final_action: 'PRESERVE_EXTERNALLY_OR_IN_FUTURE_HISTORY_INDEX'
+    target_layers:
+      - 'IA.History/SNAPSHOTS'
+    migrate_whole: false
+    confidence: 'HIGH'
+  - source: '20260209_IA.Standars.zip'
+    classification: 'LEGACY_SNAPSHOT'
+    final_action: 'PRESERVE_EXTERNALLY_OR_IN_FUTURE_HISTORY_INDEX'
+    target_layers:
+      - 'IA.History/SNAPSHOTS'
+    migrate_whole: false
+    confidence: 'HIGH'
