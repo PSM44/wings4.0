@@ -127,3 +127,16 @@ NEXT_MINIBATTLE: WINGS4_GOV_009_EXECUTE_BRAINY_PROJECT_LOCAL_ABSORPTION_REVIEW
 - Push: NOT_PERFORMED
 - Hermes archive authorization: NO
 - Next minibattle: WINGS4_GOV_010_DECIDE_HERMES_SOURCE_PROJECT_FINAL_DISPOSITION
+
+## WINGS4_GOV_010 — Hermes final disposition validated
+
+- Status: COMPLETE
+- Human authorization: APPROVE_FREEZE_AND_ARCHIVE
+- Hermes status: FROZEN_ARCHIVE
+- Durable owner: Brainy
+- Brainy HEAD: a3e4073828655bc6c9955a865a5c691c4cf043cd
+- Physical move performed: NO
+- Deletion performed: NO
+- Source-project deletion authorized: NO
+- Future Hermes use: READ_ONLY_REFERENCE_ONLY
+- Next minibattle: WINGS4_GOV_011_REVIEW_SKILLS_GRC_OPPORTUNITY_TRANSFER

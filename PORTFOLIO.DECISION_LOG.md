@@ -149,3 +149,20 @@ Decision:
 - Confirm PS.HermesObsidianIntegration remains unchanged.
 - Keep source-project archive/deletion unauthorized.
 - Open a separate portfolio disposition minibattle before any archival action.
+
+## DEC-W4-PAIR-006 — Freeze and archive Hermes
+
+Date: 2026-07-19
+Status: ACTIVE
+Human authorization: APPROVE_FREEZE_AND_ARCHIVE
+
+Decision:
+
+- Set PS.HermesObsidianIntegration status to FROZEN_ARCHIVE.
+- Retain the source project physically in its current location.
+- Retain all historical evidence and SHA-256 inventory.
+- Confirm Brainy as durable owner of the approved requirements.
+- Prohibit new Hermes-local development, CIS execution and workflows.
+- Prohibit plugin enablement, vault traversal, routing and write-back.
+- Do not move, compress or delete the source project.
+- Require a new explicit Wings4 decision for any future reactivation or physical disposition.
