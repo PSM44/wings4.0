@@ -157,3 +157,22 @@ Out of scope:
 - PS.HermesObsidianIntegration transition execution;
 - tool selection;
 - source-project archive authorization.
+
+## WINGS4_GOV_009 — COMPLETE
+
+Status: COMPLETE
+
+Outcome:
+
+- Brainy requirement mapping completed.
+- Brainy-local gaps applied and validated.
+- Brainy commit: a3e4073828655bc6c9955a865a5c691c4cf043cd
+- Strict readiness gate: PASS.
+- Brainy worktree: CLEAN.
+- No push performed.
+- No tool adoption.
+- No source-project archive authorization.
+
+Next:
+
+WINGS4_GOV_010_DECIDE_HERMES_SOURCE_PROJECT_FINAL_DISPOSITION

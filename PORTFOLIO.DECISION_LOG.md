@@ -135,3 +135,17 @@ Decision:
 Next minibattle:
 
 WINGS4_GOV_009_EXECUTE_BRAINY_PROJECT_LOCAL_ABSORPTION_REVIEW
+
+## DEC-W4-PAIR-005 — Brainy absorption validated
+
+Date: 2026-07-19
+Status: ACTIVE
+
+Decision:
+
+- Accept Brainy commit a3e4073828655bc6c9955a865a5c691c4cf043cd as the validated execution result of WINGS4_GOV_009.
+- Confirm Brainy as durable owner of the approved Hermes-derived requirements.
+- Confirm no Hermes, Obsidian or plugin adoption occurred.
+- Confirm PS.HermesObsidianIntegration remains unchanged.
+- Keep source-project archive/deletion unauthorized.
+- Open a separate portfolio disposition minibattle before any archival action.
