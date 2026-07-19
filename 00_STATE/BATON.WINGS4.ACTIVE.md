@@ -1,6 +1,6 @@
 # BATON — Wings4.0 Active
 
-STATUS: GOV_005_DISPOSITION_SELECTED_READY_FOR_TRANSFER_INVENTORY
+STATUS: GOV_006_TRANSFER_INVENTORY_PREPARED_READY_FOR_HUMAN_REVIEW
 UPDATED_AT: 2026-07-18
 PROJECT_ROOT: C:\01. GitHub\Wings4.0
 TEMP_PATH: C:\Users\aazcl\Downloads\T.Wings4.0
@@ -66,7 +66,7 @@ Expected output:
 4. Verify its canonical HUMAN path and current Git state.
 5. Do not populate capability or relationship maps before evidence-based review.
 
-NEXT_MINIBATTLE: WINGS4_GOV_006_PREPARE_HERMES_TO_BRAINY_TRANSFER_INVENTORY
+NEXT_MINIBATTLE: WINGS4_GOV_007_REVIEW_AND_APPROVE_HERMES_TRANSFER_INVENTORY
 
 ## GOV-004 Portfolio decision update
 
@@ -91,3 +91,10 @@ NEXT_MINIBATTLE: WINGS4_GOV_006_PREPARE_HERMES_TO_BRAINY_TRANSFER_INVENTORY
 - Tools remain unevaluated.
 - No external project was modified.
 - Archive remains conditional on transfer and resynchronization.
+
+## GOV-006 transfer inventory prepared
+
+- 115 source text artifacts classified.
+- No Brainy or Hermes files modified.
+- Archive remains unauthorized.
+- Human review is required before any transfer execution.

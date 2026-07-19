@@ -97,24 +97,36 @@ Notes:
 ## WINGS4_GOV_006_PREPARE_HERMES_TO_BRAINY_TRANSFER_INVENTORY
 
 Priority: P0
-Status: READY
+Status: COMPLETED
 Predecessor: DEC-W4-PAIR-003
+
+Result:
+
+- 115 text artifacts inventoried.
+- Artifact-level dispositions prepared.
+- No external project modified.
+- Archive remains unauthorized.
+
+Outputs:
+
+- PORTFOLIO.REVIEWS/HERMES_TO_BRAINY_TRANSFER_INVENTORY.md
+- PORTFOLIO.REVIEWS/HERMES_TO_BRAINY_TRANSFER_INVENTORY.csv
+
+
+## WINGS4_GOV_007_REVIEW_AND_APPROVE_HERMES_TRANSFER_INVENTORY
+
+Priority: P0
+Status: READY
+Predecessor: WINGS4_GOV_006_PREPARE_HERMES_TO_BRAINY_TRANSFER_INVENTORY
 
 Objective:
 
-Prepare an evidence-grounded inventory of PS.HermesObsidianIntegration artifacts and classify each relevant item as:
-
-- TRANSFER_TO_BRAINY;
-- ROUTE_TO_SKILLS_GRC;
-- ARCHIVE_AS_EVIDENCE;
-- DEFER_TOOL_DECISION;
-- REJECT_DUPLICATION;
-- REVIEW_REQUIRED.
+Review the artifact-level classification, resolve REVIEW_REQUIRED items, confirm transfer candidates, confirm Skills/GRC routing candidates and approve or revise the selective transfer plan.
 
 Out of scope:
 
 - modifying Brainy;
 - modifying PS.HermesObsidianIntegration;
+- executing transfer;
 - adopting tools;
-- executing migration;
 - archiving or deleting the source project.

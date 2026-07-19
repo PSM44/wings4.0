@@ -112,3 +112,12 @@ This decision does not:
 ## 07. Next minibattle
 
 WINGS4_GOV_006_PREPARE_HERMES_TO_BRAINY_TRANSFER_INVENTORY
+
+## 08. GOV-006 artifact inventory result
+
+- Source text artifacts inventoried: 115.
+- Artifact-level classification: COMPLETE.
+- Full CSV: PORTFOLIO.REVIEWS/HERMES_TO_BRAINY_TRANSFER_INVENTORY.csv.
+- Human-readable inventory: PORTFOLIO.REVIEWS/HERMES_TO_BRAINY_TRANSFER_INVENTORY.md.
+- Transfer execution: NOT_STARTED.
+- Archive authorization: NO.
