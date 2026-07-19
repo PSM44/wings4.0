@@ -1,37 +1,28 @@
 # Hermes to Brainy — Artifact-Level Transfer Inventory
 
-Status: PREPARED_FOR_HUMAN_REVIEW
-Decision basis: DEC-W4-PAIR-003
-Source project: C:\01. GitHub\PS.HermesObsidianIntegration
+Status: HUMAN_APPROVED
+Decision basis: DEC-W4-PAIR-003 and DEC-W4-PAIR-004
 Source text artifact count: 115
 Brainy modified: NO
 Hermes project modified: NO
 
-## 01. Disposition summary
+## 01. Final disposition summary
 
 | Disposition | Count |
 |---|---:|
-| ARCHIVE_AS_EVIDENCE | 85 |
+| ARCHIVE_AS_EVIDENCE | 89 |
 | DEFER_TOOL_DECISION | 12 |
-| REVIEW_REQUIRED | 11 |
+| ROUTE_TO_PORTFOLIO_IDEAS | 1 |
 | ROUTE_TO_SKILLS_GRC | 3 |
-| TRANSFER_TO_BRAINY | 4 |
+| SPLIT_BEFORE_TRANSFER | 4 |
+| TRANSFER_TO_BRAINY | 6 |
 
-## 02. Interpretation
+## 02. Final artifact-level inventory
 
-- TRANSFER_TO_BRAINY items are durable, tool-neutral requirements; they are not implementation instructions.
-- ROUTE_TO_SKILLS_GRC items belong to reusable cross-project governance.
-- ARCHIVE_AS_EVIDENCE items remain with the source-project archive and do not enter active Brainy canon.
-- DEFER_TOOL_DECISION items are preserved for the later Brainy market-tool review.
-- REVIEW_REQUIRED items must be split or decided by the human before transfer.
-- No source artifact is deleted or modified by this inventory.
-
-## 03. Artifact-level inventory
-
-| Source path | Class | Durable value | Brainy overlap | Disposition | Risk | Confidence |
+| Source path | Class | Durable value | Brainy overlap | Final disposition | Risk | Confidence |
 |---|---|---:|---:|---|---:|---:|
-| 00_HUMAN/HUMAN.PS_HERMES_OBSIDIAN_INTEGRATION.md | PROJECT_IDENTITY | HIGH | HIGH | REVIEW_REQUIRED | HIGH | HIGH |
-| 01_WHOAMI/WHOAMI.PS_HERMES_OBSIDIAN_INTEGRATION.md | PROJECT_IDENTITY | MEDIUM | HIGH | REVIEW_REQUIRED | HIGH | HIGH |
+| 00_HUMAN/HUMAN.PS_HERMES_OBSIDIAN_INTEGRATION.md | PROJECT_IDENTITY | HIGH | HIGH | TRANSFER_TO_BRAINY | HIGH | HIGH |
+| 01_WHOAMI/WHOAMI.PS_HERMES_OBSIDIAN_INTEGRATION.md | PROJECT_IDENTITY | MEDIUM | HIGH | ARCHIVE_AS_EVIDENCE | HIGH | HIGH |
 | 02_BATON/BATON.PS_HERMES_OBSIDIAN_INTEGRATION.ACTIVE.md | CONTINUITY | MEDIUM | LOW | ARCHIVE_AS_EVIDENCE | LOW | HIGH |
 | 03_RADAR/ACTIVE/RADAR_INDEX.PS_HERMES_OBSIDIAN_INTEGRATION.ACTIVE.csv | INVENTORY_EVIDENCE | LOW | LOW | ARCHIVE_AS_EVIDENCE | LOW | HIGH |
 | 03_RADAR/ACTIVE/RADAR_LITE.PS_HERMES_OBSIDIAN_INTEGRATION.ACTIVE.txt | INVENTORY_EVIDENCE | LOW | LOW | ARCHIVE_AS_EVIDENCE | LOW | HIGH |
@@ -48,9 +39,9 @@ Hermes project modified: NO
 | 04_CIS/CIS-008A.WORKFLOW001_MANUAL_DAILY_CYCLE_001.md | CHANGE_INSTRUCTION_EVIDENCE | MEDIUM | MEDIUM | ARCHIVE_AS_EVIDENCE | LOW | HIGH |
 | 04_CIS/CIS-008B.OBSIDIAN_HERMES_UX_INTAKE_DESIGN.md | CHANGE_INSTRUCTION_EVIDENCE | MEDIUM | MEDIUM | ARCHIVE_AS_EVIDENCE | LOW | HIGH |
 | 04_CIS/CIS-008C.WORKFLOW001_OBSIDIAN_COPY_PASTE_BRIDGE_CYCLE_001.md | CHANGE_INSTRUCTION_EVIDENCE | MEDIUM | MEDIUM | ARCHIVE_AS_EVIDENCE | LOW | HIGH |
-| 05_POLICIES/POLICY.AI_ROUTING.md | AI_ROUTING_POLICY | HIGH | HIGH | REVIEW_REQUIRED | HIGH | HIGH |
+| 05_POLICIES/POLICY.AI_ROUTING.md | AI_ROUTING_POLICY | HIGH | HIGH | SPLIT_BEFORE_TRANSFER | HIGH | HIGH |
 | 05_POLICIES/POLICY.GLOBALTEMP.md | PROJECT_TEMP_POLICY | LOW | LOW | ARCHIVE_AS_EVIDENCE | LOW | HIGH |
-| 05_POLICIES/POLICY.OBSIDIAN_HERMES_UX_INTAKE_BOUNDARY.md | TOOL_BOUNDARY_POLICY | HIGH | MEDIUM | REVIEW_REQUIRED | HIGH | HIGH |
+| 05_POLICIES/POLICY.OBSIDIAN_HERMES_UX_INTAKE_BOUNDARY.md | TOOL_BOUNDARY_POLICY | HIGH | MEDIUM | SPLIT_BEFORE_TRANSFER | HIGH | HIGH |
 | 05_POLICIES/POLICY.VAULT_BOUNDARY.md | BOUNDARY_POLICY | HIGH | HIGH | TRANSFER_TO_BRAINY | MEDIUM | HIGH |
 | 05_POLICIES/POLICY.WORK_PRIVACY.md | PRIVACY_POLICY | HIGH | HIGH | TRANSFER_TO_BRAINY | MEDIUM | HIGH |
 | 05_POLICIES/POLICY.WORKFLOW001_INPUT_MODES.md | INPUT_POLICY | HIGH | HIGH | TRANSFER_TO_BRAINY | MEDIUM | HIGH |
@@ -67,7 +58,7 @@ Hermes project modified: NO
 | 08_LOGS/LOG.CIS008A.WORKFLOW001_MANUAL_DAILY_CYCLE_001.20260705_011930.txt | EXECUTION_LOG | LOW | LOW | ARCHIVE_AS_EVIDENCE | LOW | HIGH |
 | 08_LOGS/LOG.CIS008B.OBSIDIAN_HERMES_UX_INTAKE_DESIGN.20260705_015646.txt | EXECUTION_LOG | LOW | LOW | ARCHIVE_AS_EVIDENCE | LOW | HIGH |
 | 08_LOGS/LOG.CIS008C.WORKFLOW001_OBSIDIAN_COPY_PASTE_BRIDGE_CYCLE_001.20260705_102708.txt | EXECUTION_LOG | LOW | LOW | ARCHIVE_AS_EVIDENCE | LOW | HIGH |
-| 09_BACKLOG/BACKLOG.PS_HERMES_OBSIDIAN_INTEGRATION.ACTIVE.md | BACKLOG | MEDIUM | HIGH | REVIEW_REQUIRED | HIGH | HIGH |
+| 09_BACKLOG/BACKLOG.PS_HERMES_OBSIDIAN_INTEGRATION.ACTIVE.md | BACKLOG | MEDIUM | HIGH | ARCHIVE_AS_EVIDENCE | HIGH | HIGH |
 | 09_TEMP/HERMES_OBSIDIAN_CIS001C_PROJECT_BOOTSTRAP_R2.20260703_234153/APPLY_REPORT.CIS-001C.txt | TEMPORARY_EXECUTION_EVIDENCE | LOW | NONE | ARCHIVE_AS_EVIDENCE | LOW | HIGH |
 | 09_TEMP/HERMES_OBSIDIAN_CIS001C_PROJECT_BOOTSTRAP_R2.20260703_234153/CREATED_DIRS.CIS-001C.txt | TEMPORARY_EXECUTION_EVIDENCE | LOW | NONE | ARCHIVE_AS_EVIDENCE | LOW | HIGH |
 | 09_TEMP/HERMES_OBSIDIAN_CIS001C_PROJECT_BOOTSTRAP_R2.20260703_234153/CREATED_FILES.CIS-001C.txt | TEMPORARY_EXECUTION_EVIDENCE | LOW | NONE | ARCHIVE_AS_EVIDENCE | LOW | HIGH |
@@ -125,18 +116,18 @@ Hermes project modified: NO
 | 10_OUTPUTS/WORKFLOW001.REAL_PERSONAL_LOW_SENS_RAW_CAPTURE.20260704_220745.md | PILOT_OUTPUT | MEDIUM | MEDIUM | ARCHIVE_AS_EVIDENCE | LOW | HIGH |
 | 10_OUTPUTS/WORKFLOW001.REAL_PERSONAL_LOW_SENS_SANITIZED_CAPTURE.20260704_220745.md | PILOT_OUTPUT | MEDIUM | MEDIUM | ARCHIVE_AS_EVIDENCE | LOW | HIGH |
 | 10_OUTPUTS/WORKFLOW001.REAL_PERSONAL_LOW_SENS_TEST_PACKAGE.20260704_220745.md | PILOT_OUTPUT | MEDIUM | MEDIUM | ARCHIVE_AS_EVIDENCE | LOW | HIGH |
-| 11_QA/QA.PS_HERMES_OBSIDIAN_INTEGRATION.ACTIVE.md | Q_AND_A_REGISTER | HIGH | HIGH | REVIEW_REQUIRED | HIGH | HIGH |
-| 12_IDEAS/IDEAS.NON_PROJECT.ACTIVE.md | NON_PROJECT_IDEAS | UNKNOWN | UNKNOWN | REVIEW_REQUIRED | HIGH | HIGH |
-| 12_IDEAS/IDEAS.PROJECT.PS_HERMES_OBSIDIAN_INTEGRATION.ACTIVE.md | PROJECT_IDEAS | MEDIUM | HIGH | REVIEW_REQUIRED | HIGH | HIGH |
+| 11_QA/QA.PS_HERMES_OBSIDIAN_INTEGRATION.ACTIVE.md | Q_AND_A_REGISTER | HIGH | HIGH | SPLIT_BEFORE_TRANSFER | HIGH | HIGH |
+| 12_IDEAS/IDEAS.NON_PROJECT.ACTIVE.md | NON_PROJECT_IDEAS | UNKNOWN | UNKNOWN | ROUTE_TO_PORTFOLIO_IDEAS | HIGH | HIGH |
+| 12_IDEAS/IDEAS.PROJECT.PS_HERMES_OBSIDIAN_INTEGRATION.ACTIVE.md | PROJECT_IDEAS | MEDIUM | HIGH | SPLIT_BEFORE_TRANSFER | HIGH | HIGH |
 | 13_OPPORTUNITIES/OPPORTUNITIES.SKILLS_GRC.PS_HERMES_OBSIDIAN_INTEGRATION.ACTIVE.md | SKILLS_GRC_OPPORTUNITIES | HIGH | LOW | ROUTE_TO_SKILLS_GRC | LOW | HIGH |
 | 14_SKILLS_GRC/CANDIDATE.ACCUMULATED_REGISTERS_PATTERN.md | SKILL_GRC_CANDIDATE | HIGH | LOW | ROUTE_TO_SKILLS_GRC | LOW | HIGH |
-| 15_WORKFLOWS/WORKFLOW.001_DAILY_MEMORY_LOOP.md | CORE_WORKFLOW | HIGH | HIGH | REVIEW_REQUIRED | HIGH | HIGH |
+| 15_WORKFLOWS/WORKFLOW.001_DAILY_MEMORY_LOOP.md | CORE_WORKFLOW | HIGH | HIGH | TRANSFER_TO_BRAINY | HIGH | HIGH |
 | 15_WORKFLOWS/WORKFLOW.001_FIRST_DAILY_TEST_PROTOCOL.md | TEST_PROTOCOL | MEDIUM | MEDIUM | ARCHIVE_AS_EVIDENCE | LOW | HIGH |
 | 15_WORKFLOWS/WORKFLOW.001_OBSIDIAN_HERMES_UX_INTAKE_DESIGN.md | TOOL_SPECIFIC_WORKFLOW_DESIGN | MEDIUM | MEDIUM | DEFER_TOOL_DECISION | MEDIUM | HIGH |
 | 15_WORKFLOWS/WORKFLOW.001_PERSONAL_CAPTURE_CONTROLLED_TEST_PROTOCOL.md | TEST_PROTOCOL | MEDIUM | MEDIUM | ARCHIVE_AS_EVIDENCE | LOW | HIGH |
 | 15_WORKFLOWS/WORKFLOW.001_REAL_LOW_SENSITIVITY_PERSONAL_NOTE_PROTOCOL.md | TEST_PROTOCOL | MEDIUM | MEDIUM | ARCHIVE_AS_EVIDENCE | LOW | HIGH |
-| 15_WORKFLOWS/WORKFLOW.001_STANDARD_DAILY_LOOP_CANDIDATE.md | CORE_WORKFLOW | HIGH | HIGH | REVIEW_REQUIRED | HIGH | HIGH |
-| 15_WORKFLOWS/WORKFLOW.001_STATUS.md | CORE_WORKFLOW | HIGH | HIGH | REVIEW_REQUIRED | HIGH | HIGH |
+| 15_WORKFLOWS/WORKFLOW.001_STANDARD_DAILY_LOOP_CANDIDATE.md | CORE_WORKFLOW | HIGH | HIGH | ARCHIVE_AS_EVIDENCE | HIGH | HIGH |
+| 15_WORKFLOWS/WORKFLOW.001_STATUS.md | CORE_WORKFLOW | HIGH | HIGH | ARCHIVE_AS_EVIDENCE | HIGH | HIGH |
 | 16_RELEASES/RELEASE_001.CANDIDATE_CLOSURE_CHECKLIST.md | RELEASE_EVIDENCE | MEDIUM | LOW | ARCHIVE_AS_EVIDENCE | LOW | HIGH |
 | 16_RELEASES/RELEASE_001.CANDIDATE_CLOSURE_REVIEW.md | RELEASE_EVIDENCE | MEDIUM | LOW | ARCHIVE_AS_EVIDENCE | LOW | HIGH |
 | 16_RELEASES/RELEASE_001.CANDIDATE.md | RELEASE_EVIDENCE | MEDIUM | LOW | ARCHIVE_AS_EVIDENCE | LOW | HIGH |
@@ -146,60 +137,13 @@ Hermes project modified: NO
 | 89_IA.History/20260716.md | CONVERSATION_HISTORY | MEDIUM | UNKNOWN | ARCHIVE_AS_EVIDENCE | HIGH | HIGH |
 | README.md | PROJECT_OVERVIEW | LOW | HIGH | ARCHIVE_AS_EVIDENCE | LOW | HIGH |
 
-## 04. Immediate transfer candidates
+## 03. Approval status
 
-- $(@{SourcePath=05_POLICIES/POLICY.VAULT_BOUNDARY.md; ArtifactClass=BOUNDARY_POLICY; Description=Read-only defaults and protected vault/config boundaries.; DurableValue=HIGH; BrainyOverlap=HIGH; PrimaryDisposition=TRANSFER_TO_BRAINY; ConceptualTarget=Brainy source-boundary requirements; MigrationRisk=MEDIUM; EvidenceConfidence=HIGH; Rationale=Contains durable no-touch and explicit-approval requirements independent of tool choice.; SizeBytes=1390; ModifiedLocal=2026-07-04T12:27:55.9206228-04:00; SHA256=9EFB1F160F6B298B256DC4143AF32AFA1CCAAA85825DDE649F9F98E9B463A175}.SourcePath) — Contains durable no-touch and explicit-approval requirements independent of tool choice.
-- $(@{SourcePath=05_POLICIES/POLICY.WORK_PRIVACY.md; ArtifactClass=PRIVACY_POLICY; Description=Corporate-sensitive Work handling rules.; DurableValue=HIGH; BrainyOverlap=HIGH; PrimaryDisposition=TRANSFER_TO_BRAINY; ConceptualTarget=Brainy privacy requirements; MigrationRisk=MEDIUM; EvidenceConfidence=HIGH; Rationale=Tool-neutral privacy requirement.; SizeBytes=731; ModifiedLocal=2026-07-03T23:41:54.0874556-04:00; SHA256=7ABCF1F5F62A07B30230F1FCD25C152D326F263902CB1AA9EB45C083403ADFC2}.SourcePath) — Tool-neutral privacy requirement.
-- $(@{SourcePath=05_POLICIES/POLICY.WORKFLOW001_INPUT_MODES.md; ArtifactClass=INPUT_POLICY; Description=Allowed, pending and blocked intake modes.; DurableValue=HIGH; BrainyOverlap=HIGH; PrimaryDisposition=TRANSFER_TO_BRAINY; ConceptualTarget=Brainy intake requirements; MigrationRisk=MEDIUM; EvidenceConfidence=HIGH; Rationale=Human-supplied paste/file and no-hidden-scan rules are tool-neutral.; SizeBytes=1100; ModifiedLocal=2026-07-05T00:36:21.3451882-04:00; SHA256=88196D3570C095FF7751B411ED18B5A9BB894197FD5E184A4081B3D5752D5200}.SourcePath) — Human-supplied paste/file and no-hidden-scan rules are tool-neutral.
-- $(@{SourcePath=06_RUNBOOKS/RUNBOOK.CONTEXT_SELECTION.md; ArtifactClass=OPERATING_RUNBOOK; Description=Minimum selected-context operating procedure.; DurableValue=HIGH; BrainyOverlap=HIGH; PrimaryDisposition=TRANSFER_TO_BRAINY; ConceptualTarget=Brainy source-selection requirements; MigrationRisk=MEDIUM; EvidenceConfidence=HIGH; Rationale=Minimum necessary context is a durable requirement; tool-specific commands should be omitted.; SizeBytes=664; ModifiedLocal=2026-07-03T23:41:54.0905265-04:00; SHA256=732C910193F4879638F4224370E48A5ADF6123AD15A041C60C918BA41576EFCD}.SourcePath) — Minimum necessary context is a durable requirement; tool-specific commands should be omitted.
-
-## 05. Skills/GRC routing candidates
-
-- $(@{SourcePath=07_TOOLS/README.TOOLS.md; ArtifactClass=TOOLING_GOVERNANCE; Description=Generic script reversibility and reporting conventions.; DurableValue=MEDIUM; BrainyOverlap=LOW; PrimaryDisposition=ROUTE_TO_SKILLS_GRC; ConceptualTarget=Skills/GRC opportunity accumulation; MigrationRisk=LOW; EvidenceConfidence=HIGH; Rationale=Reusable execution-governance pattern, not Brainy-specific content.; SizeBytes=415; ModifiedLocal=2026-07-03T23:41:54.0920345-04:00; SHA256=43ED8B3F60E47A1176FD96A0B6C68F82E8CEEFB94CDEBBBB507C061B68F1E2C7}.SourcePath) — Reusable execution-governance pattern, not Brainy-specific content.
-- $(@{SourcePath=13_OPPORTUNITIES/OPPORTUNITIES.SKILLS_GRC.PS_HERMES_OBSIDIAN_INTEGRATION.ACTIVE.md; ArtifactClass=SKILLS_GRC_OPPORTUNITIES; Description=Accumulated reusable Skills/GRC opportunities.; DurableValue=HIGH; BrainyOverlap=LOW; PrimaryDisposition=ROUTE_TO_SKILLS_GRC; ConceptualTarget=Portfolio Skills/GRC opportunity accumulation; MigrationRisk=LOW; EvidenceConfidence=HIGH; Rationale=Explicitly belongs to reusable governance accumulation.; SizeBytes=4382; ModifiedLocal=2026-07-05T10:47:18.8567052-04:00; SHA256=D9279180BD32F7FEC3C5AF461E5B833751162926D73C69CC91A46EBE858069BE}.SourcePath) — Explicitly belongs to reusable governance accumulation.
-- $(@{SourcePath=14_SKILLS_GRC/CANDIDATE.ACCUMULATED_REGISTERS_PATTERN.md; ArtifactClass=SKILL_GRC_CANDIDATE; Description=Reusable accumulated-registers governance pattern.; DurableValue=HIGH; BrainyOverlap=LOW; PrimaryDisposition=ROUTE_TO_SKILLS_GRC; ConceptualTarget=Skills/GRC governance system; MigrationRisk=LOW; EvidenceConfidence=HIGH; Rationale=Reusable cross-project pattern.; SizeBytes=955; ModifiedLocal=2026-07-04T12:27:55.8940190-04:00; SHA256=BB74F5C556A70A29EFE92B071F913021330B5207915FD83C35EC58313676B16B}.SourcePath) — Reusable cross-project pattern.
-
-## 06. Deferred tool evidence
-
-- $(@{SourcePath=06_RUNBOOKS/RUNBOOK.HERMES_OBSIDIAN.md; ArtifactClass=TOOL_RUNBOOK; Description=Hermes gateway and Obsidian plugin operation.; DurableValue=MEDIUM; BrainyOverlap=LOW; PrimaryDisposition=DEFER_TOOL_DECISION; ConceptualTarget=Later Brainy market-tool review; MigrationRisk=LOW; EvidenceConfidence=HIGH; Rationale=Relevant only if Hermes/Obsidian are retained.; SizeBytes=663; ModifiedLocal=2026-07-03T23:41:54.0895205-04:00; SHA256=0CA963275528E4F59D5B6E9318FF266A9B19083A87E0DEC5A2B39A5EB6321262}.SourcePath) — Relevant only if Hermes/Obsidian are retained.
-- $(@{SourcePath=10_OUTPUTS/CIS002B.WORK_NESTED_OBSIDIAN_DIAG.INVENTORY.20260704_004653.csv; ArtifactClass=OBSIDIAN_DIAGNOSTIC_EVIDENCE; Description=Vault/plugin/config diagnostic evidence.; DurableValue=MEDIUM; BrainyOverlap=LOW; PrimaryDisposition=DEFER_TOOL_DECISION; ConceptualTarget=Later Brainy tool review evidence; MigrationRisk=LOW; EvidenceConfidence=HIGH; Rationale=Potentially useful only when evaluating Obsidian and existing vault state.; SizeBytes=8292; ModifiedLocal=2026-07-04T00:47:02.1202988-04:00; SHA256=F5357CFB3D000A2DCDA70E30FAEAABD49B77DBA7E3C2CDEA98EAF45FCC3DC351}.SourcePath) — Potentially useful only when evaluating Obsidian and existing vault state.
-- $(@{SourcePath=10_OUTPUTS/CIS002B.WORK_NESTED_OBSIDIAN_DIAG.REPORT.20260704_004653.txt; ArtifactClass=OBSIDIAN_DIAGNOSTIC_EVIDENCE; Description=Vault/plugin/config diagnostic evidence.; DurableValue=MEDIUM; BrainyOverlap=LOW; PrimaryDisposition=DEFER_TOOL_DECISION; ConceptualTarget=Later Brainy tool review evidence; MigrationRisk=LOW; EvidenceConfidence=HIGH; Rationale=Potentially useful only when evaluating Obsidian and existing vault state.; SizeBytes=3461; ModifiedLocal=2026-07-04T00:47:02.1412279-04:00; SHA256=D2DB43339B06ADE2450D4CA0D27DF89F2D138FAC1C154455EB3429FB401A83FF}.SourcePath) — Potentially useful only when evaluating Obsidian and existing vault state.
-- $(@{SourcePath=10_OUTPUTS/CIS002B.WORK_NESTED_OBSIDIAN_DIAG.TARGET_SUMMARY.20260704_004653.csv; ArtifactClass=OBSIDIAN_DIAGNOSTIC_EVIDENCE; Description=Vault/plugin/config diagnostic evidence.; DurableValue=MEDIUM; BrainyOverlap=LOW; PrimaryDisposition=DEFER_TOOL_DECISION; ConceptualTarget=Later Brainy tool review evidence; MigrationRisk=LOW; EvidenceConfidence=HIGH; Rationale=Potentially useful only when evaluating Obsidian and existing vault state.; SizeBytes=1458; ModifiedLocal=2026-07-04T00:47:02.1202988-04:00; SHA256=3CAA4C42D3C1E3A68F5BED54906CEE9C763C3EA951E74603BF4B6564318EC8B9}.SourcePath) — Potentially useful only when evaluating Obsidian and existing vault state.
-- $(@{SourcePath=10_OUTPUTS/CIS003.WORK_NESTED_VAULT_COMPARISON.20260704_005527.csv; ArtifactClass=OBSIDIAN_DIAGNOSTIC_EVIDENCE; Description=Vault/plugin/config diagnostic evidence.; DurableValue=MEDIUM; BrainyOverlap=LOW; PrimaryDisposition=DEFER_TOOL_DECISION; ConceptualTarget=Later Brainy tool review evidence; MigrationRisk=LOW; EvidenceConfidence=HIGH; Rationale=Potentially useful only when evaluating Obsidian and existing vault state.; SizeBytes=1366; ModifiedLocal=2026-07-04T00:55:27.5799337-04:00; SHA256=08C6A9C9EDAF870DC00FB7018089DD718FC345B2557A7CF8C2F6BDE1A95D3002}.SourcePath) — Potentially useful only when evaluating Obsidian and existing vault state.
-- $(@{SourcePath=10_OUTPUTS/CIS003.WORK_NESTED_VAULT_DECISION_PACKAGE.20260704_005527.txt; ArtifactClass=OBSIDIAN_DIAGNOSTIC_EVIDENCE; Description=Vault/plugin/config diagnostic evidence.; DurableValue=MEDIUM; BrainyOverlap=LOW; PrimaryDisposition=DEFER_TOOL_DECISION; ConceptualTarget=Later Brainy tool review evidence; MigrationRisk=LOW; EvidenceConfidence=HIGH; Rationale=Potentially useful only when evaluating Obsidian and existing vault state.; SizeBytes=4042; ModifiedLocal=2026-07-04T00:55:27.6243140-04:00; SHA256=1D2F380387E5E4C835A8329A35E679E03CD4BD4A394CB557ED7A3D451A981B4F}.SourcePath) — Potentially useful only when evaluating Obsidian and existing vault state.
-- $(@{SourcePath=10_OUTPUTS/CIS003.WORK_OBSIDIAN_JSON_SIGNALS.20260704_005527.csv; ArtifactClass=OBSIDIAN_DIAGNOSTIC_EVIDENCE; Description=Vault/plugin/config diagnostic evidence.; DurableValue=MEDIUM; BrainyOverlap=LOW; PrimaryDisposition=DEFER_TOOL_DECISION; ConceptualTarget=Later Brainy tool review evidence; MigrationRisk=LOW; EvidenceConfidence=HIGH; Rationale=Potentially useful only when evaluating Obsidian and existing vault state.; SizeBytes=3649; ModifiedLocal=2026-07-04T00:55:27.3856400-04:00; SHA256=D6836D8E5AA19F614542AA5D8D8C186A36922B6A9A54724C2F80425C9611F237}.SourcePath) — Potentially useful only when evaluating Obsidian and existing vault state.
-- $(@{SourcePath=10_OUTPUTS/CIS003.WORK_OBSIDIAN_PLUGIN_COMPARISON.20260704_005527.csv; ArtifactClass=OBSIDIAN_DIAGNOSTIC_EVIDENCE; Description=Vault/plugin/config diagnostic evidence.; DurableValue=MEDIUM; BrainyOverlap=LOW; PrimaryDisposition=DEFER_TOOL_DECISION; ConceptualTarget=Later Brainy tool review evidence; MigrationRisk=LOW; EvidenceConfidence=HIGH; Rationale=Potentially useful only when evaluating Obsidian and existing vault state.; SizeBytes=410; ModifiedLocal=2026-07-04T00:55:27.4190483-04:00; SHA256=6F09451521E656FF9A7347E3A40F207CD93395FEB8F74E60CA289C7D15779246}.SourcePath) — Potentially useful only when evaluating Obsidian and existing vault state.
-- $(@{SourcePath=10_OUTPUTS/CIS004A.MANUAL_VALIDATION_CHECKLIST.20260704_110116.md; ArtifactClass=OBSIDIAN_DIAGNOSTIC_EVIDENCE; Description=Vault/plugin/config diagnostic evidence.; DurableValue=MEDIUM; BrainyOverlap=LOW; PrimaryDisposition=DEFER_TOOL_DECISION; ConceptualTarget=Later Brainy tool review evidence; MigrationRisk=LOW; EvidenceConfidence=HIGH; Rationale=Potentially useful only when evaluating Obsidian and existing vault state.; SizeBytes=2046; ModifiedLocal=2026-07-04T11:01:16.2402720-04:00; SHA256=AD5C8FF6EF6CC825FFB302ACC209F520FE5B38DE82EB780A7C5D3A9A840F2101}.SourcePath) — Potentially useful only when evaluating Obsidian and existing vault state.
-- $(@{SourcePath=10_OUTPUTS/CIS004A.OBSIDIAN_RUNTIME_VAULT_CHECK.20260704_110116.txt; ArtifactClass=OBSIDIAN_DIAGNOSTIC_EVIDENCE; Description=Vault/plugin/config diagnostic evidence.; DurableValue=MEDIUM; BrainyOverlap=LOW; PrimaryDisposition=DEFER_TOOL_DECISION; ConceptualTarget=Later Brainy tool review evidence; MigrationRisk=LOW; EvidenceConfidence=HIGH; Rationale=Potentially useful only when evaluating Obsidian and existing vault state.; SizeBytes=1430; ModifiedLocal=2026-07-04T11:01:16.2392653-04:00; SHA256=AD773011D13F9615ABAAB75F805D617ADDB22D67937DCEF289FDE6B868B5EFE2}.SourcePath) — Potentially useful only when evaluating Obsidian and existing vault state.
-- $(@{SourcePath=10_OUTPUTS/CIS004A.OBSIDIAN_RUNTIME_VAULT_REGISTRY.20260704_110116.csv; ArtifactClass=OBSIDIAN_DIAGNOSTIC_EVIDENCE; Description=Vault/plugin/config diagnostic evidence.; DurableValue=MEDIUM; BrainyOverlap=LOW; PrimaryDisposition=DEFER_TOOL_DECISION; ConceptualTarget=Later Brainy tool review evidence; MigrationRisk=LOW; EvidenceConfidence=HIGH; Rationale=Potentially useful only when evaluating Obsidian and existing vault state.; SizeBytes=1030; ModifiedLocal=2026-07-04T11:01:16.1817350-04:00; SHA256=920BBF7A297DBE804784103F9D07B95A1A3580B91B82B6785F48ED6C43927B4B}.SourcePath) — Potentially useful only when evaluating Obsidian and existing vault state.
-- $(@{SourcePath=15_WORKFLOWS/WORKFLOW.001_OBSIDIAN_HERMES_UX_INTAKE_DESIGN.md; ArtifactClass=TOOL_SPECIFIC_WORKFLOW_DESIGN; Description=Design for Obsidian/Hermes intake.; DurableValue=MEDIUM; BrainyOverlap=MEDIUM; PrimaryDisposition=DEFER_TOOL_DECISION; ConceptualTarget=Later Brainy market-tool review; MigrationRisk=MEDIUM; EvidenceConfidence=HIGH; Rationale=Do not promote a tool-specific design before tool selection.; SizeBytes=2472; ModifiedLocal=2026-07-05T01:56:47.0009040-04:00; SHA256=DD4252F0F3979F46CE2E90893E2B8DA9B2420D9D37C9D5772D0695604E2723E5}.SourcePath) — Do not promote a tool-specific design before tool selection.
-
-## 07. Human-review queue
-
-- $(@{SourcePath=00_HUMAN/HUMAN.PS_HERMES_OBSIDIAN_INTEGRATION.md; ArtifactClass=PROJECT_IDENTITY; Description=Human intent and project governance baseline.; DurableValue=HIGH; BrainyOverlap=HIGH; PrimaryDisposition=REVIEW_REQUIRED; ConceptualTarget=Brainy purpose/governance review; MigrationRisk=HIGH; EvidenceConfidence=HIGH; Rationale=Contains durable intent mixed with obsolete project-specific identity; extract, do not copy.; SizeBytes=1234; ModifiedLocal=2026-07-03T23:41:54.0767252-04:00; SHA256=CA1662ACD3D7B66B599B8FFA716A38B06E8806A14C6972E13A9B0A6007D17922}.SourcePath) — Contains durable intent mixed with obsolete project-specific identity; extract, do not copy.
-- $(@{SourcePath=01_WHOAMI/WHOAMI.PS_HERMES_OBSIDIAN_INTEGRATION.md; ArtifactClass=PROJECT_IDENTITY; Description=Tool-specific project identity and declared scope.; DurableValue=MEDIUM; BrainyOverlap=HIGH; PrimaryDisposition=REVIEW_REQUIRED; ConceptualTarget=Brainy purpose/governance review; MigrationRisk=HIGH; EvidenceConfidence=HIGH; Rationale=Identity is superseded, but scope boundaries may contain durable requirements.; SizeBytes=909; ModifiedLocal=2026-07-03T23:41:54.0779780-04:00; SHA256=75730E1EE95ABAB56549227904A7EDE7F44C4BE2AF38E6155FAB4CBCDE6E2A9C}.SourcePath) — Identity is superseded, but scope boundaries may contain durable requirements.
-- $(@{SourcePath=05_POLICIES/POLICY.AI_ROUTING.md; ArtifactClass=AI_ROUTING_POLICY; Description=Mixed tool-specific routing state and durable sensitivity/cost rules.; DurableValue=HIGH; BrainyOverlap=HIGH; PrimaryDisposition=REVIEW_REQUIRED; ConceptualTarget=Brainy routing requirements and later tool review; MigrationRisk=HIGH; EvidenceConfidence=HIGH; Rationale=Split durable privacy/cost rules from Hermes/OpenRouter implementation details.; SizeBytes=742; ModifiedLocal=2026-07-03T23:41:54.0859393-04:00; SHA256=F88F27FF84D24F9C72D65660212B895334441088BE1FF20002ACAD9A0275FE92}.SourcePath) — Split durable privacy/cost rules from Hermes/OpenRouter implementation details.
-- $(@{SourcePath=05_POLICIES/POLICY.OBSIDIAN_HERMES_UX_INTAKE_BOUNDARY.md; ArtifactClass=TOOL_BOUNDARY_POLICY; Description=Obsidian/Hermes-specific intake restrictions and future gates.; DurableValue=HIGH; BrainyOverlap=MEDIUM; PrimaryDisposition=REVIEW_REQUIRED; ConceptualTarget=Brainy requirements plus deferred tool review; MigrationRisk=HIGH; EvidenceConfidence=HIGH; Rationale=Extract no-traversal and explicit-source requirements; defer plugin-specific decisions.; SizeBytes=972; ModifiedLocal=2026-07-05T01:56:47.0039023-04:00; SHA256=21296511E36DC936D5E065061D326F046F5366E13CC34F3F22FCA6F1F2596B99}.SourcePath) — Extract no-traversal and explicit-source requirements; defer plugin-specific decisions.
-- $(@{SourcePath=09_BACKLOG/BACKLOG.PS_HERMES_OBSIDIAN_INTEGRATION.ACTIVE.md; ArtifactClass=BACKLOG; Description=Mixed completed, stale, tool-specific and potentially durable open work.; DurableValue=MEDIUM; BrainyOverlap=HIGH; PrimaryDisposition=REVIEW_REQUIRED; ConceptualTarget=Wings4.0 transfer decision review; MigrationRisk=HIGH; EvidenceConfidence=HIGH; Rationale=Items must be reclassified individually; several OPEN states are stale.; SizeBytes=4342; ModifiedLocal=2026-07-05T10:47:18.7952509-04:00; SHA256=2F7C68DE2C74BEB1A33200CBA375231B177256D9E7BF1A08541EA9090CCE8544}.SourcePath) — Items must be reclassified individually; several OPEN states are stale.
-- $(@{SourcePath=11_QA/QA.PS_HERMES_OBSIDIAN_INTEGRATION.ACTIVE.md; ArtifactClass=Q_AND_A_REGISTER; Description=Answered decisions and unresolved project questions.; DurableValue=HIGH; BrainyOverlap=HIGH; PrimaryDisposition=REVIEW_REQUIRED; ConceptualTarget=Curated Brainy decisions and deferred tool questions; MigrationRisk=HIGH; EvidenceConfidence=HIGH; Rationale=Split durable requirements, historical answers and tool questions.; SizeBytes=4121; ModifiedLocal=2026-07-05T10:47:18.7677253-04:00; SHA256=4EC2F4533C5391E578A4EBBE692BDB96A4E95FE0F7958CCABCE93406B80A1F8D}.SourcePath) — Split durable requirements, historical answers and tool questions.
-- $(@{SourcePath=12_IDEAS/IDEAS.NON_PROJECT.ACTIVE.md; ArtifactClass=NON_PROJECT_IDEAS; Description=Ideas explicitly outside the Hermes project.; DurableValue=UNKNOWN; BrainyOverlap=UNKNOWN; PrimaryDisposition=REVIEW_REQUIRED; ConceptualTarget=Portfolio-level non-project ideas governance; MigrationRisk=HIGH; EvidenceConfidence=HIGH; Rationale=Must not be silently absorbed into Brainy or discarded.; SizeBytes=2936; ModifiedLocal=2026-07-05T10:47:18.8367070-04:00; SHA256=318C761327AA7080F551F02285F535D5F2885C34E8484A1550D481065941D451}.SourcePath) — Must not be silently absorbed into Brainy or discarded.
-- $(@{SourcePath=12_IDEAS/IDEAS.PROJECT.PS_HERMES_OBSIDIAN_INTEGRATION.ACTIVE.md; ArtifactClass=PROJECT_IDEAS; Description=Hermes-project ideas with mixed Brainy, tool and governance relevance.; DurableValue=MEDIUM; BrainyOverlap=HIGH; PrimaryDisposition=REVIEW_REQUIRED; ConceptualTarget=Brainy, tool-review or Skills/GRC routing; MigrationRisk=HIGH; EvidenceConfidence=HIGH; Rationale=Each idea requires individual routing.; SizeBytes=3809; ModifiedLocal=2026-07-05T10:47:18.8161896-04:00; SHA256=D855C0936632D9D06FE96B7E3D8C71D9BDD3294D3EC06D64B48C468AE344529E}.SourcePath) — Each idea requires individual routing.
-- $(@{SourcePath=15_WORKFLOWS/WORKFLOW.001_DAILY_MEMORY_LOOP.md; ArtifactClass=CORE_WORKFLOW; Description=Candidate daily capture/privacy/classification/summarization workflow.; DurableValue=HIGH; BrainyOverlap=HIGH; PrimaryDisposition=REVIEW_REQUIRED; ConceptualTarget=Brainy capability and requirement review; MigrationRisk=HIGH; EvidenceConfidence=HIGH; Rationale=Extract durable behavior; do not copy tool/project-specific implementation.; SizeBytes=2449; ModifiedLocal=2026-07-05T00:48:07.7408367-04:00; SHA256=0481EE66A3FED2734B5F0372CF9B7F430C3BDB43521CFF83D5B7611B543899A6}.SourcePath) — Extract durable behavior; do not copy tool/project-specific implementation.
-- $(@{SourcePath=15_WORKFLOWS/WORKFLOW.001_STANDARD_DAILY_LOOP_CANDIDATE.md; ArtifactClass=CORE_WORKFLOW; Description=Candidate daily capture/privacy/classification/summarization workflow.; DurableValue=HIGH; BrainyOverlap=HIGH; PrimaryDisposition=REVIEW_REQUIRED; ConceptualTarget=Brainy capability and requirement review; MigrationRisk=HIGH; EvidenceConfidence=HIGH; Rationale=Extract durable behavior; do not copy tool/project-specific implementation.; SizeBytes=1431; ModifiedLocal=2026-07-05T00:48:07.7933988-04:00; SHA256=54AA98FCE85527B6B957231C2F8500760A45DD55A56CF88DFCD4A5A3D7F3C586}.SourcePath) — Extract durable behavior; do not copy tool/project-specific implementation.
-- $(@{SourcePath=15_WORKFLOWS/WORKFLOW.001_STATUS.md; ArtifactClass=CORE_WORKFLOW; Description=Candidate daily capture/privacy/classification/summarization workflow.; DurableValue=HIGH; BrainyOverlap=HIGH; PrimaryDisposition=REVIEW_REQUIRED; ConceptualTarget=Brainy capability and requirement review; MigrationRisk=HIGH; EvidenceConfidence=HIGH; Rationale=Extract durable behavior; do not copy tool/project-specific implementation.; SizeBytes=2289; ModifiedLocal=2026-07-05T10:47:18.7467265-04:00; SHA256=DA28699432702231DABABEDE525CB92C383E7D895EA5E440B0869BBA64A8A3E4}.SourcePath) — Extract durable behavior; do not copy tool/project-specific implementation.
-
-## 08. Archive readiness
-
-TRANSFER_INVENTORY_COMPLETE=YES
-ARTIFACT_LEVEL_CLASSIFICATION_COMPLETE=YES
-DURABLE_REQUIREMENTS_TRANSFERRED=NO
-SKILLS_GRC_OPPORTUNITIES_ROUTED=NO
-BRAINY_LOCAL_GOVERNANCE_UPDATED=NO
-BRAINY_RESYNCHRONIZATION_PASS=NO
-SOURCE_PROJECT_FINAL_BATON_CREATED=NO
-HUMAN_ARCHIVE_APPROVAL=NO
+HUMAN_REVIEW_APPROVED=YES
+REVIEW_REQUIRED_COUNT=0
+TRANSFER_EXECUTION_STARTED=NO
 ARCHIVE_AUTHORIZED=NO
 
-## 09. Next minibattle
+## 04. Next minibattle
 
-WINGS4_GOV_007_REVIEW_AND_APPROVE_HERMES_TRANSFER_INVENTORY
+WINGS4_GOV_008_PREPARE_PROJECT_LOCAL_TRANSFER_PACKETS

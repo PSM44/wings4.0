@@ -116,17 +116,44 @@ Outputs:
 ## WINGS4_GOV_007_REVIEW_AND_APPROVE_HERMES_TRANSFER_INVENTORY
 
 Priority: P0
+Status: COMPLETED
+Decision: DEC-W4-PAIR-004
+
+Result:
+
+- Artifact-level inventory approved.
+- REVIEW_REQUIRED count reduced to zero.
+- Tool decisions remain deferred.
+- Archive remains unauthorized.
+
+
+## WINGS4_GOV_008_PREPARE_PROJECT_LOCAL_TRANSFER_PACKETS
+
+Priority: P0
 Status: READY
-Predecessor: WINGS4_GOV_006_PREPARE_HERMES_TO_BRAINY_TRANSFER_INVENTORY
+Predecessor: DEC-W4-PAIR-004
 
 Objective:
 
-Review the artifact-level classification, resolve REVIEW_REQUIRED items, confirm transfer candidates, confirm Skills/GRC routing candidates and approve or revise the selective transfer plan.
+Prepare two separate project-local instruction packets:
+
+1. Brainy packet:
+   - present curated durable requirements;
+   - require Brainy to evaluate fit against its existing architecture;
+   - prohibit Wings4.0 from prescribing internal architecture;
+   - require Brainy-local evidence, rollback and resynchronization.
+
+2. PS.HermesObsidianIntegration packet:
+   - preserve evidence;
+   - update local canon to transitional/closing status;
+   - route approved Skills/GRC and portfolio ideas;
+   - prepare final BATON;
+   - prohibit deletion or archive until later approval.
 
 Out of scope:
 
-- modifying Brainy;
-- modifying PS.HermesObsidianIntegration;
-- executing transfer;
-- adopting tools;
-- archiving or deleting the source project.
+- direct modification of Brainy by Wings4.0;
+- direct modification of PS.HermesObsidianIntegration by Wings4.0;
+- tool adoption;
+- project deletion;
+- final archive authorization.

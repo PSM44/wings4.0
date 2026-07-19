@@ -96,3 +96,24 @@ ABSORB_KNOWLEDGE_AND_CLOSE_PROJECT
 Next minibattle:
 
 WINGS4_GOV_006_PREPARE_HERMES_TO_BRAINY_TRANSFER_INVENTORY
+
+## DEC-W4-PAIR-004 — Approval of Hermes-to-Brainy transfer inventory
+
+Status: APPROVED
+Date: 2026-07-19
+Scope: Portfolio transfer review
+
+Decision:
+
+- The artifact-level transfer inventory is approved.
+- All former REVIEW_REQUIRED items now have final treatment.
+- Tool adoption remains deferred.
+- No external project is modified by this decision.
+- The next step is to prepare two separate project-local transfer packets:
+  1. Brainy intake/review packet.
+  2. PS.HermesObsidianIntegration close/transition packet.
+- Archive remains unauthorized until project-local updates and resynchronization pass.
+
+Next minibattle:
+
+WINGS4_GOV_008_PREPARE_PROJECT_LOCAL_TRANSFER_PACKETS
