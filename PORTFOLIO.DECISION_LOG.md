@@ -73,3 +73,26 @@ Decision:
 Immediate next minibattle:
 
 WINGS4_GOV_005_DECIDE_HERMES_BRAINY_DISPOSITION
+
+## DEC-W4-PAIR-003 — Selective absorption of PS.HermesObsidianIntegration into Brainy
+
+Status: APPROVED_HUMAN_DIRECTION
+Date: 2026-07-19
+Scope: Portfolio disposition
+
+Decision:
+
+- Brainy is the durable solution owner.
+- PS.HermesObsidianIntegration is designated as a research and pilot project for selective knowledge absorption.
+- Useful knowledge, requirements, privacy findings, evidence and unresolved questions shall be classified before transfer.
+- Hermes, Obsidian and plugins remain unevaluated tools and are not adopted by this decision.
+- The source project may be archived only after transfer, local project updates, resynchronization and explicit human approval.
+- No external project is modified by this decision record.
+
+Disposition:
+
+ABSORB_KNOWLEDGE_AND_CLOSE_PROJECT
+
+Next minibattle:
+
+WINGS4_GOV_006_PREPARE_HERMES_TO_BRAINY_TRANSFER_INVENTORY

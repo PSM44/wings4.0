@@ -79,43 +79,42 @@ Current out of scope:
 ## WINGS4_GOV_005_DECIDE_HERMES_BRAINY_DISPOSITION
 
 Priority: P0
-Status: READY
+Status: COMPLETED
 Predecessor: DEC-W4-PAIR-002
+Decision: DEC-W4-PAIR-003
+
+Result:
+
+ABSORB_KNOWLEDGE_AND_CLOSE_PROJECT
+
+Notes:
+
+- Brainy owns the durable purpose.
+- Tool adoption remains deferred.
+- Archive remains conditional.
+
+
+## WINGS4_GOV_006_PREPARE_HERMES_TO_BRAINY_TRANSFER_INVENTORY
+
+Priority: P0
+Status: READY
+Predecessor: DEC-W4-PAIR-003
 
 Objective:
 
-Determine whether PS.HermesObsidianIntegration should be:
+Prepare an evidence-grounded inventory of PS.HermesObsidianIntegration artifacts and classify each relevant item as:
 
-- absorbed by Brainy;
-- partially absorbed by Brainy;
-- retained as an independent project;
-- redefined as research or pilot;
-- archived as superseded;
-- deferred pending additional evidence.
+- TRANSFER_TO_BRAINY;
+- ROUTE_TO_SKILLS_GRC;
+- ARCHIVE_AS_EVIDENCE;
+- DEFER_TOOL_DECISION;
+- REJECT_DUPLICATION;
+- REVIEW_REQUIRED.
 
-Required analysis:
+Out of scope:
 
-- purpose overlap;
-- capability overlap;
-- unique contribution;
-- evidence produced;
-- reusable knowledge;
-- local governance value;
-- duplication risk;
-- migration impact;
-- archival value;
-- unresolved questions.
-
-Required output:
-
-A disposition matrix covering each relevant capability, policy, workflow, artifact class and unresolved backlog item from PS.HermesObsidianIntegration.
-
-Explicitly out of scope:
-
-- selecting Brainy's final tools;
-- evaluating the full market;
-- designing Brainy architecture;
 - modifying Brainy;
 - modifying PS.HermesObsidianIntegration;
-- creating Skills or GRCs;
-- executing migration.
+- adopting tools;
+- executing migration;
+- archiving or deleting the source project.

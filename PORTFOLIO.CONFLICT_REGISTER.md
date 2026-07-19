@@ -17,23 +17,17 @@ No portfolio conflict is resolved merely because a project currently functions.
 
 ## PC-011 — Brainy and PS.HermesObsidianIntegration purpose/capability overlap
 
-Status: OPEN_UNDER_REVIEW
+Status: RESOLUTION_SELECTED_TRANSFER_PENDING
 Severity: HIGH
 Confidence: HIGH
 
-Evidence:
+Resolution:
 
-- Both entities address capture, memory intake, classification, continuity and Personal/Work concerns.
-- Brainy already has a product purpose, architecture, Input Lake and local governance.
-- PS.HermesObsidianIntegration contains tool-specific experiments plus reusable privacy and intake ideas.
+- Brainy owns the durable purpose.
+- PS.HermesObsidianIntegration will undergo selective knowledge absorption.
+- Tools remain unevaluated and are excluded from the disposition decision.
+- Project archive remains blocked until transfer and resynchronization gates pass.
 
-Human direction:
+Next gate:
 
-- Treat Brainy as the leading purpose owner.
-- Do not prescribe Brainy's architecture from Wings4.0.
-- Do not force Hermes or Obsidian adoption.
-- Evaluate tools and capabilities independently.
-
-Resolution gate:
-
-Complete a comparative tool-value review before deciding absorption, retention, replacement, rejection or archive.
+WINGS4_GOV_006_PREPARE_HERMES_TO_BRAINY_TRANSFER_INVENTORY
