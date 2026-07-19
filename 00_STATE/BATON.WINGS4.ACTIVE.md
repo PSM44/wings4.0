@@ -1,6 +1,6 @@
 # BATON — Wings4.0 Active
 
-STATUS: GOV_007_TRANSFER_REVIEW_APPROVED_READY_FOR_PROJECT_LOCAL_PACKETS
+STATUS: GOV_008_PROJECT_LOCAL_PACKETS_PREPARED_READY_FOR_BRAINY_EXECUTION
 UPDATED_AT: 2026-07-18
 PROJECT_ROOT: C:\01. GitHub\Wings4.0
 TEMP_PATH: C:\Users\aazcl\Downloads\T.Wings4.0
@@ -66,7 +66,7 @@ Expected output:
 4. Verify its canonical HUMAN path and current Git state.
 5. Do not populate capability or relationship maps before evidence-based review.
 
-NEXT_MINIBATTLE: WINGS4_GOV_008_PREPARE_PROJECT_LOCAL_TRANSFER_PACKETS
+NEXT_MINIBATTLE: WINGS4_GOV_009_EXECUTE_BRAINY_PROJECT_LOCAL_ABSORPTION_REVIEW
 
 ## GOV-004 Portfolio decision update
 
@@ -105,4 +105,12 @@ NEXT_MINIBATTLE: WINGS4_GOV_008_PREPARE_PROJECT_LOCAL_TRANSFER_PACKETS
 - REVIEW_REQUIRED count is zero.
 - No external project modified.
 - Tool decisions remain deferred.
+- Archive remains unauthorized.
+
+## GOV-008 project-local packets prepared
+
+- Brainy packet prepared.
+- Hermes transition packet prepared.
+- No external project modified.
+- Brainy execution is next.
 - Archive remains unauthorized.

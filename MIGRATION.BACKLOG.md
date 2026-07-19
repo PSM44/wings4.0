@@ -130,30 +130,30 @@ Result:
 ## WINGS4_GOV_008_PREPARE_PROJECT_LOCAL_TRANSFER_PACKETS
 
 Priority: P0
+Status: COMPLETED
+Decision: DEC-W4-PAIR-005
+
+Result:
+
+- Brainy project-local packet prepared.
+- PS.HermesObsidianIntegration transition packet prepared.
+- No external project modified.
+- Archive remains unauthorized.
+
+
+## WINGS4_GOV_009_EXECUTE_BRAINY_PROJECT_LOCAL_ABSORPTION_REVIEW
+
+Priority: P0
 Status: READY
-Predecessor: DEC-W4-PAIR-004
+Predecessor: DEC-W4-PAIR-005
 
 Objective:
 
-Prepare two separate project-local instruction packets:
-
-1. Brainy packet:
-   - present curated durable requirements;
-   - require Brainy to evaluate fit against its existing architecture;
-   - prohibit Wings4.0 from prescribing internal architecture;
-   - require Brainy-local evidence, rollback and resynchronization.
-
-2. PS.HermesObsidianIntegration packet:
-   - preserve evidence;
-   - update local canon to transitional/closing status;
-   - route approved Skills/GRC and portfolio ideas;
-   - prepare final BATON;
-   - prohibit deletion or archive until later approval.
+Execute the Brainy-local packet inside the Brainy project, evaluate the 12 curated requirements against Brainy's existing architecture, apply only justified Brainy-local changes, resynchronize Brainy and return consolidated evidence.
 
 Out of scope:
 
-- direct modification of Brainy by Wings4.0;
-- direct modification of PS.HermesObsidianIntegration by Wings4.0;
-- tool adoption;
-- project deletion;
-- final archive authorization.
+- direct Wings4.0 edits to Brainy;
+- PS.HermesObsidianIntegration transition execution;
+- tool selection;
+- source-project archive authorization.

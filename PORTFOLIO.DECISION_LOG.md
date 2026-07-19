@@ -117,3 +117,21 @@ Decision:
 Next minibattle:
 
 WINGS4_GOV_008_PREPARE_PROJECT_LOCAL_TRANSFER_PACKETS
+
+## DEC-W4-PAIR-005 — Project-local transfer execution model
+
+Status: APPROVED
+Date: 2026-07-19
+Scope: Transfer execution governance
+
+Decision:
+
+- Wings4.0 prepares instructions but does not directly modify Brainy or PS.HermesObsidianIntegration.
+- Brainy must evaluate and implement durable requirements under Brainy-local governance.
+- PS.HermesObsidianIntegration must prepare its own transition and close records under source-project-local governance.
+- Results return to Wings4.0 as consolidated evidence.
+- Archive remains unauthorized until both project-local results are validated and resynchronized.
+
+Next minibattle:
+
+WINGS4_GOV_009_EXECUTE_BRAINY_PROJECT_LOCAL_ABSORPTION_REVIEW
