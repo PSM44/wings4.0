@@ -1,6 +1,6 @@
 # BATON — Wings4.0 Active
 
-STATUS: GOV_004_RECORDED_READY_FOR_TOOL_VALUE_REVIEW
+STATUS: GOV_005_READY_HERMES_BRAINY_DISPOSITION
 UPDATED_AT: 2026-07-18
 PROJECT_ROOT: C:\01. GitHub\Wings4.0
 TEMP_PATH: C:\Users\aazcl\Downloads\T.Wings4.0
@@ -66,7 +66,7 @@ Expected output:
 4. Verify its canonical HUMAN path and current Git state.
 5. Do not populate capability or relationship maps before evidence-based review.
 
-NEXT_MINIBATTLE: WINGS4_GOV_005_TOOL_VALUE_COMPARATIVE_REVIEW
+NEXT_MINIBATTLE: WINGS4_GOV_005_DECIDE_HERMES_BRAINY_DISPOSITION
 
 ## GOV-004 Portfolio decision update
 
@@ -76,3 +76,10 @@ NEXT_MINIBATTLE: WINGS4_GOV_005_TOOL_VALUE_COMPARATIVE_REVIEW
 - Hermes, Obsidian and alternatives require evidence-based comparative review.
 - Skills/GRC opportunities were recorded for external governance handling.
 - No project, tool, absorption, migration or archive action was approved.
+
+## GOV-005 sequencing correction
+
+- First resolve PS.HermesObsidianIntegration versus Brainy.
+- Broad market-tool evaluation is deferred until Brainy is treated as the consolidated project.
+- PR-PORT-006 applies the no-reinvention principle transversally to all projects.
+- No Brainy or Hermes project files were modified.

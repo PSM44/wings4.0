@@ -55,3 +55,21 @@ Decision:
 Next gate:
 
 WINGS4_GOV_005_TOOL_VALUE_COMPARATIVE_REVIEW
+
+## DEC-W4-PAIR-002 — Sequential resolution of Hermes and Brainy
+
+Status: APPROVED_HUMAN_DIRECTION
+Date: 2026-07-19
+Scope: Portfolio sequencing
+
+Decision:
+
+- First determine the disposition of PS.HermesObsidianIntegration relative to Brainy.
+- Do not yet perform a broad market-tool assessment for Brainy.
+- Do not yet decide Brainy's implementation, application or final tooling.
+- After the Hermes–Brainy disposition is resolved and implemented, evaluate Brainy as the consolidated project under PR-PORT-006.
+- Projects are solutions, investigations or developments; they are not assumed to be applications.
+
+Immediate next minibattle:
+
+WINGS4_GOV_005_DECIDE_HERMES_BRAINY_DISPOSITION

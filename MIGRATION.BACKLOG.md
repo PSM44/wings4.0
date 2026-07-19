@@ -55,29 +55,67 @@
 
 ## WINGS4_GOV_005_TOOL_VALUE_COMPARATIVE_REVIEW
 
+Priority: P1
+Status: DEFERRED
+Predecessor: WINGS4_GOV_008_RESYNCHRONIZE_HERMES_BRAINY
+
+Reason for deferral:
+
+The portfolio must first resolve whether PS.HermesObsidianIntegration is absorbed by Brainy, partially absorbed, retained, redefined or archived. A broad tool-value review before that decision would mix project disposition with implementation selection.
+
+Future objective:
+
+Evaluate Brainy as the consolidated project under PR-PORT-006 and determine whether its purpose can be fulfilled through existing market tools, configuration, integration, Skills/GRCs or only residual custom development.
+
+Current out of scope:
+
+- selecting Hermes, Obsidian or alternatives;
+- designing Brainy architecture;
+- modifying Brainy;
+- modifying PS.HermesObsidianIntegration;
+- approving development.
+
+
+## WINGS4_GOV_005_DECIDE_HERMES_BRAINY_DISPOSITION
+
 Priority: P0
 Status: READY
-Predecessor: DEC-W4-PAIR-001
+Predecessor: DEC-W4-PAIR-002
 
 Objective:
 
-Evaluate Hermes, Obsidian, Brainy's existing mechanisms and viable alternatives without assuming that installed tools should be retained.
+Determine whether PS.HermesObsidianIntegration should be:
 
-Required decision dimensions:
+- absorbed by Brainy;
+- partially absorbed by Brainy;
+- retained as an independent project;
+- redefined as research or pilot;
+- archived as superseded;
+- deferred pending additional evidence.
 
-- functional value;
-- privacy and security;
-- maintenance and project health;
-- interoperability and portability;
-- operational cost and complexity;
-- duplication with Brainy;
-- tool lock-in;
-- evidence from actual use.
+Required analysis:
 
-Out of scope:
+- purpose overlap;
+- capability overlap;
+- unique contribution;
+- evidence produced;
+- reusable knowledge;
+- local governance value;
+- duplication risk;
+- migration impact;
+- archival value;
+- unresolved questions.
 
-- redesign Brainy architecture;
-- modify Brainy;
-- modify PS.HermesObsidianIntegration;
-- create Skills/GRC directly;
-- approve absorption or archive before evidence review.
+Required output:
+
+A disposition matrix covering each relevant capability, policy, workflow, artifact class and unresolved backlog item from PS.HermesObsidianIntegration.
+
+Explicitly out of scope:
+
+- selecting Brainy's final tools;
+- evaluating the full market;
+- designing Brainy architecture;
+- modifying Brainy;
+- modifying PS.HermesObsidianIntegration;
+- creating Skills or GRCs;
+- executing migration.
