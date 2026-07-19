@@ -14,3 +14,26 @@ No portfolio conflict is resolved merely because a project currently functions.
 | PC-008 | Control versus listening language | RESOLVED | HIGH | HIGH | Earlier Wings4.0 language implied direct control over portfolio matters and project HUMAN. | Canon now states listen, compare, recommend, human decision, local implementation, and resynchronization. |
 | PC-009 | Dashboard-first versus governance-proof-first | RESOLVED | MEDIUM | HIGH | Previous backlog prioritized a management dashboard before validating the governance cycle. | Governance pilot now precedes visualization. |
 | PC-010 | AI history root placement | OPEN | LOW | HIGH | `20260716_AI.History.md` is useful evidence but noncanonical, large, and untracked in root. | Define IA.History policy before permanent repository placement. |
+
+## PC-011 — Brainy and PS.HermesObsidianIntegration purpose/capability overlap
+
+Status: OPEN_UNDER_REVIEW
+Severity: HIGH
+Confidence: HIGH
+
+Evidence:
+
+- Both entities address capture, memory intake, classification, continuity and Personal/Work concerns.
+- Brainy already has a product purpose, architecture, Input Lake and local governance.
+- PS.HermesObsidianIntegration contains tool-specific experiments plus reusable privacy and intake ideas.
+
+Human direction:
+
+- Treat Brainy as the leading purpose owner.
+- Do not prescribe Brainy's architecture from Wings4.0.
+- Do not force Hermes or Obsidian adoption.
+- Evaluate tools and capabilities independently.
+
+Resolution gate:
+
+Complete a comparative tool-value review before deciding absorption, retention, replacement, rejection or archive.

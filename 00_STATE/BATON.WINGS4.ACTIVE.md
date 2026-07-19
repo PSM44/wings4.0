@@ -1,6 +1,6 @@
 # BATON — Wings4.0 Active
 
-STATUS: GOV_001_COMPLETED_READY_FOR_FIRST_PROJECT_ASSIMILATION
+STATUS: GOV_004_RECORDED_READY_FOR_TOOL_VALUE_REVIEW
 UPDATED_AT: 2026-07-18
 PROJECT_ROOT: C:\01. GitHub\Wings4.0
 TEMP_PATH: C:\Users\aazcl\Downloads\T.Wings4.0
@@ -65,3 +65,14 @@ Expected output:
 3. Select the first active project for assimilation.
 4. Verify its canonical HUMAN path and current Git state.
 5. Do not populate capability or relationship maps before evidence-based review.
+
+NEXT_MINIBATTLE: WINGS4_GOV_005_TOOL_VALUE_COMPARATIVE_REVIEW
+
+## GOV-004 Portfolio decision update
+
+- Brainy is the leading candidate to own the durable product purpose.
+- PS.HermesObsidianIntegration materially overlaps with Brainy.
+- Wings4.0 will not prescribe Brainy's architecture.
+- Hermes, Obsidian and alternatives require evidence-based comparative review.
+- Skills/GRC opportunities were recorded for external governance handling.
+- No project, tool, absorption, migration or archive action was approved.

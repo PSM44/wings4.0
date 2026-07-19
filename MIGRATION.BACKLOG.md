@@ -52,3 +52,32 @@
 | MIG-018 | Review RADAR legacy skill and scripts | P2 | NOT_STARTED | Reusable elements mapped to current ownership. |
 | MIG-019 | Define IA.History snapshot policy | P1 | NEXT | History retention, privacy, indexing, and root placement approved. |
 | MIG-020 | Route legacy Portafolio transcript outside governance canon | P2 | NOT_STARTED | Personal/career destination decided. |
+
+## WINGS4_GOV_005_TOOL_VALUE_COMPARATIVE_REVIEW
+
+Priority: P0
+Status: READY
+Predecessor: DEC-W4-PAIR-001
+
+Objective:
+
+Evaluate Hermes, Obsidian, Brainy's existing mechanisms and viable alternatives without assuming that installed tools should be retained.
+
+Required decision dimensions:
+
+- functional value;
+- privacy and security;
+- maintenance and project health;
+- interoperability and portability;
+- operational cost and complexity;
+- duplication with Brainy;
+- tool lock-in;
+- evidence from actual use.
+
+Out of scope:
+
+- redesign Brainy architecture;
+- modify Brainy;
+- modify PS.HermesObsidianIntegration;
+- create Skills/GRC directly;
+- approve absorption or archive before evidence review.

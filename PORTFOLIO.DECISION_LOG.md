@@ -36,3 +36,22 @@
 - **DEC-W4-029** — The initial operational proof is a complete governance cycle, not a dashboard.
 - **DEC-W4-030** — HUMAN is canonical declaration; BATON and bounded evidence support consistency checks without replacing HUMAN.
 - **DEC-W4-031** — `20260716_AI.History.md` is high-value noncanonical collaboration history and must not act as session canon.
+
+## DEC-W4-PAIR-001 — Brainy purpose ownership and tool-neutral review
+
+Status: APPROVED_HUMAN_DIRECTION
+Date: 2026-07-19
+Scope: Portfolio interpretation only
+
+Decision:
+
+- Brainy is the leading candidate to own the durable product purpose currently shared with PS.HermesObsidianIntegration.
+- Wings4.0 shall not prescribe Brainy's internal architecture.
+- Hermes, Obsidian and future tools remain implementation candidates subject to explicit comparative evaluation.
+- Existing use does not constitute strategic approval.
+- Useful capabilities may later be absorbed into Brainy, but no tool adoption, migration, fusion or archive action is approved by this decision.
+- Skills/GRC opportunities shall be recorded and routed to the applicable governance system rather than implemented directly by Wings4.0.
+
+Next gate:
+
+WINGS4_GOV_005_TOOL_VALUE_COMPARATIVE_REVIEW
