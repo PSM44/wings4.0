@@ -1,74 +1,67 @@
 # BATON — Wings4.0 Active
 
-STATUS: SESSION_CLOSED_READY_FOR_COMMIT
-UPDATED_AT: 2026-07-18 12:23:26 -04:00
+STATUS: GOV_001_COMPLETED_READY_FOR_FIRST_PROJECT_ASSIMILATION
+UPDATED_AT: 2026-07-18
 PROJECT_ROOT: C:\01. GitHub\Wings4.0
 TEMP_PATH: C:\Users\aazcl\Downloads\T.Wings4.0
 BRANCH: main
-BASE_HEAD: 59676831606ac1b039f1ec040d5386c9251a5eb4
+BASE_HEAD: c73a9b6d8886a9cec06edc798281ea29efa4d3de
 REMOTE_COUNT: 0
 
 ## Identity
 
-Wings4.0 is the portfolio architecture and governance control plane. It does not replace project-local repositories or runtime ownership.
+Wings4.0 is the portfolio architecture and governance repository.
+
+It listens to project HUMAN files, consolidates and compares declarations, presents conflicts and alternatives, supports Pablo's decisions, prepares controlled project-specific prompts, and verifies resynchronization.
+
+It does not replace project-local repositories, execute project work, or silently redefine local canon.
 
 ## Completed
 
 - Foundation repository created and classified.
-- 22 Wings3.0 entities registered.
-- 15 Wings3.0 root entries mapped.
-- Git initialized and two local commits created.
-- Wave 1 governance sources discovered.
-- Legacy doctrine classified into 12 adopt/adapt, 10 reject, 5 tool candidates, and 7 source dispositions.
-- Skills repository inspected at HEAD 93c55f0cbcf08a667c69d6ba9539d1e3e6a73380.
-- NUL-character corruption detected and repaired during session close.
-
-## Current state
-
-Wave 1 doctrine and disposition changes are present but not yet committed.
-No project has been physically moved.
-No remote exists and no push has occurred.
+- Wings3.0 legacy entities registered and Wave 1 closed.
+- Session-close commit created at `c73a9b6d8886a9cec06edc798281ea29efa4d3de`.
+- Human authority, project independence, optional integration, and non-forced integration clarified.
+- Dashboard-first framing replaced by governance-proof-first sequencing.
+- Q&A, HUMAN, principles, decisions, conflicts, backlog, glossary, runbook, README, and technical debt reconciled.
+- `20260716_AI.History.md` classified as high-value noncanonical AI collaboration history.
 
 ## Current objective
 
-Close Wave 1 cleanly, then pivot to a visible management portfolio MVP instead of continuing unlimited legacy analysis.
+Start `WINGS4_GOV_002_FIRST_PROJECT_ASSIMILATION`.
+
+## Current state
+
+- Canonical reconciliation was validated and committed locally.
+- No external project was modified.
+- A local GOV-001 commit is being created by this controlled close; no push is authorized.
+- Capability and relationship maps remain intentionally unpopulated.
+- The untracked AI history file remains local pending a formal IA.History policy.
 
 ## Next minibattle
 
-WINGS4_PRODUCT_001_MANAGEMENT_PORTFOLIO_MVP
+`WINGS4_GOV_002_FIRST_PROJECT_ASSIMILATION`
 
-Initial governed scope:
-- HIA
-- SkillsMachine
-- Hermes/Obsidian
-- CloseReport
-- AIX
-- BeSmartRevEng
-- Movem.Spaghetti
+Expected output:
 
-Required fields per project:
-- purpose
-- owner
-- lifecycle
-- health
-- current milestone
-- blocker
-- decision required
-- next action
-- repository path
+- verified project identity;
+- current HUMAN source;
+- concise portfolio card;
+- evidence and confidence;
+- related projects;
+- conflicts, ambiguities, or open-source review needs;
+- no modification of the pilot project.
 
 ## Immediate blockers
 
-- HIA and REValuation dirty Git states.
-- VentasReport .env secret risk.
-- HIA/Wings4 capability ownership unresolved.
-- Portfolio capability and relationship maps remain largely empty.
-- No management-facing product exists yet.
+- IA.History placement and retention policy remain unresolved.
+- First pilot project has not yet been selected.
+- HIA/Wings4 boundary remains an open pairwise review candidate.
 
 ## Resume instruction
 
 1. Read this BATON.
-2. Verify Git HEAD and worktree.
-3. Read MIGRATION.BACKLOG.md, TECH_DEBT.md, and project/skills opportunity registers.
-4. Commit the session-close scope if still uncommitted and explicitly authorized.
-5. Start WINGS4_PRODUCT_001, not another broad legacy scan.
+2. Verify root, branch, HEAD, and exact worktree status.
+3. Select the first active project for assimilation.
+4. Verify its canonical HUMAN path and current Git state.
+5. Do not populate capability or relationship maps before evidence-based review.

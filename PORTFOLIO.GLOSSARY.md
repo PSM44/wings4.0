@@ -1,10 +1,21 @@
 # Portfolio Glossary
 
-- **Portfolio:** The complete set of governed projects, products, systems, tools, frameworks, modules, and experiments.
+- **Portfolio:** The complete set of governed projects, products, systems, tools, frameworks, modules, standards, and experiments.
+- **Wings4.0:** The portfolio architecture and governance repository that listens, consolidates, compares, recommends, records, and verifies.
+- **Project HUMAN:** The canonical declarative and pedagogical voice of a project.
+- **Portfolio card:** A concise, evidence-traceable interpretation of one project for portfolio comparison.
 - **Governance migration:** Registration and conformance without moving the underlying repository.
 - **Physical migration:** Moving or copying canonical project content to a new path.
-- **Primary capability owner:** The single project or system accountable for defining and evolving a capability.
+- **Primary capability owner:** The single entity accountable for defining and evolving a major capability after explicit human approval.
 - **Legacy source estate:** Existing content preserved for assessment but not automatically canonical.
-- **HUMAN:** Human-first pedagogical governance layer.
 - **BATON:** Dynamic operational continuity layer.
 - **RADAR:** Passive or generated structural evidence.
+- **Finding:** A recorded fact or interpretation requiring portfolio attention.
+- **Conflict:** An incompatibility between declarations, boundaries, ownership, canon, dependencies, or planned outcomes.
+- **Overlap:** Partial similarity that may be legitimate, complementary, or a duplication candidate.
+- **Duplicate:** Two entities that materially solve the same problem for the same user and outcome without sufficient differentiation.
+- **Optional integration:** A declared relationship in which entities can cooperate while retaining standalone operation.
+- **Unrelated:** A valid relationship indicating that no natural or valuable integration is required.
+- **Intervention prompt:** A focalized, human-approved instruction delivered to an affected project to implement a portfolio decision locally.
+- **Resynchronization:** Re-reading updated project HUMAN files and verifying whether an approved portfolio decision was implemented.
+- **Build-versus-adopt review:** Evidence-based comparison of internal development with open-source or commercial alternatives.

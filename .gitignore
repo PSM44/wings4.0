@@ -23,3 +23,6 @@ coverage/
 ARTIFACTS/
 RADAR/ACTIVE/
 RADAR/HISTORY/
+
+# Local noncanonical AI collaboration snapshot pending IA.History policy
+20260716_AI.History.md
