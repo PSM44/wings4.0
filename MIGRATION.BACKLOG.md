@@ -196,3 +196,14 @@ Outcome:
 Next:
 
 WINGS4_GOV_011_REVIEW_SKILLS_GRC_OPPORTUNITY_TRANSFER
+
+## WINGS4_GOV_011 — TRANSFER PACKAGE READY
+
+Status: READY_FOR_LOCAL_COMMIT
+
+- All 13 Hermes Skills/GRC opportunities transferred as candidates.
+- No opportunity was withheld.
+- No relevance judgment was made by Wings4.
+- No SkillsMachine canon was modified.
+- Package: PORTFOLIO.TRANSFERS/HERMES_TO_SKILLSMACHINE_SKILLS_GRC_OPPORTUNITIES.md
+- Next: close GOV-011 locally, then open destination-owned SkillsMachine assessment minibattle.

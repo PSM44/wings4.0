@@ -166,3 +166,17 @@ Decision:
 - Prohibit plugin enablement, vault traversal, routing and write-back.
 - Do not move, compress or delete the source project.
 - Require a new explicit Wings4 decision for any future reactivation or physical disposition.
+
+## DEC-W4-PAIR-007 — Transfer all Hermes Skills/GRC opportunities
+
+Date: 2026-07-19
+Status: ACTIVE
+Human authorization: TRANSFER_ALL_OPPORTUNITIES
+
+Decision:
+
+- Transfer all 13 opportunities to PS.SkillsMachine as candidates.
+- Wings4 does not evaluate relevance, quality, duplication or canonical disposition.
+- SkillsMachine owns subsequent assessment, deduplication, consolidation, rejection and canonization.
+- No candidate is preapproved for implementation.
+- No SkillsMachine file is modified by GOV-011.

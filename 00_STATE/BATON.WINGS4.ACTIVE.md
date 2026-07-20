@@ -140,3 +140,17 @@ NEXT_MINIBATTLE: WINGS4_GOV_009_EXECUTE_BRAINY_PROJECT_LOCAL_ABSORPTION_REVIEW
 - Source-project deletion authorized: NO
 - Future Hermes use: READ_ONLY_REFERENCE_ONLY
 - Next minibattle: WINGS4_GOV_011_REVIEW_SKILLS_GRC_OPPORTUNITY_TRANSFER
+
+## WINGS4_GOV_011 — Transfer all Hermes Skills/GRC opportunities
+
+- Status: TRANSFER_PACKAGE_READY
+- Human authorization: TRANSFER_ALL_OPPORTUNITIES
+- Opportunity count: 13
+- Withheld: 0
+- Rejected by Wings4: 0
+- Destination: PS.SkillsMachine
+- Wings4 role: transfer and trace only
+- Destination role: relevance, deduplication and canonization assessment
+- Skills modified: NO
+- Hermes modified: NO
+- Next action: deliver transfer package to SkillsMachine after GOV-011 close
