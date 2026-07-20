@@ -207,3 +207,13 @@ Status: READY_FOR_LOCAL_COMMIT
 - No SkillsMachine canon was modified.
 - Package: PORTFOLIO.TRANSFERS/HERMES_TO_SKILLSMACHINE_SKILLS_GRC_OPPORTUNITIES.md
 - Next: close GOV-011 locally, then open destination-owned SkillsMachine assessment minibattle.
+
+## WINGS4_GOV_012 — DELIVERY COMPLETE
+
+Status: READY_FOR_LOCAL_COMMIT
+
+- Single IA-readable package generated in T.Wings4.0.
+- All 13 opportunities included.
+- No Wings4 relevance judgment.
+- No SkillsMachine or Hermes modification.
+- Destination assessment remains unauthorized until opened under SkillsMachine governance.

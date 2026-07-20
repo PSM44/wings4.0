@@ -180,3 +180,16 @@ Decision:
 - SkillsMachine owns subsequent assessment, deduplication, consolidation, rejection and canonization.
 - No candidate is preapproved for implementation.
 - No SkillsMachine file is modified by GOV-011.
+
+## DEC-W4-PAIR-008 — Deliver opportunity package to SkillsMachine
+
+Date: 2026-07-19
+Status: ACTIVE
+
+Decision:
+
+- Accept the GOV-012 single-file delivery package as complete.
+- Confirm all 13 opportunities were included with no filtering by Wings4.
+- Confirm SkillsMachine and Hermes were not modified.
+- Confirm SkillsMachine owns all subsequent relevance and canon decisions.
+- Close GOV-012 after local Wings4 commit.
