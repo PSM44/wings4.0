@@ -213,3 +213,16 @@ NEXT_MINIBATTLE: WINGS4_GOV_014D_DEFINE_PROJECT_MARKET_WATCH_PROFILE
 - Next minibattle: WINGS4_GOV_014E_DECIDE_MARKET_MONITORING_OPPORTUNITY_TRANSFER.
 
 NEXT_MINIBATTLE: WINGS4_GOV_014E_DECIDE_MARKET_MONITORING_OPPORTUNITY_TRANSFER
+
+## WINGS4_GOV_014E_014F — External-solution governance approved
+
+- Status: APPROVED_READY_FOR_LOCAL_CLOSE.
+- GOV-014E transfer to SkillsMachine authorized as candidate only.
+- GOV-014F canonical HUMAN amendment approved.
+- Canonical HUMAN: HUMAN/HUMAN.WINGS4.md.
+- External-solution review principle is now part of Wings4 human governance.
+- SkillsMachine canonization and implementation remain unauthorized.
+- No SkillsMachine file or child project was modified.
+- Next minibattle: WINGS4_GOV_014G_TRANSFER_MARKET_MONITORING_OPPORTUNITY_TO_SKILLSMACHINE.
+
+NEXT_MINIBATTLE: WINGS4_GOV_014G_TRANSFER_MARKET_MONITORING_OPPORTUNITY_TO_SKILLSMACHINE

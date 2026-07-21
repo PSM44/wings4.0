@@ -123,3 +123,11 @@ Wings4.0 verifies portfolio resynchronization.
 - Existing project HUMAN files vary in quality and structure.
 - Open-source substitution review has not yet been exercised on a real decision.
 - Automated portfolio scoring and dashboards remain deferred until the governance cycle is validated.
+
+## External solutions before material custom development
+
+Before developing a new capability or materially expanding an existing one, the portfolio should consider whether an external solution, especially a suitable open-source solution, can replace, complement or integrate with the proposed work.
+
+The review may begin in any project. Each affected project evaluates local functional and technical fit. Wings4 coordinates when the candidate affects multiple projects, creates duplication, changes capability ownership, changes project purpose or lifecycle, or could replace a portfolio project.
+
+External discovery and evaluation do not authorize adoption or implementation. The final decision remains with the human owner.

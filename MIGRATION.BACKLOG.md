@@ -421,3 +421,73 @@ Artifacts:
 Next:
 
 WINGS4_GOV_014E_DECIDE_MARKET_MONITORING_OPPORTUNITY_TRANSFER
+
+## WINGS4_GOV_014E — MARKET MONITORING OPPORTUNITY TRANSFER
+
+Status: PROPOSED_PENDING_HUMAN_REVIEW
+
+Outputs:
+
+- PORTFOLIO.TRANSFERS/MARKET_MONITORING_SKILLSMACHINE_TRANSFER_PACKAGE.md
+- PORTFOLIO.TRANSFERS/WINGS4_HUMAN_EXTERNAL_SOLUTION_REVIEW_AMENDMENT_PROPOSAL.md
+
+Proposed decisions:
+
+- Transfer market-monitoring opportunity to SkillsMachine as a candidate only.
+- SkillsMachine decides relevance, duplication, decomposition and canonization.
+- No implementation or monitoring-engine development authorized.
+- Record the external-solution review principle in the canonical Wings4 HUMAN after separate exact-text approval.
+- Child HUMAN documents change only when purpose, outcome, ownership or lifecycle materially changes.
+
+No SkillsMachine files modified.
+No child projects modified.
+No HUMAN file modified.
+No commit or push authorized.
+
+## WINGS4_GOV_014F — CANONICAL HUMAN RESOLVED AND AMENDED
+
+Status: APPLIED_PENDING_HUMAN_REVIEW_AND_LOCAL_CLOSE
+Applied at: 2026-07-21 13:19:14 -04:00
+
+Results:
+
+- Canonical Wings4 HUMAN resolved: HUMAN/HUMAN.WINGS4.md
+- Candidate score: 84
+- Existing-principle duplication check: PASS
+- External-solution review principle appended.
+- No child HUMAN modified.
+- No SkillsMachine file modified.
+- No commit or push performed.
+
+Pending:
+
+- Human review of exact amendment.
+- Separate GOV-014E transfer authorization and execution.
+
+## WINGS4_GOV_014E_014F — APPROVED LOCAL CLOSE
+
+Status: READY_FOR_LOCAL_COMMIT
+Approved at: 2026-07-21 13:33:24 -04:00
+
+Decisions:
+
+- GOV-014E: transfer to SkillsMachine authorized as candidate only.
+- GOV-014F: canonical Wings4 HUMAN amendment approved.
+- Canonical HUMAN: HUMAN/HUMAN.WINGS4.md.
+- SkillsMachine decides relevance, duplication, decomposition and canonization.
+- SkillsMachine canonization remains unauthorized.
+- SkillsMachine implementation remains unauthorized.
+- Monitoring-engine development remains unauthorized.
+- Project-profile rollout remains unauthorized.
+- No SkillsMachine files modified.
+- No child projects modified.
+
+Artifacts:
+
+- HUMAN/HUMAN.WINGS4.md
+- PORTFOLIO.TRANSFERS/MARKET_MONITORING_SKILLSMACHINE_TRANSFER_PACKAGE.md
+- PORTFOLIO.TRANSFERS/WINGS4_HUMAN_EXTERNAL_SOLUTION_REVIEW_AMENDMENT_PROPOSAL.md
+
+Next:
+
+WINGS4_GOV_014G_TRANSFER_MARKET_MONITORING_OPPORTUNITY_TO_SKILLSMACHINE
