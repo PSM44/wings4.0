@@ -371,3 +371,53 @@ Artifacts:
 Next:
 
 WINGS4_GOV_014D_DEFINE_PROJECT_MARKET_WATCH_PROFILE
+
+## WINGS4_GOV_014D — PROJECT MARKET WATCH PROFILE
+
+Status: PROPOSED_PENDING_HUMAN_REVIEW
+
+Outputs:
+
+- PORTFOLIO.ARCHITECTURE/PROJECT.MARKET.WATCH.PROFILE.schema.json
+- PORTFOLIO.ARCHITECTURE/PROJECT.MARKET.WATCH.PROFILE.GUIDE.md
+- PORTFOLIO.TRANSFERS/MARKET_MONITORING_SKILL_GRC_OPPORTUNITY.md
+
+Decisions proposed:
+
+- Each project may declare a lightweight market-watch profile.
+- Monitoring logic should be reusable and not duplicated.
+- Reviews may begin in any project context.
+- Portfolio-relevant findings escalate to Wings4.
+- Adoption remains a human decision.
+- SkillsMachine receives only a candidate opportunity after separate transfer authorization.
+
+No child projects modified. No monitoring engine built. No commit or push authorized.
+
+## WINGS4_GOV_014D — APPROVED LOCAL CLOSE
+
+Status: READY_FOR_LOCAL_COMMIT
+Approved at: 2026-07-21 13:07:42 -04:00
+
+Decisions:
+
+- GOV-014D: APPROVED.
+- Generic PROJECT.MARKET.WATCH.PROFILE schema approved.
+- Project-local profiles remain declarative.
+- Reusable monitoring logic should not be duplicated.
+- Market reviews may start in any project context.
+- Portfolio-relevant findings escalate to Wings4.
+- Skills/GRC opportunity approved as candidate only.
+- Transfer to SkillsMachine remains unauthorized.
+- Concrete project-profile rollout remains unauthorized.
+- Monitoring-engine development remains unauthorized.
+- No child-project changes authorized.
+
+Artifacts:
+
+- PORTFOLIO.ARCHITECTURE/PROJECT.MARKET.WATCH.PROFILE.GUIDE.md
+- PORTFOLIO.ARCHITECTURE/PROJECT.MARKET.WATCH.PROFILE.schema.json
+- PORTFOLIO.TRANSFERS/MARKET_MONITORING_SKILL_GRC_OPPORTUNITY.md
+
+Next:
+
+WINGS4_GOV_014E_DECIDE_MARKET_MONITORING_OPPORTUNITY_TRANSFER

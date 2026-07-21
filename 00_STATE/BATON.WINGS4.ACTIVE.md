@@ -198,3 +198,18 @@ NEXT_MINIBATTLE: WINGS4_GOV_014B_DEFINE_PROJECT_CONTRACT_SCHEMA
 - Next minibattle: WINGS4_GOV_014D_DEFINE_PROJECT_MARKET_WATCH_PROFILE.
 
 NEXT_MINIBATTLE: WINGS4_GOV_014D_DEFINE_PROJECT_MARKET_WATCH_PROFILE
+
+## WINGS4_GOV_014D — Market-watch profile foundation approved
+
+- Status: APPROVED_READY_FOR_LOCAL_CLOSE.
+- GOV-014D PROJECT.MARKET.WATCH.PROFILE schema approved.
+- Project-local watch profiles remain declarative and lightweight.
+- Reusable monitoring logic should not be duplicated across projects.
+- Reviews may start in any project context.
+- Portfolio-relevant findings escalate to Wings4.
+- Skills/GRC monitoring opportunity approved as a candidate only.
+- Transfer to SkillsMachine is not authorized.
+- No project profiles, monitoring engine or child-project changes were authorized.
+- Next minibattle: WINGS4_GOV_014E_DECIDE_MARKET_MONITORING_OPPORTUNITY_TRANSFER.
+
+NEXT_MINIBATTLE: WINGS4_GOV_014E_DECIDE_MARKET_MONITORING_OPPORTUNITY_TRANSFER

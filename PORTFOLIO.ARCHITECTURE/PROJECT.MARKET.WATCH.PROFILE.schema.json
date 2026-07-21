@@ -1,0 +1,239 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:wings4:project-market-watch-profile:v0.1",
+  "title": "Wings4 PROJECT.MARKET.WATCH.PROFILE",
+  "description": "Project-local declarative profile describing what external solutions should be monitored and when findings must escalate to Wings4.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "profile_version",
+    "project_id",
+    "canonical_root",
+    "status",
+    "capabilities_to_monitor",
+    "solution_categories",
+    "constraints",
+    "review_triggers",
+    "local_evaluation_owner",
+    "escalation_rules",
+    "review_state",
+    "authority"
+  ],
+  "properties": {
+    "profile_version": {
+      "type": "string",
+      "pattern": "^0\\.[0-9]+$"
+    },
+    "project_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "canonical_root": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "enum": [
+        "DRAFT",
+        "ACTIVE",
+        "PAUSED",
+        "DISABLED",
+        "SUPERSEDED"
+      ]
+    },
+    "capabilities_to_monitor": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "capability_id",
+          "capability_description",
+          "current_owner",
+          "monitoring_priority"
+        ],
+        "properties": {
+          "capability_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "capability_description": {
+            "type": "string",
+            "minLength": 1
+          },
+          "current_owner": {
+            "type": "string",
+            "minLength": 1
+          },
+          "monitoring_priority": {
+            "enum": ["P0", "P1", "P2", "P3"]
+          }
+        }
+      }
+    },
+    "solution_categories": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "OPEN_SOURCE",
+          "COMMERCIAL",
+          "SAAS",
+          "LOCAL_FIRST",
+          "SELF_HOSTED",
+          "LIBRARY",
+          "FRAMEWORK",
+          "PLATFORM",
+          "PLUGIN",
+          "INTEGRATION",
+          "SERVICE"
+        ]
+      }
+    },
+    "excluded_categories": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "constraints": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "license",
+        "privacy",
+        "security",
+        "architecture",
+        "cost",
+        "reversibility"
+      ],
+      "properties": {
+        "license": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        },
+        "privacy": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        },
+        "security": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        },
+        "architecture": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        },
+        "cost": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        },
+        "reversibility": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "review_triggers": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "enum": [
+          "HUMAN_REQUEST",
+          "BEFORE_MAJOR_BUILD",
+          "BEFORE_ARCHITECTURE_EXPANSION",
+          "BEFORE_NEW_CUSTOM_CAPABILITY",
+          "PERIODIC_REVIEW",
+          "EXTERNAL_SIGNAL",
+          "COST_THRESHOLD_EXCEEDED",
+          "MAINTENANCE_RISK",
+          "SECURITY_OR_PRIVACY_CHANGE",
+          "PORTFOLIO_OVERLAP_DETECTED"
+        ]
+      }
+    },
+    "monitoring_mode": {
+      "enum": [
+        "ON_DEMAND_ONLY",
+        "PERIODIC",
+        "EVENT_DRIVEN",
+        "HYBRID"
+      ]
+    },
+    "review_frequency": {
+      "type": ["string", "null"]
+    },
+    "local_evaluation_owner": {
+      "type": "string",
+      "minLength": 1
+    },
+    "escalation_rules": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "escalate_if_replacement_candidate",
+        "escalate_if_shared_capability",
+        "escalate_if_multiple_projects_affected",
+        "escalate_if_purpose_changes",
+        "escalate_if_lifecycle_changes",
+        "escalate_if_ownership_changes"
+      ],
+      "properties": {
+        "escalate_if_replacement_candidate": {"const": true},
+        "escalate_if_shared_capability": {"const": true},
+        "escalate_if_multiple_projects_affected": {"const": true},
+        "escalate_if_purpose_changes": {"const": true},
+        "escalate_if_lifecycle_changes": {"const": true},
+        "escalate_if_ownership_changes": {"const": true},
+        "additional_local_rules": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "review_state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "last_review_at",
+        "last_review_result",
+        "next_review_at",
+        "open_candidate_count"
+      ],
+      "properties": {
+        "last_review_at": {
+          "type": ["string", "null"],
+          "format": "date-time"
+        },
+        "last_review_result": {
+          "type": ["string", "null"]
+        },
+        "next_review_at": {
+          "type": ["string", "null"],
+          "format": "date-time"
+        },
+        "open_candidate_count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "human_approval_required_for_adoption",
+        "wings4_required_for_portfolio_change",
+        "project_local_evaluation_required",
+        "monitoring_does_not_authorize_implementation"
+      ],
+      "properties": {
+        "human_approval_required_for_adoption": {"const": true},
+        "wings4_required_for_portfolio_change": {"const": true},
+        "project_local_evaluation_required": {"const": true},
+        "monitoring_does_not_authorize_implementation": {"const": true}
+      }
+    }
+  }
+}
