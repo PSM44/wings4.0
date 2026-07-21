@@ -491,3 +491,35 @@ Artifacts:
 Next:
 
 WINGS4_GOV_014G_TRANSFER_MARKET_MONITORING_OPPORTUNITY_TO_SKILLSMACHINE
+
+## WINGS4_GOV_014H — Project Flavor principle
+
+Status: HUMAN_PRINCIPLE_CANONIZED
+Approved at: 2026-07-21 16:58:34 -04:00
+
+Decision:
+
+- Projects may be autonomous, complementary, explicitly integrated, unrelated or implemented as governed Flavors.
+- A Flavor combines replaceable external components, configuration, integrations, reusable methods and residual proprietary development.
+- Project identity and purpose remain independent from implementation composition.
+- Independence remains the default.
+- Integration must be explicit and reversible.
+- Shared technology does not imply merger.
+- Child-project architecture remains locally governed.
+
+Deferred:
+
+- final validation of the term Flavor;
+- PROJECT.CONTRACT schema fields;
+- PROJECT.INTERFACE schema changes;
+- concrete project Flavor definitions;
+- rollout to child projects.
+
+Validation trigger:
+
+- first real external-solution evaluation pilot;
+- first real project implementation composition requiring a Flavor declaration.
+
+Next:
+
+MB-SM-069B_REAL_EXTERNAL_SOLUTION_EVALUATION_PILOT_DESIGN

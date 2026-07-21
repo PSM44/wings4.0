@@ -131,3 +131,33 @@ Before developing a new capability or materially expanding an existing one, the 
 The review may begin in any project. Each affected project evaluates local functional and technical fit. Wings4 coordinates when the candidate affects multiple projects, creates duplication, changes capability ownership, changes project purpose or lifecycle, or could replace a portfolio project.
 
 External discovery and evaluation do not authorize adoption or implementation. The final decision remains with the human owner.
+
+## Project implementation modes and governed Flavors
+
+Projects may be implemented through different valid modes:
+
+- autonomous and independently operable systems;
+- complementary systems that provide value without becoming mandatory dependencies;
+- explicitly integrated systems governed by interfaces and contracts;
+- unrelated systems when no useful relationship exists;
+- governed Flavors that combine existing external components with project-specific configuration, integration and residual proprietary development.
+
+A Flavor is a governed, project-specific implementation composition. It may include open-source tools, justified commercial tools, configuration, adapters, reusable Skills and GRCs, shared services and proprietary components.
+
+Project identity, purpose, ownership and lifecycle remain distinct from the replaceable technical composition used to implement the project.
+
+The portfolio follows these rules:
+
+- project independence is the default;
+- integration is optional, explicit and reversible;
+- shared technology does not by itself justify project consolidation;
+- use of external components does not remove project identity;
+- a project may remain completely autonomous;
+- a project may complement other projects without requiring merger;
+- a project may support multiple Flavors when they preserve the same approved purpose and ownership;
+- external components should remain replaceable where reasonably possible;
+- residual custom development should focus on unmet requirements, differentiation and governed integration;
+- Wings4 governs portfolio relationships and disposition, not detailed child-project architecture;
+- Pablo remains the final authority for adoption, integration, replacement, retirement and project disposition.
+
+The term Flavor is provisional until validated through a real pilot. The concept is approved; final naming and detailed schema fields remain subject to evidence.

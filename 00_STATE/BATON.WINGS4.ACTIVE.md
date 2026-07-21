@@ -226,3 +226,14 @@ NEXT_MINIBATTLE: WINGS4_GOV_014E_DECIDE_MARKET_MONITORING_OPPORTUNITY_TRANSFER
 - Next minibattle: WINGS4_GOV_014G_TRANSFER_MARKET_MONITORING_OPPORTUNITY_TO_SKILLSMACHINE.
 
 NEXT_MINIBATTLE: WINGS4_GOV_014G_TRANSFER_MARKET_MONITORING_OPPORTUNITY_TO_SKILLSMACHINE
+
+## WINGS4_GOV_014H — Flavor principle canonized
+
+- Status: HUMAN_CANON_UPDATED.
+- Projects may be autonomous, complementary, explicitly integrated, unrelated or implemented through governed Flavors.
+- A Flavor is an implementation composition, not a replacement for project identity.
+- The term remains provisional pending validation through a real pilot.
+- No child project, PROJECT.CONTRACT schema or PROJECT.INTERFACE schema was modified.
+- Next portfolio-relevant evidence source: MB-SM-069B_REAL_EXTERNAL_SOLUTION_EVALUATION_PILOT_DESIGN.
+
+NEXT_MINIBATTLE: MB-SM-069B_REAL_EXTERNAL_SOLUTION_EVALUATION_PILOT_DESIGN
