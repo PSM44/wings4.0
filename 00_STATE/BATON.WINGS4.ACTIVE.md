@@ -166,3 +166,19 @@ NEXT_MINIBATTLE: WINGS4_GOV_009_EXECUTE_BRAINY_PROJECT_LOCAL_ABSORPTION_REVIEW
 - Hermes modified: NO
 - Skills temp used: NO
 - Next action: close GOV-012 locally, then deliver package in SkillsMachine context
+
+## WINGS4_GOV_014A — Thick-boundary foundation approved
+
+- Status: APPROVED_READY_FOR_LOCAL_CLOSE.
+- GOV-013 Brainy consolidated review approved with changes.
+- GOV-014 project document and interaction model approved.
+- GOV-014A pilot-project thick boundaries approved.
+- Independent projects: Wings4.0, Brainy, SkillsMachine, HIA, AIX and Nightshift.
+- DeveFact remains an HIA internal component.
+- Canonical Nightshift root: C:\01. GitHub\Nightshift.
+- SkillsMachine 99.LABS\Nightshift has zero portfolio priority and is not Nightshift canon.
+- No child project was modified.
+- No contract or interface rollout was authorized.
+- Next minibattle: WINGS4_GOV_014B_DEFINE_PROJECT_CONTRACT_SCHEMA.
+
+NEXT_MINIBATTLE: WINGS4_GOV_014B_DEFINE_PROJECT_CONTRACT_SCHEMA

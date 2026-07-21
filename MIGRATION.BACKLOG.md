@@ -217,3 +217,75 @@ Status: READY_FOR_LOCAL_COMMIT
 - No Wings4 relevance judgment.
 - No SkillsMachine or Hermes modification.
 - Destination assessment remains unauthorized until opened under SkillsMachine governance.
+
+## WINGS4_GOV_014 — PROJECT CONTRACT AND INTERACTION MODEL
+
+Status: PROPOSED_PENDING_HUMAN_REVIEW
+
+Objective:
+
+Define a human-first and machine-auditable portfolio model separating HUMAN, USEMANUAL, PROJECT.CONTRACT, PROJECT.INTERFACE, BATON/STATE and EVIDENCE.
+
+Approved direction:
+
+- HUMAN remains the semantic constitution for humans.
+- USEMANUAL explains correct human use.
+- PROJECT.CONTRACT translates approved intent into a structured declaration.
+- PROJECT.INTERFACE governs cross-project communication and boundaries.
+- Projects self-audit first.
+- Wings4 performs independent portfolio audit second.
+- Human remains final decision authority.
+- Governance must be proportional to project risk and integration level.
+
+Current artifact:
+
+- PORTFOLIO.ARCHITECTURE/PROJECT_DOCUMENT_AND_INTERACTION_MODEL.md
+
+Next human decision:
+
+- APPROVE_GOV014_MODEL
+- APPROVE_GOV014_MODEL_WITH_CHANGES
+- REJECT_GOV014_MODEL
+
+## WINGS4_GOV_014A — PILOT PROJECT THICK BOUNDARIES
+
+Status: PROPOSED_PENDING_HUMAN_REVIEW
+
+- Six independent projects identified: Wings4, Brainy, SkillsMachine, HIA, AIX and Nightshift.
+- DeveFact classified as an HIA internal component at $DeveFactRoot.
+- Canonical Nightshift root confirmed as $NightshiftRoot.
+- Skills\99.LABS\Nightshift classified as a SkillsMachine test fixture with zero portfolio priority.
+- Thick boundaries, ownership matrix, conflicts and interfaces proposed.
+- No child project modified; no implementation, commit or push authorized.
+
+Artifact: $ProposalRelative
+
+Human decision:
+- APPROVE_GOV014A_THICK_BOUNDARIES
+- APPROVE_GOV014A_THICK_BOUNDARIES_WITH_CHANGES
+- REJECT_GOV014A_THICK_BOUNDARIES
+
+## WINGS4_GOV_013_014_014A — APPROVED LOCAL CLOSE
+
+Status: READY_FOR_LOCAL_COMMIT
+Approved at: 2026-07-21 12:14:49 -04:00
+
+Decisions:
+
+- GOV-013: APPROVED_WITH_CHANGES.
+- GOV-014: APPROVED.
+- GOV-014A: APPROVED.
+- Six independent projects plus DeveFact as an HIA internal component.
+- Canonical Nightshift root confirmed.
+- SkillsMachine Nightshift fixture classified with zero portfolio priority.
+- No child-project modification authorized.
+
+Artifacts:
+
+- PORTFOLIO.REVIEWS/BRAINY_CONSOLIDATED_PROJECT_REVIEW.md
+- PORTFOLIO.ARCHITECTURE/PROJECT_DOCUMENT_AND_INTERACTION_MODEL.md
+- PORTFOLIO.ARCHITECTURE/PILOT_PROJECT_THICK_BOUNDARIES.md
+
+Next:
+
+WINGS4_GOV_014B_DEFINE_PROJECT_CONTRACT_SCHEMA
