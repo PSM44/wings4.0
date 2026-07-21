@@ -182,3 +182,19 @@ NEXT_MINIBATTLE: WINGS4_GOV_009_EXECUTE_BRAINY_PROJECT_LOCAL_ABSORPTION_REVIEW
 - Next minibattle: WINGS4_GOV_014B_DEFINE_PROJECT_CONTRACT_SCHEMA.
 
 NEXT_MINIBATTLE: WINGS4_GOV_014B_DEFINE_PROJECT_CONTRACT_SCHEMA
+
+## WINGS4_GOV_014C — Contract and interface foundation approved
+
+- Status: APPROVED_READY_FOR_LOCAL_CLOSE.
+- GOV-014B PROJECT.CONTRACT schema approved.
+- GOV-014C PROJECT.INTERFACE schema approved.
+- HUMAN remains semantic authority.
+- External-solution monitoring model approved:
+  project-local watch profiles plus reusable monitoring logic plus Wings4 coordination.
+- Review may start in any project context.
+- Portfolio-relevant findings escalate to Wings4.
+- No child project was modified.
+- No child contract, real interface or automated monitoring was authorized.
+- Next minibattle: WINGS4_GOV_014D_DEFINE_PROJECT_MARKET_WATCH_PROFILE.
+
+NEXT_MINIBATTLE: WINGS4_GOV_014D_DEFINE_PROJECT_MARKET_WATCH_PROFILE

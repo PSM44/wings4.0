@@ -1,0 +1,270 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:wings4:project-interface:schema:v0.1",
+  "title": "Wings4 PROJECT.INTERFACE",
+  "description": "Auditable cross-project message contract. It does not authorize writes or replace project-local governance.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "interface_version",
+    "message_id",
+    "correlation_id",
+    "interface_type",
+    "sender",
+    "recipient",
+    "authority",
+    "payload",
+    "evidence",
+    "status",
+    "timestamps"
+  ],
+  "properties": {
+    "interface_version": {
+      "type": "string",
+      "pattern": "^0\\.[0-9]+$"
+    },
+    "message_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "correlation_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "interface_type": {
+      "enum": [
+        "PROJECT_DECLARATION_UPDATE",
+        "PROJECT_PROMOTION_REQUEST",
+        "SKILL_GRC_OPPORTUNITY",
+        "APPROVED_REUSABLE_METHOD",
+        "AUTHORIZED_EXECUTION_REQUEST",
+        "PROJECT_EXECUTION_RESULT",
+        "ASSESSMENT_RESULT",
+        "PORTFOLIO_DECISION",
+        "PROJECT_LOCAL_INTERVENTION_REQUEST",
+        "RESYNCHRONIZATION_EVIDENCE",
+        "EXTERNAL_SOLUTION_SIGNAL",
+        "EXTERNAL_SOLUTION_EVALUATION_REQUEST",
+        "EXTERNAL_SOLUTION_EVALUATION_RESULT",
+        "PORTFOLIO_EXTERNAL_SOLUTION_DECISION"
+      ]
+    },
+    "sender": {
+      "$ref": "#/$defs/entity"
+    },
+    "recipient": {
+      "$ref": "#/$defs/entity"
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "requested_by",
+        "human_approval_required",
+        "write_authorized",
+        "architecture_change_authorized",
+        "commit_authorized",
+        "push_authorized"
+      ],
+      "properties": {
+        "requested_by": {
+          "type": "string",
+          "minLength": 1
+        },
+        "approval_decision_id": {
+          "type": ["string", "null"]
+        },
+        "human_approval_required": {
+          "type": "boolean"
+        },
+        "write_authorized": {
+          "type": "boolean"
+        },
+        "architecture_change_authorized": {
+          "type": "boolean"
+        },
+        "commit_authorized": {
+          "type": "boolean"
+        },
+        "push_authorized": {
+          "type": "boolean"
+        }
+      }
+    },
+    "payload": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "summary",
+        "requested_action",
+        "scope",
+        "exclusions",
+        "acceptance_criteria"
+      ],
+      "properties": {
+        "summary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "requested_action": {
+          "type": "string",
+          "minLength": 1
+        },
+        "scope": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        },
+        "exclusions": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        },
+        "acceptance_criteria": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        },
+        "external_solution": {
+          "$ref": "#/$defs/externalSolution"
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sources",
+        "confidence",
+        "facts_separated_from_interpretation"
+      ],
+      "properties": {
+        "sources": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        },
+        "confidence": {
+          "enum": ["LOW", "MEDIUM", "MEDIUM_HIGH", "HIGH"]
+        },
+        "facts_separated_from_interpretation": {
+          "const": true
+        }
+      }
+    },
+    "status": {
+      "enum": [
+        "DRAFT",
+        "PENDING_HUMAN_APPROVAL",
+        "AUTHORIZED",
+        "ACCEPTED_BY_RECIPIENT",
+        "IN_PROGRESS",
+        "COMPLETED",
+        "REJECTED",
+        "DEFERRED",
+        "SUPERSEDED"
+      ]
+    },
+    "response_required": {
+      "type": "boolean"
+    },
+    "response_interface_type": {
+      "type": ["string", "null"]
+    },
+    "timestamps": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["created_at"],
+      "properties": {
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "accepted_at": {
+          "type": ["string", "null"],
+          "format": "date-time"
+        },
+        "completed_at": {
+          "type": ["string", "null"],
+          "format": "date-time"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "entity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["entity_id", "canonical_root"],
+      "properties": {
+        "entity_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "canonical_root": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "externalSolution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "solution_name",
+        "discovery_source",
+        "initial_hypothesis",
+        "affected_capabilities",
+        "local_classification",
+        "escalate_to_wings4"
+      ],
+      "properties": {
+        "solution_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "solution_url": {
+          "type": ["string", "null"]
+        },
+        "discovery_source": {
+          "enum": [
+            "HUMAN_SIGNAL",
+            "PROJECT_LOCAL_WATCH",
+            "REUSABLE_MARKET_MONITOR",
+            "WINGS4_PORTFOLIO_REVIEW",
+            "OTHER"
+          ]
+        },
+        "initial_hypothesis": {
+          "enum": [
+            "REPLACE",
+            "COMPLEMENT",
+            "INTEGRATE",
+            "SHARED_CAPABILITY",
+            "IRRELEVANT",
+            "UNKNOWN"
+          ]
+        },
+        "affected_capabilities": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        },
+        "local_classification": {
+          "enum": [
+            "LOCAL_ONLY",
+            "PORTFOLIO_RELEVANT",
+            "POTENTIAL_REPLACEMENT",
+            "POTENTIAL_COMPLEMENT",
+            "POTENTIAL_SHARED_CAPABILITY",
+            "IRRELEVANT"
+          ]
+        },
+        "escalate_to_wings4": {
+          "type": "boolean"
+        },
+        "portfolio_review_id": {
+          "type": ["string", "null"]
+        },
+        "evaluation_owner": {
+          "type": ["string", "null"]
+        }
+      }
+    }
+  }
+}

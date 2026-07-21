@@ -289,3 +289,85 @@ Artifacts:
 Next:
 
 WINGS4_GOV_014B_DEFINE_PROJECT_CONTRACT_SCHEMA
+
+## WINGS4_GOV_014B — PROJECT.CONTRACT SCHEMA
+
+Status: PROPOSED_PENDING_HUMAN_REVIEW
+
+Outputs:
+
+- PORTFOLIO.ARCHITECTURE/PROJECT.CONTRACT.schema.json
+- PORTFOLIO.ARCHITECTURE/PROJECT.CONTRACT.GUIDE.md
+
+Scope:
+
+- Defines a generic project-contract schema.
+- Preserves HUMAN as semantic authority.
+- Adds a two-level external-solution review: Wings4 portfolio triage plus project-local evaluation.
+- Does not create child-project contracts.
+- Does not define PROJECT.INTERFACE.
+- Does not modify child projects.
+- No commit or push authorized.
+
+Human decision:
+
+- APPROVE_GOV014B_PROJECT_CONTRACT_SCHEMA
+- APPROVE_GOV014B_PROJECT_CONTRACT_SCHEMA_WITH_CHANGES
+- REJECT_GOV014B_PROJECT_CONTRACT_SCHEMA
+
+## WINGS4_GOV_014B — APPROVED
+
+Status: APPROVED
+Approved at: 2026-07-21 12:34:19 -04:00
+
+- PROJECT.CONTRACT generic schema approved.
+- HUMAN remains semantic authority.
+- Child contract rollout remains unauthorized.
+- Next: WINGS4_GOV_014C_DEFINE_PROJECT_INTERFACE_SCHEMA.
+
+## WINGS4_GOV_014C — PROJECT.INTERFACE SCHEMA
+
+Status: PROPOSED_PENDING_HUMAN_REVIEW
+
+Outputs:
+
+- PORTFOLIO.ARCHITECTURE/PROJECT.INTERFACE.schema.json
+- PORTFOLIO.ARCHITECTURE/PROJECT.INTERFACE.GUIDE.md
+
+Key decision:
+
+- External-solution monitoring uses project-local watch profiles.
+- Search and monitoring logic should be reusable, not duplicated per project.
+- Reviews may start in any project context.
+- Portfolio-relevant candidates escalate to Wings4.
+
+No child projects modified. No commit or push authorized.
+
+## WINGS4_GOV_014B_014C — APPROVED LOCAL CLOSE
+
+Status: READY_FOR_LOCAL_COMMIT
+Approved at: 2026-07-21 12:45:14 -04:00
+
+Decisions:
+
+- GOV-014B: APPROVED.
+- GOV-014C: APPROVED.
+- HUMAN remains semantic authority.
+- PROJECT.CONTRACT generic schema approved.
+- PROJECT.INTERFACE generic schema approved.
+- Market-monitoring model approved as distributed sensing plus centralized coordination.
+- Review may start in any project.
+- Reusable monitoring logic should not be duplicated per project.
+- Portfolio-relevant findings escalate to Wings4.
+- No child contracts, real interfaces, automated monitoring or child-project changes authorized.
+
+Artifacts:
+
+- PORTFOLIO.ARCHITECTURE/PROJECT.CONTRACT.GUIDE.md
+- PORTFOLIO.ARCHITECTURE/PROJECT.CONTRACT.schema.json
+- PORTFOLIO.ARCHITECTURE/PROJECT.INTERFACE.GUIDE.md
+- PORTFOLIO.ARCHITECTURE/PROJECT.INTERFACE.schema.json
+
+Next:
+
+WINGS4_GOV_014D_DEFINE_PROJECT_MARKET_WATCH_PROFILE

@@ -1,0 +1,335 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:wings4:project-contract:schema:v0.1",
+  "title": "Wings4 PROJECT.CONTRACT",
+  "description": "Structured, auditable translation of human-approved project intent. It does not replace HUMAN.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract_version",
+    "project_id",
+    "project_name",
+    "entity_type",
+    "canonical_root",
+    "human_authority",
+    "purpose",
+    "ownership",
+    "relationships",
+    "authority_model",
+    "write_boundaries",
+    "lifecycle",
+    "evidence",
+    "human_approval",
+    "external_solution_review"
+  ],
+  "properties": {
+    "contract_version": {
+      "type": "string",
+      "pattern": "^0\\.[0-9]+$"
+    },
+    "project_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "project_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "entity_type": {
+      "enum": [
+        "INDEPENDENT_PROJECT",
+        "INTERNAL_COMPONENT",
+        "MODULE",
+        "LABORATORY",
+        "TEST_FIXTURE",
+        "ARCHIVED_PROJECT"
+      ]
+    },
+    "canonical_root": {
+      "type": "string",
+      "minLength": 1
+    },
+    "parent_entity": {
+      "type": ["string", "null"]
+    },
+    "human_authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "human_source",
+        "semantic_authority",
+        "silent_redefinition_prohibited",
+        "drift_requires_human_review"
+      ],
+      "properties": {
+        "human_source": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "usemanual_source": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        },
+        "semantic_authority": {
+          "const": "HUMAN"
+        },
+        "silent_redefinition_prohibited": {
+          "const": true
+        },
+        "drift_requires_human_review": {
+          "const": true
+        }
+      }
+    },
+    "purpose": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "root_question",
+        "human_purpose",
+        "primary_user",
+        "primary_outcome"
+      ],
+      "properties": {
+        "root_question": {"type": "string", "minLength": 1},
+        "human_purpose": {"type": "string", "minLength": 1},
+        "primary_user": {"type": "string", "minLength": 1},
+        "primary_outcome": {"type": "string", "minLength": 1}
+      }
+    },
+    "ownership": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["owns", "does_not_own", "inputs", "outputs"],
+      "properties": {
+        "owns": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "does_not_own": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "inputs": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        },
+        "outputs": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "relationships": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "upstream_entities",
+        "downstream_entities",
+        "overlaps",
+        "conflicts"
+      ],
+      "properties": {
+        "upstream_entities": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        },
+        "downstream_entities": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        },
+        "overlaps": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        },
+        "conflicts": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "authority_model": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "human_decisions",
+        "project_local_decisions",
+        "wings4_decisions",
+        "child_adoption_requires_separate_authorization"
+      ],
+      "properties": {
+        "human_decisions": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        },
+        "project_local_decisions": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        },
+        "wings4_decisions": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        },
+        "child_adoption_requires_separate_authorization": {
+          "const": true
+        }
+      }
+    },
+    "write_boundaries": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "allowed_roots",
+        "forbidden_roots",
+        "external_write_requires_authorization"
+      ],
+      "properties": {
+        "allowed_roots": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        },
+        "forbidden_roots": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        },
+        "external_write_requires_authorization": {
+          "const": true
+        }
+      }
+    },
+    "lifecycle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "maturity", "next_review_trigger"],
+      "properties": {
+        "status": {
+          "enum": [
+            "PROPOSED",
+            "ACTIVE",
+            "PAUSED",
+            "FROZEN",
+            "ARCHIVED",
+            "RETIRED"
+          ]
+        },
+        "maturity": {
+          "enum": [
+            "EXPLORATORY",
+            "EARLY_OPERATIONAL",
+            "VALIDATED",
+            "STABLE",
+            "LEGACY"
+          ]
+        },
+        "next_review_trigger": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sources",
+        "confidence",
+        "declaration_separated_from_interpretation"
+      ],
+      "properties": {
+        "sources": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "confidence": {
+          "enum": ["LOW", "MEDIUM", "MEDIUM_HIGH", "HIGH"]
+        },
+        "declaration_separated_from_interpretation": {
+          "const": true
+        }
+      }
+    },
+    "external_solution_review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "review_required",
+        "portfolio_triage_owner",
+        "local_evaluation_owner",
+        "decision_status",
+        "allowed_outcomes",
+        "local_evaluation_evidence"
+      ],
+      "properties": {
+        "review_required": {
+          "type": "boolean"
+        },
+        "portfolio_review_id": {
+          "type": ["string", "null"]
+        },
+        "portfolio_triage_owner": {
+          "const": "WINGS4"
+        },
+        "local_evaluation_owner": {
+          "type": "string",
+          "minLength": 1
+        },
+        "decision_status": {
+          "enum": [
+            "NOT_TRIGGERED",
+            "TRIAGE",
+            "LOCAL_EVALUATION",
+            "PORTFOLIO_DECISION_PENDING",
+            "DECIDED",
+            "DEFERRED"
+          ]
+        },
+        "allowed_outcomes": {
+          "const": [
+            "CONTINUE_BUILD",
+            "ADOPT",
+            "ADOPT_AND_EXTEND",
+            "INTEGRATE",
+            "MIGRATE_AND_RETIRE",
+            "DEFER",
+            "REJECT"
+          ]
+        },
+        "local_evaluation_evidence": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "human_approval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "approved_by",
+        "approved_at",
+        "approval_decision_id"
+      ],
+      "properties": {
+        "status": {
+          "enum": ["DRAFT", "PENDING", "APPROVED", "REJECTED", "SUPERSEDED"]
+        },
+        "approved_by": {
+          "type": ["string", "null"]
+        },
+        "approved_at": {
+          "type": ["string", "null"],
+          "format": "date-time"
+        },
+        "approval_decision_id": {
+          "type": ["string", "null"]
+        }
+      }
+    }
+  }
+}
