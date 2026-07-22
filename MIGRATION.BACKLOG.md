@@ -572,3 +572,22 @@ Generated at: 2026-07-22 13:40:30 -04:00
 - MB-SM-070A remains deferred.
 
 NEXT_MINIBATTLE=MB-SM-070R_WINGS4_COORD_LIFECYCLE_AND_FORMAT_REASSESSMENT
+
+## WINGS4_GOV_014K — SM070R1 source reconciliation
+
+Status: SOURCE_RECONCILED
+Generated at: 2026-07-22 13:53:02 -04:00
+
+- A new short transfer package was generated from HEAD $headBefore.
+- All GOV-014J source contracts are listed with SHA-256 hashes.
+- The stale source reference in the prior transfer is superseded.
+- MB-SM-070R1 is authorized for read-only reconciliation only.
+- MB-SM-070A remains deferred.
+
+Transfer:
+
+PORTFOLIO.TRANSFERS/XFER.SM070R1.txt
+
+Next:
+
+MB-SM-070R1_WINGS4_COORD_SOURCE_RECONCILIATION_AND_IMPLEMENTATION_CONTRACT
