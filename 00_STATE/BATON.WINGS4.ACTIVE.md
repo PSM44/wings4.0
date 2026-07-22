@@ -237,3 +237,16 @@ NEXT_MINIBATTLE: WINGS4_GOV_014G_TRANSFER_MARKET_MONITORING_OPPORTUNITY_TO_SKILL
 - Next portfolio-relevant evidence source: MB-SM-069B_REAL_EXTERNAL_SOLUTION_EVALUATION_PILOT_DESIGN.
 
 NEXT_MINIBATTLE: MB-SM-069B_REAL_EXTERNAL_SOLUTION_EVALUATION_PILOT_DESIGN
+
+## WINGS4_GOV_014I — Hub-and-spoke coordination contract
+
+- Status: CONTRACT_CANONIZED.
+- Wings4 is the single development coordination hub.
+- Direct project-to-project governance communication is prohibited by default.
+- SkillsMachine is the approved delivery messenger, not the coordination authority.
+-  0_WINGS4_COORD contract and template were created.
+- No child project or SkillsMachine repository was modified.
+- Portfolio rollout remains unauthorized.
+- Next minibattle: MB-SM-070_WINGS4_COORD_DELIVERY_INTEGRATION_ASSESSMENT.
+
+NEXT_MINIBATTLE: MB-SM-070_WINGS4_COORD_DELIVERY_INTEGRATION_ASSESSMENT

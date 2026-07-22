@@ -161,3 +161,44 @@ The portfolio follows these rules:
 - Pablo remains the final authority for adoption, integration, replacement, retirement and project disposition.
 
 The term Flavor is provisional until validated through a real pilot. The concept is approved; final naming and detailed schema fields remain subject to evidence.
+
+## Hub-and-spoke portfolio coordination
+
+Wings4 is the single coordination hub for the project portfolio during development.
+
+The development communication model is:
+
+PROJECT -> WINGS4 -> PROJECT
+
+Direct project-to-project coordination, governance handoffs and instructions are prohibited by default during development.
+
+A project that detects a dependency, reusable capability, conflict, duplication, external-solution opportunity or portfolio impact must emit a signal to Wings4 and stop at that boundary. Wings4 decides whether another project must be involved.
+
+SkillsMachine is the preferred delivery messenger for distributing and maintaining the approved Wings4 coordination surface inside project deliveries. SkillsMachine is not the coordination hub and does not acquire authority over project routing, portfolio directives, project architecture or cross-project decisions.
+
+Each governed project may contain a minimal local coordination surface:
+
+<PROJECT_ROOT>\00_WINGS4_COORD
+
+The local surface is an interface only. It must not become a second HUMAN, BATON, backlog, evidence archive or copy of Wings4.
+
+Minimum files:
+
+- COORD.CONTRACT.md
+- OUTBOUND.SIGNAL.md
+- INBOUND.DIRECTIVE.md
+- COORD.STATE.md
+
+During development:
+
+- projects emit outbound signals only to Wings4;
+- Wings4 emits inbound directives to projects;
+- projects return results only to Wings4;
+- SkillsMachine may create, validate, repair and update the interface through approved delivery workflows;
+- SkillsMachine may package project signals but may not originate Wings4 portfolio directives;
+- direct project-to-project instructions are not authoritative;
+- no project manages another project's backlog, HUMAN, architecture or implementation.
+
+During deployment, projects may optionally integrate or operate together when an approved PROJECT.INTERFACE defines ownership, data boundaries, failure modes, rollback, reversibility and standalone operability.
+
+Deployment integration does not change Wings4's role as the portfolio coordination hub for material cross-project changes.

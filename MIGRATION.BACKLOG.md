@@ -523,3 +523,33 @@ Validation trigger:
 Next:
 
 MB-SM-069B_REAL_EXTERNAL_SOLUTION_EVALUATION_PILOT_DESIGN
+
+## WINGS4_GOV_014I — Hub-and-spoke coordination contract
+
+Status: CONTRACT_CANONIZED
+Generated at: 2026-07-22 11:24:26 -04:00
+
+Decisions:
+
+- Wings4 is the single portfolio coordination hub during development.
+- Direct project-to-project governance communication is prohibited by default.
+- SkillsMachine is the preferred delivery messenger.
+- SkillsMachine is not the coordination hub.
+- Governed projects may use a minimal  0_WINGS4_COORD interface.
+- Deployment integration remains optional and requires an approved interface.
+- Portfolio rollout is not yet authorized.
+
+Created:
+
+- PORTFOLIO.CONTRACTS/WINGS4.COORD.CONTRACT.md
+- PORTFOLIO.CONTRACTS/WINGS4.COORD.TEMPLATE.md
+- PORTFOLIO.TRANSFERS/WINGS4_COORD_DELIVERY_INTEGRATION_TRANSFER_PACKAGE.md
+
+Pilot targets:
+
+- Brainy
+- PS.SkillsMachine
+
+Next:
+
+MB-SM-070_WINGS4_COORD_DELIVERY_INTEGRATION_ASSESSMENT
