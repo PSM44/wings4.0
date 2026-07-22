@@ -228,3 +228,15 @@ Git is for source control and small governance records. It must not become a dat
 The 00_WINGS4_COORD surface stores current interface state and terminal pointers only.
 
 The preferred pilot format is structured UTF-8 text with strict KEY=VALUE fields and delimited narrative blocks. Free-form Markdown is not approved as a machine dependency.
+
+## SM070R1 implementation-contract review
+
+Wings4 reviewed the SkillsMachine read-only implementation contract for the 00_WINGS4_COORD delivery mechanism.
+
+The implementation contract is sufficient for a future Ring 0 synthetic-fixture implementation, but this review does not authorize implementation.
+
+The initial implementation boundary, if later approved, is restricted to synthetic fixtures outside canonical repositories, reversible operations, no physical purge, no SkillsMachine self-application, no Brainy mutation and no portfolio rollout.
+
+SkillsMachine remains a delivery messenger and implementation mechanism. It does not become lifecycle, routing, successor-selection, purge or directive authority.
+
+A separate HUMAN authorization is required before MB-SM-070A and Ring 0.
