@@ -657,3 +657,17 @@ Generated at: 2026-07-22 18:49:08 -04:00
 - Ring 1, Brainy mutation, rollout and push remain unauthorized.
 
 NEXT_MINIBATTLE=WINGS4_GOV_014P_RING1_READINESS_DECISION
+
+## WINGS4_GOV_014P — Ring 1 readiness decision
+
+Status: READY_WITH_PRECONDITIONS
+Generated at: 2026-07-22 19:08:51 -04:00
+
+- Ring 1 design is ready.
+- Ring 1 execution is not authorized.
+- TD-001 and TD-002 must be corrected before execution.
+- Ring 1 target is SkillsMachine self-application only.
+- Rollback, recovery, acceptance and commit scope must be designed.
+- Brainy and portfolio rollout remain out of scope.
+
+NEXT_MINIBATTLE=MB-SM-070B_RING1_PRECONDITION_REPAIR_AND_EXECUTION_DESIGN

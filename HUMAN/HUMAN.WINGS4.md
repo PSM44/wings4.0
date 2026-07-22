@@ -275,3 +275,15 @@ Technical debt:
 The canonical term is now Stack. Flavor remains only as a legacy alias. No mass rename is authorized.
 
 Ring 1, Brainy mutation, portfolio rollout and push remain unauthorized.
+
+## Ring 1 readiness decision
+
+Ring 1 is ready for design, but not for execution.
+
+The authorized next step is limited to designing and preparing the two technical-debt corrections, the self-application procedure, rollback, crash recovery and the acceptance rubric.
+
+Ring 1 execution requires a separate HUMAN authorization after Wings4 reviews that design.
+
+The target, if later approved, is SkillsMachine only.
+
+Brainy, other projects, portfolio rollout, physical purge, irreversible mutation and push remain prohibited.
