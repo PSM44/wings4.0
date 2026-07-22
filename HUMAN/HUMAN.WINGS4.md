@@ -202,3 +202,29 @@ During development:
 During deployment, projects may optionally integrate or operate together when an approved PROJECT.INTERFACE defines ownership, data boundaries, failure modes, rollback, reversibility and standalone operability.
 
 Deployment integration does not change Wings4's role as the portfolio coordination hub for material cross-project changes.
+
+## Project lifecycle, retirement and retained memory
+
+Wings4 governs the complete portfolio lifecycle, not only active project operations.
+
+Projects may enter, evolve, pause, merge, be superseded, be replaced by an external solution, retire, archive, decommission or be purged.
+
+Project retirement and physical deletion are different decisions. The default sequence is:
+
+ACTIVE -> RETIREMENT_PROPOSED -> RETIRED -> ARCHIVED
+
+Direct deletion is prohibited by default. Purge requires explicit HUMAN approval and a minimum tombstone when the project, evaluation or decision affected the portfolio.
+
+When a project is merged or superseded, one canonical successor must be identified, unresolved migration items must remain visible, new backlog must stop unless reactivated, coordination must become inactive, and the terminal state must retain successor and reactivation references.
+
+External-solution research follows:
+
+RETAIN_DECISION
+COMPACT_EVIDENCE
+PURGE_RAW_SEARCH
+
+Git is for source control and small governance records. It must not become a data lake for raw web pages, large binaries, repeated exports, growing logs, models, databases or rebuildable generated outputs.
+
+The 00_WINGS4_COORD surface stores current interface state and terminal pointers only.
+
+The preferred pilot format is structured UTF-8 text with strict KEY=VALUE fields and delimited narrative blocks. Free-form Markdown is not approved as a machine dependency.

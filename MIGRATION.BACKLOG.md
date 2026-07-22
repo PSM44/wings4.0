@@ -553,3 +553,22 @@ Pilot targets:
 Next:
 
 MB-SM-070_WINGS4_COORD_DELIVERY_INTEGRATION_ASSESSMENT
+
+## WINGS4_GOV_014J — Lifecycle, retention and decommission contract
+
+Status: CONTRACTS_CANONIZED
+Generated at: 2026-07-22 13:40:30 -04:00
+
+- Complete project lifecycle defined.
+- Entry and exit gates required.
+- Retirement precedes purge.
+- Direct delete prohibited.
+- Successor references required.
+- External-solution memory retains decisions, compacts evidence and purges raw search.
+- Git is not a data lake.
+- Coordination-folder size budgets defined.
+- Structured UTF-8 TXT with KEY=VALUE is preferred for pilot validation.
+- Non-Git mode deferred.
+- MB-SM-070A remains deferred.
+
+NEXT_MINIBATTLE=MB-SM-070R_WINGS4_COORD_LIFECYCLE_AND_FORMAT_REASSESSMENT
