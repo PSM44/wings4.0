@@ -609,3 +609,23 @@ Generated at: 2026-07-22 17:41:11 -04:00
 - MB-SM-070A remains deferred.
 
 NEXT_MINIBATTLE=WINGS4_GOV_014M_AUTHORIZE_SM070A_RING0
+
+## WINGS4_GOV_014M — Authorize SM070A Ring 0
+
+Status: AUTHORIZED
+Generated at: 2026-07-22 17:46:58 -04:00
+
+HUMAN_DECISION=AUTORIZO_RING0
+AUTHORIZED_MINIBATTLE=MB-SM-070A_WINGS4_COORD_MINIMUM_CORE_AND_RING0_IMPLEMENTATION
+AUTHORIZED_SCOPE=RING0_SYNTHETIC_FIXTURE_ONLY
+
+- SkillsMachine minimum core implementation authorized.
+- Ring 0 synthetic fixture execution authorized.
+- Local commit authorized only after full acceptance PASS.
+- SkillsMachine self-application not authorized.
+- Brainy mutation not authorized.
+- Physical purge not authorized.
+- Portfolio rollout not authorized.
+- Push not authorized.
+
+NEXT_MINIBATTLE=MB-SM-070A_WINGS4_COORD_MINIMUM_CORE_AND_RING0_IMPLEMENTATION

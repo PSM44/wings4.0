@@ -240,3 +240,24 @@ The initial implementation boundary, if later approved, is restricted to synthet
 SkillsMachine remains a delivery messenger and implementation mechanism. It does not become lifecycle, routing, successor-selection, purge or directive authority.
 
 A separate HUMAN authorization is required before MB-SM-070A and Ring 0.
+
+## Ring 0 implementation authorization
+
+HUMAN explicitly authorized Ring 0 for the SkillsMachine delivery integration.
+
+Authorization is limited to a synthetic disposable fixture and the minimum reusable implementation needed to exercise the approved coordination contract.
+
+The authorization does not extend to:
+
+- applying the surface to SkillsMachine itself;
+- modifying Brainy;
+- modifying any other project;
+- portfolio rollout;
+- physical purge;
+- irreversible mutation;
+- Ring 1 or Ring 2;
+- push.
+
+SkillsMachine may implement and canonize the approved minimum core in its own repository, execute Ring 0, and create one local commit only after the complete Ring 0 acceptance rubric passes.
+
+All results return to Wings4.0.
