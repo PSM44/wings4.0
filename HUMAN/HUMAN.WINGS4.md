@@ -261,3 +261,17 @@ The authorization does not extend to:
 SkillsMachine may implement and canonize the approved minimum core in its own repository, execute Ring 0, and create one local commit only after the complete Ring 0 acceptance rubric passes.
 
 All results return to Wings4.0.
+
+## Ring 0 accepted and Stack terminology adopted
+
+Wings4 accepts MB-SM-070A as CLOSED_PASS_WITH_REPORTING_CORRECTION.
+
+The substantive Ring 0 evidence passed. RING0_STATUS=BLOCKED was caused by a non-blocking reporting scope defect and does not alter acceptance. The historical output must not be rewritten.
+
+Technical debt:
+- SM070A-TD-001: rename exported PowerShell commands that use unapproved verbs before Ring 1.
+- SM070A-TD-002: correct the Ring 0 reporting variable scope before the next execution.
+
+The canonical term is now Stack. Flavor remains only as a legacy alias. No mass rename is authorized.
+
+Ring 1, Brainy mutation, portfolio rollout and push remain unauthorized.
