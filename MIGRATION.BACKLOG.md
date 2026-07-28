@@ -671,3 +671,17 @@ Generated at: 2026-07-22 19:08:51 -04:00
 - Brainy and portfolio rollout remain out of scope.
 
 NEXT_MINIBATTLE=MB-SM-070B_RING1_PRECONDITION_REPAIR_AND_EXECUTION_DESIGN
+
+## WINGS4_GOV_015C_SCOPE_BOUNDARY_HUMAN_DECISION
+
+Status: PASS  
+Generated at: 2026-07-28 16:36:31 -04:00
+
+Approved the cross-project scope and ownership matrix.
+
+Next: WINGS4_GOV_015D_PROJECT_RECONCILIATION_PACKET_PLAN
+
+Constraints:
+- No child-project mutation.
+- No direct cross-project mutation.
+- No push.

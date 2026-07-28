@@ -193,3 +193,19 @@ Decision:
 - Confirm SkillsMachine and Hermes were not modified.
 - Confirm SkillsMachine owns all subsequent relevance and canon decisions.
 - Close GOV-012 after local Wings4 commit.
+
+## WINGS4_GOV_015C_SCOPE_BOUNDARY_HUMAN_DECISION
+
+- Status: APPROVED
+- Generated at: 2026-07-28 16:36:31 -04:00
+- DeveFact remains an internal HIA component.
+- AIX owns generic operational AI execution.
+- Nightshift owns comparative agent experimentation.
+- C:\01. GitHub\Nightshift is canonical.
+- C:\01. GitHub\Skills\99.LABS\Nightshift is frozen pending read-only comparison.
+- Brainy owns durable memory and cognitive continuity.
+- Hermes–Obsidian owns tool integration only.
+- SkillsMachine owns reusable Skills/GRC canon.
+- Project-local reconciliation packets are authorized.
+- Direct cross-project mutation remains prohibited.
+- Push not performed.
