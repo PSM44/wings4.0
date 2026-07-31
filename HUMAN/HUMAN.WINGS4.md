@@ -6,6 +6,9 @@ Wings4.0 is Pablo's portfolio architecture and governance repository.
 
 It is not a project, product, runtime, delivery factory, monorepo, or replacement for project-local governance.
 
+<!-- Documentation Standardization pointer (Track B) -->
+HUMAN remains the transitional human-first entry point. See `HUMAN/DOCUMENTATION.MAP.md` for the documentation responsibility map and incremental migration itinerary. Operational continuity (BATON) is maintained in `00_STATE/BATON.WINGS4.ACTIVE.md`, which remains outside HUMAN.
+
 ## 2. Purpose
 
 Wings4.0 exists to make the complete portfolio understandable and coordinated by:

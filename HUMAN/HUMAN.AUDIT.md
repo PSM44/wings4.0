@@ -36,3 +36,11 @@ UPDATED_AT: 2026-07-30
 6. Verify updated HUMAN files and resynchronization. — BLOCKED: cannot occur before items 4 and 5 close (`PILOT-004` in `MIGRATION.BACKLOG.md`).
 
 This list itself was last touched 2026-07-18 while the rest of Wings4.0's canon moved through ~20 further minibattles without it being revisited — the same freshness gap corrected in `00_STATE/BATON.WINGS4.ACTIVE.md` under `DEC-W4-032`.
+
+## Documentation migration acceptance checks (Track B)
+
+1. `HUMAN/DOCUMENTATION.MAP.md` exists and defines the documentation responsibility map.
+2. All referenced repository paths in the map resolve to existing files.
+3. Stable principles, current status, decisions and operational continuity are distinguishable.
+4. BATON remains outside HUMAN and the migration itinerary is incremental and reversible.
+5. No conflicting or independently maintained duplicate canon has been created; pedagogical restatement identifies its authoritative source.

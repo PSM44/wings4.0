@@ -53,6 +53,17 @@
 | MIG-019 | Define IA.History snapshot policy | P1 | NEXT | History retention, privacy, indexing, and root placement approved. |
 | MIG-020 | Route legacy Portafolio transcript outside governance canon | P2 | NOT_STARTED | Personal/career destination decided. |
 
+## Documentation Migration
+
+| ID | Phase | Objective | Status | Acceptance reference |
+|---|---|---|---|---|
+| PHASE_01 | Project Handbook | Establish the transitional entry point, documentation map and foundation for a comprehensive Project Handbook | IMPLEMENTED_BY_THIS_PILOT_PENDING_ACCEPTANCE | HUMAN/DOCUMENTATION.MAP.md |
+| PHASE_02 | Principles vs Status | Distinguish Constitution (principles) from Current Status (BATON) | PLANNED | HUMAN/DOCUMENTATION.MAP.md |
+| PHASE_03 | Roadmap vs Continuity | Separate roadmap pointers from operational continuity (BATON) | PLANNED | HUMAN/DOCUMENTATION.MAP.md |
+| PHASE_04 | Architecture Docs | Assign architecture documentation responsibilities | PLANNED | HUMAN/DOCUMENTATION.MAP.md |
+| PHASE_05 | User Guides | Index user-facing guides and authors | PLANNED | HUMAN/DOCUMENTATION.MAP.md |
+| PHASE_06 | Controlled Retirement | Controlled retirement of HUMAN umbrella (incremental) | PLANNED | HUMAN/DOCUMENTATION.MAP.md |
+
 ## WINGS4_GOV_005_TOOL_VALUE_COMPARATIVE_REVIEW
 
 Priority: P1
