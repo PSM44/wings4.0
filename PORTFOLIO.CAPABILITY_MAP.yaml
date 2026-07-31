@@ -1,6 +1,23 @@
 schema_version: 1
 portfolio_id: WINGS4
-capabilities: []
+
+capabilities:
+  - id: COGNITIVE_OPERATIONAL_CONTINUITY
+    name: Cognitive-operational continuity, capture, recall, prioritization
+    proposed_primary_owner: BRAINY
+    status: PROPOSED_PENDING_RESYNCHRONIZATION
+    evidence: PORTFOLIO.CARDS/BRAINY.CARD.md (PILOT-001)
+    confidence: HIGH
+
+  - id: REUSABLE_SKILLS_GRC_CANON
+    name: Reusable, portfolio-wide Skills/GRC canon and governance
+    proposed_primary_owner: SKILLSMACHINE
+    status: PROPOSED_PENDING_RESYNCHRONIZATION
+    evidence: PORTFOLIO.REVIEWS/PAIRWISE.BRAINY_VS_SKILLSMACHINE.md (PILOT-002)
+    confidence: HIGH
+
 notes:
-  - 'Populate only after explicit ownership review.'
-  - 'Every major capability must have one primary owner.'
+  - Populate capability ownership only after explicit portfolio review.
+  - Every major capability must have one primary owner.
+  - The Brainy and SkillsMachine ownership entries remain provisional pending Brainy local implementation and Wings4 resynchronization verification.
+  - PC-012 records a narrow terminology and ownership-boundary ambiguity between Brainy-local capabilities and the reusable Skills/GRC canon; it does not merge the two capabilities.

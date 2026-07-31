@@ -31,3 +31,18 @@ Resolution:
 Next gate:
 
 WINGS4_GOV_006_PREPARE_HERMES_TO_BRAINY_TRANSFER_INVENTORY
+
+## PC-012 — "Skill" naming overlap between Brainy's internal Skill layer and PS.SkillsMachine's canonical Skills/GRC library
+
+Status: OPEN_PENDING_IMPLEMENTATION
+Severity: LOW
+Confidence: MEDIUM
+Source: PILOT-002 (`PORTFOLIO.REVIEWS/PAIRWISE.BRAINY_VS_SKILLSMACHINE.md`)
+
+Description:
+
+Brainy's `HUMAN_0002_BRAINY_OPERATING_MODEL.md` (section 10) declares an internal "Skill layer" storing personal/procedural continuity heuristics. PS.SkillsMachine's entire purpose is to be the canonical, portfolio-wide reusable Skills/GRC library. Neither project's HUMAN currently disambiguates the two uses of "Skill." No duplication or incident has occurred yet; this is a preventable naming/scope ambiguity, not a resolved project-level conflict (Brainy and SkillsMachine solve different problems for different primary users — see the pairwise review for the full overlap assessment).
+
+Next action:
+
+Pablo decides whether to approve a one-sentence clarification in Brainy's HUMAN (drafted in `PORTFOLIO.REVIEWS/PILOT_INTERVENTION_PROMPT_DRAFT.BRAINY_SKILL_LAYER.md`) stating that Brainy's Skill layer is local/personal and that reusable capabilities belong in PS.SkillsMachine instead.

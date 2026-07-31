@@ -36,6 +36,9 @@
 - **DEC-W4-029** — The initial operational proof is a complete governance cycle, not a dashboard.
 - **DEC-W4-030** — HUMAN is canonical declaration; BATON and bounded evidence support consistency checks without replacing HUMAN.
 - **DEC-W4-031** — `20260716_AI.History.md` is high-value noncanonical collaboration history and must not act as session canon.
+- **DEC-W4-032** — Governance course-correction freeze: no new `PORTFOLIO.CONTRACTS`, schema, or Ring-style protocol work is authorized until `PILOT-001` through `PILOT-004` (`MIGRATION.BACKLOG.md`) close with evidence. Rationale: after ~20 `GOV-01x`/`MB-SM-07x` minibattles, `TECH_DEBT.md` (TD-015, TD-016, TD-018, TD-019) and `HUMAN/HUMAN.WINGS4.md` ("Current limitations") still showed the foundational governance cycle unproven; effort had shifted toward coordination-protocol construction instead of closing that gap. Also: `00_STATE/BATON.WINGS4.ACTIVE.md`'s header was found stale by 12 days relative to its own body, and `W4_015M_R3.ps1` was found as untracked cruft in the canonical repo root instead of in disposable staging; both were corrected as part of this decision.
+- **DEC-W4-033** — Wings4.0 applies `PR-PORT-006` to its own tooling. Repeated bespoke, single-use PowerShell verification scripts (e.g. three successive revisions of `W4_015M_R3.ps1` fixing the same stdout/stderr-mixing defect) are a signal to consolidate into reusable, tested tooling rather than reauthoring per minibattle. No specific tool is adopted by this decision; `WINGS4_GOV_016` scopes the follow-up review.
+- **DEC-W4-034** — Ring 1 / `00_WINGS4_COORD` protocol reassessment (read-only review, no execution). Ring 1 execution, Brainy mutation, portfolio rollout, and push remain unauthorized (unchanged from `WINGS4_GOV_014P`), and are now additionally subordinated to `DEC-W4-032`: no Ring 1 work proceeds before `PILOT-001`–`PILOT-004` close. Evidence gathered during `PILOT-002` shows PS.SkillsMachine already maintains a working, reusable local Git pre-commit hook and a naming-validation script (`SyS/A_Tools/Validation/Install-PreCommitHook.ps1`, `Validate-SkillMachineNaming.ps1`) — i.e. a sibling project already solved an adjacent "verify-before-commit" problem the reusable way. Any future Ring 1 design should evaluate reusing or extending that existing pattern before authoring new bespoke coordination-verification scripts, consistent with `PR-PORT-006` and `PORTFOLIO.PRINCIPLES.md` #17.
 
 ## DEC-W4-PAIR-001 — Brainy purpose ownership and tool-neutral review
 
@@ -209,3 +212,20 @@ Decision:
 - Project-local reconciliation packets are authorized.
 - Direct cross-project mutation remains prohibited.
 - Push not performed.
+
+## DEC-W4-035 — Approve Brainy portfolio card with amendments and authorize prompt delivery (limited)
+
+Status: APPROVED_WITH_AMENDMENTS
+Date: 2026-07-30
+Scope: Wings4.0 portfolio decision; delivery artifact authorized for Brainy local evaluation only.
+
+Decision:
+
+- Approve `PORTFOLIO.CARDS/BRAINY.CARD.md` as `APPROVED_WITH_AMENDMENTS`. The approval includes normative wording clarifying Brainy-local vs portfolio-level Skills ownership (recorded in the card's amendments section). Wings4.0 does NOT modify Brainy.
+- Authorize `PORTFOLIO.REVIEWS/PILOT_INTERVENTION_PROMPT_DRAFT.BRAINY_SKILL_LAYER.md` for delivery to Brainy for local evaluation and application under Brainy's governance. Delivery does NOT authorize Wings4.0 to mutate Brainy's repository.
+- PC-012 remains OPEN_PENDING_IMPLEMENTATION until Brainy applies the approved insertion locally and returns resynchronization evidence to Wings4.0.
+- Capability and relationship map entries remain PROPOSED_PENDING_RESYNCHRONIZATION; no canonical ownership change occurs until evidence of local application and human confirmation.
+
+Next action:
+
+- Deliver prompt artifact to Brainy owner for local application and request evidence (diff/commit-id) for closure of PC-012. Do not commit or push any Wings4.0 changes to remote until human confirms.

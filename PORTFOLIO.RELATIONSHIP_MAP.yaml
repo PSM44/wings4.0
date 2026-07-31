@@ -1,11 +1,36 @@
 schema_version: 1
 portfolio_id: WINGS4
+
 relationships:
   - source: WINGS4
     target: WINGS3
     type: LEGACY_SOURCE
     status: ACTIVE
+
   - source: WINGS4
     target: HIA
     type: PORTFOLIO_GOVERNS
     status: INITIAL
+
+  - source: WINGS4
+    target: BRAINY
+    type: PORTFOLIO_GOVERNS
+    status: PROPOSED_PENDING_RESYNCHRONIZATION
+    evidence: PORTFOLIO.CARDS/BRAINY.CARD.md
+
+  - source: WINGS4
+    target: SKILLSMACHINE
+    type: PORTFOLIO_GOVERNS
+    status: PROPOSED_PENDING_RESYNCHRONIZATION
+    evidence: PORTFOLIO.REVIEWS/PAIRWISE.BRAINY_VS_SKILLSMACHINE.md
+
+  - source: BRAINY
+    target: SKILLSMACHINE
+    type: CANDIDATE_NAMING_OVERLAP
+    status: OPEN_PENDING_IMPLEMENTATION
+    evidence: PORTFOLIO.CONFLICT_REGISTER.md#PC-012
+
+  - source: BRAINY
+    target: HIA
+    type: PROMOTES_IDEAS_TO
+    status: DECLARED_BY_BRAINY_HUMAN

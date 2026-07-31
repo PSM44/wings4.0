@@ -15,10 +15,10 @@
 
 | ID | Item | Priority | Status | Acceptance criteria |
 |---|---|---:|---|---|
-| PILOT-001 | Assimilate first active project | P0 | NOT_STARTED | Identity verified, HUMAN interpreted, evidence cited, portfolio card approved. |
-| PILOT-002 | Execute first pairwise review | P0 | NOT_STARTED | Two projects compared with an evidence-traceable overlap/conflict conclusion. |
-| PILOT-003 | Produce first approved intervention prompts | P0 | NOT_STARTED | User-approved prompts are created separately for each affected project. |
-| PILOT-004 | Verify first resynchronization | P0 | NOT_STARTED | Updated HUMAN files satisfy the approved decision or remaining conflict is explicit. |
+| PILOT-001 | Assimilate first active project | P0 | CARD_DRAFTED_PENDING_HUMAN_APPROVAL | Identity verified, HUMAN interpreted, evidence cited (`PORTFOLIO.CARDS/BRAINY.CARD.md`); portfolio card approval remains a human decision, not yet granted. |
+| PILOT-002 | Execute first pairwise review | P0 | COMPLETED | Brainy vs PS.SkillsMachine compared with an evidence-traceable conclusion (`PORTFOLIO.REVIEWS/PAIRWISE.BRAINY_VS_SKILLSMACHINE.md`); PC-012 registered. |
+| PILOT-003 | Produce first approved intervention prompts | P0 | DRAFTED_NOT_YET_APPROVED | Draft prompt exists (`PORTFOLIO.REVIEWS/PILOT_INTERVENTION_PROMPT_DRAFT.BRAINY_SKILL_LAYER.md`); not delivered, no Brainy file modified; requires Pablo's decision on PC-012 before delivery. |
+| PILOT-004 | Verify first resynchronization | P0 | BLOCKED_PENDING_PILOT_003_APPROVAL_AND_LOCAL_EXECUTION | Cannot proceed until PILOT-003 is approved and Brainy implements the change under its own local governance; Wings4.0 will re-read Brainy's HUMAN afterward to verify. |
 
 ## Portfolio visualization
 

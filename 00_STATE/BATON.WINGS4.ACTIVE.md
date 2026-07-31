@@ -1,7 +1,7 @@
 # BATON — Wings4.0 Active
 
-STATUS: GOV_008_PROJECT_LOCAL_PACKETS_PREPARED_READY_FOR_BRAINY_EXECUTION
-UPDATED_AT: 2026-07-18
+STATUS: WINGS4_GOV_016_GOVERNANCE_COURSE_CORRECTION_PILOT_CYCLE_PARTIALLY_CLOSED
+UPDATED_AT: 2026-07-30
 PROJECT_ROOT: C:\01. GitHub\Wings4.0
 TEMP_PATH: C:\Users\aazcl\Downloads\T.Wings4.0
 BRANCH: main
@@ -28,45 +28,33 @@ It does not replace project-local repositories, execute project work, or silentl
 
 ## Current objective
 
-Start `WINGS4_GOV_002_FIRST_PROJECT_ASSIMILATION`.
+`WINGS4_GOV_017_HUMAN_REVIEW_OF_PILOT_001_004_ARTIFACTS`: Pablo reviews and decides on the Brainy portfolio card, the Brainy-vs-SkillsMachine pairwise review, PC-012, and the draft Brainy intervention prompt produced by `WINGS4_GOV_016`. See the dated `WINGS4_GOV_016` section below for full detail.
 
-## Current state
+## Current state (superseded entries below are historical)
 
 - Canonical reconciliation was validated and committed locally.
-- No external project was modified.
-- A local GOV-001 commit is being created by this controlled close; no push is authorized.
-- Capability and relationship maps remain intentionally unpopulated.
-- The untracked AI history file remains local pending a formal IA.History policy.
+- Sections below this header record every GOV/Ring/SM minibattle executed through `WINGS4_GOV_016` (2026-07-30).
+- This header block itself was stale from `2026-07-18` (`GOV_008`) through `2026-07-30`, while ~20 further minibattles were appended below without updating it. This is recorded as evidence for TD-016/TD freshness discussion, not hidden.
+- No external project was modified by the `WINGS4_GOV_016` correction pass.
 
 ## Next minibattle
 
-`WINGS4_GOV_002_FIRST_PROJECT_ASSIMILATION`
-
-Expected output:
-
-- verified project identity;
-- current HUMAN source;
-- concise portfolio card;
-- evidence and confidence;
-- related projects;
-- conflicts, ambiguities, or open-source review needs;
-- no modification of the pilot project.
+`WINGS4_GOV_017_HUMAN_REVIEW_OF_PILOT_001_004_ARTIFACTS`: human decision on `PORTFOLIO.CARDS/BRAINY.CARD.md`, `PORTFOLIO.REVIEWS/PAIRWISE.BRAINY_VS_SKILLSMACHINE.md`, `PC-012`, and `PORTFOLIO.REVIEWS/PILOT_INTERVENTION_PROMPT_DRAFT.BRAINY_SKILL_LAYER.md`.
 
 ## Immediate blockers
 
 - IA.History placement and retention policy remain unresolved.
-- First pilot project has not yet been selected.
-- HIA/Wings4 boundary remains an open pairwise review candidate.
+- The Brainy Skill-layer / SkillsMachine canonical-Skills overlap (PC-012) requires a human decision before PILOT-003's draft intervention prompt can be delivered.
+- PILOT-004 (resynchronization) is blocked until PILOT-003 is approved and the affected project(s) implement it locally.
 
 ## Resume instruction
 
 1. Read this BATON.
 2. Verify root, branch, HEAD, and exact worktree status.
-3. Select the first active project for assimilation.
-4. Verify its canonical HUMAN path and current Git state.
-5. Do not populate capability or relationship maps before evidence-based review.
+3. Read the dated `WINGS4_GOV_016` section below for the current governance-freeze state and pilot results.
+4. Do not author new `PORTFOLIO.CONTRACTS`/schema/Ring work until PILOT-001→004 is fully closed (freeze recorded in `PORTFOLIO.PRINCIPLES.md` and `PORTFOLIO.DECISION_LOG.md`).
 
-NEXT_MINIBATTLE: WINGS4_GOV_009_EXECUTE_BRAINY_PROJECT_LOCAL_ABSORPTION_REVIEW
+NEXT_MINIBATTLE: WINGS4_GOV_017_HUMAN_REVIEW_OF_PILOT_001_004_ARTIFACTS
 
 ## GOV-004 Portfolio decision update
 
@@ -378,3 +366,39 @@ PROJECT_LOCAL_RECONCILIATION_PACKETS=AUTHORIZED
 DIRECT_CROSS_PROJECT_MUTATION=NO
 PUSH_PERFORMED=NO
 NEXT_MINIBATTLE=WINGS4_GOV_015D_PROJECT_RECONCILIATION_PACKET_PLAN
+
+## WINGS4_GOV_016 — Governance course-correction and first pilot cycle
+
+STATUS=PARTIALLY_CLOSED_PENDING_HUMAN_REVIEW
+GENERATED_AT=2026-07-30
+
+Trigger: brutally-honest external review found that after ~20 `GOV-01x`/`MB-SM-07x` minibattles, `TECH_DEBT.md` (TD-015, TD-016, TD-018, TD-019) and `HUMAN/HUMAN.WINGS4.md` still showed the foundational governance cycle (`PILOT-001`–`PILOT-004`) unproven, this `BATON`'s own header was stale by 12 days against its own body, and an untracked disposable script (`W4_015M_R3.ps1`) had accumulated in the canonical repo root.
+
+Hygiene corrections (Fase 0):
+- `W4_015M_R3.ps1` moved from the Wings4.0 repo root to `C:\Users\aazcl\Downloads\T.Wings4.0\` (its declared disposable staging). Not executed; no commit performed in HIA or anywhere else.
+- This `BATON`'s header (`STATUS`/`UPDATED_AT`) corrected to match its own body.
+- `PORTFOLIO.GLOSSARY.md` updated with `minibattle`, `Ring 0/1/2`, `Stack`, `DRAGONFLYFOCUS`.
+
+Freeze (Fase 1):
+- `DEC-W4-032`, `DEC-W4-033`, `PORTFOLIO.PRINCIPLES.md` #16–#17: no new `PORTFOLIO.CONTRACTS`/schema/Ring protocol work until `PILOT-001`–`PILOT-004` close with evidence.
+
+First pilot cycle (Fase 2), pilot targets Brainy and PS.SkillsMachine (already named as pilot projects in `WINGS4.COORD.CONTRACT.md`):
+- PILOT-001: Brainy assimilated. `PORTFOLIO.CARDS/BRAINY.CARD.md` created (git identity verified: `main` @ `a3e4073828655bc6c9955a865a5c691c4cf043cd`, worktree clean). STATUS=DRAFT_PENDING_HUMAN_APPROVAL.
+- PILOT-002: Brainy vs PS.SkillsMachine pairwise review completed. `PORTFOLIO.REVIEWS/PAIRWISE.BRAINY_VS_SKILLSMACHINE.md` created. Conclusion: not a duplication candidate; one narrow naming ambiguity found and registered as `PC-012` (Brainy's internal "Skill layer" vs. SkillsMachine's canonical Skills/GRC library).
+- PILOT-003: draft intervention prompt created for Brainy (`PORTFOLIO.REVIEWS/PILOT_INTERVENTION_PROMPT_DRAFT.BRAINY_SKILL_LAYER.md`). NOT delivered, NOT authorized — awaiting Pablo's decision on PC-012.
+- PILOT-004: BLOCKED_PENDING_PILOT_003_APPROVAL_AND_LOCAL_EXECUTION. Cannot close until PILOT-003 is approved and Brainy implements the change under its own local governance.
+- `PORTFOLIO.CAPABILITY_MAP.yaml` and `PORTFOLIO.RELATIONSHIP_MAP.yaml` populated with the first real (non-legacy-placeholder) entries, all marked PROPOSED/PENDING human approval.
+- `TECH_DEBT.md` TD-015, TD-016, TD-018 updated with evidence; TD-019 explicitly left open (out of scope for this cycle).
+- `HUMAN/HUMAN.AUDIT.md` "Required next validation" checklist updated item-by-item with real status instead of being left stale.
+
+Reassessment (Fase 3):
+- `DEC-W4-034`: Ring 1 / `00_WINGS4_COORD` execution remains unauthorized and is now also gated by the Fase 1 freeze. PS.SkillsMachine already has a working reusable pre-commit-hook/naming-validator pattern; future Ring 1 design should evaluate reusing it before authoring new bespoke verification scripts.
+
+No external project was modified. No commit or push was performed anywhere (Wings4.0, Brainy, PS.SkillsMachine, or Wings3.0/HIA).
+
+Still pending human decision:
+- Approve/amend/reject `PORTFOLIO.CARDS/BRAINY.CARD.md`.
+- Approve/amend/reject `PC-012` and the draft intervention prompt.
+- Confirm or adjust the DEC-W4-032 freeze scope and duration.
+
+NEXT_MINIBATTLE=WINGS4_GOV_017_HUMAN_REVIEW_OF_PILOT_001_004_ARTIFACTS

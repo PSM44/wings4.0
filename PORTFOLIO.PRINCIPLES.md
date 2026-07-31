@@ -15,6 +15,8 @@
 13. No physical migration occurs without path, dependency, rollback, and validation analysis.
 14. Generated evidence does not replace human-readable canon.
 15. Portfolio visualization follows validated governance data; it does not substitute for governance.
+16. No new coordination infrastructure, schema, or Ring-style implementation protocol is authorized while a foundational pilot cycle (`PILOT-00x`) remains open. Meta-governance work is capped at one unresolved pilot at a time.
+17. Wings4.0 applies PR-PORT-006 to its own tooling: mechanical verification logic (git state checks, schema validation, commit gating) must be consolidated into reusable, testable tooling rather than reauthored per minibattle.
 
 ## PR-PORT-006 — Do not reinvent the wheel
 
