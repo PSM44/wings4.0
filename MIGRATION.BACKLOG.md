@@ -696,3 +696,17 @@ Constraints:
 - No child-project mutation.
 - No direct cross-project mutation.
 - No push.
+
+## SMDI & SKILLSMACHINE PILOT BACKLOG (compact)
+| ID | Item | Priority | Status | Governance reference | Acceptance evidence |
+|---|---|---:|---|---|---|
+| WPI-001 | Canonical WPI specification and implementation | P0 | PLANNED | DEC-W4-036 | PENDING_EVIDENCE |
+| SMDI-001 | Governed SMDI thin-pilot design | P0 | PLANNED | DEC-W4-036 | PENDING_EVIDENCE |
+| SMDI-002 | TEST_ technical fixture | P0 | PLANNED | DEC-W4-036 | PENDING_EVIDENCE |
+| SMDI-003 | Feedback envelope contract | P0 | PLANNED | DEC-W4-036 | PENDING_EVIDENCE |
+| SMDI-004 | File-based feedback receipt contract | P0 | PLANNED | DEC-W4-036 | PENDING_EVIDENCE |
+| SMDI-005 | Duplicate detection and idempotent receipt proof | P0 | PLANNED | DEC-W4-036 | PENDING_EVIDENCE |
+| SMDI-006 | Logical reset proof | P0 | PLANNED | DEC-W4-036 | PENDING_EVIDENCE |
+| SMDI-007 | Brainy real-consumer pilot | P0 | PLANNED | DEC-W4-036 | PENDING_EVIDENCE |
+| SMDI-008 | Wings4 evidence resynchronization | P0 | PLANNED | DEC-W4-036 | PENDING_EVIDENCE |
+| SMDI-009 | Decision on broader portfolio adoption | P1 | PLANNED | DEC-W4-036 | PENDING_EVIDENCE |

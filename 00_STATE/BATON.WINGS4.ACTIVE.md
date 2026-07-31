@@ -1,11 +1,11 @@
 # BATON — Wings4.0 Active
 
-STATUS: WINGS4_GOV_016_GOVERNANCE_COURSE_CORRECTION_PILOT_CYCLE_PARTIALLY_CLOSED
-UPDATED_AT: 2026-07-30
+STATUS: WINGS4_SESSION_CLOSE_WPI_SMDI_APPLIED_PENDING_LOCAL_COMMIT
+UPDATED_AT: 2026-07-31
 PROJECT_ROOT: C:\01. GitHub\Wings4.0
 TEMP_PATH: C:\Users\aazcl\Downloads\T.Wings4.0
 BRANCH: main
-BASE_HEAD: c73a9b6d8886a9cec06edc798281ea29efa4d3de
+BASE_HEAD: af87be013374e4ad68eed8144938e2c0489ff451
 REMOTE_COUNT: 0
 
 ## Identity
@@ -39,7 +39,10 @@ It does not replace project-local repositories, execute project work, or silentl
 
 ## Next minibattle
 
-`WINGS4_GOV_017_HUMAN_REVIEW_OF_PILOT_001_004_ARTIFACTS`: human decision on `PORTFOLIO.CARDS/BRAINY.CARD.md`, `PORTFOLIO.REVIEWS/PAIRWISE.BRAINY_VS_SKILLSMACHINE.md`, `PC-012`, and `PORTFOLIO.REVIEWS/PILOT_INTERVENTION_PROMPT_DRAFT.BRAINY_SKILL_LAYER.md`.
+NEXT_MINIBATTLE: SKILLSMACHINE_SMDI_GOVERNED_THIN_PILOT_DESIGN_001
+NEXT_EXECUTION_ROOT: C:\01. GitHub\Skills
+NEXT_SESSION_MODE: NEW_CURSOR_SESSION_READ_ONLY_FIRST
+WINGS4_NEXT_ROLE: PORTFOLIO_GOVERNANCE_AND_LATER_RESYNCHRONIZATION
 
 ## Immediate blockers
 
@@ -54,7 +57,30 @@ It does not replace project-local repositories, execute project work, or silentl
 3. Read the dated `WINGS4_GOV_016` section below for the current governance-freeze state and pilot results.
 4. Do not author new `PORTFOLIO.CONTRACTS`/schema/Ring work until PILOT-001→004 is fully closed (freeze recorded in `PORTFOLIO.PRINCIPLES.md` and `PORTFOLIO.DECISION_LOG.md`).
 
-NEXT_MINIBATTLE: WINGS4_GOV_017_HUMAN_REVIEW_OF_PILOT_001_004_ARTIFACTS
+## SESSION_CLOSE_SUMMARY
+SESSION_CLOSE_STATUS: APPLIED_PENDING_LOCAL_COMMIT
+RECORD_SUMMARY:
+- Completed (local verification only):
+  - Track A: Brainy–SkillsMachine governance pilot integrated into main (local verification).
+  - Track B: documentation-standardization pilot integrated into main (local verification).
+  - WPI conceptual direction approved; WPI–SMDI conceptual model finalized.
+  - SkillsMachine classified as PORTFOLIO_ENABLING_PRODUCT and ROLE=REUSABLE_WORK_CAPABILITY_PROVIDER.
+  - SkillsMachine SMDI discovery completed (read-only).
+  - Reuse-first SMDI thin-pilot design completed at read-only design level.
+- Pending (requires external execution or evidence):
+  - canonical WPI specification and implementation
+  - canonical SMDI contract
+  - governed TEST_ technical fixture
+  - feedback envelope contract
+  - file-based feedback receipt contract
+  - duplicate detection and idempotent receipt proof
+  - logical reset proof
+  - Brainy real-consumer pilot
+  - Wings4 evidence resynchronization
+PC_012_STATUS: OPEN_PENDING_IMPLEMENTATION
+COMMIT_PERFORMED: NO
+PUSH_PERFORMED: NO
+OPERATIONAL_NOTE: NO_COMMIT_NO_PUSH - operator must obtain explicit human sign-off before any commit.
 
 ## GOV-004 Portfolio decision update
 

@@ -229,3 +229,34 @@ Decision:
 Next action:
 
 - Deliver prompt artifact to Brainy owner for local application and request evidence (diff/commit-id) for closure of PC-012. Do not commit or push any Wings4.0 changes to remote until human confirms.
+
+## DEC-W4-036 — WPI & SMDI conceptual approvals (material record)
+Status: APPROVED_CONCEPTUAL_PENDING_IMPLEMENTATION
+Date: 2026-07-31
+
+Decision (conceptual approvals; implementation pending):
+- Approve the Wings4 Portfolio Interface (WPI) as the general contractual direction between Wings4 and autonomous portfolio projects (conceptual approval, v0.1).
+- Classify SkillsMachine as PROJECT_TYPE=PORTFOLIO_ENABLING_PRODUCT.
+- Record SkillsMachine portfolio role as ROLE=REUSABLE_WORK_CAPABILITY_PROVIDER.
+- Approve the conceptual boundary between WPI and SMDI. (SMDI = SkillsMachine Distribution Interface.)
+- WPI exposes the portfolio relationship REUSABLE_ASSET_GOVERNANCE_AND_DISTRIBUTION.
+- SMDI governs distribution, installation, update and feedback contracts between SkillsMachine and consuming projects.
+- Approved distribution model: VERSIONED_LOCAL_COPIES.
+- Generic reusable canon remains canonically owned by SkillsMachine.
+- Installed GENERIC_IMPORTED assets are locally immutable.
+- Promotion applies only to PROJECT_LOCAL or REUSABLE_CANDIDATE assets; promotion to SkillsMachine canon requires explicit human authorization.
+- A project must not alter an imported generic asset while retaining the same source identity, version or source hash.
+- A project must not redistribute imported generic assets as portfolio canon.
+- Local installation and activation authority belongs to the consuming project.
+- Runtime dependency on Wings4 is prohibited.
+- Runtime dependency on SkillsMachine is prohibited.
+- Direct cross-repository mutation is prohibited.
+- Preserve and reuse the existing SkillsMachine updater, baseline contract, registries, schemas, test runner, acceptance evidence and SM-UPD identifiers; do not redesign or duplicate proven mechanisms.
+- Execute a controlled TEST_ technical fixture before onboarding a real consumer; Brainy remains the first real consumer after technical fixture acceptance.
+- Version 0.1 is operator-mediated file exchange only: file-based JSON feedback receipts, no API, no central receipt service.
+- Canonical WPI and SMDI implementation remain pending; DEC-W4-036 does not authorize commit or push.
+
+Next action:
+- Continue in a new Cursor session rooted at C:\01. GitHub\Skills using SKILLSMACHINE_SMDI_GOVERNED_THIN_PILOT_DESIGN_001, read-only first.
+- Return verified evidence to Wings4 for later resynchronization.
+- No commit or push is authorized by this decision.
