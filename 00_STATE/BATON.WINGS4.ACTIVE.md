@@ -105,6 +105,15 @@ LEGACY_MOVE: BY_EXCEPTION_ONLY
 COMMIT_PERFORMED: NO
 PUSH_PERFORMED: NO
 NEXT_ACTION: FINAL_PRECOMMIT_VALIDATION_AND_EXPLICIT_HUMAN_COMMIT_DECISION
+## SESSION_CLOSE_DELTA
+- CURRENT_ORCHESTRATOR_SESSION: closed (minimal local close recorded)
+- SESSIONS_MVP_STATUS: PROVEN
+- HEAD_BEFORE_CLOSE: 2e094122d7368fb3a7ba6ef7f4c9e83e0b2a90a9
+- CONTEXT_HEALTH_POLICY: Evaluate every 10 user messages; show a brief recommendation only when opening a new session is advised (silent otherwise)
+- EXECUTOR_HANDOFF_CHANGE: none
+- AI_HISTORY_SCOPE: preexisting, untracked, out of scope
+- PUSH_PERFORMED: NO
+- NEXT_ACTION: Open a new GPT ORCHESTRATOR session inside the Wings4.0 project and upload only ORCHESTRATOR.CONTINUE.ACTIVE.txt
 
 ## GOV-004 Portfolio decision update
 

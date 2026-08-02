@@ -6,7 +6,7 @@
 - Q-016: ORCHESTRATOR and EXECUTOR are separate session types and do not share context.
 - Q-017: Cross-project development inside Wings4.0 is prohibited; use transfer package workflow.
 - Q-018: Obsolete artifacts go to C:\\01. GitHub\\Wings4.0\\97.LEGACY only under strict conditions.
-- Q-015..Q-034 recorded and merged into HUMAN/Q_AND_A.md (see Q&A file for full entries).
+ - Q-015..Q-035 recorded and merged into HUMAN/Q_AND_A.md (see Q&A file for full entries).
 
 2. OPEN QUESTIONS
 - PC-012 — HUMAN_DECISION=COMPLETED (DEC-W4-035); IMPLEMENTATION_STATUS=OPEN_PENDING_BRAINY_LOCAL_EXECUTION; BLOCKS_WINGS4_SESSIONS=NO.
