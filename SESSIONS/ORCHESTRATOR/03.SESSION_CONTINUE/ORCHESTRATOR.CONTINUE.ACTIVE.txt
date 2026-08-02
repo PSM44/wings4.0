@@ -2,74 +2,77 @@ PROJECT_ID=WINGS4
 PROJECT_ROOT=C:\01. GitHub\Wings4.0
 SESSION_ROLE=ORCHESTRATOR
 
-ACTIVE_OBJECTIVE=Validate and operationalize the project-local SESSIONS model for compact GPT and executor continuity.
+ACTIVE_OBJECTIVE=Continue Wings4.0 portfolio governance after proving and committing the project-local SESSIONS MVP.
 
-CURRENT_STATUS=EXECUTOR one-file close/continue pilot proven with minor reporting defect.
+CURRENT_STATUS=The Wings4 project-local SESSIONS MVP is proven and committed. Both EXECUTOR and ORCHESTRATOR one-file recovery pilots succeeded. The previous ORCHESTRATOR handoff contained stale precommit state and is being replaced completely.
 
 COMPLETED_WORK_SUMMARY=
-- project-local ORCHESTRATOR and EXECUTOR model defined;
-- strict project-context isolation approved;
-- Q-001 through Q-034 consolidated;
-- Q_AND_A.COMPILED created;
-- six stable SESSIONS contracts created;
-- dynamic one-file continuation contracts implemented;
-- Cursor executor handoff generated and recovered in a fresh session;
-- executor semantic activation fields corrected;
-- no commit or push performed.
+- Six stable project-local SESSIONS contracts implemented.
+- One current generated handoff per role implemented.
+- EXECUTOR one-file recovery pilot completed successfully.
+- ORCHESTRATOR one-file recovery pilot completed successfully.
+- Q-001 through Q-035 consolidated in the human governance record.
+- Q_AND_A.COMPILED maintained as the compact current interpretation.
+- SESSIONS MVP committed locally at 2e094122d7368fb3a7ba6ef7f4c9e83e0b2a90a9.
+- ORCHESTRATOR close committed locally at 19514701858fa85df08ba7745f40be610c5d1ef0.
+- Full BATON, full Q&A and full chat are not required for normal continuation.
+- No push has been performed.
 
 ACTIVE_DECISIONS=
-- ORCHESTRATOR and EXECUTOR are separate sessions per project;
-- no global project-executing ORCHESTRATOR or EXECUTOR;
-- one GPT Project and one Cursor project/workspace correspond to one governed project;
-- Project B must not be developed inside Project A;
-- cross-project work requires a transfer to the target project;
-- obsolete artifacts go to 97.LEGACY;
-- full BATON, Q&A and chat history are excluded from normal continuation packages;
-- Cursor remains the paid August baseline;
-- free alternatives will be compared later;
-- OpenRouter remains off for the current baseline.
+- ORCHESTRATOR and EXECUTOR are separate project-local sessions.
+- One GPT project and one Cursor workspace correspond to one governed project.
+- PROJECT_CONTEXT_ISOLATION is mandatory.
+- Another project must not be developed inside Wings4.0.
+- Cross-project execution requires a transfer to the target project.
+- One current generated handoff per role is overwritten at each close.
+- Historical handoffs are not accumulated; legacy movement is by exception only.
+- Every 10 user messages, session health is evaluated internally.
+- No session-health notice is shown while the session remains healthy.
+- Only a brief notice is shown when creating a new session is recommended.
+- Cursor remains the current EXECUTOR baseline.
+- OpenRouter remains OFF.
 
-EXECUTOR_LAST_RESULT=
-WINGS4_SESSIONS_004C completed.
-Executor handoff: 2774 bytes.
-Recovery: successful.
-Next task status: AWAITING_ORCHESTRATOR.
+LAST_EXECUTOR_RESULT=WINGS4_SESSIONS_004C completed successfully. EXECUTOR one-file recovery succeeded. Structured evidence prevails over contradictory free-text recommendations.
+
+LAST_LOCAL_COMMITS=
+- 2e094122d7368fb3a7ba6ef7f4c9e83e0b2a90a9 | Wings4 SESSIONS MVP.
+- 19514701858fa85df08ba7745f40be610c5d1ef0 | ORCHESTRATOR close and session-health policy.
 
 RELEVANT_QA_DECISIONS=Q-015..Q-035
 
 RELEVANT_CONFLICTS=
-- Cursor free-text NEXT_RECOMMENDATION may contradict structured status fields.
-- Structured fields and current project evidence prevail.
-- AI.History remains preexisting untracked scope and is outside SESSIONS work.
+- Cursor may report stale Git state when terminal execution is unavailable.
+- Fresh local Git evidence is authoritative.
+- The handoff committed in 1951470 preserved stale precommit fields and must not be used after this replacement.
+- AI.History remains preexisting untracked content outside the SESSIONS scope.
 
 BLOCKERS=NONE
 HUMAN_DECISIONS_REQUIRED=NONE
 NEXT_TASK_STATUS=READY
 
-POST_RECOVERY_NEXT_ACTION=Validate this ORCHESTRATOR handoff in a new GPT session inside the Wings4.0 GPT Project using only this file.
+POST_RECOVERY_NEXT_ACTION=Review the current Wings4 portfolio state and select the next explicitly authorized Wings4-local minibattle without developing another project inside Wings4.0.
 
 BRANCH=main
-HEAD=2e094122d7368fb3a7ba6ef7f4c9e83e0b2a90a9
-WORKTREE_STATUS=AI.History/ remains untracked and out of scope.
+HEAD=19514701858fa85df08ba7745f40be610c5d1ef0
+WORKTREE_STATUS=AI.History remains untracked and outside the authorized SESSIONS scope.
 
-COMMIT_POLICY=NO_COMMIT_BEFORE_ORCHESTRATOR_RECOVERY_PILOT_REVIEW
+COMMIT_POLICY=No commit without exact staging validation and explicit human authorization.
 PUSH_POLICY=NO_PUSH_WITHOUT_EXPLICIT_HUMAN_AUTHORIZATION
 
 SOURCE_POINTERS=
+- 00_STATE/BATON.WINGS4.ACTIVE.md
 - HUMAN/Q_AND_A.md
 - HUMAN/Q_AND_A.COMPILED.md
-- 00_STATE/BATON.WINGS4.ACTIVE.md
 - PORTFOLIO.DECISION_LOG.md
 - SESSIONS/ORCHESTRATOR
 - SESSIONS/EXECUTOR
 
-HANDOFF_ACTIVATION_ACTION=Open a new GPT conversation inside the Wings4.0 project and upload only ORCHESTRATOR.CONTINUE.ACTIVE.txt.
+SESSION_HEALTH_POLICY=
+- Evaluate context health internally every 10 user messages.
+- Count user messages only.
+- Remain silent while the session is healthy.
+- Show only a brief recommendation when CLOSE_AND_CONTINUE is advisable.
+
+HANDOFF_ACTIVATION_ACTION=Open a new GPT conversation inside the Wings4.0 project and upload only this file.
 ACTIVATION_STATUS=PENDING
-GENERATED_AT=2026-08-02T13:12:00-04:00
-ADDITIONAL_FILES_REQUESTED=NO
-CONTEXT_LOSS_DETECTED=NO
-REPEATED_HUMAN_DECISION_REQUESTED=NO
-PROJECT_ISOLATION_RESULT=PASS
-RECOVERY_READY=YES
-NEXT_TASK_STATUS=READY_FOR_PRECOMMIT_FINALIZATION
-POST_RECOVERY_NEXT_ACTION=Synchronize the successful ORCHESTRATOR recovery evidence into the Wings4 repository, complete final precommit validation and await explicit human authorization for the atomic local commit.
+GENERATED_AT=2026-08-02T13:35:34-04:00
