@@ -1,0 +1,54 @@
+SESSIONS ORCHESTRATOR — SESSION_CONTINUE.ACTIVE
+TASK: Minimal resume contract for Wings4.0 ORCHESTRATOR
+GENERATED: 2026-08-01
+
+MINIMUM CONTEXT NEEDED TO RESUME
+- CURRENT_STATE_SOURCE=00_STATE/BATON.WINGS4.ACTIVE.md
+- QA_COMPILED_SOURCE=HUMAN/Q_AND_A.COMPILED.md
+- DECISION_SOURCE=PORTFOLIO.DECISION_LOG.md
+- Relevant files: SESSIONS/* latest ACTIVE files
+
+ACTIVE OBJECTIVE
+- Maintain portfolio governance continuity for Wings4.0 and prepare transfer packages when authorized (use TRANSFER_PACKAGE workflow).
+
+CURRENT DECISIONS
+- PROJECT_CONTEXT_ISOLATION=MANDATORY
+- ORCHESTRATOR vs EXECUTOR separation (see HUMAN/Q_AND_A.COMPILED.md Q-015..Q-016)
+
+RELEVANT Q&A DECISIONS AND CONFLICTS
+- See QA_COMPILED_SOURCE; PC-012: HUMAN_DECISION=COMPLETED (DEC-W4-035); IMPLEMENTATION_STATUS=OPEN_PENDING_BRAINY_LOCAL_EXECUTION; BLOCKS_WINGS4_SESSIONS=NO.
+
+LAST EXECUTOR RESULT
+- None (no executor run in this session)
+
+BLOCKERS / HUMAN DECISIONS REQUIRED
+- No additional human decision required for the portfolio-level prompt (DEC-W4-035 recorded). Await Brainy local execution evidence for implementation closure.
+
+SINGULAR NEXT ACTION
+- Deliver authorized prompt artifact to Brainy for local application and request evidence (diff/commit-id). Do not execute SkillsMachine work in this Wings4.0 session.
+
+ORCHESTRATOR CONTINUATION PACKAGE (DYNAMIC HANDOFF CONTRACT)
+- REQUIRE: generate exactly one file named ORCHESTRATOR.CONTINUE.ACTIVE.txt (target <= 10000 bytes) containing the following fields:
+  - PROJECT_ID
+  - PROJECT_ROOT
+  - PROJECT_PURPOSE_SHORT
+  - SESSION_ROLE
+  - CURRENT_OBJECTIVE
+  - CURRENT_STEP
+  - CURRENT_STATUS
+  - LAST_EXECUTOR_RESULT (pointer)
+  - ACTIVE_DECISIONS (compact list)
+  - RELEVANT_QA_DECISIONS
+  - RELEVANT_QA_CONFLICTS
+  - BLOCKERS
+  - HUMAN_DECISIONS_REQUIRED
+  - NEXT_ACTION
+  - BRANCH
+  - HEAD
+  - WORKTREE_STATUS
+  - SOURCE_POINTERS (BATON/QA_COMPILED/DECISION_SOURCE)
+  - GENERATED_AT
+- RULES: one file only; include only current and relevant info; do not embed full BATON, full Q&A, full decision log, or history.
+
+SOURCE POINTERS
+- Do not copy full history. Use pointers listed above.

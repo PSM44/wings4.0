@@ -1,0 +1,16 @@
+SESSIONS ORCHESTRATOR — SKILLSMACHINE_UPDATE.ACTIVE
+TASK: Policy and transfer contract (ORCHESTRATOR)
+GENERATED: 2026-08-01
+
+PURPOSE
+- Evaluate whether a SkillsMachine update is required and, if so, prepare an authorization and transfer package.
+
+STEPS (ORCHESTRATOR)
+1. Assess whether the requested change belongs to SkillsMachine (do not implement in Wings4.0).
+2. If SkillsMachine responsibility confirmed, document reason, scope, and required artifacts.
+3. Require explicit human authorization to proceed (record in PORTFOLIO.DECISION_LOG.md).
+4. Prepare TRANSFER_PACKAGE (pointer-based) for SkillsMachine session with required files and checksums.
+
+RESTRICTIONS
+- No SkillsMachine source or usecase content is to be copied into Wings4.0.
+- Human sign-off required before any Executor or external commit.

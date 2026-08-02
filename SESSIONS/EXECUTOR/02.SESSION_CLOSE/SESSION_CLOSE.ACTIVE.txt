@@ -1,0 +1,22 @@
+SESSIONS EXECUTOR — SESSION_CLOSE.ACTIVE
+TASK: Minimal local executor session-close record
+GENERATED: 2026-08-01
+
+REQUIRED MINIMUM RESULT (compact)
+- TASK_ID: <fill when executor runs>
+- FINAL_STATUS: <PASS|FAIL|BLOCKED>
+- FILES_CHANGED: <list>
+- VALIDATIONS_RUN: <list>
+- VALIDATION_RESULTS: <summary>
+- GIT_ROOT: C:\01. GitHub\Wings4.0
+- BRANCH: main
+- HEAD_BEFORE: <sha before>
+- HEAD_AFTER: <sha after>
+- WORKTREE_STATUS: <porcelain snapshot>
+- COMMIT_STATUS: NO (default)
+- PUSH_STATUS: NO (default)
+- BLOCKERS: <list>
+- NEXT_RECOMMENDATION: <short>
+
+USAGE NOTE
+- Executor must fill fields above at completion. Do not perform git commit or push without explicit human authorization.

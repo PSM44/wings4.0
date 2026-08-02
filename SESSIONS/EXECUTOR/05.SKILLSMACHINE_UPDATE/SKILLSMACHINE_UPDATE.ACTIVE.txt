@@ -1,0 +1,15 @@
+SESSIONS EXECUTOR — SKILLSMACHINE_UPDATE.ACTIVE
+TASK: Executor-side compact evidence contract for SkillsMachine update (if authorized)
+GENERATED: 2026-08-01
+
+PURPOSE
+- Execute only a separately authorized local update mechanism when human authorization is provided and the change belongs to Wings4.0 executable scope.
+
+REQUIREMENTS
+- Do not redesign or develop SkillsMachine in Wings4.0.
+- Validate installed results and produce a compact evidence record (see EXECUTOR SESSION_CLOSE fields).
+- Return transferable evidence package for SkillsMachine if work originated from a transfer.
+
+RESTRICTIONS
+- No SkillsMachine source or usecase content may be introduced into Wings4.0.
+- Human authorization required for any commit or external transmission.

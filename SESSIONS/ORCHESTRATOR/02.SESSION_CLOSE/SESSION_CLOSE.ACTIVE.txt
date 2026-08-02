@@ -1,0 +1,31 @@
+SESSIONS ORCHESTRATOR — SESSION_CLOSE.ACTIVE
+TASK: Minimal local session-close contract for Wings4.0 ORCHESTRATOR
+GENERATED: 2026-08-01
+
+1) Reviewed canon and state
+- HUMAN (HUMAN/Q_AND_A.md; see QA_COMPILED_SOURCE pointer)
+- BATON (00_STATE/BATON.WINGS4.ACTIVE.md)
+- PORTFOLIO.DECISION_LOG.md (for recording local isolation/pilot decisions)
+
+2) Q&A and Q&A.COMPILED updates
+- Confirm Q-001..Q-014 preserved.
+- Merge Q-015..Q-034 into HUMAN/Q_AND_A.md; preserve original addendum under 97.LEGACY as a superseded copy.
+- Produce HUMAN/Q_AND_A.COMPILED.md as compact interpretation with traceability.
+
+3) Conflict surfacing
+- Record portfolio conflict PC-012 with HUMAN_DECISION recorded (see DECISION_SOURCE).
+- IMPLEMENTATION_STATUS=OPEN_PENDING_BRAINY_LOCAL_EXECUTION.
+- BLOCKS_WINGS4_SESSIONS=NO (implementation-tracking only).
+
+4) BATON update policy
+- Do not modify BATON unless needed to record the current session and next step; any change must be minimal, reversible and explicitly reported.
+
+5) Minimum next-session package
+- Produce pointer bundle: {BATON pointer, HUMAN/Q_AND_A.COMPILED.md, change list limited to SESSIONS/*}
+
+6) Prohibitions (pointerized)
+- Do not declare EXECUTOR success without independent executor evidence (see EXECUTOR/02.SESSION_CLOSE template).
+- No SkillsMachine source or external project content to be imported (see DECISION_SOURCE; QA_COMPILED_SOURCE).
+
+7) Project-context isolation gate
+- PROJECT_CONTEXT_ISOLATION=MANDATORY enforced. All cross-project needs result in TRANSFER_PACKAGE workflow.

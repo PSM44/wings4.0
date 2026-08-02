@@ -1,0 +1,39 @@
+SESSIONS EXECUTOR — SESSION_CONTINUE.ACTIVE
+TASK: Minimal resume contract for Wings4.0 EXECUTOR
+GENERATED: 2026-08-01
+
+PROJECT_ID: WINGS4
+PROJECT_ROOT: C:\01. GitHub\Wings4.0
+TASK_ID: <fill when executor resumes>
+OBJECTIVE: Execute authorized local tasks inside Wings4.0 only; do not develop other projects.
+AUTHORIZED_SCOPE: See HUMAN/Q_AND_A.ADDENDUM.md Q-020 (SESSIONS/*, HUMAN Q&A, limited BATON/DECISION_LOG updates)
+FORBIDDEN_SCOPE: Any modification or development of SkillsMachine, Brainy, HIA, or other external projects.
+RELEVANT_FILES: SESSIONS/*, HUMAN/Q_AND_A.COMPILED.md, PORTFOLIO.DECISION_LOG.md
+PRESERVED_DECISIONS: Q-001..Q-014 preserved; Q-015..Q-034 recorded in addendum.
+EXPECTED_OUTPUT: Compact executor close record in SESSIONS/EXECUTOR/02.SESSION_CLOSE/SESSION_CLOSE.ACTIVE.txt (filled)
+VALIDATION: Follow validation checklist in HUMAN/Q_AND_A.ADDENDUM.md Q-030
+STOP_CONDITIONS: As listed in Q-029
+COMMIT_POLICY: COMMIT_PERFORMED=NO unless human authorization provided
+LAST_TECHNICAL_STATE: <fill when resuming>
+
+EXECUTOR CONTINUATION PACKAGE (DYNAMIC HANDOFF CONTRACT)
+- REQUIRE: generate exactly one file named EXECUTOR.CONTINUE.ACTIVE.txt (target <= 10000 bytes) containing:
+  - PROJECT_ID
+  - PROJECT_ROOT
+  - SESSION_ROLE
+  - BRANCH
+  - HEAD
+  - TASK_ID
+  - OBJECTIVE
+  - AUTHORIZED_SCOPE
+  - FORBIDDEN_SCOPE
+  - RELEVANT_FILES
+  - PRESERVED_DECISIONS
+  - EXPECTED_OUTPUT
+  - VALIDATION
+  - STOP_CONDITIONS
+  - COMMIT_POLICY
+  - LAST_TECHNICAL_STATE
+  - ORCHESTRATOR_DIRECTIVE (pointer)
+  - GENERATED_AT
+- RULES: single file only; include only task-relevant decisions; do not require full Q&A upload.
