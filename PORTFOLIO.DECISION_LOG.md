@@ -323,3 +323,20 @@ Decision:
 - Durable commit and push policies remain versioned; one-time `COMMIT=YES/NO` and `PUSH=YES/NO` belong in execution evidence.
 - Historical backlog records remain immutable unless independently proven incorrect.
 - No child-project mutation, commit or push is authorized by this decision.
+
+## DEC-W4-040 — AI.History exclusion and RADAR visibility boundary
+
+Status: APPROVED_HUMAN_DIRECTION
+Date: 2026-08-02
+Scope: Wings4.0 local chat-session exports and RADAR governance
+
+Decision:
+
+- `AI.History/` contains exported chat-session history.
+- `AI.History/` must remain untracked by Git and must not be published to GitHub.
+- `AI.History/` must not be ingested, parsed, summarized, hashed, monitored or change-tracked by `RADAR.CORE`.
+- `RADAR.INDEX` may include, at most, one minimal existence/location reference for `AI.History/`.
+- Any `RADAR.INDEX` reference must omit file contents, file-level inventory, hashes, summaries, timestamps and change tracking.
+- The current Wings4.0 repository contains no active RADAR implementation or configuration; enforcement inside RADAR must occur in the repository or configuration that owns RADAR.
+- This decision does not authorize inspection of exported chat contents.
+- No child-project mutation, commit or push is authorized by this decision.

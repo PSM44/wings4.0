@@ -791,3 +791,29 @@ Acceptance:
 - Stable contracts require runtime HEAD resolution.
 - Historical `READY_FOR_LOCAL_COMMIT` entries remain unchanged.
 - `git diff --check` passes.
+
+## WINGS4_CORE_006 — AI.HISTORY GIT AND RADAR EXCLUSION
+
+Priority: P0
+Status: APPLIED_PENDING_VALIDATION
+Decision: DEC-W4-040
+
+Scope:
+
+- Add an explicit repository ignore rule for `AI.History/`.
+- Preserve `AI.History/` outside Git and GitHub.
+- Record that `RADAR.CORE` must fully exclude `AI.History/`.
+- Permit only a minimal folder-level reference in `RADAR.INDEX`.
+- Do not inspect or enumerate chat-export contents beyond what is required to validate exclusion.
+- Do not invent or modify RADAR implementation where none exists locally.
+- Do not modify child projects.
+- Do not commit or push.
+
+Acceptance:
+
+- `git status --short` no longer shows `AI.History/`.
+- `git status --short --ignored` shows `!! AI.History/`.
+- `git check-ignore -v AI.History/20260718.1.md` resolves to the folder-level rule.
+- Git tracks zero files under `AI.History/`.
+- Canon records the `RADAR.CORE` exclusion and `RADAR.INDEX` minimal-reference boundary.
+- `git diff --check` passes.

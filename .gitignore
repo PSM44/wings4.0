@@ -24,5 +24,7 @@ ARTIFACTS/
 RADAR/ACTIVE/
 RADAR/HISTORY/
 
-# Local noncanonical AI collaboration snapshot pending IA.History policy
+# Local noncanonical AI collaboration snapshot
 20260716_AI.History.md
+# Local chat-session exports; never track or publish
+AI.History/
