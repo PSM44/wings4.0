@@ -307,3 +307,19 @@ Decision:
 - Historical portfolio decisions remain in `PORTFOLIO.DECISION_LOG.md`; roadmap and execution history remain in `MIGRATION.BACKLOG.md`.
 - No historical BATON copy is created because the removed content is duplicative rather than the sole canonical evidence.
 - No child project mutation, commit or push is authorized by this decision.
+## DEC-W4-039 — Commit-independent active-state semantics
+
+Status: APPROVED_HUMAN_DIRECTION
+Date: 2026-08-02
+Scope: Wings4.0 local canon and session continuity
+
+Decision:
+
+- Versioned active canon expresses logical lifecycle state, not a future commit transition.
+- `READY_FOR_LOCAL_COMMIT` and `PENDING_COMMIT` are valid only as transient execution evidence, not durable post-commit state.
+- Generated handoffs use `HEAD_AT_GENERATION` as evidence of their creation baseline.
+- Every resumed session resolves `CURRENT_HEAD_AT_RESUME` directly from Git and validates ancestry and expected worktree state.
+- Stable contracts require runtime Git resolution and must not imply that an embedded hash remains current.
+- Durable commit and push policies remain versioned; one-time `COMMIT=YES/NO` and `PUSH=YES/NO` belong in execution evidence.
+- Historical backlog records remain immutable unless independently proven incorrect.
+- No child-project mutation, commit or push is authorized by this decision.

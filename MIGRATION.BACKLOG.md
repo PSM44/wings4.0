@@ -714,7 +714,7 @@ Constraints:
 ## WINGS4_CORE_003 — SAFE CANON RECONCILIATION
 
 Priority: P0
-Status: APPLIED_VALIDATED_PENDING_COMMIT
+Status: CLOSED_PASS_LOCAL
 Decision: DEC-W4-037
 
 Scope:
@@ -741,7 +741,7 @@ Acceptance:
 ## WINGS4_CORE_004 — CURRENT STATE AND HANDOFF DEDUPLICATION
 
 Priority: P0
-Status: APPLIED_VALIDATED_PENDING_COMMIT
+Status: CLOSED_PASS_LOCAL
 Decision: DEC-W4-038
 
 Scope:
@@ -766,3 +766,28 @@ Semantic correction:
 - Stable `*.CONTINUE.CONTRACT.txt` files contain only role contract, required fields, generation rules and controls.
 - Current task state exists only in the corresponding generated `*.CONTINUE.ACTIVE.txt` handoff.
 - Stale historical worktree and next-action fields were removed from the active handoffs.
+
+## WINGS4_CORE_005 — POST-COMMIT STATE SEMANTICS
+
+Priority: P0
+Status: APPLIED_PENDING_VALIDATION
+Decision: DEC-W4-039
+
+Scope:
+
+- Use logical lifecycle state in versioned canon instead of future-commit state.
+- Preserve generation-time commit evidence as `HEAD_AT_GENERATION`.
+- Resolve and validate the actual current HEAD at session start.
+- Keep durable commit and push policy separate from one-time execution evidence.
+- Preserve historical backlog records without retroactive rewriting.
+- Do not modify child projects.
+- Do not commit or push.
+
+Acceptance:
+
+- CORE_003 and CORE_004 are `CLOSED_PASS_LOCAL`.
+- BATON does not claim readiness for a commit that already occurred.
+- Active handoffs do not present generation-time HEAD as permanently current.
+- Stable contracts require runtime HEAD resolution.
+- Historical `READY_FOR_LOCAL_COMMIT` entries remain unchanged.
+- `git diff --check` passes.
