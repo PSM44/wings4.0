@@ -356,3 +356,22 @@ Decision:
 - CORE_003, CORE_004, CORE_005 and CORE_006 are closed local baselines and must not be reopened without new contradictory evidence.
 - The unresolved RADAR owner is a transfer dependency, not a reason to retain the current session.
 - No child-project mutation, staging, commit or push is authorized by this decision.
+## DEC-W4-042 — Session continuation folders are self-contained outputs
+
+Status: APPROVED_FOR_LOCAL_APPLICATION
+Date: 2026-08-03
+Scope: Wings4.0 session continuity
+
+Decision:
+
+- SESSIONS/ORCHESTRATOR/03.SESSION_CONTINUE is an output bundle, not a canonical source layer.
+- The folder must be upload-ready and self-contained.
+- The user may upload every file in the folder without writing an additional prompt.
+- 00.START_HERE.ORCHESTRATOR.txt is the mandatory package entrypoint.
+- Duplication is allowed for transport snapshots when it reduces startup friction.
+- BATON.WINGS4.ACTIVE.md and W4C006_RADAR_TRANSFER.txt may be duplicated into the folder.
+- Snapshot copies do not supersede their canonical or source files.
+- CONTINUE.MANIFEST.txt must record provenance and hashes.
+- External file lookup must not be required to start the next session.
+- AI.History/ remains fully excluded.
+- No staging, commit or push is authorized by this decision.

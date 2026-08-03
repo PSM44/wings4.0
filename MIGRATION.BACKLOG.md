@@ -846,3 +846,29 @@ Acceptance:
 - RADAR owner remains UNRESOLVED.
 - AI.History/ remains ignored and outside Git.
 - git diff --check passes.
+## WINGS4_CORE_008 — SELF-CONTAINED ORCHESTRATOR CONTINUATION BUNDLE
+
+Priority: P0
+Status: APPLIED_PENDING_VALIDATION
+Decision: DEC-W4-042
+
+Scope:
+
+- Make SESSIONS/ORCHESTRATOR/03.SESSION_CONTINUE a self-contained upload-ready output.
+- Allow continuation by uploading every file from the folder without an additional prompt.
+- Include explicit entrypoint, manifest, BATON snapshot and RADAR transfer snapshot.
+- Preserve source canon outside the folder; duplicated files are transport snapshots only.
+- Require no external file lookup for session startup.
+- Preserve AI.History exclusion.
+- Do not stage, commit or push.
+
+Acceptance:
+
+- Folder includes 00.START_HERE.ORCHESTRATOR.txt.
+- Folder includes CONTINUE.MANIFEST.txt.
+- Folder includes current BATON.WINGS4.ACTIVE.md snapshot.
+- Folder includes W4C006_RADAR_TRANSFER.txt while RADAR_OWNER=UNRESOLVED.
+- ACTIVE and CONTRACT declare self-contained bundle semantics.
+- Manifest records source paths and SHA256 values.
+- Uploading all folder files is sufficient to resume without a user prompt.
+- git diff --check passes.

@@ -1,0 +1,55 @@
+PACKAGE_TYPE=WINGS4_ORCHESTRATOR_SESSION_CONTINUE
+PACKAGE_VERSION=2026-08-03.1
+PACKAGE_STATUS=READY
+ENTRYPOINT=THIS_FILE
+GENERATED_AT=2026-08-03T14:20:33-04:00
+
+PROJECT_ID=Wings4.0
+PROJECT_ROOT=C:\01. GitHub\Wings4.0
+EXPECTED_BRANCH=main
+HEAD_AT_GENERATION=50acad61d2b6385ad9f3dc065c74fe0b7be4891f
+CURRENT_HEAD_AT_RESUME=RESOLVE_FROM_GIT
+ROLE_TO_ASSUME=ORCHESTRATOR
+ADDITIONAL_PROMPT_REQUIRED=NO
+EXTERNAL_FILE_LOOKUP_REQUIRED=NO
+SNAPSHOT_IS_CANON=NO
+UPLOAD_METHOD=UPLOAD_ALL_FILES_FROM_FOLDER
+
+INSTRUCTION_TO_NEW_SESSION
+The attached files are the complete current continuation package for PS.Wings4.0.
+Read this file first, then read every other file in this package.
+Resume the project without requiring an additional user prompt.
+Before proposing or executing work, resolve the current Git root, branch, HEAD, index and worktree state.
+Treat duplicated files in this folder as transport snapshots, not canonical sources.
+Use source paths recorded in CONTINUE.MANIFEST.txt when canonical verification is required.
+Do not inspect, summarize, hash, inventory or request AI.History/.
+Do not develop or mutate child projects inside Wings4.0.
+Do not commit or push without explicit human authorization.
+Determine whether to resolve RADAR ownership using W4C006_RADAR_TRANSFER.txt or select the next governed portfolio priority.
+
+READ_ORDER
+1=00.START_HERE.ORCHESTRATOR.txt
+2=ORCHESTRATOR.CONTINUE.CONTRACT.txt
+3=ORCHESTRATOR.CONTINUE.ACTIVE.txt
+4=BATON.WINGS4.ACTIVE.md
+5=W4C006_RADAR_TRANSFER.txt
+6=CONTINUE.MANIFEST.txt
+
+CURRENT_CONFIRMED_STATE
+CORE_003=CLOSED_PASS_LOCAL
+CORE_004=CLOSED_PASS_LOCAL
+CORE_005=CLOSED_PASS_LOCAL
+CORE_006=CLOSED_PASS_LOCAL
+CORE_007=CLOSED_PASS_LOCAL
+CORE_008=APPLIED_PENDING_VALIDATION
+RADAR_OWNER=UNRESOLVED
+AI_HISTORY_GIT=IGNORED
+AI_HISTORY_RADAR_CORE=FULL_EXCLUSION
+AI_HISTORY_RADAR_INDEX=OPTIONAL_MINIMAL_FOLDER_REFERENCE_ONLY
+REMOTE_COUNT=0
+PUSH=NO
+
+FIRST_ACTION
+Resolve current Git state.
+Compare current state with HEAD_AT_GENERATION.
+Then determine whether to resolve the RADAR owner using W4C006_RADAR_TRANSFER.txt or select the next governed portfolio priority from BATON and backlog.
