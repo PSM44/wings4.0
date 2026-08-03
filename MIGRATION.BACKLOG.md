@@ -546,7 +546,7 @@ Decisions:
 - Direct project-to-project governance communication is prohibited by default.
 - SkillsMachine is the preferred delivery messenger.
 - SkillsMachine is not the coordination hub.
-- Governed projects may use a minimal  0_WINGS4_COORD interface.
+- Governed projects may use a minimal 00_WINGS4_COORD interface.
 - Deployment integration remains optional and requires an approved interface.
 - Portfolio rollout is not yet authorized.
 
@@ -872,3 +872,27 @@ Acceptance:
 - Manifest records source paths and SHA256 values.
 - Uploading all folder files is sufficient to resume without a user prompt.
 - git diff --check passes.
+
+## WINGS4_CORE_009 --- MINIMAL SINGLE-FILE ORCHESTRATOR CONTINUATION OUTPUT
+
+Priority: P0
+Status: APPLIED_PENDING_VALIDATION
+Decision: DEC-W4-043
+
+Scope:
+- Replace the multi-file session continuation bundle with a single consolidated minimal entrypoint file: `00.START_HERE.ORCHESTRATOR.txt`.
+- The single-file package must be upload-ready; uploading the folder (containing the single file) is sufficient to resume without additional prompts.
+- Preserve runtime Git validation and mandatory checks before resuming.
+- AI.History/ remains fully excluded and must not be inspected.
+- Do not stage, commit or push as part of package generation.
+
+Acceptance:
+- SESSIONS/ORCHESTRATOR/03.SESSION_CONTINUE contains exactly one file: `00.START_HERE.ORCHESTRATOR.txt`.
+- The file contains HEAD_AT_GENERATION equal to the current committed HEAD at generation time.
+- The package size is minimized and below preferred thresholds unless required controls demand additional bytes.
+- CORE_003 through CORE_008 remain closed local baselines and are reflected in the single file.
+- DEC-W4-043 exists in PORTFOLIO.DECISION_LOG.md.
+- git diff --check passes.
+
+CORE_008=SUPERSEDED_BY_CORE_009_FOR_BUNDLE_FILE_COUNT_ONLY
+CORE_008_GOVERNANCE_SEMANTICS=PRESERVED

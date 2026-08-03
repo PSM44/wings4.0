@@ -375,3 +375,20 @@ Decision:
 - External file lookup must not be required to start the next session.
 - AI.History/ remains fully excluded.
 - No staging, commit or push is authorized by this decision.
+## DEC-W4-043 — Orchestrator continuation output uses one consolidated file
+
+Status: APPROVED_FOR_LOCAL_APPLICATION
+Date: 2026-08-03
+
+Decision:
+
+- 03.SESSION_CONTINUE is a regenerable output, not canon.
+- Default target is one consolidated upload-ready file.
+- Separate manifest, BATON snapshot, contract snapshot, active handoff and transfer snapshot are prohibited when their minimum required content can be consolidated safely.
+- Uploading the full folder must be equivalent to uploading the single file.
+- Additional prompt is not required.
+- Runtime Git validation remains mandatory.
+- HEAD_AT_GENERATION must equal the current committed HEAD at generation time.
+- Duplication is allowed only when consolidation would lose essential semantics.
+- AI.History remains fully excluded.
+- No staging, commit or push is authorized by this decision.
