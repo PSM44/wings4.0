@@ -4,7 +4,7 @@
 
 Wings4.0 is Pablo's portfolio architecture and governance repository.
 
-It is not a project, product, runtime, delivery factory, monorepo, or replacement for project-local governance.
+It is not a governed child project, domain product, runtime, delivery factory, monorepo, or replacement for project-local governance. Wings4.0 is the portfolio governance system and the repository used to develop and operate that system.
 
 <!-- Documentation Standardization pointer (Track B) -->
 HUMAN remains the transitional human-first entry point. See `HUMAN/DOCUMENTATION.MAP.md` for the documentation responsibility map and incremental migration itinerary. Operational continuity (BATON) is maintained in `00_STATE/BATON.WINGS4.ACTIVE.md`, which remains outside HUMAN.
@@ -35,7 +35,7 @@ The operating cycle is:
 5. Wings4.0 presents conflicts, duplication candidates, integration opportunities, and alternatives.
 6. Pablo approves, rejects, modifies, or defers a portfolio decision.
 7. Wings4.0 prepares a focalized prompt for each affected project.
-8. Each project evaluates and applies the approved change under its own local governance.
+8. Each affected project evaluates the approved intervention under its own local governance and implements only the locally accepted changes consistent with the portfolio decision.
 9. Wings4.0 listens again to the updated HUMAN and verifies resynchronization.
 
 ## 4. Authority model
@@ -114,11 +114,11 @@ Legacy assimilation remains selective and reversible:
 
 ## 10. Core operating principle
 
-Wings4.0 recommends.
-Pablo decides.
-Each project implements locally.
-Wings4.0 verifies portfolio resynchronization.
-
+Wings4.0 reads, analyzes, coordinates, and recommends.
+Pablo approves, rejects, modifies, or defers portfolio decisions.
+Wings4.0 prepares evidence-backed intervention requests.
+Each affected project evaluates and implements accepted changes under its own local canon and governance.
+Wings4.0 re-reads updated canon and verifies portfolio resynchronization.
 ## 11. Current limitations
 
 - The active-project listening cycle has not yet been proven through a full real pilot.

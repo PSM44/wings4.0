@@ -45,4 +45,18 @@ Brainy's `HUMAN_0002_BRAINY_OPERATING_MODEL.md` (section 10) declares an interna
 
 Next action:
 
-Pablo decides whether to approve a one-sentence clarification in Brainy's HUMAN (drafted in `PORTFOLIO.REVIEWS/PILOT_INTERVENTION_PROMPT_DRAFT.BRAINY_SKILL_LAYER.md`) stating that Brainy's Skill layer is local/personal and that reusable capabilities belong in PS.SkillsMachine instead.
+Human decision is complete under `DEC-W4-035`. Deliver the authorized intervention to Brainy for local evaluation and implementation, then obtain Brainy-local evidence and perform Wings4 portfolio resynchronization. No Wings4 mutation of Brainy is authorized.
+## PC-013 — Frozen Hermes project versus active tool-integration ownership
+
+Status: OPEN_PENDING_HUMAN_DECISION
+Severity: HIGH
+Confidence: HIGH
+Source: `DEC-W4-PAIR-006` and `WINGS4_GOV_015C_SCOPE_BOUNDARY_HUMAN_DECISION`
+
+Description:
+
+`PS.HermesObsidianIntegration` is canonically `FROZEN_ARCHIVE`, with new local development and workflows prohibited. A later scope-boundary decision states that Hermes–Obsidian owns tool integration only. A frozen archive cannot safely remain the active operational owner without an explicit reactivation or successor decision.
+
+Next action:
+
+Determine whether the tool-integration capability is historical only, transfers to an existing active project, requires a successor, or justifies explicit reactivation. Do not reactivate or modify the frozen project through this conflict record.

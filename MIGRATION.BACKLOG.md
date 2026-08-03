@@ -685,7 +685,7 @@ NEXT_MINIBATTLE=MB-SM-070B_RING1_PRECONDITION_REPAIR_AND_EXECUTION_DESIGN
 
 ## WINGS4_GOV_015C_SCOPE_BOUNDARY_HUMAN_DECISION
 
-Status: PASS  
+Status: PASS
 Generated at: 2026-07-28 16:36:31 -04:00
 
 Approved the cross-project scope and ownership matrix.
@@ -710,3 +710,59 @@ Constraints:
 | SMDI-007 | Brainy real-consumer pilot | P0 | PLANNED | DEC-W4-036 | PENDING_EVIDENCE |
 | SMDI-008 | Wings4 evidence resynchronization | P0 | PLANNED | DEC-W4-036 | PENDING_EVIDENCE |
 | SMDI-009 | Decision on broader portfolio adoption | P1 | PLANNED | DEC-W4-036 | PENDING_EVIDENCE |
+
+## WINGS4_CORE_003 — SAFE CANON RECONCILIATION
+
+Priority: P0
+Status: APPLIED_VALIDATED_PENDING_COMMIT
+Decision: DEC-W4-037
+
+Scope:
+
+- Correct Wings4 identity wording without redefining the portfolio purpose.
+- Align PC-012 with the completed human decision and pending Brainy-local implementation.
+- Register PC-013 for the frozen-Hermes versus active-tool-integration ownership ambiguity.
+- Record modular-control-plane direction and progressive-extraction gates.
+- Add the governed stable L0 core to the active ORCHESTRATOR handoff.
+- Update current BATON pointers while preserving historical evidence.
+- Do not create new projects, schemas, contracts or Ring protocols.
+- Do not modify child projects.
+- Do not commit or push.
+
+Acceptance:
+
+- Exact diff contains only authorized Wings4-local files.
+- L0 core preserves identity, authority, prohibitions, operating cycle and source hierarchy.
+- PC-012 no longer requests a completed human decision.
+- PC-013 does not assign a new owner or reactivate Hermes.
+- Fresh ORCHESTRATOR recovery can explain Wings4.0 without relying on short-term conversational memory.
+
+
+## WINGS4_CORE_004 — CURRENT STATE AND HANDOFF DEDUPLICATION
+
+Priority: P0
+Status: APPLIED_VALIDATED_PENDING_COMMIT
+Decision: DEC-W4-038
+
+Scope:
+
+- Rename the two generic continuation contracts to role-specific `*.CONTINUE.CONTRACT.txt`.
+- Preserve one current generated `*.CONTINUE.ACTIVE.txt` handoff per role.
+- Reconcile internal references.
+- Compact BATON to active continuity state and canonical pointers.
+- Do not create a duplicate BATON history file.
+- Do not modify child projects.
+- Do not commit or push.
+
+Acceptance:
+
+- No `SESSION_CONTINUE.ACTIVE.txt` remains under SESSIONS.
+- Exactly one generated ACTIVE handoff exists for ORCHESTRATOR and one for EXECUTOR.
+- Exactly one stable continuation contract exists for ORCHESTRATOR and one for EXECUTOR.
+- BATON contains no historical GOV/Ring ledger.
+- `git diff --check` passes.
+Semantic correction:
+
+- Stable `*.CONTINUE.CONTRACT.txt` files contain only role contract, required fields, generation rules and controls.
+- Current task state exists only in the corresponding generated `*.CONTINUE.ACTIVE.txt` handoff.
+- Stale historical worktree and next-action fields were removed from the active handoffs.

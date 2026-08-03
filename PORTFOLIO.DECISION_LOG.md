@@ -260,3 +260,50 @@ Next action:
 - Continue in a new Cursor session rooted at C:\01. GitHub\Skills using SKILLSMACHINE_SMDI_GOVERNED_THIN_PILOT_DESIGN_001, read-only first.
 - Return verified evidence to Wings4 for later resynchronization.
 - No commit or push is authorized by this decision.
+
+## DEC-W4-037 — Modular control plane and governed stable core
+
+Status: APPROVED_HUMAN_DIRECTION
+Date: 2026-08-02
+Scope: Wings4.0 local architecture and session continuity only
+
+Decision:
+
+- Adopt Wings4.0 as a modular portfolio-governance control plane using federated governance.
+- Do not split Wings4.0 into additional projects at this stage.
+- Use logical bounded contexts inside Wings4.0 and permit progressive extraction only after evidence-based ownership, lifecycle, consumer, interface and net-value gates pass.
+- Adopt the continuity layers `L0_GOVERNED_STABLE_CORE`, `L1_CURRENT_OPERATIONAL_HANDOFF`, and `L2_CANONICAL_DETAIL_ON_DEMAND`.
+- The L0 core must preserve identity, purpose, authority, local-canon boundaries, prohibitions, operating cycle, source hierarchy and project-isolation rules.
+- The operational handoff does not replace canonical project documentation.
+- Questions concerning project identity, authority, ownership or core purpose must consult L0 and relevant canonical L2 sources rather than rely on conversational memory alone.
+- Align PC-012 with `DEC-W4-035`: human decision is complete; Brainy-local implementation and Wings4 resynchronization remain pending.
+- Register the conflict between the frozen Hermes project and later active tool-integration ownership wording; no ownership reassignment or project reactivation is approved by this decision.
+- No child project mutation, new project creation, commit or push is authorized.
+
+Architecture direction:
+
+- `KEEP_IN_WINGS`: portfolio identity, governance, architecture, cross-project coordination, conflict management, decision support, intervention routing and resynchronization.
+- `MODULARIZE_IN_WINGS`: strategic sourcing policy, AI delivery strategy, Wings-local session continuity, observability and evidence.
+- Existing owners remain authoritative where already approved: AIX for generic operational AI execution, Nightshift for comparative agent experimentation, SkillsMachine for reusable Skills/GRC canon, and Brainy for durable memory and cognitive continuity.
+
+Next action:
+
+Apply and validate the minimum Wings4-local canon and handoff reconciliation. Defer physical folder reorganization and capability extraction.
+
+
+## DEC-W4-038 — Distinguish stable continuation contracts from generated active handoffs
+
+Status: APPROVED_HUMAN_DIRECTION
+Date: 2026-08-02
+Scope: Wings4.0 project-local session continuity
+
+Decision:
+
+- Reserve `ORCHESTRATOR.CONTINUE.ACTIVE.txt` and `EXECUTOR.CONTINUE.ACTIVE.txt` for the single current generated handoff of each role.
+- Rename the stable role-specific generation contracts to `ORCHESTRATOR.CONTINUE.CONTRACT.txt` and `EXECUTOR.CONTINUE.CONTRACT.txt`.
+- Do not retain generic `SESSION_CONTINUE.ACTIVE.txt` files after references are reconciled.
+- Do not accumulate historical handoffs.
+- Compact the active BATON to current identity, state, continuity evidence, blockers, next action and canonical pointers.
+- Historical portfolio decisions remain in `PORTFOLIO.DECISION_LOG.md`; roadmap and execution history remain in `MIGRATION.BACKLOG.md`.
+- No historical BATON copy is created because the removed content is duplicative rather than the sole canonical evidence.
+- No child project mutation, commit or push is authorized by this decision.

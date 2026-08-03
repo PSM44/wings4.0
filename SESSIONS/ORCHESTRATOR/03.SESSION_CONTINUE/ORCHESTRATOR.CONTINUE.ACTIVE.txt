@@ -1,78 +1,39 @@
 PROJECT_ID=WINGS4
 PROJECT_ROOT=C:\01. GitHub\Wings4.0
 SESSION_ROLE=ORCHESTRATOR
+HANDOFF_SCOPE=OPERATIONAL_CONTINUITY_WITH_GOVERNED_STABLE_CORE
+HANDOFF_IS_FULL_PROJECT_CANON=NO
+CONTRACT_POINTER=SESSIONS/ORCHESTRATOR/03.SESSION_CONTINUE/ORCHESTRATOR.CONTINUE.CONTRACT.txt
 
-ACTIVE_OBJECTIVE=Continue Wings4.0 portfolio governance after proving and committing the project-local SESSIONS MVP.
+L0_CORE_VERSION=2026-08-02.1
+PROJECT_IDENTITY=Wings4.0 is Pablo's portfolio architecture and governance system and the repository used to develop and operate that system.
+OFFICIAL_ROLE=PORTFOLIO_ARCHITECTURE_AND_GOVERNANCE_ORCHESTRATOR
+FINAL_PORTFOLIO_DECISION_AUTHORITY=PABLO
+LOCAL_CANON_AUTHORITY=EACH_GOVERNED_PROJECT
+WINGS4_AUTHORITY=READ_CONSOLIDATE_COMPARE_DETECT_EXPLAIN_RECOMMEND_RECORD_PREPARE_INTERVENTIONS_VERIFY_RESYNCHRONIZATION
+WINGS4_PROHIBITED=SILENT_CHILD_CANON_REDEFINITION;DIRECT_CHILD_PROJECT_MUTATION;CHILD_BACKLOG_MANAGEMENT;AUTONOMOUS_PORTFOLIO_APPROVAL;ASSUMED_IMPLEMENTATION_SUCCESS
+PORTFOLIO_OPERATING_CYCLE=READ_CANON>COMPARE>FINDINGS>OPTIONS>HUMAN_DECISION>INTERVENTION_REQUEST>LOCAL_EVALUATION>LOCAL_IMPLEMENTATION>RETURN_EVIDENCE>RESYNCHRONIZATION
+PROJECT_CONTEXT_ISOLATION=MANDATORY
+STRUCTURAL_STRATEGY=MODULAR_CONTROL_PLANE_WITH_PROGRESSIVE_EXTRACTION
+CONTINUITY_MODEL=L0_GOVERNED_STABLE_CORE+L1_CURRENT_OPERATIONAL_HANDOFF+L2_CANONICAL_DETAIL_ON_DEMAND
+SEMANTIC_CANON_GATE=IDENTITY_AUTHORITY_OWNERSHIP_AND_CORE_PURPOSE_QUESTIONS_REQUIRE_L0_AND_RELEVANT_L2
+STRATEGIC_SOURCING=ADOPT>CONFIGURE>INTEGRATE>EXTEND>FORK>BUILD_RESIDUAL_GAP_ONLY
 
-CURRENT_STATUS=The Wings4 project-local SESSIONS MVP is proven and committed. Both EXECUTOR and ORCHESTRATOR one-file recovery pilots succeeded. The previous ORCHESTRATOR handoff contained stale precommit state and is being replaced completely.
-
-COMPLETED_WORK_SUMMARY=
-- Six stable project-local SESSIONS contracts implemented.
-- One current generated handoff per role implemented.
-- EXECUTOR one-file recovery pilot completed successfully.
-- ORCHESTRATOR one-file recovery pilot completed successfully.
-- Q-001 through Q-035 consolidated in the human governance record.
-- Q_AND_A.COMPILED maintained as the compact current interpretation.
-- SESSIONS MVP committed locally at 2e094122d7368fb3a7ba6ef7f4c9e83e0b2a90a9.
-- ORCHESTRATOR close committed locally at 19514701858fa85df08ba7745f40be610c5d1ef0.
-- Full BATON, full Q&A and full chat are not required for normal continuation.
-- No push has been performed.
-
-ACTIVE_DECISIONS=
-- ORCHESTRATOR and EXECUTOR are separate project-local sessions.
-- One GPT project and one Cursor workspace correspond to one governed project.
-- PROJECT_CONTEXT_ISOLATION is mandatory.
-- Another project must not be developed inside Wings4.0.
-- Cross-project execution requires a transfer to the target project.
-- One current generated handoff per role is overwritten at each close.
-- Historical handoffs are not accumulated; legacy movement is by exception only.
-- Every 10 user messages, session health is evaluated internally.
-- No session-health notice is shown while the session remains healthy.
-- Only a brief notice is shown when creating a new session is recommended.
-- Cursor remains the current EXECUTOR baseline.
-- OpenRouter remains OFF.
-
-LAST_EXECUTOR_RESULT=WINGS4_SESSIONS_004C completed successfully. EXECUTOR one-file recovery succeeded. Structured evidence prevails over contradictory free-text recommendations.
-
-LAST_LOCAL_COMMITS=
-- 2e094122d7368fb3a7ba6ef7f4c9e83e0b2a90a9 | Wings4 SESSIONS MVP.
-- 19514701858fa85df08ba7745f40be610c5d1ef0 | ORCHESTRATOR close and session-health policy.
-
+ACTIVE_OBJECTIVE=Validate CORE_003 and CORE_004 together, then prepare exact local commit evidence if human-authorized.
+CURRENT_STATUS=WINGS4_CORE_003_AND_004_EXACT_VALIDATION_PENDING
+COMPLETED_WORK_SUMMARY=SESSIONS_MVP_PROVEN_AND_COMMITTED;CORE_001_REVIEW_COMPLETED;CORE_002_DISCOVERY_COMPLETED;FIVE_CANON_DRIFTS_CONFIRMED
+ACTIVE_DECISIONS=DEC-W4-037_MODULAR_CONTROL_PLANE_AND_GOVERNED_STABLE_CORE;NO_PROJECT_SPLIT_NOW;NO_CHILD_PROJECT_MUTATION
 RELEVANT_QA_DECISIONS=Q-015..Q-035
-
-RELEVANT_CONFLICTS=
-- Cursor may report stale Git state when terminal execution is unavailable.
-- Fresh local Git evidence is authoritative.
-- The handoff committed in 1951470 preserved stale precommit fields and must not be used after this replacement.
-- AI.History remains preexisting untracked content outside the SESSIONS scope.
-
-BLOCKERS=NONE
-HUMAN_DECISIONS_REQUIRED=NONE
-NEXT_TASK_STATUS=READY
-
-POST_RECOVERY_NEXT_ACTION=Review the current Wings4 portfolio state and select the next explicitly authorized Wings4-local minibattle without developing another project inside Wings4.0.
-
+RELEVANT_CONFLICTS=PC-012_LOCAL_IMPLEMENTATION_PENDING;PC-013_HERMES_ACTIVE_OWNER_UNRESOLVED
+BLOCKERS=HUMAN_COMMIT_AUTHORIZATION_PENDING
+HUMAN_DECISIONS_REQUIRED=AUTHORIZE_OR_REJECT_LOCAL_COMMIT_AFTER_FINAL_VALIDATION
+POST_RECOVERY_NEXT_ACTION=Run exact final validation, exclude AI.History, and present commit decision evidence.
 BRANCH=main
-HEAD=19514701858fa85df08ba7745f40be610c5d1ef0
-WORKTREE_STATUS=AI.History remains untracked and outside the authorized SESSIONS scope.
-
-COMMIT_POLICY=No commit without exact staging validation and explicit human authorization.
+HEAD=619d0856d050a1ad5bb44030520e8d5db08c75bb
+WORKTREE_STATUS=EXPECTED_CORE_003_AND_CORE_004_LOCAL_CHANGES_PLUS_PREEXISTING_UNTRACKED_AI_HISTORY
+COMMIT_POLICY=NO_COMMIT_WITHOUT_EXACT_STAGING_VALIDATION_AND_EXPLICIT_HUMAN_AUTHORIZATION
 PUSH_POLICY=NO_PUSH_WITHOUT_EXPLICIT_HUMAN_AUTHORIZATION
-
-SOURCE_POINTERS=
-- 00_STATE/BATON.WINGS4.ACTIVE.md
-- HUMAN/Q_AND_A.md
-- HUMAN/Q_AND_A.COMPILED.md
-- PORTFOLIO.DECISION_LOG.md
-- SESSIONS/ORCHESTRATOR
-- SESSIONS/EXECUTOR
-
-SESSION_HEALTH_POLICY=
-- Evaluate context health internally every 10 user messages.
-- Count user messages only.
-- Remain silent while the session is healthy.
-- Show only a brief recommendation when CLOSE_AND_CONTINUE is advisable.
-
-HANDOFF_ACTIVATION_ACTION=Open a new GPT conversation inside the Wings4.0 project and upload only this file.
-ACTIVATION_STATUS=PENDING
-GENERATED_AT=2026-08-02T13:35:34-04:00
+SOURCE_POINTERS=HUMAN/HUMAN.WINGS4.md;PORTFOLIO.PRINCIPLES.md;PORTFOLIO.DECISION_LOG.md;PORTFOLIO.CONFLICT_REGISTER.md;PORTFOLIO.CAPABILITY_MAP.yaml;PORTFOLIO.RELATIONSHIP_MAP.yaml;00_STATE/BATON.WINGS4.ACTIVE.md;HUMAN/Q_AND_A.COMPILED.md
+SESSION_HEALTH_POLICY=EVALUATE_INTERNALLY_EVERY_10_USER_MESSAGES;REMAIN_SILENT_WHILE_HEALTHY;NOTIFY_ONLY_WHEN_NEW_SESSION_IS_RECOMMENDED
+ACTIVATION_STATUS=READY_FOR_FINAL_VALIDATION
+GENERATED_AT=2026-08-02T21:33:34-04:00
