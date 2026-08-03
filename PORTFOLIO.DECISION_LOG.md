@@ -340,3 +340,19 @@ Decision:
 - The current Wings4.0 repository contains no active RADAR implementation or configuration; enforcement inside RADAR must occur in the repository or configuration that owns RADAR.
 - This decision does not authorize inspection of exported chat contents.
 - No child-project mutation, commit or push is authorized by this decision.
+
+## DEC-W4-041 — Minimal Orchestrator session-close package
+
+Status: APPROVED_FOR_LOCAL_APPLICATION
+Date: 2026-08-03
+Scope: Wings4.0 Orchestrator continuity
+
+Decision:
+
+- A new Orchestrator session must resume from Git-resolved current state, not from embedded historical assumptions.
+- The minimal startup package consists of the active Orchestrator continuation handoff, its stable contract and the external RADAR transfer only while that dependency remains unresolved.
+- BATON is optional startup context and should be uploaded only when the active handoff is insufficient.
+- Historical execution reports and AI.History/ are excluded from the startup package.
+- CORE_003, CORE_004, CORE_005 and CORE_006 are closed local baselines and must not be reopened without new contradictory evidence.
+- The unresolved RADAR owner is a transfer dependency, not a reason to retain the current session.
+- No child-project mutation, staging, commit or push is authorized by this decision.

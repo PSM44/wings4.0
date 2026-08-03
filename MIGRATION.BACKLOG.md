@@ -817,3 +817,32 @@ Acceptance:
 - Git tracks zero files under `AI.History/`.
 - Canon records the `RADAR.CORE` exclusion and `RADAR.INDEX` minimal-reference boundary.
 - `git diff --check` passes.
+
+## WINGS4_CORE_007 — SESSION CLOSE AND CONTINUITY REFRESH
+
+Priority: P0
+Status: APPLIED_PENDING_VALIDATION
+Decision: DEC-W4-041
+
+Scope:
+
+- Close the current Orchestrator session on HEAD ed7702b235ef9bced40506de428a0537d66ed0be.
+- Refresh BATON and the active Orchestrator continuation handoff.
+- Preserve stable continuation contract semantics.
+- Record CORE_003, CORE_004, CORE_005 and CORE_006 as closed local baselines.
+- Carry forward only the unresolved RADAR-owner transfer dependency.
+- Generate a minimal external continuation package.
+- Do not include or inspect AI.History/.
+- Do not modify child projects.
+- Do not stage, commit or push.
+
+Acceptance:
+
+- Git identity and clean-worktree gates pass before mutation.
+- Active Orchestrator handoff records HEAD_AT_GENERATION=ed7702b235ef9bced40506de428a0537d66ed0be.
+- CURRENT_HEAD_AT_RESUME=RESOLVE_FROM_GIT.
+- Session-close evidence and continuation package are generated.
+- CORE_003 through CORE_006 are represented as closed.
+- RADAR owner remains UNRESOLVED.
+- AI.History/ remains ignored and outside Git.
+- git diff --check passes.
