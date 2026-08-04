@@ -419,3 +419,21 @@ Clarification (CORE_010A, 2026-08-04):
 - No absorption, copying or RADAR implementation occurred under RADAR_001.
 - `WINGS4_RADAR_002` is design-only and is not implementation authorization.
 - Wings3.0 retirement and physical removal remain unauthorized until complete governed absorption and explicit human authorization.
+
+## DEC-W4-045 — RVF visual proof acceptance and RADAR_002 design close
+
+Status: APPROVED_HUMAN_DIRECTION
+Date: 2026-08-04
+Scope: Wings4.0 local RVF close; no RADAR implementation; no child-project mutation
+
+Decision:
+
+- Control Room interactive human validation passed.
+- Control Room is accepted as NONCANONICAL_INTERNAL_FUNCTIONAL_PROOF.
+- Control Room remains disposable and outside canon (KEEP_DISPOSABLE_ONLY).
+- WINGS4_RADAR_002 local-use design is approved and closed as CLOSED_PASS_DESIGN_LOCAL_USE.
+- RADAR implementation remains unauthorized.
+- Brainy is the next external project for foundational cycle closure (PILOT-004 / PC-012).
+- SkillsMachine follows after Brainy closure.
+- DEC-W4-032 freeze remains active until foundational cycle closure.
+- No push, no child-project mutation, and no Control Room canonization are authorized by this decision.

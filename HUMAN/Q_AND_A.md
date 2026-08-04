@@ -46,3 +46,21 @@
 | Q-042 | When may Wings3.0 be retired and physically removed? | Only after complete governed extraction, validation, disposition and explicit human authorization. | DECIDED | Wings3 retirement |
 | Q-043 | Is a global RADAR owner required? | No. No global RADAR owner exists or is required. | DECIDED | Project-local RADAR |
 | Q-044 | Does a reusable RADAR Skill in SkillsMachine transfer ownership of project-local RADAR? | No. A reusable RADAR Skill is guidance only and does not transfer ownership or execution authority. | DECIDED | SkillsMachine boundary / RADAR |
+
+| Q-045 | Why does project-local RADAR exist? | Cloud AI cannot directly see what really exists locally: it may not know the complete project-root location/structure, the contents of the relevant Core, or whether declared changes were actually executed. RADAR provides bounded, current, physical evidence from the local project root to AI. | DECIDED | RADAR purpose |
+| Q-046 | Who are the users of RADAR? | ORCHESTRATOR AI (for example GPT) and EXECUTOR AI (for example Cursor). | DECIDED | RADAR audience |
+| Q-047 | Does RADAR have a direct human or management purpose? | No. RADAR has no direct human or management purpose; it is AI-facing local evidence infrastructure. | DECIDED | RADAR audience / Non-goals |
+| Q-048 | What is the unit of analysis for RADAR? | The project root. Every project owns and executes its own independent RADAR. | DECIDED | RADAR scope |
+| Q-049 | What has semantic authority relative to RADAR evidence? | HUMAN definition or the latest human-approved version has semantic authority. Runtime physical evidence may prove execution state but must not silently redefine HUMAN intent. | DECIDED | Evidence hierarchy |
+| Q-050 | How must unverifiable evidence be treated? | Unverifiable evidence must be marked UNKNOWN. | DECIDED | Evidence quality |
+| Q-051 | When does RADAR run? | On demand, when an AI needs it. | DECIDED | RADAR execution |
+| Q-052 | What is the lifecycle of RADAR outputs? | RADAR outputs are disposable. | DECIDED | RADAR outputs |
+| Q-053 | May RADAR edit the project? | No. RADAR only monitors and never edits. | DECIDED | RADAR behavior |
+| Q-054 | How much output should RADAR produce? | The minimum useful machine evidence for AI. The AI decides which evidence is relevant within governed limits. | DECIDED | RADAR outputs |
+| Q-055 | Who owns reusable RADAR Skills/GRC definitions? | SkillsMachine owns and defines reusable RADAR Skills/GRC canon. Wings4 must not redesign those reusable assets locally; Wings4 may define only its project-local configuration, boundaries and use of RADAR. | DECIDED | SkillsMachine boundary / RADAR |
+| Q-056 | What is the first management-facing deliverable for Wings4.0? | A visual and functional proof that demonstrates how Wings4 makes the portfolio understandable and actionable using existing canonical evidence. Text-only documents and statements of intent are insufficient. RADAR is not that deliverable. | DECIDED | Management deliverable |
+| Q-057 | May Wings4 invent RADAR signal classes, severity levels, stop behavior or pilot breadth? | No. Those remain UNKNOWN unless already defined by canonical SkillsMachine RADAR assets. If SkillsMachine menu or canonical RADAR guidance is unavailable, register the dependency instead of redesigning it. | DECIDED | Open dependencies / Non-invention |
+| Q-058 | What is the accepted classification of the Wings4 Control Room visual proof? | NONCANONICAL_INTERNAL_FUNCTIONAL_PROOF. Interactive human validation passed. It remains disposable and outside canon. | DECIDED | Visual proof / DEC-W4-045 |
+| Q-059 | Is WINGS4_RADAR_002 design approved and closed? | Yes. Closed as CLOSED_PASS_DESIGN_LOCAL_USE for Wings4-local configuration/use only. RADAR implementation remains unauthorized. | DECIDED | RADAR design / DEC-W4-045 |
+| Q-060 | What is the next external project after this local RVF close? | Brainy, to close PILOT-004 and PC-012 under local Brainy authority. SkillsMachine follows after Brainy closure. | DECIDED | Sequencing / DEC-W4-045 |
+| Q-061 | Does DEC-W4-032 freeze remain active after RADAR_002 design close? | Yes. The freeze remains active until the foundational pilot cycle closes. | DECIDED | Freeze / DEC-W4-045 |

@@ -15,10 +15,10 @@
 
 | ID | Item | Priority | Status | Acceptance criteria |
 |---|---|---:|---|---|
-| PILOT-001 | Assimilate first active project | P0 | CARD_DRAFTED_PENDING_HUMAN_APPROVAL | Identity verified, HUMAN interpreted, evidence cited (`PORTFOLIO.CARDS/BRAINY.CARD.md`); portfolio card approval remains a human decision, not yet granted. |
+| PILOT-001 | Assimilate first active project | P0 | CARD_APPROVED_DEC_W4_035 | Identity verified, HUMAN interpreted, evidence cited (`PORTFOLIO.CARDS/BRAINY.CARD.md`); portfolio card approved with amendments under `DEC-W4-035`. |
 | PILOT-002 | Execute first pairwise review | P0 | COMPLETED | Brainy vs PS.SkillsMachine compared with an evidence-traceable conclusion (`PORTFOLIO.REVIEWS/PAIRWISE.BRAINY_VS_SKILLSMACHINE.md`); PC-012 registered. |
-| PILOT-003 | Produce first approved intervention prompts | P0 | DRAFTED_NOT_YET_APPROVED | Draft prompt exists (`PORTFOLIO.REVIEWS/PILOT_INTERVENTION_PROMPT_DRAFT.BRAINY_SKILL_LAYER.md`); not delivered, no Brainy file modified; requires Pablo's decision on PC-012 before delivery. |
-| PILOT-004 | Verify first resynchronization | P0 | BLOCKED_PENDING_PILOT_003_APPROVAL_AND_LOCAL_EXECUTION | Cannot proceed until PILOT-003 is approved and Brainy implements the change under its own local governance; Wings4.0 will re-read Brainy's HUMAN afterward to verify. |
+| PILOT-003 | Produce first approved intervention prompts | P0 | APPROVED_FOR_DELIVERY_DELIVERY_EVIDENCE_UNKNOWN | Draft prompt exists (`PORTFOLIO.REVIEWS/PILOT_INTERVENTION_PROMPT_DRAFT.BRAINY_SKILL_LAYER.md`); `DEC-W4-035` authorized limited prompt delivery. Repository evidence does not prove delivery occurred; delivery state remains UNKNOWN/pending-delivery. No Brainy file modified by Wings4. |
+| PILOT-004 | Verify first resynchronization | P0 | BLOCKED_PENDING_BRAINY_LOCAL_IMPLEMENTATION_AND_WINGS4_RESYNC | Remaining dependency is Brainy-local implementation evidence and Wings4 resynchronization after `DEC-W4-035` / PC-012; not blocked on card approval. |
 
 ## Portfolio visualization
 
@@ -944,23 +944,31 @@ Acceptance:
 ## WINGS4_RADAR_002 — DESIGN MINIMAL PROJECT-LOCAL RADAR
 
 Priority: P0
-Status: READY_DESIGN_ONLY
-Decision: DEC-W4-044
+Status: CLOSED_PASS_DESIGN_LOCAL_USE
+Decision: DEC-W4-044; DEC-W4-045
 IMPLEMENTATION_AUTHORIZED=NO
+DESIGN_ARTIFACT: PORTFOLIO.ARCHITECTURE/WINGS4.RADAR.LOCAL.USE.md
+CLOSED_AT: 2026-08-04
+NOTE: Design approved and closed. Implementation remains unauthorized. Control Room proof remains disposable/noncanonical.
 
-Scope (design/specification only):
+Scope (design/specification only — corrected objective):
 
-- Define Wings4-local RADAR boundaries and project-root scoping.
-- Specify INDEX, CORE and FULL output roles and size bounds.
-- Specify exclusion controls, including AI.History full CORE exclusion and optional single INDEX folder reference.
-- Specify determinism, idempotence, heartbeat and PowerShell 5.1 compatibility requirements.
+- Produce the minimum Wings4-local RADAR configuration, boundary and use specification for AI evidence infrastructure.
+- Define Wings4-local ownership, project-root monitoring scope, on-demand execution, disposable machine outputs and mandatory exclusions (including AI.History).
+- Record dependency on SkillsMachine for reusable RADAR Skills/GRC definitions; do not redesign reusable capability locally.
+- Do not invent signal classes, severity levels, stop behavior or pilot breadth unless sourced from SkillsMachine canon.
+- Do not treat RADAR as a management deliverable, dashboard, human decision engine or portfolio product.
 - Produce a design/specification only; no code implementation.
 - Do not copy Wings3 artifacts as-is.
 - Do not mutate Wings3.0, SkillsMachine or any child project.
 - Do not stage, commit or push.
 
+Historical note:
+
+- Earlier backlog wording that implied broad product design of INDEX/CORE/FULL generators is narrowed here to Wings4-local configuration/use only. History of WINGS4_RADAR_002 is preserved; objective is corrected.
+
 Acceptance:
 
-- Design artifact identifies local boundaries, outputs, exclusions, determinism, idempotence, heartbeat and PS 5.1 compatibility.
+- Design artifact identifies local owner, root scope, AI users, monitor-only behavior, disposable minimum outputs, source hierarchy, exclusions and SkillsMachine dependency.
 - IMPLEMENTATION_AUTHORIZED remains NO.
-- No generator code, no RADAR output generation, no Wings3 mutation.
+- No generator code, no RADAR output generation, no Wings3 mutation, no reusable-capability reinvention.

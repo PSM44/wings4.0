@@ -93,10 +93,10 @@ Possible outcomes are `CONTINUE_BUILD`, `ADOPT`, `ADOPT_AND_EXTEND`, `INTEGRATE`
 
 - HUMAN is the canonical declarative voice of a project.
 - BATON describes dynamic operational continuity.
-- RADAR and repository evidence describe physical or generated state.
+- RADAR is project-local AI evidence infrastructure: it monitors the project root, never edits, and produces disposable machine-oriented evidence for ORCHESTRATOR/EXECUTOR AI. It is not a management deliverable, dashboard, human decision engine or portfolio product.
 - Each project owns, configures, executes and governs its own RADAR.
 - Wings4.0 must have a project-local RADAR scoped to `C:\01. GitHub\Wings4.0`.
-- SkillsMachine may own a reusable RADAR Skill/GRC as guidance only; that does not transfer ownership, execution authority or intervention rights over any project's RADAR.
+- SkillsMachine owns reusable RADAR Skills/GRC canon; Wings4 defines only project-local configuration, boundaries and use, and must not redesign those reusable assets locally.
 - There is no global RADAR owner and none is required.
 - Wings4.0 may use bounded descendant evidence to identify possible drift, but it must not silently replace the HUMAN interpretation.
 - Every material finding should preserve source, evidence, interpretation, confidence, and human decision.
@@ -135,7 +135,7 @@ Wings4.0 re-reads updated canon and verifies portfolio resynchronization.
 - Capability ownership and relationship maps remain intentionally incomplete pending further human approvals.
 - Existing project HUMAN files vary in quality and structure.
 - Open-source substitution review has not yet been exercised on a real decision.
-- Wings4.0 project-local RADAR is required but not yet implemented (`WINGS4_RADAR_001` assessment precedes implementation).
+- Wings4.0 project-local RADAR is required as AI-only local evidence infrastructure but is not yet implemented (`WINGS4_RADAR_001` assessment precedes local use/configuration design; implementation remains unauthorized).
 - Automated portfolio scoring and dashboards remain deferred until the governance cycle is validated.
 - Dynamic state (HEAD, worktree, next minibattle) is intentionally excluded from this HUMAN file.
 
@@ -220,11 +220,13 @@ Deployment integration does not change Wings4's role as the portfolio coordinati
 
 ## Project-local RADAR ownership
 
-- Every project owns its own RADAR.
-- Wings4.0 owns its future project-local RADAR implementation and execution.
-- A reusable RADAR Skill in SkillsMachine, if present, is guidance only and does not transfer ownership or execution authority.
+- Every project owns its own RADAR as monitor-only, on-demand AI evidence infrastructure over the project root.
+- Wings4.0 owns its project-local RADAR configuration, boundaries, use and eventual execution; reusable RADAR capability design remains SkillsMachine-owned.
+- A reusable RADAR Skill/GRC in SkillsMachine does not transfer ownership or execution authority and must not be redesigned inside Wings4.
 - Global RADAR ownership is not applicable.
+- RADAR outputs are disposable and machine-oriented; RADAR is not a human or management deliverable (`Q-045`..`Q-056`).
 - `AI.History/` remains fully excluded from RADAR.CORE; RADAR.INDEX may hold at most one minimal folder-level reference with no content inspection, inventory, hashing, timestamps or change tracking (`DEC-W4-040`, `DEC-W4-044`).
+- Signal classes, severity, stop behavior and pilot breadth remain UNKNOWN unless sourced from SkillsMachine canon (`Q-057`).
 
 ## Project lifecycle, retirement and retained memory
 

@@ -1,6 +1,6 @@
 # BATON — Wings4.0 Active
 
-STATUS: WINGS4_CORE_010_CLOSED_PASS_LOCAL_RADAR_001_ASSESSED
+STATUS: WINGS4_RVF12_RADAR002_DESIGN_CLOSED_CONTROL_ROOM_ACCEPTED
 UPDATED_AT: 2026-08-04
 PROJECT_ROOT: C:\01. GitHub\Wings4.0
 TEMP_PATH: C:\Users\aazcl\Downloads\T.Wings4.0
@@ -19,7 +19,7 @@ It does not replace project-local repositories, manage child-project backlogs, e
 
 ## Current objective
 
-Maintain closed CORE_010 continuity and design-only readiness for WINGS4_RADAR_002, without implementation authorization.
+Prepare the Brainy transfer package to close PILOT-004 and PC-012 under Brainy-local authority. Wings4-local RADAR_002 design is closed. Control Room remains a disposable noncanonical proof. RADAR implementation remains unauthorized. DEC-W4-032 freeze remains active.
 
 ## Current state
 
@@ -37,11 +37,18 @@ Maintain closed CORE_010 continuity and design-only readiness for WINGS4_RADAR_0
 - CORE_010B=CLOSED_PASS_LOCAL
 - CORE_010_COMMIT=04a96115665370c6dc22229abca7c1f4c94ff61d
 - RADAR001_STATUS=ASSESSED_READ_ONLY_NO_IMPLEMENTATION
-- RADAR_002=READY_DESIGN_ONLY
+- RADAR_002=CLOSED_PASS_DESIGN_LOCAL_USE
+- WINGS4_RADAR_002=CLOSED_PASS_DESIGN_LOCAL_USE
 - RADAR_OWNERSHIP_MODEL=PROJECT_LOCAL
 - WINGS4_RADAR_OWNER=WINGS4.0
 - WINGS4_RADAR_IMPLEMENTATION_STATUS=NOT_YET_IMPLEMENTED
 - RADAR_IMPLEMENTATION_AUTHORIZED=NO
+- DESIGN_ARTIFACT=PORTFOLIO.ARCHITECTURE/WINGS4.RADAR.LOCAL.USE.md
+- CONTROL_ROOM=ACCEPTED_NONCANONICAL_INTERNAL_FUNCTIONAL_PROOF
+- CONTROL_ROOM_FUTURE=KEEP_DISPOSABLE_ONLY
+- CONTROL_ROOM_CANONIZED=NO
+- DEC_W4_045=APPROVED_HUMAN_DIRECTION
+- DEC-W4-032_FREEZE=ACTIVE
 - SKILLSMACHINE_ROLE=REUSABLE_SKILLS_GRC_CANON_OWNER
 - GLOBAL_RADAR_OWNER=NOT_APPLICABLE
 - WINGS3_STATUS=LEGACY_PREDECESSOR_SOURCE
@@ -49,7 +56,7 @@ Maintain closed CORE_010 continuity and design-only readiness for WINGS4_RADAR_0
 - WINGS3_RETIREMENT_TARGET=YES_AFTER_COMPLETE_GOVERNED_ABSORPTION_AND_EXPLICIT_AUTHORIZATION
 - AI.History/ remains ignored; content inspection prohibited.
 - No child project was modified.
-- No staging, commit or push is authorized by this continuity refresh.
+- Push remains unauthorized.
 
 ## Session continuity model
 
@@ -70,24 +77,33 @@ EXECUTOR_RECOVERY_RESULT=SUCCESS
 ORCHESTRATOR_RECOVERY_RESULT=SUCCESS
 EXECUTOR_CONTEXT_LOSS_DETECTED=NO
 ORCHESTRATOR_CONTEXT_LOSS_DETECTED=NO
+CONTROL_ROOM_INTERACTIVE_VALIDATION=PASS
 
 ## Active conflicts and blockers
 
-- PC-012 human decision is complete (DEC-W4-035); Brainy-local implementation and Wings4 resynchronization remain pending.
-- PC-013 remains unresolved pending human decision on Hermes–Obsidian tool-integration ownership.
-- PILOT-004 remains dependent on Brainy-local implementation and return evidence.
+- PC-012 human decision is complete (DEC-W4-035); implementation remains OPEN_PENDING_IMPLEMENTATION pending Brainy-local execution and Wings4 resynchronization.
+- PC-013 remains OPEN_PENDING_HUMAN_DECISION on Hermes-Obsidian tool-integration ownership.
+- PILOT-004 blocked on Brainy-local implementation evidence and Wings4 resync.
 - The governance freeze in DEC-W4-032 remains active until the foundational pilot cycle closes.
-- Wings4 project-local RADAR is not yet implemented; RADAR implementation remains unauthorized.
+- Wings4 RADAR implementation remains unauthorized after RADAR_002 design close.
 - OPEN_BLOCKERS=PC-013;PILOT-004;DEC-W4-032_FREEZE
-- BLOCKERS_PREVENT_RADAR002_DESIGN=NO
+- OPEN_PORTFOLIO_CONFLICT_COUNT=2
+- OPEN_HUMAN_DECISION_CONFLICT_COUNT=1
+- OPEN_IMPLEMENTATION_CONFLICT_COUNT=1
 
 ## Next action
 
-NEXT_MINIBATTLE=WINGS4_RADAR_002_DESIGN_MINIMAL_PROJECT_LOCAL_RADAR
-NEXT_MINIBATTLE_MODE=DESIGN_ONLY
+NEXT_MINIBATTLE=WINGS4_BRAINY_PILOT_004_CLOSE_PREPARATION
+NEXT_MINIBATTLE_MODE=TRANSFER_PREPARATION
+NEXT_EXTERNAL_PROJECT=Brainy
+SKILLSMACHINE_AFTER_BRAINY=YES
 IMPLEMENTATION_AUTHORIZED=NO
 RADAR_IMPLEMENTATION_AUTHORIZED=NO
 WINGS3_RETIREMENT_AUTHORIZED=NO
+RADAR_IS_MANAGEMENT_DELIVERABLE=NO
+CONTROL_ROOM=ACCEPTED_NONCANONICAL_INTERNAL_FUNCTIONAL_PROOF
+WINGS4_RADAR_002=CLOSED_PASS_DESIGN_LOCAL_USE
+DEC-W4-032_FREEZE=ACTIVE
 NEXT_EXECUTION_ROOT=C:\01. GitHub\Wings4.0
 NEXT_ROLE=ORCHESTRATOR
 COMMIT_POLICY=NO_COMMIT_WITHOUT_EXACT_STAGING_VALIDATION_AND_EXPLICIT_HUMAN_AUTHORIZATION
@@ -97,9 +113,10 @@ PUSH_POLICY=NO_PUSH_WITHOUT_EXPLICIT_HUMAN_AUTHORIZATION
 
 1. Start a new ORCHESTRATOR session by uploading only `SESSIONS/ORCHESTRATOR/03.SESSION_CONTINUE/00.START_HERE.ORCHESTRATOR.txt`.
 2. Resolve root, branch, HEAD, index and worktree from Git before opening new work.
-3. Treat HEAD_AT_GENERATION as historical evidence only.
+3. Treat HEAD_AT_GENERATION as historical evidence only; CURRENT_HEAD_AT_RESUME=RESOLVE_FROM_GIT.
 4. Do not inspect AI.History/.
 5. Do not develop or mutate child projects inside Wings4.0.
-6. Do not re-execute RADAR_001; it is complete as read-only assessment.
-7. Next authorized design-only candidate is WINGS4_RADAR_002; no implementation is authorized.
-LAST_REFRESHED_AT: 2026-08-04T14:36:55-04:00
+6. Do not re-execute RADAR_001; do not implement RADAR.
+7. WINGS4_RADAR_002 is CLOSED_PASS_DESIGN_LOCAL_USE; Control Room remains disposable/noncanonical.
+8. Next work is Brainy transfer preparation for PILOT-004 / PC-012 close (`WINGS4_BRAINY_PILOT_004_CLOSE_PREPARATION`).
+LAST_REFRESHED_AT: 2026-08-04T18:30:00-04:00

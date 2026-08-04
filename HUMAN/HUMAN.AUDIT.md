@@ -1,11 +1,16 @@
 # HUMAN Audit — Wings4.0
 
 STATUS: PASS_WITH_OBSERVATIONS
-STATE_BASELINE_HEAD=fbbbbef459ec0158ee9b79cf0f257c5da1f7ed91
-REVIEWED_AT=2026-08-04T13:02:25-04:00
+STATE_BASELINE_HEAD=3eeb6fa89f5a9d79a9ae2679d5906a221b29add9
+REVIEWED_AT=2026-08-04T18:30:00-04:00
 UPDATED_AT: 2026-08-04
 RADAR001_STATUS=ASSESSED_READ_ONLY_NO_IMPLEMENTATION
-WINGS4_RADAR_002=DESIGN_PENDING_NOT_AUTHORIZED
+WINGS4_RADAR_002=CLOSED_PASS_DESIGN_LOCAL_USE
+CONTROL_ROOM=ACCEPTED_NONCANONICAL_INTERNAL_FUNCTIONAL_PROOF
+DEC_W4_045=APPROVED_HUMAN_DIRECTION
+DEC-W4-032_FREEZE=ACTIVE
+NEXT_MINIBATTLE=WINGS4_BRAINY_PILOT_004_CLOSE_PREPARATION
+RADAR_IMPLEMENTATION_AUTHORIZED=NO
 
 ## Pass
 
@@ -17,14 +22,16 @@ WINGS4_RADAR_002=DESIGN_PENDING_NOT_AUTHORIZED
 - `UNRELATED` is recognized as a valid relationship.
 - Duplication and consolidation require evidence and human decision.
 - Open-source alternatives trigger review rather than automatic termination.
-- HUMAN, BATON, and RADAR/evidence roles are separated.
-- Project-local RADAR ownership is explicit (`DEC-W4-044`); SkillsMachine does not own or operate other projects' RADAR.
+- HUMAN, BATON, and RADAR/evidence roles are separated; RADAR is AI-facing machine evidence, not a management product.
+- Project-local RADAR ownership is explicit (`DEC-W4-044`); SkillsMachine owns reusable RADAR Skills/GRC canon only and does not own or operate other projects' RADAR.
 - Wings3.0 is recorded as legacy predecessor/source with eventual retirement after governed absorption; retirement is not currently authorized.
 - Legacy assimilation remains progressive and reversible.
 - CORE_003 through CORE_010 are closed local baselines relative to HEAD `fbbbbef`.
 - `AI.History/` is Git-ignored under `DEC-W4-040`; content inspection remains prohibited.
 - Orchestrator continuation is the single-file minimal output (`DEC-W4-043`).
 - RADAR_001 is DONE as read-only assessment (`ASSESSED_READ_ONLY_NO_IMPLEMENTATION`).
+- WINGS4_RADAR_002 local-use design is CLOSED_PASS_DESIGN_LOCAL_USE (`DEC-W4-045`); implementation remains unauthorized.
+- Control Room interactive validation passed and is accepted as NONCANONICAL_INTERNAL_FUNCTIONAL_PROOF; remains disposable/outside canon (`DEC-W4-045`).
 
 ## Observations
 
@@ -34,14 +41,14 @@ WINGS4_RADAR_002=DESIGN_PENDING_NOT_AUTHORIZED
 - Project HUMAN quality and structure remain heterogeneous.
 - Build-versus-adopt review criteria still need validation through a real case.
 - Portfolio visualization remains deferred until governance data is proven.
-- Wings4.0 project-local RADAR is required and not yet implemented; RADAR_001 assessment is complete; RADAR_002 remains design-only and not authorized for implementation.
+- Wings4.0 project-local RADAR is required as AI-only local evidence infrastructure and is not yet implemented; RADAR_001 assessment is complete; RADAR_002 local-use design is closed (`CLOSED_PASS_DESIGN_LOCAL_USE`); implementation remains unauthorized; RADAR is not the management deliverable.
 
 ## Remaining real gaps
 
 1. PC-013 — unresolved: frozen Hermes versus active tool-integration ownership wording.
 2. PILOT-004 — blocked on Brainy-local implementation return evidence after `DEC-W4-035`.
 3. Foundational cycle close — DEC-W4-032 governance freeze remains until the pilot cycle fully closes.
-4. Wings4 project-local RADAR — assessed under RADAR_001; design candidate is RADAR_002; implementation not authorized.
+4. Wings4 project-local RADAR — assessed under RADAR_001; local-use design closed under RADAR_002 / DEC-W4-045; implementation not authorized; not a management deliverable.
 5. Capability/relationship map completeness — intentional incompleteness remains.
 
 ## Required next validation
@@ -53,7 +60,9 @@ WINGS4_RADAR_002=DESIGN_PENDING_NOT_AUTHORIZED
 5. Generate project-specific intervention prompts. — DRAFTED; delivery/implementation tracking remains outside Wings4-local CORE_010.
 6. Verify updated HUMAN files and resynchronization. — BLOCKED on Brainy-local return evidence (`PILOT-004`).
 7. Assess Wings3 RADAR for selective absorption. — DONE: `WINGS4_RADAR_001` (read-only; no implementation).
-8. Design minimal Wings4 project-local RADAR. — PENDING DESIGN ONLY: `WINGS4_RADAR_002` (not authorized for implementation).
+8. Design minimal Wings4 project-local RADAR local use/configuration. — CLOSED_PASS_DESIGN_LOCAL_USE: `PORTFOLIO.ARCHITECTURE/WINGS4.RADAR.LOCAL.USE.md` approved under `DEC-W4-045` (implementation unauthorized; reusable capability remains SkillsMachine-owned).
+9. Control Room visual/functional proof. — ACCEPTED_NONCANONICAL_INTERNAL_FUNCTIONAL_PROOF (`DEC-W4-045`); disposable only; not canon.
+10. Next external foundational step. — Brainy transfer preparation for PILOT-004 / PC-012 (`WINGS4_BRAINY_PILOT_004_CLOSE_PREPARATION`).
 
 ## Documentation migration acceptance checks (Track B)
 
