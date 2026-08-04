@@ -392,3 +392,30 @@ Decision:
 - Duplication is allowed only when consolidation would lose essential semantics.
 - AI.History remains fully excluded.
 - No staging, commit or push is authorized by this decision.
+
+## DEC-W4-044 — Project-local RADAR ownership and Wings3 absorption direction
+
+Status: APPROVED_HUMAN_DIRECTION
+Date: 2026-08-04
+Scope: Wings4.0 RADAR ownership model and Wings3 predecessor relationship
+
+Decision:
+
+- Every project owns, configures, executes and governs its own RADAR.
+- SkillsMachine owns reusable Skills/GRC canon only; it does not intervene in other projects and does not own or operate other projects' RADAR.
+- Wings4.0 owns its own future project-local RADAR implementation and execution.
+- No global RADAR owner exists or is required.
+- A reusable RADAR Skill in SkillsMachine, if present, is consultable guidance only and does not transfer ownership or execution authority.
+- Wings3.0 is the legacy predecessor and selective source for Wings4.0.
+- Useful RADAR components may be absorbed only after read-only assessment (`WINGS4_RADAR_001`).
+- Wings3.0 retirement remains a governed end-state, not an immediate deletion authorization.
+- Ownership ambiguity previously carried as `RADAR_OWNER=UNRESOLVED` in active continuity is superseded for current state by this decision; historical records remain unchanged.
+- `DEC-W4-040` AI.History exclusion semantics remain in force.
+- No child-project mutation, staging, commit or push is authorized by this decision.
+
+Clarification (CORE_010A, 2026-08-04):
+
+- `WINGS4_RADAR_001` was assessment only for selective absorption readiness.
+- No absorption, copying or RADAR implementation occurred under RADAR_001.
+- `WINGS4_RADAR_002` is design-only and is not implementation authorization.
+- Wings3.0 retirement and physical removal remain unauthorized until complete governed absorption and explicit human authorization.

@@ -94,12 +94,19 @@ Possible outcomes are `CONTINUE_BUILD`, `ADOPT`, `ADOPT_AND_EXTEND`, `INTEGRATE`
 - HUMAN is the canonical declarative voice of a project.
 - BATON describes dynamic operational continuity.
 - RADAR and repository evidence describe physical or generated state.
+- Each project owns, configures, executes and governs its own RADAR.
+- Wings4.0 must have a project-local RADAR scoped to `C:\01. GitHub\Wings4.0`.
+- SkillsMachine may own a reusable RADAR Skill/GRC as guidance only; that does not transfer ownership, execution authority or intervention rights over any project's RADAR.
+- There is no global RADAR owner and none is required.
 - Wings4.0 may use bounded descendant evidence to identify possible drift, but it must not silently replace the HUMAN interpretation.
 - Every material finding should preserve source, evidence, interpretation, confidence, and human decision.
+- Dynamic operational state belongs in BATON and session outputs, not in HUMAN.
 
 ## 9. Legacy relation
 
-Wings3.0 is a legacy source estate. Its content is not automatically canonical in Wings4.0.
+Wings3.0 is the legacy predecessor of Wings4.0 and a selective source estate. Its content is not automatically canonical in Wings4.0.
+
+Wings4.0 must selectively absorb useful content and capabilities from Wings3.0 under governed assessment. Wings3.0 should eventually be retired and physically removed only after complete governed extraction, validation, disposition and explicit human authorization.
 
 Legacy assimilation remains selective and reversible:
 
@@ -110,7 +117,8 @@ Legacy assimilation remains selective and reversible:
 5. extract approved meaning;
 6. validate;
 7. integrate only after authorization;
-8. migrate physically only when independently justified.
+8. migrate physically only when independently justified;
+9. retire and remove only after explicit human authorization.
 
 ## 10. Core operating principle
 
@@ -119,13 +127,17 @@ Pablo approves, rejects, modifies, or defers portfolio decisions.
 Wings4.0 prepares evidence-backed intervention requests.
 Each affected project evaluates and implements accepted changes under its own local canon and governance.
 Wings4.0 re-reads updated canon and verifies portfolio resynchronization.
+
 ## 11. Current limitations
 
-- The active-project listening cycle has not yet been proven through a full real pilot.
-- Capability ownership and relationship maps remain intentionally incomplete.
+- The foundational pilot cycle remains incomplete: Brainy card/PC-012 human decision is complete (`DEC-W4-035`), but Brainy-local implementation and Wings4 resynchronization evidence remain pending (`PILOT-004`).
+- PC-013 remains unresolved: frozen Hermes versus active Hermes–Obsidian tool-integration ownership wording.
+- Capability ownership and relationship maps remain intentionally incomplete pending further human approvals.
 - Existing project HUMAN files vary in quality and structure.
 - Open-source substitution review has not yet been exercised on a real decision.
+- Wings4.0 project-local RADAR is required but not yet implemented (`WINGS4_RADAR_001` assessment precedes implementation).
 - Automated portfolio scoring and dashboards remain deferred until the governance cycle is validated.
+- Dynamic state (HEAD, worktree, next minibattle) is intentionally excluded from this HUMAN file.
 
 ## External solutions before material custom development
 
@@ -135,7 +147,7 @@ The review may begin in any project. Each affected project evaluates local funct
 
 External discovery and evaluation do not authorize adoption or implementation. The final decision remains with the human owner.
 
-## Project implementation modes and governed Flavors
+## Project implementation modes and governed Stack
 
 Projects may be implemented through different valid modes:
 
@@ -143,9 +155,9 @@ Projects may be implemented through different valid modes:
 - complementary systems that provide value without becoming mandatory dependencies;
 - explicitly integrated systems governed by interfaces and contracts;
 - unrelated systems when no useful relationship exists;
-- governed Flavors that combine existing external components with project-specific configuration, integration and residual proprietary development.
+- governed Stacks that combine existing external components with project-specific configuration, integration and residual proprietary development.
 
-A Flavor is a governed, project-specific implementation composition. It may include open-source tools, justified commercial tools, configuration, adapters, reusable Skills and GRCs, shared services and proprietary components.
+A Stack is a governed, project-specific implementation composition. It may include open-source tools, justified commercial tools, configuration, adapters, reusable Skills and GRCs, shared services and proprietary components.
 
 Project identity, purpose, ownership and lifecycle remain distinct from the replaceable technical composition used to implement the project.
 
@@ -157,13 +169,13 @@ The portfolio follows these rules:
 - use of external components does not remove project identity;
 - a project may remain completely autonomous;
 - a project may complement other projects without requiring merger;
-- a project may support multiple Flavors when they preserve the same approved purpose and ownership;
+- a project may support multiple Stacks when they preserve the same approved purpose and ownership;
 - external components should remain replaceable where reasonably possible;
 - residual custom development should focus on unmet requirements, differentiation and governed integration;
 - Wings4 governs portfolio relationships and disposition, not detailed child-project architecture;
 - Pablo remains the final authority for adoption, integration, replacement, retirement and project disposition.
 
-The term Flavor is provisional until validated through a real pilot. The concept is approved; final naming and detailed schema fields remain subject to evidence.
+The canonical term is Stack. Flavor remains only as a legacy alias. No mass rename of historical records is authorized by this HUMAN file.
 
 ## Hub-and-spoke portfolio coordination
 
@@ -177,7 +189,7 @@ Direct project-to-project coordination, governance handoffs and instructions are
 
 A project that detects a dependency, reusable capability, conflict, duplication, external-solution opportunity or portfolio impact must emit a signal to Wings4 and stop at that boundary. Wings4 decides whether another project must be involved.
 
-SkillsMachine is the preferred delivery messenger for distributing and maintaining the approved Wings4 coordination surface inside project deliveries. SkillsMachine is not the coordination hub and does not acquire authority over project routing, portfolio directives, project architecture or cross-project decisions.
+SkillsMachine is the canonical owner of reusable Skills/GRC canon and the preferred delivery messenger for distributing and maintaining the approved Wings4 coordination surface inside project deliveries. SkillsMachine does not intervene in other projects' governance, architecture, backlog, RADAR ownership or execution. SkillsMachine is not the coordination hub and does not acquire authority over project routing, portfolio directives, project architecture or cross-project decisions.
 
 Each governed project may contain a minimal local coordination surface:
 
@@ -200,11 +212,19 @@ During development:
 - SkillsMachine may create, validate, repair and update the interface through approved delivery workflows;
 - SkillsMachine may package project signals but may not originate Wings4 portfolio directives;
 - direct project-to-project instructions are not authoritative;
-- no project manages another project's backlog, HUMAN, architecture or implementation.
+- no project manages another project's backlog, HUMAN, architecture, RADAR or implementation.
 
 During deployment, projects may optionally integrate or operate together when an approved PROJECT.INTERFACE defines ownership, data boundaries, failure modes, rollback, reversibility and standalone operability.
 
 Deployment integration does not change Wings4's role as the portfolio coordination hub for material cross-project changes.
+
+## Project-local RADAR ownership
+
+- Every project owns its own RADAR.
+- Wings4.0 owns its future project-local RADAR implementation and execution.
+- A reusable RADAR Skill in SkillsMachine, if present, is guidance only and does not transfer ownership or execution authority.
+- Global RADAR ownership is not applicable.
+- `AI.History/` remains fully excluded from RADAR.CORE; RADAR.INDEX may hold at most one minimal folder-level reference with no content inspection, inventory, hashing, timestamps or change tracking (`DEC-W4-040`, `DEC-W4-044`).
 
 ## Project lifecycle, retirement and retained memory
 

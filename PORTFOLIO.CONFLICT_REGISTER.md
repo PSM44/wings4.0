@@ -13,24 +13,30 @@ No portfolio conflict is resolved merely because a project currently functions.
 | PC-007 | Portfolio folder meaning | RESOLVED | LOW | HIGH | Legacy Portafolio is personal GitHub-profile reference material. | Route outside portfolio-governance canon. |
 | PC-008 | Control versus listening language | RESOLVED | HIGH | HIGH | Earlier Wings4.0 language implied direct control over portfolio matters and project HUMAN. | Canon now states listen, compare, recommend, human decision, local implementation, and resynchronization. |
 | PC-009 | Dashboard-first versus governance-proof-first | RESOLVED | MEDIUM | HIGH | Previous backlog prioritized a management dashboard before validating the governance cycle. | Governance pilot now precedes visualization. |
-| PC-010 | AI history root placement | OPEN | LOW | HIGH | `20260716_AI.History.md` is useful evidence but noncanonical, large, and untracked in root. | Define IA.History policy before permanent repository placement. |
+| PC-010 | AI history root placement | RECONCILED_POLICY_APPLIED | LOW | HIGH | Legacy root file `20260716_AI.History.md` motivated history-placement policy. Folder policy is now explicit: `AI.History/` is Git-ignored and excluded from RADAR.CORE (`DEC-W4-040`). | Keep folder exclusion; treat any leftover root-level legacy history file as archival hygiene only; do not inspect chat contents. |
 
 ## PC-011 — Brainy and PS.HermesObsidianIntegration purpose/capability overlap
 
-Status: RESOLUTION_SELECTED_TRANSFER_PENDING
+Status: RECONCILED_ABSORPTION_COMPLETE_FREEZE_APPLIED
 Severity: HIGH
 Confidence: HIGH
 
-Resolution:
+Historical resolution (preserved):
 
 - Brainy owns the durable purpose.
-- PS.HermesObsidianIntegration will undergo selective knowledge absorption.
+- PS.HermesObsidianIntegration underwent selective knowledge absorption.
 - Tools remain unevaluated and are excluded from the disposition decision.
-- Project archive remains blocked until transfer and resynchronization gates pass.
+- Brainy absorption validated (`DEC-W4-PAIR-005`).
+- Hermes freeze/archive applied (`DEC-W4-PAIR-006`).
 
-Next gate:
+Current residual:
 
-WINGS4_GOV_006_PREPARE_HERMES_TO_BRAINY_TRANSFER_INVENTORY
+- Active tool-integration ownership wording versus freeze state remains tracked as PC-013.
+- No further Brainy/Hermes mutation is authorized by this reconciliation.
+
+Supersession note:
+
+- Original next gate `WINGS4_GOV_006_PREPARE_HERMES_TO_BRAINY_TRANSFER_INVENTORY` is historical; absorption/freeze decisions above supersede that open-gate wording for disposition status.
 
 ## PC-012 — "Skill" naming overlap between Brainy's internal Skill layer and PS.SkillsMachine's canonical Skills/GRC library
 
@@ -38,6 +44,8 @@ Status: OPEN_PENDING_IMPLEMENTATION
 Severity: LOW
 Confidence: MEDIUM
 Source: PILOT-002 (`PORTFOLIO.REVIEWS/PAIRWISE.BRAINY_VS_SKILLSMACHINE.md`)
+HUMAN_DECISION: COMPLETED (`DEC-W4-035`)
+IMPLEMENTATION_STATUS: PENDING_BRAINY_LOCAL_EXECUTION_AND_WINGS4_RESYNC
 
 Description:
 
@@ -46,6 +54,7 @@ Brainy's `HUMAN_0002_BRAINY_OPERATING_MODEL.md` (section 10) declares an interna
 Next action:
 
 Human decision is complete under `DEC-W4-035`. Deliver the authorized intervention to Brainy for local evaluation and implementation, then obtain Brainy-local evidence and perform Wings4 portfolio resynchronization. No Wings4 mutation of Brainy is authorized.
+
 ## PC-013 — Frozen Hermes project versus active tool-integration ownership
 
 Status: OPEN_PENDING_HUMAN_DECISION

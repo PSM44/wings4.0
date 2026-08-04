@@ -770,7 +770,7 @@ Semantic correction:
 ## WINGS4_CORE_005 — POST-COMMIT STATE SEMANTICS
 
 Priority: P0
-Status: APPLIED_PENDING_VALIDATION
+Status: CLOSED_PASS_LOCAL
 Decision: DEC-W4-039
 
 Scope:
@@ -795,7 +795,7 @@ Acceptance:
 ## WINGS4_CORE_006 — AI.HISTORY GIT AND RADAR EXCLUSION
 
 Priority: P0
-Status: APPLIED_PENDING_VALIDATION
+Status: CLOSED_PASS_LOCAL
 Decision: DEC-W4-040
 
 Scope:
@@ -821,7 +821,7 @@ Acceptance:
 ## WINGS4_CORE_007 — SESSION CLOSE AND CONTINUITY REFRESH
 
 Priority: P0
-Status: APPLIED_PENDING_VALIDATION
+Status: CLOSED_PASS_LOCAL
 Decision: DEC-W4-041
 
 Scope:
@@ -849,7 +849,7 @@ Acceptance:
 ## WINGS4_CORE_008 — SELF-CONTAINED ORCHESTRATOR CONTINUATION BUNDLE
 
 Priority: P0
-Status: APPLIED_PENDING_VALIDATION
+Status: CLOSED_PASS_LOCAL
 Decision: DEC-W4-042
 
 Scope:
@@ -876,7 +876,7 @@ Acceptance:
 ## WINGS4_CORE_009 --- MINIMAL SINGLE-FILE ORCHESTRATOR CONTINUATION OUTPUT
 
 Priority: P0
-Status: APPLIED_PENDING_VALIDATION
+Status: CLOSED_PASS_LOCAL
 Decision: DEC-W4-043
 
 Scope:
@@ -896,3 +896,71 @@ Acceptance:
 
 CORE_008=SUPERSEDED_BY_CORE_009_FOR_BUNDLE_FILE_COUNT_ONLY
 CORE_008_GOVERNANCE_SEMANTICS=PRESERVED
+
+## WINGS4_CORE_010 — HUMAN AND ACTIVE STATE RECONCILIATION
+
+Priority: P0
+Status: CLOSED_PASS_LOCAL
+Decision: DEC-W4-044
+
+Scope:
+
+- Reconcile HUMAN, audit, Q&A, BATON and active handoffs with CORE_003..CORE_009 evidence.
+- Record project-local RADAR ownership and SkillsMachine boundary clarifications.
+- Record Wings3 predecessor/absorption/retirement direction.
+- Reconcile PC-010/011/012/013 and pairwise review status without erasing history.
+- Do not implement RADAR.
+- Do not stage, commit or push.
+
+Acceptance:
+
+- HUMAN no longer implies SkillsMachine owns/operates other projects' RADAR.
+- Active state uses RADAR_OWNERSHIP_MODEL=PROJECT_LOCAL and WINGS4_RADAR_OWNER=WINGS4.0.
+- CORE_003..CORE_009 represented as closed local baselines where repository evidence supports.
+- Exactly one Orchestrator continuation file remains.
+- git diff --check passes.
+- AI.History content not inspected.
+
+## WINGS4_RADAR_001 — ASSESS LEGACY RADAR FOR SELECTIVE ABSORPTION
+
+Priority: P0
+Status: ASSESSED_READ_ONLY_NO_IMPLEMENTATION
+Decision: DEC-W4-044
+
+Scope:
+
+- Read-only assessment of Wings3.0 `02_RADAR` for selective absorption into Wings4.0.
+- Produce dispositions and a Wings4-local RADAR boundary proposal.
+- Do not implement, copy, mutate, commit or delete.
+- Do not inspect AI.History / IA.History variants.
+
+Acceptance:
+
+- Source inventory recorded.
+- Element dispositions recorded.
+- Boundary proposal recorded with IMPLEMENTATION_AUTHORIZED=NO.
+- Assessment artifact created only in an authorized review location or returned externally.
+
+## WINGS4_RADAR_002 — DESIGN MINIMAL PROJECT-LOCAL RADAR
+
+Priority: P0
+Status: READY_DESIGN_ONLY
+Decision: DEC-W4-044
+IMPLEMENTATION_AUTHORIZED=NO
+
+Scope (design/specification only):
+
+- Define Wings4-local RADAR boundaries and project-root scoping.
+- Specify INDEX, CORE and FULL output roles and size bounds.
+- Specify exclusion controls, including AI.History full CORE exclusion and optional single INDEX folder reference.
+- Specify determinism, idempotence, heartbeat and PowerShell 5.1 compatibility requirements.
+- Produce a design/specification only; no code implementation.
+- Do not copy Wings3 artifacts as-is.
+- Do not mutate Wings3.0, SkillsMachine or any child project.
+- Do not stage, commit or push.
+
+Acceptance:
+
+- Design artifact identifies local boundaries, outputs, exclusions, determinism, idempotence, heartbeat and PS 5.1 compatibility.
+- IMPLEMENTATION_AUTHORIZED remains NO.
+- No generator code, no RADAR output generation, no Wings3 mutation.
