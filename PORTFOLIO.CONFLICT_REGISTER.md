@@ -40,20 +40,32 @@ Supersession note:
 
 ## PC-012 — "Skill" naming overlap between Brainy's internal Skill layer and PS.SkillsMachine's canonical Skills/GRC library
 
-Status: OPEN_PENDING_IMPLEMENTATION
+Status: CLOSED_RESOLVED
 Severity: LOW
 Confidence: MEDIUM
 Source: PILOT-002 (`PORTFOLIO.REVIEWS/PAIRWISE.BRAINY_VS_SKILLSMACHINE.md`)
 HUMAN_DECISION: COMPLETED (`DEC-W4-035`)
-IMPLEMENTATION_STATUS: PENDING_BRAINY_LOCAL_EXECUTION_AND_WINGS4_RESYNC
+BRAINY_IMPLEMENTATION_COMMIT: 845c8766aee1043a3405a21cb3f935415f9facc1
+WINGS4_RESYNCHRONIZATION: PASS
+IMPLEMENTATION_STATUS: COMPLETED_BRAINY_COMMIT_845c876_AND_WINGS4_RESYNC_VALIDATED
+BRAINY_LOCAL_SKILL_LAYER: LOCAL_ONLY
+SKILLSMACHINE_CANON_OWNERSHIP: PRESERVED
+RUNTIME_DEPENDENCY_CREATED: NO
+CROSS_PROJECT_MUTATION: NO
+CLOSED_BY: DEC-W4-046
 
 Description:
 
 Brainy's `HUMAN_0002_BRAINY_OPERATING_MODEL.md` (section 10) declares an internal "Skill layer" storing personal/procedural continuity heuristics. PS.SkillsMachine's entire purpose is to be the canonical, portfolio-wide reusable Skills/GRC library. Neither project's HUMAN currently disambiguates the two uses of "Skill." No duplication or incident has occurred yet; this is a preventable naming/scope ambiguity, not a resolved project-level conflict (Brainy and SkillsMachine solve different problems for different primary users — see the pairwise review for the full overlap assessment).
 
+Resolution evidence:
+
+Brainy committed a durable Scope note clarifying that its Skill layer is personal/local to Brainy and is not portfolio-wide reusable Skills/GRC canon; reusable cross-project capability remains routed to SkillsMachine. Wings4 independently validated commit `845c8766aee1043a3405a21cb3f935415f9facc1` (W4-BR-02..05). No Wings4 mutation of Brainy occurred.
+
 Next action:
 
-Human decision is complete under `DEC-W4-035`. Deliver the authorized intervention to Brainy for local evaluation and implementation, then obtain Brainy-local evidence and perform Wings4 portfolio resynchronization. No Wings4 mutation of Brainy is authorized.
+NONE_FOR_PC_012
+
 
 ## PC-013 — Frozen Hermes project versus active tool-integration ownership
 

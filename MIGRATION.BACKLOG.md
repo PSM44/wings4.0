@@ -15,10 +15,10 @@
 
 | ID | Item | Priority | Status | Acceptance criteria |
 |---|---|---:|---|---|
-| PILOT-001 | Assimilate first active project | P0 | CARD_APPROVED_DEC_W4_035 | Identity verified, HUMAN interpreted, evidence cited (`PORTFOLIO.CARDS/BRAINY.CARD.md`); portfolio card approved with amendments under `DEC-W4-035`. |
+| PILOT-001 | Assimilate first active project | P0 | COMPLETED_APPROVED_WITH_AMENDMENTS | Identity verified, HUMAN interpreted, evidence cited (`PORTFOLIO.CARDS/BRAINY.CARD.md`); portfolio card approved with amendments under `DEC-W4-035`. |
 | PILOT-002 | Execute first pairwise review | P0 | COMPLETED | Brainy vs PS.SkillsMachine compared with an evidence-traceable conclusion (`PORTFOLIO.REVIEWS/PAIRWISE.BRAINY_VS_SKILLSMACHINE.md`); PC-012 registered. |
-| PILOT-003 | Produce first approved intervention prompts | P0 | APPROVED_FOR_DELIVERY_DELIVERY_EVIDENCE_UNKNOWN | Draft prompt exists (`PORTFOLIO.REVIEWS/PILOT_INTERVENTION_PROMPT_DRAFT.BRAINY_SKILL_LAYER.md`); `DEC-W4-035` authorized limited prompt delivery. Repository evidence does not prove delivery occurred; delivery state remains UNKNOWN/pending-delivery. No Brainy file modified by Wings4. |
-| PILOT-004 | Verify first resynchronization | P0 | BLOCKED_PENDING_BRAINY_LOCAL_IMPLEMENTATION_AND_WINGS4_RESYNC | Remaining dependency is Brainy-local implementation evidence and Wings4 resynchronization after `DEC-W4-035` / PC-012; not blocked on card approval. |
+| PILOT-003 | Produce first approved intervention prompts | P0 | COMPLETED_DELIVERED_AND_IMPLEMENTED | `DEC-W4-035` authorized delivery; Brainy commit `845c8766aee1043a3405a21cb3f935415f9facc1` proves approved Skill-boundary clarification applied under Brainy-local governance. |
+| PILOT-004 | Verify first resynchronization | P0 | COMPLETED_RESYNCHRONIZED | Wings4 independently verified Brainy commit `845c8766aee1043a3405a21cb3f935415f9facc1` (W4-BR-02..05); PC-012 closed under `DEC-W4-046`; foundational listen/decide/intervene/resync cycle complete for Brainy Skill-boundary scope. |
 
 ## Portfolio visualization
 

@@ -437,3 +437,23 @@ Decision:
 - SkillsMachine follows after Brainy closure.
 - DEC-W4-032 freeze remains active until foundational cycle closure.
 - No push, no child-project mutation, and no Control Room canonization are authorized by this decision.
+
+## DEC-W4-046 — Close PC-012 / PILOT-004 after Brainy resync; limited DEC-W4-032 freeze lift
+
+Status: APPROVED_HUMAN_DIRECTION
+Date: 2026-08-05
+Scope: Wings4.0 foundational cycle close; limited freeze-lift conditions; no SkillsMachine mutation
+
+Decision:
+
+- Validate Brainy commit `845c8766aee1043a3405a21cb3f935415f9facc1` as DEC-W4-035 return evidence for the Brainy Skill-boundary clarification and related chat-history exclusion policy.
+- Close PC-012 as `CLOSED_RESOLVED`.
+- Close PILOT-004 as `COMPLETED_RESYNCHRONIZED` / closed foundational resynchronization step.
+- Record the foundational governance cycle (PILOT-001 through PILOT-004) as complete for the Brainy Skill-boundary scope.
+- Accept Brainy historical-chat policy as PASS: folder `89_LEGACY\Z1_IA history` is ignored, untracked, content-inspection prohibited, RADAR.CORE excluded, RADAR.INDEX at most one folder-level reference.
+- Classify prior Brainy RADAR ACTIVE file-level references as `NON_BLOCKING_STALE_DISPOSABLE_OUTPUT`.
+- Lift the active freeze state of DEC-W4-032 only under limited conditions. DEC-W4-032 historical rationale remains preserved and is not rewritten.
+- Limited lift ALLOWS: record already-proven foundational closes; perform SkillsMachine read-only reconciliation; prepare evidence-based next-step proposals; continue project-local observation/resynchronization; prepare a future controlled SkillsMachine package only after separate human approval.
+- Limited lift still PROHIBITS: SkillsMachine implementation/mutation; Ring 1 execution; WPI/SMDI rollout; `00_WINGS4_COORD` portfolio deployment; new schemas or contracts; new portfolio-wide protocols; RADAR implementation; child-project mutation; push; architecture work without a concrete validated use case.
+- Approve SkillsMachine read-only reconciliation as the next spoke (`WINGS4_SKILLSMACHINE_READ_ONLY_RECONCILIATION`).
+- SkillsMachine mutation, SkillsMachine execution, Ring work, rollout, new schemas/contracts, RADAR implementation and push remain unauthorized by this decision.
