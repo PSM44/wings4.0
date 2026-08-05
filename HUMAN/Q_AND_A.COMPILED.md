@@ -79,3 +79,9 @@ DYNAMIC_STATE_AUTHORITY=00_STATE/BATON.WINGS4.ACTIVE.md
 - Active state: `00_STATE/BATON.WINGS4.ACTIVE.md` (authoritative dynamic state).
 - Q-001..Q-061 preserved; Q-062..Q-063 appended for limited freeze lift and SkillsMachine next mode.
 - This compiled file does not claim to summarize every historical nuance of Q-001..Q-035 beyond the groups above; consult the full Q&A table for exact wording.
+
+## SkillsMachine WHOAMI→HUMAN absorption (2026-08-05)
+- Human directed SkillsMachine to absorb useful WHOAMI context/data into HUMAN (Q-064; DEC-W4-047).
+- Aligns with Q-003 (WHOAMI not mandatory; stable identity belongs in HUMAN) and Q-004/Q-017/Q-025 (project-local authority; no cross-project mutation).
+- Wings4 prepares transfer only; SkillsMachine mutates itself only under its own authorization and must return evidence.
+- Unrelated SkillsMachine dirty workstreams remain out of scope.

@@ -972,3 +972,34 @@ Acceptance:
 - Design artifact identifies local owner, root scope, AI users, monitor-only behavior, disposable minimum outputs, source hierarchy, exclusions and SkillsMachine dependency.
 - IMPLEMENTATION_AUTHORIZED remains NO.
 - No generator code, no RADAR output generation, no Wings3 mutation, no reusable-capability reinvention.
+
+## WINGS4_SKILLSMACHINE_WHOAMI_TO_HUMAN_TRANSFER
+
+Priority: P0
+Status: PREPARED_FOR_DELIVERY
+Decision: DEC-W4-047
+Q: Q-064
+TASK_ID=WINGS4_SKILLSMACHINE_WHOAMI_TO_HUMAN_TRANSFER
+OWNER=SkillsMachine
+SOURCE=Wings4 human directive
+MODE=PROJECT_LOCAL_EVALUATION_AND_IMPLEMENTATION
+DEPENDENCIES=SM_TEN_PATH_RECONCILIATION assimilated for boundary only; SkillsMachine local HUMAN/Q&A review required
+RETURN_TARGET=Wings4
+NO_DIRECT_MUTATION=YES
+TRANSFER_PACKAGE=PORTFOLIO.TRANSFERS/SKILLSMACHINE_WHOAMI_TO_HUMAN_TRANSFER_PACKAGE.md
+
+Scope:
+
+- Deliver governed request that SkillsMachine absorb useful WHOAMI context/data into HUMAN.
+- Require SkillsMachine-local HUMAN/Q&A/Skills/GRC review before implementation.
+- Require return evidence to Wings4.
+- Do not mutate SkillsMachine from Wings4.
+- Do not resolve SkillsMachine dirty DCA/SMDI/transcript/session-close workstreams via this item.
+
+Acceptance:
+
+- DEC-W4-047 recorded.
+- Transfer package present and scoped.
+- BATON points to prepared delivery / awaiting SkillsMachine ORCHESTRATOR.
+- SkillsMachine mutation by Wings4 = NO.
+- Push = NO.

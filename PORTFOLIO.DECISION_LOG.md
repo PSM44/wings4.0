@@ -457,3 +457,24 @@ Decision:
 - Limited lift still PROHIBITS: SkillsMachine implementation/mutation; Ring 1 execution; WPI/SMDI rollout; `00_WINGS4_COORD` portfolio deployment; new schemas or contracts; new portfolio-wide protocols; RADAR implementation; child-project mutation; push; architecture work without a concrete validated use case.
 - Approve SkillsMachine read-only reconciliation as the next spoke (`WINGS4_SKILLSMACHINE_READ_ONLY_RECONCILIATION`).
 - SkillsMachine mutation, SkillsMachine execution, Ring work, rollout, new schemas/contracts, RADAR implementation and push remain unauthorized by this decision.
+
+
+## DEC-W4-047 — SkillsMachine WHOAMI→HUMAN absorption request (governed transfer)
+
+Status: APPROVED_HUMAN_DIRECTION
+Date: 2026-08-05
+Scope: Wings4.0 portfolio record and controlled transfer preparation; no SkillsMachine mutation by Wings4
+
+Decision:
+
+- Record the human directive that SkillsMachine must absorb useful WHOAMI context/data into HUMAN under SkillsMachine-local governance.
+- Preserve HUMAN as primary semantic authority; WHOAMI must not remain competing semantic canon.
+- Preserve Skills/GRC accumulated learning in Skills/GRCs; do not move reusable learning into WHOAMI or bury it only in code.
+- Keep transient operational state in BATON/current state, not HUMAN.
+- Wings4 prepares a governed transfer package for SkillsMachine ORCHESTRATOR evaluation; Wings4 does not decide exact SkillsMachine file edits.
+- SkillsMachine must consult its HUMAN and prior Q&A before implementation and must return evidence to Wings4 after local execution.
+- This decision is the separate human approval contemplated by DEC-W4-046 for preparing a controlled SkillsMachine package.
+- SkillsMachine mutation by Wings4 remains prohibited.
+- Child-project dirty technical workstreams (DCA, SMDI harness, transcript Skill, session-close retention) are out of scope for this transfer.
+- Push remains unauthorized by this decision.
+- Transfer package: PORTFOLIO.TRANSFERS/SKILLSMACHINE_WHOAMI_TO_HUMAN_TRANSFER_PACKAGE.md

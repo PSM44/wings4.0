@@ -80,3 +80,15 @@ SKILLSMACHINE_MUTATION_AUTHORIZED=NO
 3. Stable principles, current status, decisions and operational continuity are distinguishable.
 4. BATON remains outside HUMAN and the migration itinerary is incremental and reversible.
 5. No conflicting or independently maintained duplicate canon has been created; pedagogical restatement identifies its authoritative source.
+
+## 2026-08-05 — SkillsMachine WHOAMI→HUMAN transfer preparation
+
+USER_REQUEST=SkillsMachine must absorb useful WHOAMI context/data into HUMAN.
+PROJECT_BOUNDARY=Wings4 records directive and prepares transfer; SkillsMachine retains local implementation authority.
+EXPECTED_LOCAL_EVALUATION=SkillsMachine ORCHESTRATOR reviews HUMAN, Q&A, Skills/GRC canon, then decides local options A/B/C.
+WINGS4_MUTATES_SKILLSMACHINE=NO
+RETURN_EVIDENCE_REQUIRED=YES
+DECISION=DEC-W4-047
+Q_ID=Q-064
+TRANSFER=PORTFOLIO.TRANSFERS/SKILLSMACHINE_WHOAMI_TO_HUMAN_TRANSFER_PACKAGE.md
+NON_GOALS=no SMDI/DCA/transcript/session-close/WPI/Ring/RADAR work via this transfer; no push.
