@@ -1,14 +1,15 @@
 # BATON — Wings4.0 Active
 
 STATUS: WINGS4_SKILLSMACHINE_WHOAMI_TO_HUMAN_TRANSFER_PREPARED
-UPDATED_AT: 2026-08-05
+UPDATED_AT: 2026-08-06
 PROJECT_ROOT: C:\01. GitHub\Wings4.0
 TEMP_PATH: C:\Users\aazcl\Downloads\T.Wings4.0
 BRANCH: main
-HEAD_AT_LAST_REFRESH: a044133332ba8fa3b3d8bda01371ebe1c02bf847
-BASELINE_COMMIT_AT_LAST_CANONICAL_CLOSE: 48ca9d34fb3b2f1f6362bbe2b28ba1dc8c503beb
-CORE_010_COMMIT: 04a96115665370c6dc22229abca7c1f4c94ff61d
-RVF12_COMMIT: 48ca9d34fb3b2f1f6362bbe2b28ba1dc8c503beb
+HEAD_BEFORE_SESSION_CLOSE: 538f0ea0bbc2827db2aeb30387b29a9d3c992730
+CURRENT_HEAD_AT_RESUME: RESOLVE_FROM_GIT
+HEAD_AT_GENERATION_SEMANTICS: HISTORICAL_EVIDENCE_ONLY
+CURRENT_HEAD_SEMANTICS: RUNTIME_GIT_IS_SOURCE_OF_TRUTH
+WHOAMI_TRANSFER_COMMIT: 538f0ea0bbc2827db2aeb30387b29a9d3c992730
 DEC_W4_046_COMMIT: a044133332ba8fa3b3d8bda01371ebe1c02bf847
 REMOTE_COUNT: 0
 
@@ -22,54 +23,64 @@ It does not replace project-local repositories, manage child-project backlogs, e
 
 ## Current objective
 
-Prepare and hold the governed SkillsMachine WHOAMI→HUMAN absorption transfer after assimilating the SkillsMachine ten-path read-only reconciliation evidence. SkillsMachine retains local implementation authority. Wings4 does not mutate SkillsMachine.
+Hold and deliver the governed SkillsMachine WHOAMI→HUMAN absorption transfer. SkillsMachine retains local implementation authority. Wings4 does not mutate SkillsMachine and does not authorize SkillsMachine EXECUTOR.
 
-## Current state
+## Current confirmed state
 
 - FOUNDATIONAL_GOVERNANCE_CYCLE=CLOSED_PASS
 - PC_012=CLOSED_RESOLVED
-- PILOT_004=CLOSED_RESYNCHRONIZED
+- PILOT_004=COMPLETED_RESYNCHRONIZED
 - DEC_W4_046=APPROVED_HUMAN_DIRECTION
 - DEC_W4_047=APPROVED_HUMAN_DIRECTION
+- Q_064=DECIDED
 - DEC_W4_032_ACTIVE_FREEZE=LIFTED_WITH_LIMITED_CONDITIONS
-- SKILLSMACHINE_READ_ONLY_RECONCILIATION_EVIDENCE=ASSIMILATED_BOUNDARY_ONLY
-- SOURCE_EVIDENCE=C:\Users\aazcl\Downloads\Temp.SkillMachine\SM_TEN_PATH_RECONCILIATION.txt
-- SOURCE_PROJECT_HEAD=df7e9d18293503ec03ed0bbee51d8fec86941f35
-- WHOAMI_TO_HUMAN_REQUEST_STATUS=PREPARED_FOR_DELIVERY
+- SKILLSMACHINE_READ_ONLY_RECONCILIATION=COMPLETED_READ_ONLY
+- ACTIVE_TRANSFER=SKILLSMACHINE_WHOAMI_TO_HUMAN
 - TRANSFER_PACKAGE=PORTFOLIO.TRANSFERS/SKILLSMACHINE_WHOAMI_TO_HUMAN_TRANSFER_PACKAGE.md
-- SKILLSMACHINE_ROLE=REUSABLE_SKILLS_GRC_CANON_OWNER
+- TRANSFER_STATUS=PREPARED_FOR_DELIVERY_TO_SKILLSMACHINE_ORCHESTRATOR
+- NEXT_ACTOR=SkillsMachine ORCHESTRATOR
+- NEXT_HUMAN_ACTION=Deliver or approve delivery of the prepared consultation to SkillsMachine ORCHESTRATOR
+- WINGS4_EXECUTOR_ACTION_REQUIRED_NOW=NO
+- SKILLSMACHINE_EXECUTOR_AUTHORIZED=NO
 - SKILLSMACHINE_MUTATION_AUTHORIZED=NO_BY_WINGS4
 - SKILLSMACHINE_LOCAL_AUTHORITY=YES
 - RETURN_EVIDENCE_REQUIRED=YES
+- SKILLSMACHINE_LOCAL_DIRTY_TEN_PATHS=OUT_OF_SCOPE_DEFERRED
 - RADAR_IMPLEMENTATION_AUTHORIZED=NO
 - AI.History/ remains ignored; content inspection prohibited.
 - Push remains unauthorized.
 
-## Session continuity model
-
-CONTINUITY_MODEL=L0_GOVERNED_STABLE_CORE+L1_CURRENT_OPERATIONAL_HANDOFF+L2_CANONICAL_DETAIL_ON_DEMAND
-ORCHESTRATOR_CONTINUE_FORMAT=SINGLE_FILE_MINIMAL
-PROJECT_CONTEXT_ISOLATION=MANDATORY
-
 ## Active conflicts and blockers
 
 - PC-013 remains OPEN_PENDING_HUMAN_DECISION on Hermes-Obsidian tool-integration ownership.
-- Wings4 RADAR implementation remains unauthorized.
 - SkillsMachine mutation by Wings4 remains unauthorized.
 - SkillsMachine-local dirty workstreams remain SkillsMachine-owned and out of this transfer scope.
 - OPEN_BLOCKERS=PC-013
 - OPEN_PORTFOLIO_CONFLICT_COUNT=1
 
+## Design opportunities (noncanonical; not implementation authorization)
+
+Preserved for later Wings4 design only after the active transfer is advanced or explicitly deferred:
+
+- WINGS4_STARTUP_PORTFOLIO_SWEEP_AND_GOVERNED_EXCHANGE_DESIGN
+- Startup minimum-sufficient portfolio sweep
+- Selective deepening
+- Governed interproject dialogue/exchange
+- CONSULTATION/RESPONSE/EXECUTION_AUTHORIZATION/RESULT_EVIDENCE contracts
+- Exchange registry/state machine
+- Local EXECUTOR only after canonical review and explicit human authorization
+- Existing-solution review gate: event-driven before custom build; monthly light signal sweep; quarterly deeper review
+
+MODE_IF_OPENED_LATER=DESIGN_FIRST;READ_ONLY_PILOT;NO_CHILD_MUTATION;NO_AUTO_EXECUTOR;NO_PUSH
+
 ## Next action
 
 CURRENT_MINIBATTLE=WINGS4_SKILLSMACHINE_WHOAMI_TO_HUMAN_TRANSFER
-SOURCE_PROJECT=SkillsMachine
-REQUEST_STATUS=PREPARED_FOR_DELIVERY
-SKILLSMACHINE_MUTATION_AUTHORIZED=NO_BY_WINGS4
-RETURN_EVIDENCE_REQUIRED=YES
+REQUEST_STATUS=PREPARED_FOR_DELIVERY_TO_SKILLSMACHINE_ORCHESTRATOR
 NEXT_ROLE=ORCHESTRATOR
 NEXT_ROOT=C:\01. GitHub\Wings4.0
-NEXT_EXTERNAL_ACTION=Deliver transfer package to SkillsMachine ORCHESTRATOR; await local evaluation and return evidence; then Wings4 resync.
+NEXT_EXTERNAL_ACTOR=SkillsMachine ORCHESTRATOR
+NEXT_WINGS4_MINIBATTLE_AFTER_TRANSFER=WINGS4_STARTUP_PORTFOLIO_SWEEP_AND_GOVERNED_EXCHANGE_DESIGN
 IMPLEMENTATION_AUTHORIZED=NO_BY_WINGS4_ON_SKILLSMACHINE
 RADAR_IMPLEMENTATION_AUTHORIZED=NO
 COMMIT_POLICY=NO_COMMIT_WITHOUT_EXACT_STAGING_VALIDATION_AND_EXPLICIT_HUMAN_AUTHORIZATION
@@ -77,11 +88,11 @@ PUSH_POLICY=NO_PUSH_WITHOUT_EXPLICIT_HUMAN_AUTHORIZATION
 
 ## Resume instruction
 
-1. Confirm Wings4 HEAD and clean worktree from Git.
-2. Do not inspect AI.History/.
-3. Do not mutate SkillsMachine, Brainy, Wings3 or any child project from Wings4.
-4. Use PORTFOLIO.TRANSFERS/SKILLSMACHINE_WHOAMI_TO_HUMAN_TRANSFER_PACKAGE.md as the governed request to SkillsMachine ORCHESTRATOR.
-5. Require SkillsMachine to consult its HUMAN and Q&A before local implementation.
-6. Require return evidence before Wings4 resynchronization.
-7. Do not authorize SMDI/DCA/transcript/session-close/WPI/Ring/RADAR work via this transfer.
-LAST_REFRESHED_AT: 2026-08-05T19:04:00-04:00
+1. Resolve root, branch, HEAD, worktree and index from Git.
+2. Confirm transfer package remains ready; present the consultation to Pablo unless already delivered.
+3. Continue iterative governed conversation; do not authorize SkillsMachine execution before SkillsMachine-local HUMAN/Q&A/Skills-GRC review and explicit human decision.
+4. Do not inspect AI.History/.
+5. Do not mutate SkillsMachine, Brainy, Wings3 or any child project from Wings4.
+6. Do not implement startup sweep, exchange registry, Cursor automation or existing-solution review in this transfer.
+7. Require return evidence before Wings4 resynchronization.
+LAST_REFRESHED_AT: 2026-08-06T17:05:00-04:00
