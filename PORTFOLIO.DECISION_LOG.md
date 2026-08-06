@@ -141,6 +141,8 @@ WINGS4_GOV_009_EXECUTE_BRAINY_PROJECT_LOCAL_ABSORPTION_REVIEW
 
 ## DEC-W4-PAIR-005 — Brainy absorption validated
 
+HISTORICAL_ID_COLLISION_NOTE: This ID also appears above as "Project-local transfer execution model". Both historical entries are preserved; no silent rename in this update. Future unique IDs must avoid repeating PAIR-005.
+
 Date: 2026-07-19
 Status: ACTIVE
 
@@ -478,3 +480,113 @@ Decision:
 - Child-project dirty technical workstreams (DCA, SMDI harness, transcript Skill, session-close retention) are out of scope for this transfer.
 - Push remains unauthorized by this decision.
 - Transfer package: PORTFOLIO.TRANSFERS/SKILLSMACHINE_WHOAMI_TO_HUMAN_TRANSFER_PACKAGE.md
+
+## DEC-W4-048 — Product, Project, Repository and Root differentiation
+
+Status: APPROVED_HUMAN_DIRECTION
+Date: 2026-08-06
+Scope: Wings4.0 product identity; Q-065..Q-071, Q-082, Q-083
+
+Decision:
+
+- PRODUCTO_WINGS4 is what the user operates.
+- PROYECTO_WINGS4 is the development process of that product.
+- REPOSITORIO_WINGS4 is the versioned logical unit used by ORCHESTRATOR/EXECUTOR.
+- ROOT_WINGS4 is the physical repository location; ROOT_ACTUAL=`C:\01. GitHub\Wings4.0`.
+- Initial operational user is Pablo; gerencia reviews demos and declares deploy readiness.
+- Primary function: detect conflicts/discrepancies/interferences/omissions within and across projects, and detect market tools that may replace/complement/reduce own development.
+- Architecture is local-first for memory/confidentiality, AI-provider-neutral, with optional local agents; first deploy is local single-user.
+
+## DEC-W4-049 — First product pilot target and SkillsMachine as first analyzed project
+
+Status: APPROVED_HUMAN_DIRECTION
+Date: 2026-08-06
+Scope: Product Ring0 target; Q-072, Q-079, Q-084
+
+Decision:
+
+- FIRST_PROJECT_ANALYZED=SkillsMachine.
+- Authorize Wings4-local Product Ring0 diagnostic under `WINGS4_LOCAL_PRODUCT_RING0_AND_CANON_RECONCILIATION`.
+- SkillsMachine is the first analyzed project, not a universal dependency for later rings.
+- Rings 2..5 remain unauthorized for implementation by this decision.
+- This authorization does not permit Wings4 to read or mutate `C:\01. GitHub\Skills` during Ring0 prototype construction; fixture data must come from Wings4-held evidence or clearly marked noncanonical representatives.
+
+## DEC-W4-050 — Approved Ring0 output is interactive actionable diagnosis
+
+Status: APPROVED_HUMAN_DIRECTION
+Date: 2026-08-06
+Scope: Product Ring0 output; Q-073
+
+Decision:
+
+- APPROVED_OUTPUT=interactive actionable diagnosis.
+- The first flow must let a user understand SkillsMachine, inspect findings, open evidence, review alternatives, see a recommendation, and act.
+
+## DEC-W4-051 — Human decision updates Wings4 state without automatic project mutation
+
+Status: APPROVED_HUMAN_DIRECTION
+Date: 2026-08-06
+Scope: Product Ring0 decision flow; Q-074
+
+Decision:
+
+- APPROVED_DECISION_FLOW=register human decision and update Wings4 state.
+- Allowed actions: ACCEPT, REJECT, MODIFY, DEFER.
+- Export of the decision is required.
+- Automatic mutation of the analyzed project is prohibited.
+
+Amendment note (2026-08-06, DEC-W4-055): the visible Ring0 UI label is now POSTPONE rather than DEFER. Internal DEFER/DEFERRED semantics may remain for compatibility when the mapping is explicit.
+
+## DEC-W4-052 — Cumulative management deliveries
+
+Status: APPROVED_HUMAN_DIRECTION
+Date: 2026-08-06
+Scope: Management delivery model; Q-075, Q-076
+
+Decision:
+
+- Each delivery must explain what Wings4 is, what it solves and how it works; demonstrate real live functionality; preserve/improve prior functionality; and add new functionality unless an authorized delivery focuses on refining an existing one.
+- Presentations, reports, BATON, RADAR, GRC, architecture, promises and planning alone do not count as product functionality.
+- Deliveries continue until gerencia declares deploy readiness.
+
+## DEC-W4-053 — Wings4–SkillsMachine product vs project relationship
+
+Status: APPROVED_HUMAN_DIRECTION
+Date: 2026-08-06
+Scope: Cross-product and cross-project boundaries; Q-077, Q-078
+
+Decision:
+
+- As products: Wings4 may optionally integrate with SkillsMachine for reusable Skills/GRC discovery/consultation/request/distribution/feedback; that integration is not mandatory for every Wings4 function.
+- As projects: Wings4 does not develop or modify SkillsMachine; needs transfer via governed request; SkillsMachine evaluates/implements locally; Wings4 receives evidence and verifies resynchronization.
+
+## DEC-W4-054 — Resolve PC-013 without reactivating Hermes
+
+Status: APPROVED_HUMAN_DIRECTION
+Date: 2026-08-06
+Scope: PC-013; Q-080
+
+Decision:
+
+- Set PC-013=`RESOLVED_CAPABILITY_UNASSIGNED_UNTIL_REAL_USECASE`.
+- Hermes remains `FROZEN_ARCHIVE`.
+- Generic tool-integration capability stays unassigned until a concrete real use case exists.
+- If Brainy later needs the capability, Brainy is the preferred local-evaluation candidate.
+- Do not reactivate Hermes.
+- Do not create a successor without concrete need.
+
+## DEC-W4-055 — Ring0 visible POSTPONE label and English-only UI
+
+Status: APPROVED_HUMAN_DIRECTION
+Date: 2026-08-06
+Scope: Ring0 UX hardening; Q-085, Q-086; authorization `WINGS4_LOCAL_RING0_HARDENING_AND_DEPLOY_READINESS`
+
+Decision:
+
+- Visible decision actions for Ring0: ACCEPT, REJECT, MODIFY, POSTPONE.
+- Visible label POSTPONE replaces DEFER. Meaning: keep the finding open and decide later. POSTPONE is not rejection.
+- Internal persistence may retain DEFER/DEFERRED equivalence when the UI mapping is explicit.
+- Ring0 human-facing UI must be English only at approximately Cambridge C1 professional standard.
+- Preserve canonical IDs, filenames, codes and literal source names for traceability.
+- This language rule is Ring0-local and does not create a portfolio-wide language standard by itself.
+- Ring1+ implementation and SkillsMachine mutation remain unauthorized by this decision.

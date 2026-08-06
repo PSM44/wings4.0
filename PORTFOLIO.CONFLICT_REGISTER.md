@@ -31,8 +31,9 @@ Historical resolution (preserved):
 
 Current residual:
 
-- Active tool-integration ownership wording versus freeze state remains tracked as PC-013.
+- Tool-integration ownership residual was tracked as PC-013 and is now resolved as capability unassigned until a real use case (`DEC-W4-054`).
 - No further Brainy/Hermes mutation is authorized by this reconciliation.
+- Hermes remains FROZEN_ARCHIVE.
 
 Supersession note:
 
@@ -69,15 +70,24 @@ NONE_FOR_PC_012
 
 ## PC-013 — Frozen Hermes project versus active tool-integration ownership
 
-Status: OPEN_PENDING_HUMAN_DECISION
+Status: RESOLVED_CAPABILITY_UNASSIGNED_UNTIL_REAL_USECASE
+Classification: RESOLVED
 Severity: HIGH
 Confidence: HIGH
-Source: `DEC-W4-PAIR-006` and `WINGS4_GOV_015C_SCOPE_BOUNDARY_HUMAN_DECISION`
+Source: `DEC-W4-PAIR-006`, `WINGS4_GOV_015C_SCOPE_BOUNDARY_HUMAN_DECISION`, `DEC-W4-054`, `Q-080`
 
 Description:
 
-`PS.HermesObsidianIntegration` is canonically `FROZEN_ARCHIVE`, with new local development and workflows prohibited. A later scope-boundary decision states that Hermes–Obsidian owns tool integration only. A frozen archive cannot safely remain the active operational owner without an explicit reactivation or successor decision.
+`PS.HermesObsidianIntegration` is canonically `FROZEN_ARCHIVE`, with new local development and workflows prohibited. A later scope-boundary decision had stated that Hermes–Obsidian owns tool integration only. A frozen archive cannot safely remain the active operational owner without an explicit reactivation or successor decision.
+
+Human resolution (`DEC-W4-054`):
+
+- Hermes remains `FROZEN_ARCHIVE`.
+- Generic tool-integration capability remains without an operational owner until a concrete real use case exists.
+- If Brainy later needs that capability, Brainy is the preferred candidate for local evaluation.
+- Do not reactivate Hermes.
+- Do not create a successor without concrete need.
 
 Next action:
 
-Determine whether the tool-integration capability is historical only, transfers to an existing active project, requires a successor, or justifies explicit reactivation. Do not reactivate or modify the frozen project through this conflict record.
+NONE_FOR_PC_013_UNTIL_REAL_USECASE

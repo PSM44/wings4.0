@@ -2,9 +2,17 @@
 
 ## 1. Identity
 
-Wings4.0 is Pablo's portfolio architecture and governance repository.
+Wings4.0 is Pablo's portfolio architecture and governance system.
 
-It is not a governed child project, domain product, runtime, delivery factory, monorepo, or replacement for project-local governance. Wings4.0 is the portfolio governance system and the repository used to develop and operate that system.
+Distinguish:
+
+- PRODUCTO_WINGS4: what the user operates (interactive diagnosis, decision recording, portfolio understanding).
+- PROYECTO_WINGS4: the development process that builds and evolves that product.
+- REPOSITORIO_WINGS4: the versioned logical unit where ORCHESTRATOR and EXECUTOR develop and govern Wings4.
+- ROOT_WINGS4: the physical location of that repository on disk.
+- ROOT_ACTUAL: `C:\01. GitHub\Wings4.0`.
+
+It is not a governed child project, delivery factory, monorepo, or replacement for project-local governance. Wings4.0 is the portfolio governance product and the repository used to develop and operate that product.
 
 <!-- Documentation Standardization pointer (Track B) -->
 HUMAN remains the transitional human-first entry point. See `HUMAN/DOCUMENTATION.MAP.md` for the documentation responsibility map and incremental migration itinerary. Operational continuity (BATON) is maintained in `00_STATE/BATON.WINGS4.ACTIVE.md`, which remains outside HUMAN.
@@ -15,16 +23,20 @@ Wings4.0 exists to make the complete portfolio understandable and coordinated by
 
 - listening to the canonical HUMAN of each portfolio entity;
 - consolidating project identity, purpose, boundaries, capabilities, and relationships;
-- detecting conflicts, duplication, overlap, ambiguity, and missing ownership;
+- detecting conflicts, discrepancies, interferences, omissions, duplication, overlap, ambiguity, and missing ownership within projects and across the portfolio;
 - identifying opportunities for optional integration;
-- evaluating whether existing open-source or commercial solutions reduce the need to build;
+- evaluating whether existing open-source or commercial solutions can replace, complement or reduce own development;
 - presenting evidence, alternatives, risks, and recommendations to the human authority;
 - preparing project-specific intervention prompts after human approval;
 - verifying whether affected projects became synchronized after local changes.
 
+Presentations, reports, BATON, RADAR, GRC, architecture, promises and planning alone are not product functionality. Product value requires operable demonstrated behavior.
+
 ## 3. Human interaction
 
-Pablo is the primary user, portfolio sponsor, and final decision authority.
+Pablo is the initial operational user, portfolio sponsor, and final decision authority.
+
+Gerencia represents the consumer's eyes: reviews live demonstrations and declares readiness for deploy. Gerencia is not the initial operational user unless later decided.
 
 The operating cycle is:
 
@@ -128,15 +140,26 @@ Wings4.0 prepares evidence-backed intervention requests.
 Each affected project evaluates and implements accepted changes under its own local canon and governance.
 Wings4.0 re-reads updated canon and verifies portfolio resynchronization.
 
-## 11. Current limitations
+## 11. Architecture and deploy constraints
 
-- The foundational pilot cycle remains incomplete: Brainy card/PC-012 human decision is complete (`DEC-W4-035`), but Brainy-local implementation and Wings4 resynchronization evidence remain pending (`PILOT-004`).
-- PC-013 remains unresolved: frozen Hermes versus active Hermes–Obsidian tool-integration ownership wording.
+- Memory, persistent context and confidential information remain local.
+- AI may be local or cloud and must remain provider-neutral.
+- Local agents are optional according to machine capacity and human decision.
+- First deploy is local and for a single user.
+- Initial deploy means a non-development user can operate the product functionally.
+- Minimum deploy criteria: functionality, stability, real data and repeatability.
+- Gerencia declares deploy readiness.
+
+## 12. Current limitations
+
+- Foundational Brainy governance cycle for Skill-boundary scope is closed (`PC-012=CLOSED_RESOLVED`, `PILOT-004=COMPLETED_RESYNCHRONIZED`, `DEC-W4-046`).
+- PC-013 is resolved as capability unassigned until a real use case (`DEC-W4-054`); Hermes remains `FROZEN_ARCHIVE` and must not be reactivated without separate authorization.
 - Capability ownership and relationship maps remain intentionally incomplete pending further human approvals.
 - Existing project HUMAN files vary in quality and structure.
-- Open-source substitution review has not yet been exercised on a real decision.
-- Wings4.0 project-local RADAR is required as AI-only local evidence infrastructure but is not yet implemented (`WINGS4_RADAR_001` assessment precedes local use/configuration design; implementation remains unauthorized).
-- Automated portfolio scoring and dashboards remain deferred until the governance cycle is validated.
+- Open-source substitution review has not yet been exercised on a real product decision.
+- Wings4.0 project-local RADAR is required as AI-only local evidence infrastructure but is not yet implemented; implementation remains unauthorized.
+- Product Ring0 (SkillsMachine interactive diagnosis) is authorized as a Wings4-local prototype using fixture/canonical-derived data only; it does not mutate SkillsMachine.
+- Rings 2..5 and portfolio-wide automation remain unauthorized.
 - Dynamic state (HEAD, worktree, next minibattle) is intentionally excluded from this HUMAN file.
 
 ## External solutions before material custom development

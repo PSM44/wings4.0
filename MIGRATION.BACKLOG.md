@@ -20,6 +20,30 @@
 | PILOT-003 | Produce first approved intervention prompts | P0 | COMPLETED_DELIVERED_AND_IMPLEMENTED | `DEC-W4-035` authorized delivery; Brainy commit `845c8766aee1043a3405a21cb3f935415f9facc1` proves approved Skill-boundary clarification applied under Brainy-local governance. |
 | PILOT-004 | Verify first resynchronization | P0 | COMPLETED_RESYNCHRONIZED | Wings4 independently verified Brainy commit `845c8766aee1043a3405a21cb3f935415f9facc1` (W4-BR-02..05); PC-012 closed under `DEC-W4-046`; foundational listen/decide/intervene/resync cycle complete for Brainy Skill-boundary scope. |
 
+## Product functional rings
+
+| ID | Item | Priority | Status | Acceptance criteria |
+|---|---|---:|---|---|
+| WINGS4_PRODUCT_001_SKILLSMACHINE_DIAGNOSTIC_RING0 | First Wings4 product ring: interactive actionable diagnosis of SkillsMachine | P0 | COMPLETED_BASELINE_PRESERVED | Local prototype shows SkillsMachine identity, >=3 findings, evidence/impact/alternatives/recommendation, ACCEPT/REJECT/MODIFY/POSTPONE (visible; was DEFER), updates Wings4-local state, exports decision JSON, does not mutate SkillsMachine, and is demoable live. Human manual browser validation of 15 functional checks = PASS. PRODUCT_001 task-count correction: 19 PASS + 1 PASS_WITH_GAP for 20 tasks (not 18+1). |
+| WINGS4_PRODUCT_002_RING0_HARDENING_AND_LOCAL_DEPLOY_READINESS | Harden Ring0: English C1 UI, POSTPONE, UX/a11y, local state resilience, deploy-readiness review pack | P0 | COMPLETED_HARDENED_ACCEPTED | Entire visible UI English; POSTPONE replaces DEFER; alignment/usability hardened; localStorage versioned and resilient; reset+orientation+provenance present; static validation PASS; human hardened final live acceptance PASS; local deploy posture PASS_FOR_SINGLE_USER_LOCAL_RING0; no SkillsMachine mutation; no Ring1 implementation. |
+| WINGS4_PRODUCT_003_RING0_BASELINE_COMMIT_AND_CONTINUITY_CLOSE | Commit accepted Ring0 Product_001/002 baseline and close continuity | P0 | IN_PROGRESS | Local commit of authorized Ring0 scope after precommit gates; BATON/continuation refresh; PUSH=NO; Ring1 not implemented. |
+
+Scope:
+- Wings4-local product Ring0 only.
+- Fixture/canonical-derived data from Wings4-held evidence; no direct SkillsMachine repository read/write in this task.
+- Decision updates Wings4/prototype state only.
+- PRODUCT_002 is hardening of the PRODUCT_001 cumulative baseline, not a new ring.
+
+Out of scope:
+- SkillsMachine mutation;
+- Ring1 as a separate implementation beyond decision actions already in Ring0;
+- Ring2..Ring5 implementation;
+- RADAR implementation;
+- WPI/SMDI rollout;
+- commit/push without separate authorization;
+- cloud services;
+- autonomous agents.
+
 ## Portfolio visualization
 
 | ID | Item | Priority | Status | Acceptance criteria |
@@ -169,7 +193,7 @@ Out of scope:
 - tool selection;
 - source-project archive authorization.
 
-## WINGS4_GOV_009 — COMPLETE
+## WINGS4_GOV_009 â€” COMPLETE
 
 Status: COMPLETE
 
@@ -188,7 +212,7 @@ Next:
 
 WINGS4_GOV_010_DECIDE_HERMES_SOURCE_PROJECT_FINAL_DISPOSITION
 
-## WINGS4_GOV_010 — COMPLETE
+## WINGS4_GOV_010 â€” COMPLETE
 
 Status: COMPLETE
 
@@ -208,7 +232,7 @@ Next:
 
 WINGS4_GOV_011_REVIEW_SKILLS_GRC_OPPORTUNITY_TRANSFER
 
-## WINGS4_GOV_011 — TRANSFER PACKAGE READY
+## WINGS4_GOV_011 â€” TRANSFER PACKAGE READY
 
 Status: READY_FOR_LOCAL_COMMIT
 
@@ -219,7 +243,7 @@ Status: READY_FOR_LOCAL_COMMIT
 - Package: PORTFOLIO.TRANSFERS/HERMES_TO_SKILLSMACHINE_SKILLS_GRC_OPPORTUNITIES.md
 - Next: close GOV-011 locally, then open destination-owned SkillsMachine assessment minibattle.
 
-## WINGS4_GOV_012 — DELIVERY COMPLETE
+## WINGS4_GOV_012 â€” DELIVERY COMPLETE
 
 Status: READY_FOR_LOCAL_COMMIT
 
@@ -229,7 +253,7 @@ Status: READY_FOR_LOCAL_COMMIT
 - No SkillsMachine or Hermes modification.
 - Destination assessment remains unauthorized until opened under SkillsMachine governance.
 
-## WINGS4_GOV_014 — PROJECT CONTRACT AND INTERACTION MODEL
+## WINGS4_GOV_014 â€” PROJECT CONTRACT AND INTERACTION MODEL
 
 Status: PROPOSED_PENDING_HUMAN_REVIEW
 
@@ -258,7 +282,7 @@ Next human decision:
 - APPROVE_GOV014_MODEL_WITH_CHANGES
 - REJECT_GOV014_MODEL
 
-## WINGS4_GOV_014A — PILOT PROJECT THICK BOUNDARIES
+## WINGS4_GOV_014A â€” PILOT PROJECT THICK BOUNDARIES
 
 Status: PROPOSED_PENDING_HUMAN_REVIEW
 
@@ -276,7 +300,7 @@ Human decision:
 - APPROVE_GOV014A_THICK_BOUNDARIES_WITH_CHANGES
 - REJECT_GOV014A_THICK_BOUNDARIES
 
-## WINGS4_GOV_013_014_014A — APPROVED LOCAL CLOSE
+## WINGS4_GOV_013_014_014A â€” APPROVED LOCAL CLOSE
 
 Status: READY_FOR_LOCAL_COMMIT
 Approved at: 2026-07-21 12:14:49 -04:00
@@ -301,7 +325,7 @@ Next:
 
 WINGS4_GOV_014B_DEFINE_PROJECT_CONTRACT_SCHEMA
 
-## WINGS4_GOV_014B — PROJECT.CONTRACT SCHEMA
+## WINGS4_GOV_014B â€” PROJECT.CONTRACT SCHEMA
 
 Status: PROPOSED_PENDING_HUMAN_REVIEW
 
@@ -326,7 +350,7 @@ Human decision:
 - APPROVE_GOV014B_PROJECT_CONTRACT_SCHEMA_WITH_CHANGES
 - REJECT_GOV014B_PROJECT_CONTRACT_SCHEMA
 
-## WINGS4_GOV_014B — APPROVED
+## WINGS4_GOV_014B â€” APPROVED
 
 Status: APPROVED
 Approved at: 2026-07-21 12:34:19 -04:00
@@ -336,7 +360,7 @@ Approved at: 2026-07-21 12:34:19 -04:00
 - Child contract rollout remains unauthorized.
 - Next: WINGS4_GOV_014C_DEFINE_PROJECT_INTERFACE_SCHEMA.
 
-## WINGS4_GOV_014C — PROJECT.INTERFACE SCHEMA
+## WINGS4_GOV_014C â€” PROJECT.INTERFACE SCHEMA
 
 Status: PROPOSED_PENDING_HUMAN_REVIEW
 
@@ -354,7 +378,7 @@ Key decision:
 
 No child projects modified. No commit or push authorized.
 
-## WINGS4_GOV_014B_014C — APPROVED LOCAL CLOSE
+## WINGS4_GOV_014B_014C â€” APPROVED LOCAL CLOSE
 
 Status: READY_FOR_LOCAL_COMMIT
 Approved at: 2026-07-21 12:45:14 -04:00
@@ -383,7 +407,7 @@ Next:
 
 WINGS4_GOV_014D_DEFINE_PROJECT_MARKET_WATCH_PROFILE
 
-## WINGS4_GOV_014D — PROJECT MARKET WATCH PROFILE
+## WINGS4_GOV_014D â€” PROJECT MARKET WATCH PROFILE
 
 Status: PROPOSED_PENDING_HUMAN_REVIEW
 
@@ -404,7 +428,7 @@ Decisions proposed:
 
 No child projects modified. No monitoring engine built. No commit or push authorized.
 
-## WINGS4_GOV_014D — APPROVED LOCAL CLOSE
+## WINGS4_GOV_014D â€” APPROVED LOCAL CLOSE
 
 Status: READY_FOR_LOCAL_COMMIT
 Approved at: 2026-07-21 13:07:42 -04:00
@@ -433,7 +457,7 @@ Next:
 
 WINGS4_GOV_014E_DECIDE_MARKET_MONITORING_OPPORTUNITY_TRANSFER
 
-## WINGS4_GOV_014E — MARKET MONITORING OPPORTUNITY TRANSFER
+## WINGS4_GOV_014E â€” MARKET MONITORING OPPORTUNITY TRANSFER
 
 Status: PROPOSED_PENDING_HUMAN_REVIEW
 
@@ -455,7 +479,7 @@ No child projects modified.
 No HUMAN file modified.
 No commit or push authorized.
 
-## WINGS4_GOV_014F — CANONICAL HUMAN RESOLVED AND AMENDED
+## WINGS4_GOV_014F â€” CANONICAL HUMAN RESOLVED AND AMENDED
 
 Status: APPLIED_PENDING_HUMAN_REVIEW_AND_LOCAL_CLOSE
 Applied at: 2026-07-21 13:19:14 -04:00
@@ -475,7 +499,7 @@ Pending:
 - Human review of exact amendment.
 - Separate GOV-014E transfer authorization and execution.
 
-## WINGS4_GOV_014E_014F — APPROVED LOCAL CLOSE
+## WINGS4_GOV_014E_014F â€” APPROVED LOCAL CLOSE
 
 Status: READY_FOR_LOCAL_COMMIT
 Approved at: 2026-07-21 13:33:24 -04:00
@@ -503,7 +527,7 @@ Next:
 
 WINGS4_GOV_014G_TRANSFER_MARKET_MONITORING_OPPORTUNITY_TO_SKILLSMACHINE
 
-## WINGS4_GOV_014H — Project Flavor principle
+## WINGS4_GOV_014H â€” Project Flavor principle
 
 Status: HUMAN_PRINCIPLE_CANONIZED
 Approved at: 2026-07-21 16:58:34 -04:00
@@ -535,7 +559,7 @@ Next:
 
 MB-SM-069B_REAL_EXTERNAL_SOLUTION_EVALUATION_PILOT_DESIGN
 
-## WINGS4_GOV_014I — Hub-and-spoke coordination contract
+## WINGS4_GOV_014I â€” Hub-and-spoke coordination contract
 
 Status: CONTRACT_CANONIZED
 Generated at: 2026-07-22 11:24:26 -04:00
@@ -565,7 +589,7 @@ Next:
 
 MB-SM-070_WINGS4_COORD_DELIVERY_INTEGRATION_ASSESSMENT
 
-## WINGS4_GOV_014J — Lifecycle, retention and decommission contract
+## WINGS4_GOV_014J â€” Lifecycle, retention and decommission contract
 
 Status: CONTRACTS_CANONIZED
 Generated at: 2026-07-22 13:40:30 -04:00
@@ -584,7 +608,7 @@ Generated at: 2026-07-22 13:40:30 -04:00
 
 NEXT_MINIBATTLE=MB-SM-070R_WINGS4_COORD_LIFECYCLE_AND_FORMAT_REASSESSMENT
 
-## WINGS4_GOV_014K — SM070R1 source reconciliation
+## WINGS4_GOV_014K â€” SM070R1 source reconciliation
 
 Status: SOURCE_RECONCILED
 Generated at: 2026-07-22 13:53:02 -04:00
@@ -603,7 +627,7 @@ Next:
 
 MB-SM-070R1_WINGS4_COORD_SOURCE_RECONCILIATION_AND_IMPLEMENTATION_CONTRACT
 
-## WINGS4_GOV_014L — Review SM070R1 implementation contract
+## WINGS4_GOV_014L â€” Review SM070R1 implementation contract
 
 Status: PASS
 Generated at: 2026-07-22 17:41:11 -04:00
@@ -621,7 +645,7 @@ Generated at: 2026-07-22 17:41:11 -04:00
 
 NEXT_MINIBATTLE=WINGS4_GOV_014M_AUTHORIZE_SM070A_RING0
 
-## WINGS4_GOV_014M — Authorize SM070A Ring 0
+## WINGS4_GOV_014M â€” Authorize SM070A Ring 0
 
 Status: AUTHORIZED
 Generated at: 2026-07-22 17:46:58 -04:00
@@ -641,7 +665,7 @@ AUTHORIZED_SCOPE=RING0_SYNTHETIC_FIXTURE_ONLY
 
 NEXT_MINIBATTLE=MB-SM-070A_WINGS4_COORD_MINIMUM_CORE_AND_RING0_IMPLEMENTATION
 
-## WINGS4_GOV_014N — SM070A source reconciliation
+## WINGS4_GOV_014N â€” SM070A source reconciliation
 
 Status: SOURCE_RECONCILED
 Generated at: 2026-07-22 17:52:54 -04:00
@@ -654,7 +678,7 @@ Generated at: 2026-07-22 17:52:54 -04:00
 
 NEXT_MINIBATTLE=MB-SM-070A_WINGS4_COORD_MINIMUM_CORE_AND_RING0_IMPLEMENTATION
 
-## WINGS4_GOV_014O — Review SM070A Ring 0 result
+## WINGS4_GOV_014O â€” Review SM070A Ring 0 result
 
 Status: CLOSED_PASS_WITH_REPORTING_CORRECTION
 Generated at: 2026-07-22 18:49:08 -04:00
@@ -669,7 +693,7 @@ Generated at: 2026-07-22 18:49:08 -04:00
 
 NEXT_MINIBATTLE=WINGS4_GOV_014P_RING1_READINESS_DECISION
 
-## WINGS4_GOV_014P — Ring 1 readiness decision
+## WINGS4_GOV_014P â€” Ring 1 readiness decision
 
 Status: READY_WITH_PRECONDITIONS
 Generated at: 2026-07-22 19:08:51 -04:00
@@ -711,7 +735,7 @@ Constraints:
 | SMDI-008 | Wings4 evidence resynchronization | P0 | PLANNED | DEC-W4-036 | PENDING_EVIDENCE |
 | SMDI-009 | Decision on broader portfolio adoption | P1 | PLANNED | DEC-W4-036 | PENDING_EVIDENCE |
 
-## WINGS4_CORE_003 — SAFE CANON RECONCILIATION
+## WINGS4_CORE_003 â€” SAFE CANON RECONCILIATION
 
 Priority: P0
 Status: CLOSED_PASS_LOCAL
@@ -738,7 +762,7 @@ Acceptance:
 - Fresh ORCHESTRATOR recovery can explain Wings4.0 without relying on short-term conversational memory.
 
 
-## WINGS4_CORE_004 — CURRENT STATE AND HANDOFF DEDUPLICATION
+## WINGS4_CORE_004 â€” CURRENT STATE AND HANDOFF DEDUPLICATION
 
 Priority: P0
 Status: CLOSED_PASS_LOCAL
@@ -767,7 +791,7 @@ Semantic correction:
 - Current task state exists only in the corresponding generated `*.CONTINUE.ACTIVE.txt` handoff.
 - Stale historical worktree and next-action fields were removed from the active handoffs.
 
-## WINGS4_CORE_005 — POST-COMMIT STATE SEMANTICS
+## WINGS4_CORE_005 â€” POST-COMMIT STATE SEMANTICS
 
 Priority: P0
 Status: CLOSED_PASS_LOCAL
@@ -792,7 +816,7 @@ Acceptance:
 - Historical `READY_FOR_LOCAL_COMMIT` entries remain unchanged.
 - `git diff --check` passes.
 
-## WINGS4_CORE_006 — AI.HISTORY GIT AND RADAR EXCLUSION
+## WINGS4_CORE_006 â€” AI.HISTORY GIT AND RADAR EXCLUSION
 
 Priority: P0
 Status: CLOSED_PASS_LOCAL
@@ -818,7 +842,7 @@ Acceptance:
 - Canon records the `RADAR.CORE` exclusion and `RADAR.INDEX` minimal-reference boundary.
 - `git diff --check` passes.
 
-## WINGS4_CORE_007 — SESSION CLOSE AND CONTINUITY REFRESH
+## WINGS4_CORE_007 â€” SESSION CLOSE AND CONTINUITY REFRESH
 
 Priority: P0
 Status: CLOSED_PASS_LOCAL
@@ -846,7 +870,7 @@ Acceptance:
 - RADAR owner remains UNRESOLVED.
 - AI.History/ remains ignored and outside Git.
 - git diff --check passes.
-## WINGS4_CORE_008 — SELF-CONTAINED ORCHESTRATOR CONTINUATION BUNDLE
+## WINGS4_CORE_008 â€” SELF-CONTAINED ORCHESTRATOR CONTINUATION BUNDLE
 
 Priority: P0
 Status: CLOSED_PASS_LOCAL
@@ -897,7 +921,7 @@ Acceptance:
 CORE_008=SUPERSEDED_BY_CORE_009_FOR_BUNDLE_FILE_COUNT_ONLY
 CORE_008_GOVERNANCE_SEMANTICS=PRESERVED
 
-## WINGS4_CORE_010 — HUMAN AND ACTIVE STATE RECONCILIATION
+## WINGS4_CORE_010 â€” HUMAN AND ACTIVE STATE RECONCILIATION
 
 Priority: P0
 Status: CLOSED_PASS_LOCAL
@@ -921,7 +945,7 @@ Acceptance:
 - git diff --check passes.
 - AI.History content not inspected.
 
-## WINGS4_RADAR_001 — ASSESS LEGACY RADAR FOR SELECTIVE ABSORPTION
+## WINGS4_RADAR_001 â€” ASSESS LEGACY RADAR FOR SELECTIVE ABSORPTION
 
 Priority: P0
 Status: ASSESSED_READ_ONLY_NO_IMPLEMENTATION
@@ -941,7 +965,7 @@ Acceptance:
 - Boundary proposal recorded with IMPLEMENTATION_AUTHORIZED=NO.
 - Assessment artifact created only in an authorized review location or returned externally.
 
-## WINGS4_RADAR_002 — DESIGN MINIMAL PROJECT-LOCAL RADAR
+## WINGS4_RADAR_002 â€” DESIGN MINIMAL PROJECT-LOCAL RADAR
 
 Priority: P0
 Status: CLOSED_PASS_DESIGN_LOCAL_USE
@@ -951,7 +975,7 @@ DESIGN_ARTIFACT: PORTFOLIO.ARCHITECTURE/WINGS4.RADAR.LOCAL.USE.md
 CLOSED_AT: 2026-08-04
 NOTE: Design approved and closed. Implementation remains unauthorized. Control Room proof remains disposable/noncanonical.
 
-Scope (design/specification only — corrected objective):
+Scope (design/specification only â€” corrected objective):
 
 - Produce the minimum Wings4-local RADAR configuration, boundary and use specification for AI evidence infrastructure.
 - Define Wings4-local ownership, project-root monitoring scope, on-demand execution, disposable machine outputs and mandatory exclusions (including AI.History).

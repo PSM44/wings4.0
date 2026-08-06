@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wings4 Ring0 — SkillsMachine Diagnostic</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="top" role="banner">
+    <div>
+      <p class="eyebrow">Wings4 Product · Ring0</p>
+      <h1>Wings4</h1>
+      <p class="lede">Detect conflicts, discrepancies, interference and omissions within and across portfolio projects — and record human decisions without automatically changing the analyzed project.</p>
+    </div>
+    <div class="meta" aria-label="Product constraints">
+      <span class="pill">Local-first</span>
+      <span class="pill">No SkillsMachine mutation</span>
+      <span class="pill">Demo E1</span>
+    </div>
+  </header>
+
+  <section class="panel orient" aria-labelledby="orient-heading">
+    <h2 id="orient-heading">First use</h2>
+    <p class="orient-text"><strong>What Wings4 is:</strong> a portfolio governance product that surfaces evidence-backed findings for human decision.</p>
+    <p class="orient-text"><strong>What this screen does:</strong> interactive diagnosis of SkillsMachine using evidence already held in Wings4.</p>
+    <p class="orient-text"><strong>What to do first:</strong> review the selected project, open a finding, inspect Evidence versus Recommendation, then record ACCEPT, REJECT, MODIFY or POSTPONE.</p>
+  </section>
+
+  <section class="panel how" aria-labelledby="how-heading">
+    <h2 id="how-heading">What it is / what it solves / how it works</h2>
+    <div class="grid3" id="wings4-summary">
+      <article>
+        <h3>Product</h3>
+        <p>An operable portfolio governance tool for Pablo; management reviews live demos and declares deploy readiness.</p>
+      </article>
+      <article>
+        <h3>Problem</h3>
+        <p>Projects accumulate conflicts, omissions and overlap without a clear, actionable decision path.</p>
+      </article>
+      <article>
+        <h3>Flow</h3>
+        <p>View project → findings → evidence → alternatives → recommendation → decide → update Wings4 state → export JSON.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="panel notices" aria-labelledby="notices-heading">
+    <h2 id="notices-heading">Scope and data provenance</h2>
+    <div class="notice-grid">
+      <article class="notice">
+        <h3>Scope boundary</h3>
+        <p>Ring0 analyses SkillsMachine from evidence already held in Wings4. It does not read or modify the SkillsMachine repository.</p>
+      </article>
+      <article class="notice">
+        <h3>Canonical-derived</h3>
+        <p>Grounded in Wings4-held canon or transfer evidence. Source paths remain available for audit.</p>
+      </article>
+      <article class="notice">
+        <h3>Representative, non-canonical</h3>
+        <p>Illustrative synthesis for demo clarity. Not claimed as SkillsMachine local canon.</p>
+      </article>
+    </div>
+  </section>
+
+  <main class="layout" id="main">
+    <section class="panel project" id="project-panel" aria-labelledby="project-heading">
+      <h2 id="project-heading">Selected project</h2>
+      <div id="project-card" class="card" aria-live="polite">Loading…</div>
+    </section>
+
+    <section class="panel findings" aria-labelledby="findings-heading">
+      <h2 id="findings-heading">Findings</h2>
+      <ul id="findings-list" class="findings-list" role="list"></ul>
+    </section>
+
+    <section class="panel detail" id="detail-panel" aria-labelledby="detail-heading">
+      <h2 id="detail-heading">Finding detail</h2>
+      <p id="detail-empty" class="muted">Select a finding to review evidence, impact, alternatives and the recommendation.</p>
+      <div id="detail-body" class="hidden"></div>
+    </section>
+  </main>
+
+  <section class="panel decisions-log" aria-labelledby="state-heading">
+    <div class="row">
+      <h2 id="state-heading">Wings4 local state (prototype)</h2>
+      <div class="actions">
+        <button type="button" id="btn-export" class="btn">Export decisions JSON</button>
+        <button type="button" id="btn-reset" class="btn secondary">Reset demo</button>
+      </div>
+    </div>
+    <pre id="state-view" class="state-view" aria-label="Local decision state">{}</pre>
+    <p id="status-line" class="status" role="status" aria-live="polite"></p>
+  </section>
+
+  <footer class="foot" role="contentinfo">
+    <p>Fixture path: <code>skillsmachine.fixture.json</code>. Canonical-derived records use Wings4-held evidence; representative non-canonical records are labeled. This prototype does not read or write <code>C:\01. GitHub\Skills</code>.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
