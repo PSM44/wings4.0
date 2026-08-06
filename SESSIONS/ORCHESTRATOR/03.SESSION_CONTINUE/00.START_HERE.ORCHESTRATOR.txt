@@ -6,17 +6,21 @@ SESSION_CONTINUE_IS_OUTPUT=YES
 SESSION_CONTINUE_IS_CANON=NO
 ADDITIONAL_PROMPT_REQUIRED=NO
 EXTERNAL_FILE_LOOKUP_REQUIRED=NO_FOR_SESSION_START
+EXPECTED_CONTEXT_INSTANCES_NEXT_SESSION=1
 
 DESTINATARIO=ORCHESTRATOR
 PROJECT_ID=Wings4.0
 PROJECT_ROOT=C:\01. GitHub\Wings4.0
 ROLE_TO_ASSUME=ORCHESTRATOR
 EXPECTED_BRANCH=main
-HEAD_BEFORE_SESSION_CLOSE=538f0ea0bbc2827db2aeb30387b29a9d3c992730
+RING0_BASELINE_COMMIT=1e8315d3836c941ba8cc6ef4a1b7c6981bb0c33c
+RING0_BASELINE_COMMIT_MESSAGE=20260806.Wings4.Ring0FunctionalBaseline
+HEAD_BEFORE_CONTINUITY_REFRESH=1e8315d3836c941ba8cc6ef4a1b7c6981bb0c33c
 CURRENT_HEAD_AT_RESUME=RESOLVE_FROM_GIT
 HEAD_AT_GENERATION_SEMANTICS=HISTORICAL_EVIDENCE_ONLY
 CURRENT_HEAD_SEMANTICS=RUNTIME_GIT_IS_SOURCE_OF_TRUTH
 REMOTE_COUNT_AT_GENERATION=0
+PUSH=NO
 
 INSTRUCTION_TO_NEW_SESSION=Read this file as the complete current continuation package and resume without requesting another prompt or additional files for session start.
 FIRST_RUNTIME_GATE=Resolve and validate root, branch, HEAD, index and worktree before opening new work.
@@ -25,108 +29,151 @@ FIRST_RUNTIME_GATE=Resolve and validate root, branch, HEAD, index and worktree b
 
 1. Assume ROLE=ORCHESTRATOR for PROJECT_ID=Wings4.0 at ROOT=C:\01. GitHub\Wings4.0.
 2. Validate BRANCH=main and clean worktree/index unless an explicit authorized dirty exception is recorded.
-3. Do not inspect AI.History/.
-4. Do not mutate SkillsMachine, Brainy, Wings3 or any child project from Wings4.
+3. Confirm Ring0 baseline commit `1e8315d3836c941ba8cc6ef4a1b7c6981bb0c33c` is an ancestor of HEAD.
+4. Do not inspect AI.History/.
+5. Do not mutate SkillsMachine, Brainy, Wings3 or any child project from Wings4.
 
-## 02 Confirmed state
+## 02 Product / Project / Repository / Root model
 
-FOUNDATIONAL_GOVERNANCE_CYCLE=CLOSED_PASS
-PC_012=CLOSED_RESOLVED
-PILOT_004=COMPLETED_RESYNCHRONIZED
-DEC_W4_046=APPROVED_HUMAN_DIRECTION
-DEC_W4_047=APPROVED_HUMAN_DIRECTION
-Q_064=DECIDED
-DEC_W4_032_ACTIVE_FREEZE=LIFTED_WITH_LIMITED_CONDITIONS
-SKILLSMACHINE_READ_ONLY_RECONCILIATION=COMPLETED_READ_ONLY
-SKILLSMACHINE_MUTATION_BY_WINGS4=NO
-PUSH=NO
+- PRODUCT_WINGS4 = what the user operates (interactive diagnosis, decision recording, portfolio understanding).
+- PROJECT_WINGS4 = the development initiative/process that builds that product.
+- REPOSITORY_WINGS4 = the versioned logical unit used by ORCHESTRATOR/EXECUTOR.
+- ROOT_WINGS4 / CURRENT_ROOT = C:\01. GitHub\Wings4.0
+- INITIAL_USER=Pablo
+- MANAGEMENT_ROLE=consumer-eye reviewer and deploy-readiness authority (not the initial operator)
 
-## 03 Active transfer
+## 03 Ring0 committed baseline
 
-ACTIVE_TRANSFER=SKILLSMACHINE_WHOAMI_TO_HUMAN
+RING0_PATH=PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/
+RING0_FUNCTIONAL_DEMO=PASS
+RING0_HARDENED_FUNCTIONAL_ACCEPTANCE=PASS
+LOCAL_DEPLOY_READINESS=PASS_FOR_SINGLE_USER_LOCAL_RING0
+VISIBLE_UI_LANGUAGE=ENGLISH_C1
+VISIBLE_DECISION_ACTIONS=ACCEPT|REJECT|MODIFY|POSTPONE
+POSTPONE_MEANING=Keep finding open and decide later; not rejection.
+FIRST_ANALYZED_PROJECT=SkillsMachine
+FINDING_COUNT=4
+DATA_CLASSES=CANONICAL_DERIVED|REPRESENTATIVE_NONCANONICAL
+SKILLSMACHINE_REPOSITORY_READ=NO
+SKILLSMACHINE_MUTATION=NO
+
+What Ring0 does:
+- Interactive actionable diagnosis of SkillsMachine from Wings4-held evidence/fixture.
+- Evidence, impact, alternatives, recommendation, human decision, local state, JSON export, reset demo.
+- Does not write SkillsMachine.
+
+Key files:
+- PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/index.html
+- PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/app.js
+- PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/styles.css
+- PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/skillsmachine.fixture.json
+- PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/README.RING0.DEMO.md
+- PORTFOLIO.ARCHITECTURE/WINGS4.RING0.SKILLSMACHINE.FUNCTIONAL.SPEC.md
+
+## 04 Cumulative delivery rule
+
+Each management delivery must:
+1. briefly explain what Wings4 is / solves / how it works;
+2. demonstrate live functionality;
+3. preserve and improve prior functionality;
+4. add new functionality unless the authorized delivery is a refinement;
+5. remain operable without repository literacy.
+
+Presentations, reports, BATON, RADAR, GRC, architecture, promises and planning alone are not product functionality.
+Ring1 must build on Ring0; it must not replace Ring0.
+
+## 05 Ring model essentials
+
+- Ring0 Diagnosis = committed baseline now.
+- Ring1 Decision = human decision recording / Wings4 state update-export as a product ring beyond the actions already embedded in Ring0 pilot flow. Design/review only next.
+- Ring2 Controlled intervention = not authorized.
+- Ring3 Resynchronization = not authorized.
+- Ring4 Combined analysis = not authorized.
+- Ring5 Market = not authorized.
+- RING1_IMPLEMENTATION_AUTHORIZED=NO
+- RADAR_IMPLEMENTATION_AUTHORIZED=NO
+
+## 06 SkillsMachine boundary
+
+As products:
+- Wings4 may optionally integrate with SkillsMachine for reusable Skills/GRC discovery/consultation/request/distribution/feedback.
+- That integration is not mandatory for every Wings4 function.
+
+As projects:
+- Wings4 does not develop or modify SkillsMachine.
+- Needs transfer via governed request.
+- SkillsMachine evaluates/implements locally.
+- Wings4 receives evidence and verifies resynchronization.
+
+Prepared but not the current next product action:
 TRANSFER_PACKAGE=PORTFOLIO.TRANSFERS/SKILLSMACHINE_WHOAMI_TO_HUMAN_TRANSFER_PACKAGE.md
 TRANSFER_STATUS=PREPARED_FOR_DELIVERY_TO_SKILLSMACHINE_ORCHESTRATOR
-DESTINATARIO_OF_TRANSFER=ORCHESTRATOR
-TARGET_PROJECT=SkillsMachine
-RETURN_EVIDENCE_REQUIRED=YES
-THIS_IS_NOT_EXECUTOR_AUTHORIZATION=YES
-NEXT_ACTOR=SkillsMachine ORCHESTRATOR
-NEXT_HUMAN_ACTION=Deliver or approve delivery of the prepared consultation to SkillsMachine ORCHESTRATOR; continue iterative governed conversation with Pablo.
-WINGS4_EXECUTOR_ACTION_REQUIRED_NOW=NO
-SKILLSMACHINE_EXECUTOR_AUTHORIZED=NO
 
-Consultation intent summary for SkillsMachine ORCHESTRATOR:
-- Absorb useful WHOAMI context/data into HUMAN under SkillsMachine-local governance.
-- HUMAN becomes semantic home; WHOAMI must not remain competing canon.
-- Preserve Skills/GRC learning; keep transient state in BATON.
-- Consult SkillsMachine HUMAN and Q&A before local implementation.
-- Return evidence to Wings4; no Wings4 mutation of SkillsMachine.
+## 07 Open blockers / gaps
 
-## 04 Open blockers
+- PC-012=CLOSED_RESOLVED
+- PC-013=RESOLVED_CAPABILITY_UNASSIGNED_UNTIL_REAL_USECASE (Hermes remains FROZEN_ARCHIVE)
+- OPEN_BLOCKERS=NONE_FOR_RING0
+- Local deploy posture is single-user Ring0 only; not enterprise/multi-user/cloud/full-product completion.
+- No mandatory Skills/GRC runtime dependency for Ring1 design discussion; reuse existing Wings4 canon and Ring0 product evidence.
 
-OPEN_BLOCKERS=PC-013
-PC_013_STATUS=OPEN_PENDING_HUMAN_DECISION
-SKILLSMACHINE_LOCAL_DIRTY_TEN_PATHS=OUT_OF_SCOPE_DEFERRED
-RADAR_IMPLEMENTATION_AUTHORIZED=NO
+## 08 Exact next decision frontier
 
-## 05 Noncanonical design opportunities
+NEXT_OBJECTIVE=RING1_PRODUCT_DEFINITION_DESIGN_REVIEW
+Decide with Pablo, without implementing:
 
-Do not treat the following as implemented Wings4 canon or current authorization:
+1. What Ring1 uniquely adds beyond the decision actions already present in Ring0.
+2. What remains local Wings4 state vs what becomes durable portfolio decision records.
+3. How Ring1 preserves Ring0 live demo capability (cumulative rule).
+4. Whether Ring1 stays SkillsMachine-scoped first or becomes project-generic immediately.
+5. What evidence/export contracts Ring1 needs before any later Ring2 intervention work.
+6. Explicit non-goals: no child mutation, no RADAR, no market scanning, no autonomous agents, no cloud mandate.
 
-- WINGS4_STARTUP_PORTFOLIO_SWEEP_AND_GOVERNED_EXCHANGE_DESIGN
-- Startup minimum-sufficient portfolio sweep and selective deepening
-- Governed interproject dialogue/exchange
-- CONSULTATION / RESPONSE / EXECUTION_AUTHORIZATION / RESULT_EVIDENCE contracts
-- Exchange registry and state machine
-- Controlled local EXECUTOR only after canonical review and explicit human authorization
-- Existing-solution review gate: event-driven before custom build; monthly light signal sweep; quarterly deeper review
+## 09 In scope now
 
-If later opened after the active transfer is advanced or explicitly deferred:
-MODE=DESIGN_FIRST;READ_ONLY_PILOT;NO_CHILD_MUTATION;NO_AUTO_EXECUTOR;NO_PUSH
+- ORCHESTRATOR activation and Git identity validation
+- Ring0 close verification against commit `1e8315d3836c941ba8cc6ef4a1b7c6981bb0c33c`
+- Ring1 design/definition questions and human decisions
+- Optional planning of later governed transfer follow-ups without SkillsMachine mutation
 
-## 06 In scope now
+## 10 Out of scope now
 
-- Wings4 activation and Git identity validation
-- Confirm transfer readiness
-- Present/deliver consultation to Pablo / SkillsMachine ORCHESTRATOR path
-- Iterate with Pablo
-- Reconcile responses and prepare later execution decision only after return evidence and human authorization
-
-## 07 Out of scope now
-
-- SkillsMachine mutation by Wings4
-- Resolving SkillsMachine local dirty files
-- Implementing startup sweep, exchange registry, Cursor automation or existing-solution review
-- Ring/WPI/SMDI/RADAR implementation
+- Ring1 UI/functionality implementation
+- Decision-engine rewrite
+- Intervention packages / resync automation
+- Product-to-product SkillsMachine integration implementation
+- Market scanning
+- RADAR implementation
+- Child-project mutation
 - Push
-- Automatic EXECUTOR routing
 
-## 08 Prohibitions
+## 11 Prohibitions
 
 PROJECT_CONTEXT_ISOLATION=MANDATORY
 CHILD_PROJECT_MUTATION=PROHIBITED
 SKILLSMACHINE_MUTATION=PROHIBITED
 BRAINY_MUTATION=PROHIBITED
 AI_HISTORY_INSPECTION=PROHIBITED
+RING1_IMPLEMENTATION_AUTHORIZED=NO
 RADAR_IMPLEMENTATION_AUTHORIZED=NO
 COMMIT_POLICY=NO_COMMIT_WITHOUT_EXACT_STAGING_VALIDATION_AND_EXPLICIT_HUMAN_AUTHORIZATION
 PUSH_POLICY=NO_PUSH_WITHOUT_EXPLICIT_HUMAN_AUTHORIZATION
 
-## 09 Expected return / next Wings4 work
-
-EXPECTED_RETURN=SkillsMachine return evidence package after local HUMAN/Q&A/Skills-GRC review and any locally authorized work
-NEXT_WINGS4_ACTION_AFTER_RETURN=Wings4 resynchronization listen/verify
-NEXT_WINGS4_MINIBATTLE_AFTER_TRANSFER=WINGS4_STARTUP_PORTFOLIO_SWEEP_AND_GOVERNED_EXCHANGE_DESIGN
-
-## 10 Startup checks
+## 12 Startup checks
 
 CHECK_ROOT=C:\01. GitHub\Wings4.0
 CHECK_BRANCH=main
 CHECK_HEAD=RESOLVE_FROM_GIT
 CHECK_WORKTREE_CLEAN=REQUIRED
 CHECK_INDEX_CLEAN=REQUIRED
-CHECK_TRANSFER_FILE_EXISTS=PORTFOLIO.TRANSFERS/SKILLSMACHINE_WHOAMI_TO_HUMAN_TRANSFER_PACKAGE.md
+CHECK_RING0_BASELINE_ANCESTOR=1e8315d3836c941ba8cc6ef4a1b7c6981bb0c33c
+CHECK_RING0_PRODUCT_EXISTS=PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/
 CHECK_PC012_REMAINS_CLOSED=YES
-CHECK_PILOT004_REMAINS_CLOSED=YES
-CHECK_PC013_REMAINS_OPEN=YES
-CHECK_NO_SKILLSMACHINE_EXECUTOR_AUTH=YES
+CHECK_PC013_REMAINS_RESOLVED=YES
+CHECK_NO_SKILLSMACHINE_MUTATION=YES
+CHECK_NO_RING1_IMPLEMENTATION=YES
+CHECK_PUSH=NO
+
+## 13 Singular next action
+
+Return to Wings4 ORCHESTRATOR for Ring0 close verification and Ring1 design decision.
