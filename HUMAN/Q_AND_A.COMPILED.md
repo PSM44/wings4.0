@@ -42,6 +42,7 @@ DYNAMIC_STATE_AUTHORITY=00_STATE/BATON.WINGS4.ACTIVE.md
 - Ring0 human-facing UI language: English only, Cambridge C1 professional target (Q-086; DEC-W4-055). Ring0-local, not portfolio-wide.
 - Human manually approved all 15 Ring0 functional checks; `HUMAN_MANUAL_BROWSER_VALIDATION=PASS` (Q-087). Not an automated browser claim.
 - Hardened final live acceptance: `RING0_HARDENED_FUNCTIONAL_ACCEPTANCE=PASS`; local single-user Ring0 posture `PASS_FOR_SINGLE_USER_LOCAL_RING0` (Q-088). Not enterprise/multi-user/cloud/full-product completion.
+- Ring1 authorized as decision lifecycle + minimal controlled intervention package export; no child mutation; no Ring2+/RADAR (Q-089; DEC-W4-056).
 - Local Product Ring0 authorized for fixture-based prototype without reading/writing SkillsMachine repository in this build (Q-084).
 - Analyzing SkillsMachine in Ring0 does not force later rings to depend on SkillsMachine; Rings 2..5 remain unimplemented (Q-079).
 - PRODUCT_001 task-count correction: reconciled detailed result is 19 PASS + 1 PASS_WITH_GAP for 20 tasks (not 18 PASS + 1 PASS_WITH_GAP).
@@ -62,7 +63,7 @@ DYNAMIC_STATE_AUTHORITY=00_STATE/BATON.WINGS4.ACTIVE.md
 - Historical ID collision: two entries titled `DEC-W4-PAIR-005` remain historical; not silently renamed (gap retained).
 
 ## Traceability
-- Full table: `HUMAN/Q_AND_A.md` Q-001..Q-088.
-- Decisions: `PORTFOLIO.DECISION_LOG.md` DEC-W4-046..DEC-W4-055 and prior.
+- Full table: `HUMAN/Q_AND_A.md` Q-001..Q-089.
+- Decisions: `PORTFOLIO.DECISION_LOG.md` DEC-W4-046..DEC-W4-056 and prior.
 - Active state: `00_STATE/BATON.WINGS4.ACTIVE.md`.
 - This compiled file is compact interpretation only; consult the full Q&A table for exact wording.

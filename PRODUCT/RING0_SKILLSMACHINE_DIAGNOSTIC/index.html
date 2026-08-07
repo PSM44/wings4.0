@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Wings4 Ring0 — SkillsMachine Diagnostic</title>
+  <title>Wings4 Ring0+Ring1 — SkillsMachine Diagnostic</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -11,22 +11,22 @@
 
   <header class="top" role="banner">
     <div>
-      <p class="eyebrow">Wings4 Product · Ring0</p>
+      <p class="eyebrow">Wings4 Product · Ring0 + Ring1</p>
       <h1>Wings4</h1>
-      <p class="lede">Detect conflicts, discrepancies, interference and omissions within and across portfolio projects — and record human decisions without automatically changing the analyzed project.</p>
+      <p class="lede">Detect conflicts, discrepancies, interference and omissions within and across portfolio projects — record human decisions, track their lifecycle, and prepare governed intervention packages without mutating the analyzed project.</p>
     </div>
     <div class="meta" aria-label="Product constraints">
       <span class="pill">Local-first</span>
       <span class="pill">No SkillsMachine mutation</span>
-      <span class="pill">Demo E1</span>
+      <span class="pill">Demo E1+E2</span>
     </div>
   </header>
 
   <section class="panel orient" aria-labelledby="orient-heading">
     <h2 id="orient-heading">First use</h2>
     <p class="orient-text"><strong>What Wings4 is:</strong> a portfolio governance product that surfaces evidence-backed findings for human decision.</p>
-    <p class="orient-text"><strong>What this screen does:</strong> interactive diagnosis of SkillsMachine using evidence already held in Wings4.</p>
-    <p class="orient-text"><strong>What to do first:</strong> review the selected project, open a finding, inspect Evidence versus Recommendation, then record ACCEPT, REJECT, MODIFY or POSTPONE.</p>
+    <p class="orient-text"><strong>What this screen does:</strong> Ring0 interactive diagnosis of SkillsMachine, plus Ring1 decision lifecycle tracking and minimal controlled intervention package export.</p>
+    <p class="orient-text"><strong>What to do first:</strong> open a finding, record ACCEPT / REJECT / MODIFY / POSTPONE, review the decision lifecycle, then — if ACCEPT or MODIFY — preview and export an intervention package for the target project's ORCHESTRATOR.</p>
   </section>
 
   <section class="panel how" aria-labelledby="how-heading">
@@ -42,7 +42,7 @@
       </article>
       <article>
         <h3>Flow</h3>
-        <p>View project → findings → evidence → alternatives → recommendation → decide → update Wings4 state → export JSON.</p>
+        <p>View project → findings → evidence → decide → track lifecycle → prepare intervention package → export → update Wings4 state.</p>
       </article>
     </div>
   </section>
@@ -52,7 +52,7 @@
     <div class="notice-grid">
       <article class="notice">
         <h3>Scope boundary</h3>
-        <p>Ring0 analyses SkillsMachine from evidence already held in Wings4. It does not read or modify the SkillsMachine repository.</p>
+        <p>Ring0/Ring1 analyse SkillsMachine from evidence already held in Wings4. They do not read or modify the SkillsMachine repository. Intervention packages are export-only.</p>
       </article>
       <article class="notice">
         <h3>Canonical-derived</h3>
@@ -96,7 +96,7 @@
   </section>
 
   <footer class="foot" role="contentinfo">
-    <p>Fixture path: <code>skillsmachine.fixture.json</code>. Canonical-derived records use Wings4-held evidence; representative non-canonical records are labeled. This prototype does not read or write <code>C:\01. GitHub\Skills</code>.</p>
+    <p>Fixture path: <code>skillsmachine.fixture.json</code>. Canonical-derived records use Wings4-held evidence; representative non-canonical records are labeled. This prototype does not read or write <code>C:\01. GitHub\Skills</code>. Ring1 packages are NOT EXECUTOR authorization.</p>
   </footer>
 
   <script src="app.js"></script>

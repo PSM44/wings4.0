@@ -1,4 +1,4 @@
-# Wings4 Ring0 Demo Runbook
+# Wings4 Ring0 + Ring1 Demo Runbook
 
 Prototype root: `PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/`
 
@@ -17,65 +17,49 @@ Then open `http://localhost:8765/`.
 
 Option B — open `index.html` directly. If the browser blocks `fetch` on `file://`, use Option A.
 
-## 5-minute demo
+## 5-minute cumulative demo
 
-1. Show Wings4 definition / problem / flow and the short first-use orientation.
-2. Point to the scope boundary: Wings4-held evidence only; SkillsMachine is not modified.
-3. Show SkillsMachine as the selected project, including Product relationship vs Project relationship.
-4. Open finding `F-SM-001` (WHOAMI→HUMAN).
-5. Contrast Evidence with Recommendation; note data provenance badges.
+### Ring0 (preserve)
+
+1. Show Wings4 definition / problem / flow and first-use orientation.
+2. Point to scope boundary: Wings4-held evidence only; SkillsMachine is not modified.
+3. Show SkillsMachine as the selected project.
+4. Open finding `F-SM-001`.
+5. Contrast Evidence with Recommendation.
 6. Choose ACCEPT / REJECT / MODIFY / POSTPONE.
-   - POSTPONE keeps the finding open for a later decision; it is not rejection.
-7. Show the confirmation and local state update in the bottom panel.
-8. Click **Export decisions JSON**.
-9. Optionally click **Reset demo**, confirm, and show the flow can be repeated.
-10. State clearly: SkillsMachine repository was not read or written.
+7. Show local state update and optional JSON export.
+
+### Ring1 (new)
+
+8. After ACCEPT or MODIFY, open Decision lifecycle: ID, status, owner, next action, optional review date, history.
+9. Confirm REJECT/POSTPONE are not intervention-eligible by default.
+10. For an eligible decision, set/confirm target project (pilot default SkillsMachine; field is generic).
+11. Preview the controlled intervention package.
+12. Export intervention TXT. Note authority banner:
+    - NOT_EXECUTOR_AUTHORIZATION
+    - TARGET_PROJECT_RETAINS_LOCAL_AUTHORITY
+    - NO_CROSS_REPO_MUTATION
+13. Show lifecycle status becomes In action; history records export. Closing does not claim child implementation.
+14. Optionally Reset demo and repeat.
 
 ## Provenance
 
-- `CANONICAL_DERIVED` → UI label: Derived from canonical evidence.
-- `REPRESENTATIVE_NONCANONICAL` → UI label: Representative, non-canonical.
-- Source pointers remain visible for audit.
-- Prototype state lives in browser `localStorage` (schema versioned) or in-memory if storage is unavailable.
-
-## Decision export
-
-Exported JSON includes schema version, project/finding IDs, action, visible action label, rationale/modification, previous/new state, timestamp, source data class, and Ring0 product marker. No confidential content beyond what the screen already shows.
-
-## Reset flow
-
-1. Click **Reset demo**.
-2. Confirm the dialog.
-3. Local Ring0 decisions are cleared so the demo can be repeated.
-
-DevTools equivalent:
-
-```js
-localStorage.removeItem('wings4.ring0.skillsmachine.decisions.v1')
-```
+- `CANONICAL_DERIVED` → Derived from canonical evidence.
+- `REPRESENTATIVE_NONCANONICAL` → Representative, non-canonical.
+- Local state schema version = 2 (Ring0 records migrate in memory).
 
 ## Known limitations
 
 - No SkillsMachine repository I/O.
-- No commit/push.
-- No Ring2..Ring5.
-- No RADAR implementation.
+- No return/resync automation.
+- No Ring2+.
+- No RADAR.
 - No cloud services.
 - No multi-user concurrency.
-- Automated browser validation is not claimed by this runbook; human manual validation of the 15 functional checks is PASS.
+- Human live Ring1 validation may still be pending after this build.
 
 ## PASS / FAIL
 
-PASS when:
+PASS when Ring0 path still works and Ring1 adds lifecycle + eligible intervention TXT export without child mutation.
 
-- SkillsMachine visible;
-- >=3 findings (baseline: 4);
-- evidence distinguishable from recommendation;
-- 4 decision actions work (ACCEPT / REJECT / MODIFY / POSTPONE);
-- state updates locally;
-- JSON downloads with required fields;
-- reset requires confirmation and clears state;
-- visible UI is English only;
-- no SkillsMachine mutation.
-
-FAIL when any of the above is missing or the fixture cannot load.
+FAIL when Ring0 regresses, intervention exports on REJECT/POSTPONE by default, or SkillsMachine would be written.

@@ -590,3 +590,21 @@ Decision:
 - Preserve canonical IDs, filenames, codes and literal source names for traceability.
 - This language rule is Ring0-local and does not create a portfolio-wide language standard by itself.
 - Ring1+ implementation and SkillsMachine mutation remain unauthorized by this decision.
+
+## DEC-W4-056 — Authorize Ring1 decision lifecycle plus minimal intervention package
+
+Status: APPROVED_HUMAN_DIRECTION
+Date: 2026-08-06
+Scope: Ring1 product increment; Q-089; authorization `RING1_A_PLUS_MINIMAL_B_APPROVED`
+
+Decision:
+
+- RING1_SCOPE=`DECISION_LIFECYCLE_PLUS_MINIMAL_CONTROLLED_INTERVENTION_PACKAGE`.
+- OPTION_A: decision lifecycle after Ring0 decision (owner, status, next action, optional review date, history, close/reopen, traceability).
+- MINIMAL_OPTION_B: generate an exportable controlled intervention package for the target project's ORCHESTRATOR after ACCEPT or MODIFY only.
+- Preserve Ring0 completely as the cumulative baseline.
+- REJECT and POSTPONE do not create intervention packages by default.
+- Package is NOT EXECUTOR authorization; target project retains local authority; no cross-repo mutation.
+- First pilot target project remains SkillsMachine; generic target model required.
+- Not authorized: child-project mutation, return/resync automation, product-to-product live integration, market scanning, Ring2+, RADAR.
+- PUSH remains unauthorized unless separately approved.

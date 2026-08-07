@@ -26,19 +26,20 @@
 |---|---|---:|---|---|
 | WINGS4_PRODUCT_001_SKILLSMACHINE_DIAGNOSTIC_RING0 | First Wings4 product ring: interactive actionable diagnosis of SkillsMachine | P0 | COMPLETED_BASELINE_PRESERVED | Local prototype shows SkillsMachine identity, >=3 findings, evidence/impact/alternatives/recommendation, ACCEPT/REJECT/MODIFY/POSTPONE (visible; was DEFER), updates Wings4-local state, exports decision JSON, does not mutate SkillsMachine, and is demoable live. Human manual browser validation of 15 functional checks = PASS. PRODUCT_001 task-count correction: 19 PASS + 1 PASS_WITH_GAP for 20 tasks (not 18+1). |
 | WINGS4_PRODUCT_002_RING0_HARDENING_AND_LOCAL_DEPLOY_READINESS | Harden Ring0: English C1 UI, POSTPONE, UX/a11y, local state resilience, deploy-readiness review pack | P0 | COMPLETED_HARDENED_ACCEPTED | Entire visible UI English; POSTPONE replaces DEFER; alignment/usability hardened; localStorage versioned and resilient; reset+orientation+provenance present; static validation PASS; human hardened final live acceptance PASS; local deploy posture PASS_FOR_SINGLE_USER_LOCAL_RING0; no SkillsMachine mutation; no Ring1 implementation. |
-| WINGS4_PRODUCT_003_RING0_BASELINE_COMMIT_AND_CONTINUITY_CLOSE | Commit accepted Ring0 Product_001/002 baseline and close continuity | P0 | IN_PROGRESS | Local commit of authorized Ring0 scope after precommit gates; BATON/continuation refresh; PUSH=NO; Ring1 not implemented. |
+| WINGS4_PRODUCT_003_RING0_BASELINE_COMMIT_AND_CONTINUITY_CLOSE | Commit accepted Ring0 Product_001/002 baseline and close continuity | P0 | COMPLETED | Local commits `1e8315d` (Ring0 baseline) and `3cef9b4` (continuity); PUSH=NO; worktree clean; Ring1 not implemented in PRODUCT_003. |
+| WINGS4_PRODUCT_004_RING1_DECISION_LIFECYCLE_AND_MIN_INTERVENTION | Ring1 decision lifecycle + minimal controlled intervention package | P0 | IN_PROGRESS | Preserve Ring0; add decision owner/status/next-action/history/close-reopen; ACCEPT/MODIFY can export governed intervention package for target ORCHESTRATOR; no child mutation; no Ring2+/RADAR. |
 
 Scope:
-- Wings4-local product Ring0 only.
-- Fixture/canonical-derived data from Wings4-held evidence; no direct SkillsMachine repository read/write in this task.
-- Decision updates Wings4/prototype state only.
-- PRODUCT_002 is hardening of the PRODUCT_001 cumulative baseline, not a new ring.
+- Wings4-local product Ring0 baseline preserved; Ring1 extends the same local prototype.
+- Fixture/canonical-derived data from Wings4-held evidence; no direct SkillsMachine repository read/write.
+- Decision updates Wings4/prototype state only; intervention packages are export-only.
 
 Out of scope:
 - SkillsMachine mutation;
-- Ring1 as a separate implementation beyond decision actions already in Ring0;
-- Ring2..Ring5 implementation;
+- Ring2..Ring5 implementation (beyond minimal package generation authorized in Ring1);
+- Return/resynchronization automation;
 - RADAR implementation;
+- Product-to-product live integration;
 - WPI/SMDI rollout;
 - commit/push without separate authorization;
 - cloud services;

@@ -158,7 +158,8 @@ Wings4.0 re-reads updated canon and verifies portfolio resynchronization.
 - Existing project HUMAN files vary in quality and structure.
 - Open-source substitution review has not yet been exercised on a real product decision.
 - Wings4.0 project-local RADAR is required as AI-only local evidence infrastructure but is not yet implemented; implementation remains unauthorized.
-- Product Ring0 (SkillsMachine interactive diagnosis) is authorized as a Wings4-local prototype using fixture/canonical-derived data only; it does not mutate SkillsMachine.
+- Product Ring0 (SkillsMachine interactive diagnosis) is committed and accepted as the first cumulative functional baseline; it does not mutate SkillsMachine.
+- Product Ring1 (decision lifecycle + minimal controlled intervention package export) is authorized under `DEC-W4-056` / Q-089; it does not mutate SkillsMachine and does not implement return/resync automation.
 - Rings 2..5 and portfolio-wide automation remain unauthorized.
 - Dynamic state (HEAD, worktree, next minibattle) is intentionally excluded from this HUMAN file.
 

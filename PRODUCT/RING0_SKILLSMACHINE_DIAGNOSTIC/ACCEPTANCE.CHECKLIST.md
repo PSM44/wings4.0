@@ -1,10 +1,10 @@
-# Ring0 Acceptance Checklist
+# Ring0 + Ring1 Acceptance Checklist
 
 Scope: `PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/`
-Authority: DEC-W4-049..055, Q-072..Q-087
+Authority: DEC-W4-049..056, Q-072..Q-089
 Purpose: Concise Wings4-local acceptance for management demo and deploy-readiness review.
 
-## Functionality
+## Ring0 functionality (must remain)
 
 - [ ] SkillsMachine appears as the selected project.
 - [ ] At least three findings are listed (baseline: four).
@@ -17,43 +17,41 @@ Purpose: Concise Wings4-local acceptance for management demo and deploy-readines
 - [ ] Decision JSON export downloads with required fields.
 - [ ] Reset demo clears local state after confirmation.
 
-## Stability
+## Ring1 decision lifecycle
+
+- [ ] Decision ID, status, owner, next action, optional review date, created/updated timestamps visible.
+- [ ] Minimal event history recorded chronologically.
+- [ ] Close marks Wings4-local completion only (no child-implementation claim).
+- [ ] Reopen preserves history.
+- [ ] POSTPONE sets postponed lifecycle status.
+- [ ] REJECT closes by default and remains intervention-ineligible.
+
+## Ring1 intervention package
+
+- [ ] ACCEPT/MODIFY are intervention-eligible.
+- [ ] REJECT/POSTPONE are not eligible by default.
+- [ ] Target project field defaults to SkillsMachine but remains generic.
+- [ ] Preview shows authority, scope, evidence, exclusions, acceptance, return evidence, stop conditions.
+- [ ] TXT export downloads; no repository write.
+- [ ] Exported/visible banner includes NOT_EXECUTOR_AUTHORIZATION / TARGET_PROJECT_RETAINS_LOCAL_AUTHORITY / NO_CROSS_REPO_MUTATION.
+- [ ] Package generation records an event and sets In action without claiming implementation complete.
+
+## Stability / data / usability
 
 - [ ] Missing/invalid fixture shows a clear user-visible error.
 - [ ] Corrupted or unavailable localStorage fails gracefully.
-- [ ] Demo remains operable after reset.
-
-## Real / representative data
-
-- [ ] Each finding is labelled canonical-derived or representative non-canonical.
-- [ ] Source paths remain available for audit.
-- [ ] No claim that representative records are SkillsMachine local canon.
-
-## Repeatability
-
-- [ ] Static-server open path works.
-- [ ] 5-minute demo path in `README.RING0.DEMO.md` can be repeated.
-- [ ] Reset restores a clean decision state.
-
-## Third-party usability
-
+- [ ] Schema v1 Ring0 records migrate into Ring1 structure.
 - [ ] Visible UI is English only (C1 professional target).
-- [ ] Operator does not need repository literacy to run the demo.
 - [ ] Product vs project relationship wording is clear.
-- [ ] First-use orientation is present and concise.
-
-## Management demo
-
-- [ ] Live path: project → finding → evidence → decision → state → export.
-- [ ] Scope boundary stated: no SkillsMachine mutation.
-- [ ] Human manual browser validation of the 15 functional checks remains PASS.
-- [ ] Deploy readiness remains a separate management declaration.
+- [ ] No SkillsMachine mutation.
 
 ## Record
 
 | Field | Value |
 |---|---|
-| HUMAN_MANUAL_BROWSER_VALIDATION | PASS |
+| HUMAN_MANUAL_BROWSER_VALIDATION (Ring0) | PASS |
 | RING0_HARDENED_FUNCTIONAL_ACCEPTANCE | PASS |
+| HUMAN_RING1_LIVE_VALIDATION | PENDING |
 | BROWSER_AUTOMATION | NOT_RUN unless separately evidenced |
-| LOCAL_DEPLOY_READINESS | PASS_FOR_SINGLE_USER_LOCAL_RING0 |
+| LOCAL_DEPLOY_READINESS | PASS_FOR_SINGLE_USER_LOCAL_RING0 (Ring0); Ring1 pending live review |
+| STATE_SCHEMA_VERSION | 2 |
