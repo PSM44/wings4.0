@@ -1,57 +1,56 @@
-# Ring0 + Ring1 Acceptance Checklist
+# Ring0 + Ring1 + Ring2 Acceptance Checklist
 
 Scope: `PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/`
-Authority: DEC-W4-049..056, Q-072..Q-089
-Purpose: Concise Wings4-local acceptance for management demo and deploy-readiness review.
+Authority: DEC-W4-049..060, Q-072..Q-094
 
-## Ring0 functionality (must remain)
+## Validation rule (W4P006A/B)
 
-- [ ] SkillsMachine appears as the selected project.
-- [ ] At least three findings are listed (baseline: four).
-- [ ] Selecting a finding shows Detail, Evidence, Impact, Alternatives, Recommendation and Decision.
-- [ ] Evidence is distinguishable from recommendation/interpretation.
-- [ ] Decision actions available: ACCEPT, REJECT, MODIFY, POSTPONE.
-- [ ] MODIFY requires an explicit modification/rationale.
-- [ ] POSTPONE keeps the finding open (not equivalent to REJECT).
-- [ ] Decision updates Wings4-local state only.
-- [ ] Decision JSON export downloads with required fields.
-- [ ] Reset demo clears local state after confirmation.
+Interactive features must not be marked PASS solely from static/code presence.
+Classify each interactive capability separately:
+IMPLEMENTED_STATICALLY / LOGICALLY_TESTED / BROWSER_AUTOMATED / HUMAN_LIVE_VALIDATED.
 
-## Ring1 decision lifecycle
+## Ring0 / Ring1 (must remain)
 
-- [ ] Decision ID, status, owner, next action, optional review date, created/updated timestamps visible.
-- [ ] Minimal event history recorded chronologically.
-- [ ] Close marks Wings4-local completion only (no child-implementation claim).
-- [ ] Reopen preserves history.
-- [ ] POSTPONE sets postponed lifecycle status.
-- [ ] REJECT closes by default and remains intervention-ineligible.
+- [ ] Diagnosis, decisions, governed target, Decision note only, DOWNLOAD INTERVENTION PACKAGE.
+- [ ] COPY PACKAGE adjacent; copy/download texts identical; ID unchanged by copy.
+- [ ] Owner/Next Action/Review Date/Preview free-text target absent.
+- [ ] Detail/package/Ring2 panels materially wider; paths/IDs wrap safely.
+- [ ] `W4P005_HUMAN_LIVE_VALIDATION=PASS` preserved.
 
-## Ring1 intervention package
+## Intervention package hardening (interactive)
 
-- [ ] ACCEPT/MODIFY are intervention-eligible.
-- [ ] REJECT/POSTPONE are not eligible by default.
-- [ ] Target project field defaults to SkillsMachine but remains generic.
-- [ ] Preview shows authority, scope, evidence, exclusions, acceptance, return evidence, stop conditions.
-- [ ] TXT export downloads; no repository write.
-- [ ] Exported/visible banner includes NOT_EXECUTOR_AUTHORIZATION / TARGET_PROJECT_RETAINS_LOCAL_AUTHORITY / NO_CROSS_REPO_MUTATION.
-- [ ] Package generation records an event and sets In action without claiming implementation complete.
+- [ ] Real unique `INTERVENTION_PACKAGE_ID` (`W4IP-YYYYMMDD-NNNN`) assigned no later than PACKAGE_READY.
+- [ ] Ready/exported package never shows `W4IP-PENDING-ASSIGNMENT`.
+- [ ] Visible header: `WINGS4_CONTROLLED_INTERVENTION_PACKAGE ID: W4IP-...`
+- [ ] Machine-readable `INTERVENTION_PACKAGE_ID=` remains in TXT body.
+- [ ] Same ID in filename, history, and Ring2 correlation.
+- [ ] SkillsMachine temp root metadata = `C:\Users\aazcl\Downloads\Temp.SkillMachine` when applicable.
+- [ ] Temp policies: CLEAN_BEFORE_WRITE / FLAT_ONLY / UPLOAD_READY_ONLY / TARGET_UPLOAD_FILE_COUNT=1.
+- [ ] Authority banners present.
 
-## Stability / data / usability
+## Ring2 (interactive)
 
-- [ ] Missing/invalid fixture shows a clear user-visible error.
-- [ ] Corrupted or unavailable localStorage fails gracefully.
-- [ ] Schema v1 Ring0 records migrate into Ring1 structure.
-- [ ] Visible UI is English only (C1 professional target).
-- [ ] Product vs project relationship wording is clear.
-- [ ] No SkillsMachine mutation.
+- [ ] Usable **Return evidence** textarea.
+- [ ] **IMPORT TXT** loads UTF-8 text into the textarea.
+- [ ] **VERIFY RETURN** operates on textarea content.
+- [ ] Accepts raw AI block and full TXT containing the block.
+- [ ] Template placeholders (`<...>`) treated as missing/invalid evidence.
+- [ ] Unknown package ID rejected without state corruption.
+- [ ] Incomplete evidence cannot become PASS.
+- [ ] Scope violation cannot become PASS.
+- [ ] Unauthorized push cannot become PASS.
+- [ ] Valid return reaches VERIFIED_PASS (human or browser proof required for live PASS).
+- [ ] Verification result visible; retry after edit is safe.
 
 ## Record
 
 | Field | Value |
 |---|---|
-| HUMAN_MANUAL_BROWSER_VALIDATION (Ring0) | PASS |
-| RING0_HARDENED_FUNCTIONAL_ACCEPTANCE | PASS |
-| HUMAN_RING1_LIVE_VALIDATION | PENDING |
-| BROWSER_AUTOMATION | NOT_RUN unless separately evidenced |
-| LOCAL_DEPLOY_READINESS | PASS_FOR_SINGLE_USER_LOCAL_RING0 (Ring0); Ring1 pending live review |
-| STATE_SCHEMA_VERSION | 2 |
+| W4P005_HUMAN_LIVE_VALIDATION | PASS |
+| HUMAN_RING2_NEGATIVE_PATHS | PASS |
+| HUMAN_RING2_VALID_RETURN | PASS (browser automated) |
+| HUMAN_RING2_LIVE_VALIDATION | PASS_WITH_BROWSER_VALID_RETURN |
+| W4P006_STATIC_FALSE_POSITIVE | RECORDED (Q-093 / DEC-W4-059) |
+| STATE_SCHEMA_VERSION | 4 |
+| PACKAGE_SCHEMA_VERSION | 1.0 |
+| COMMIT | NO until valid-return proof + gate |

@@ -1,65 +1,55 @@
-# Wings4 Ring0 + Ring1 Demo Runbook
+# Wings4 Ring0 + Ring1 + Ring2 Demo Runbook
 
 Prototype root: `PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/`
 
-Language: English-only human-facing UI (Cambridge C1 professional target). Canonical IDs and source paths stay literal.
-
 ## Open
-
-Option A — static server (recommended):
 
 ```powershell
 cd "C:\01. GitHub\Wings4.0\PRODUCT\RING0_SKILLSMACHINE_DIAGNOSTIC"
 py -m http.server 8765
 ```
 
-Then open `http://localhost:8765/`.
+Open `http://localhost:8765/`.
 
-Option B — open `index.html` directly. If the browser blocks `fetch` on `file://`, use Option A.
+## Live validation flow
 
-## 5-minute cumulative demo
+### Ring0 / Ring1
 
-### Ring0 (preserve)
+1. Open finding `F-SM-001`, ACCEPT (optional note) or MODIFY (required note).
+2. Confirm the Intervention Package header immediately shows a real ID:
+   `WINGS4_CONTROLLED_INTERVENTION_PACKAGE ID: W4IP-YYYYMMDD-NNNN`
+   (assigned at PACKAGE_READY — not `W4IP-PENDING-ASSIGNMENT`).
+3. Confirm source/target roots are visible as metadata only.
+4. Confirm SkillsMachine temp metadata resolves to `C:\Users\aazcl\Downloads\Temp.SkillMachine` (metadata only; Wings4 does not access it).
+5. Click **COPY PACKAGE** or **DOWNLOAD INTERVENTION PACKAGE**.
+6. Confirm copy/download use the same package ID and body; copy does not create a new ID.
+7. Confirm filename (download), visible header, machine-readable `INTERVENTION_PACKAGE_ID=` line, and history use the same real package ID.
 
-1. Show Wings4 definition / problem / flow and first-use orientation.
-2. Point to scope boundary: Wings4-held evidence only; SkillsMachine is not modified.
-3. Show SkillsMachine as the selected project.
-4. Open finding `F-SM-001`.
-5. Contrast Evidence with Recommendation.
-6. Choose ACCEPT / REJECT / MODIFY / POSTPONE.
-7. Show local state update and optional JSON export.
+### Ring2 — valid return
 
-### Ring1 (new)
+8. In **Return evidence**, paste a completed AI block using the **same** `INTERVENTION_PACKAGE_ID`, or click **IMPORT TXT**.
+9. Click **VERIFY RETURN**.
+10. Expect `VERIFIED_PASS` or `VERIFIED_PASS_WITH_GAP` when checks are satisfied.
+11. Optionally **Export verification TXT**.
+12. Edit the textarea and re-run VERIFY RETURN to confirm retry is safe.
 
-8. After ACCEPT or MODIFY, open Decision lifecycle: ID, status, owner, next action, optional review date, history.
-9. Confirm REJECT/POSTPONE are not intervention-eligible by default.
-10. For an eligible decision, set/confirm target project (pilot default SkillsMachine; field is generic).
-11. Preview the controlled intervention package.
-12. Export intervention TXT. Note authority banner:
-    - NOT_EXECUTOR_AUTHORIZATION
-    - TARGET_PROJECT_RETAINS_LOCAL_AUTHORITY
-    - NO_CROSS_REPO_MUTATION
-13. Show lifecycle status becomes In action; history records export. Closing does not claim child implementation.
-14. Optionally Reset demo and repeat.
+### Ring2 — required negative tests
 
-## Provenance
+13. **Unknown package ID:** unused `W4IP-...` → rejection; no local intervention mutation.
+14. **Missing / incomplete evidence:** placeholders such as `<PASS|PASS_WITH_GAP|FAIL>` or omitted fields → `RETURN_INCOMPLETE` (not fabricated PASS).
+15. **Prohibited scope violation:** `PROHIBITED_SCOPE_VIOLATION=YES` even if `OVERALL_STATUS=PASS` → `SCOPE_CONFLICT`.
+16. **Unauthorized push:** `PUSH=YES` against no-push policy → `FAILED`.
+17. Confirm SkillsMachine was not read or written by Wings4.
 
-- `CANONICAL_DERIVED` → Derived from canonical evidence.
-- `REPRESENTATIVE_NONCANONICAL` → Representative, non-canonical.
-- Local state schema version = 2 (Ring0 records migrate in memory).
+## Evidence classification
+
+Interactive claims must state separately: IMPLEMENTED_STATICALLY / LOGICALLY_TESTED / BROWSER_AUTOMATED / HUMAN_LIVE_VALIDATED.
+Do not mark HUMAN_RING2_LIVE_VALIDATION=PASS until the valid-return path is proven.
 
 ## Known limitations
 
-- No SkillsMachine repository I/O.
-- No return/resync automation.
-- No Ring2+.
-- No RADAR.
-- No cloud services.
-- No multi-user concurrency.
-- Human live Ring1 validation may still be pending after this build.
-
-## PASS / FAIL
-
-PASS when Ring0 path still works and Ring1 adds lifecycle + eligible intervention TXT export without child mutation.
-
-FAIL when Ring0 regresses, intervention exports on REJECT/POSTPONE by default, or SkillsMachine would be written.
+- No child-project execution by Wings4.
+- No Ring3 automation.
+- Human Ring2 live validation may still be pending after this build.
+- W4P005/W4P006/W4P006A changes may remain uncommitted until authorized.
+- Interactive functions must not be marked PASS from static/code presence alone.

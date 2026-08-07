@@ -42,5 +42,6 @@ Gerencia declares readiness when the product is functionally operable by a non-d
 | Delivery | Focus |
 |---|---|
 | E1 / Ring0 | Interactive actionable diagnosis of SkillsMachine (local prototype) |
-| E2 / Ring1 | Decision lifecycle + minimal controlled intervention package export |
+| E2 / Ring1 | Decision lifecycle + governed intervention package export |
+| E3 / Ring2 | Return evidence correlation and verification (Wings4-local) |
 | Later | Only after separate human authorization |

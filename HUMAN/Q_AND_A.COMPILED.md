@@ -43,8 +43,13 @@ DYNAMIC_STATE_AUTHORITY=00_STATE/BATON.WINGS4.ACTIVE.md
 - Human manually approved all 15 Ring0 functional checks; `HUMAN_MANUAL_BROWSER_VALIDATION=PASS` (Q-087). Not an automated browser claim.
 - Hardened final live acceptance: `RING0_HARDENED_FUNCTIONAL_ACCEPTANCE=PASS`; local single-user Ring0 posture `PASS_FOR_SINGLE_USER_LOCAL_RING0` (Q-088). Not enterprise/multi-user/cloud/full-product completion.
 - Ring1 authorized as decision lifecycle + minimal controlled intervention package export; no child mutation; no Ring2+/RADAR (Q-089; DEC-W4-056).
+- Ring1 UX simplification: Decision note is the only general free-text field; owner/next-action/review-date not user-editable; target is governed; Preview removed; package download is primary action; route is system-derived (Q-090; DEC-W4-057).
+- W4P005 human live validation PASS (Q-091).
+- W4P006 authorized: harden intervention package contract + Ring2 return verification; no child mutation; no Ring3+ (Q-092; DEC-W4-058).
+- W4P006A recovers human-detected functional gaps: real package ID before ready/export; Ring2 textarea + IMPORT TXT + VERIFY RETURN; records W4P006 static false-positive mismatch without rewriting historical reports (Q-093; DEC-W4-059).
+- W4P006B hardens Ring2 UX (COPY PACKAGE, wider panels, overflow-safe wrapping, template placeholders as missing) and gates baseline commit on valid-return VERIFIED_PASS proof (Q-094; DEC-W4-060). Human negative-path Ring2 tests PASS; valid-return live proof may still be pending.
 - Local Product Ring0 authorized for fixture-based prototype without reading/writing SkillsMachine repository in this build (Q-084).
-- Analyzing SkillsMachine in Ring0 does not force later rings to depend on SkillsMachine; Rings 2..5 remain unimplemented (Q-079).
+- Analyzing SkillsMachine in Ring0 does not force later rings to depend on SkillsMachine; Rings 2..5 remain unimplemented except Ring2 return verification authorized under DEC-W4-058 / recovered under DEC-W4-059 (Q-079 amended by Q-092/Q-093).
 - PRODUCT_001 task-count correction: reconciled detailed result is 19 PASS + 1 PASS_WITH_GAP for 20 tasks (not 18 PASS + 1 PASS_WITH_GAP).
 
 ## Management deliveries
@@ -63,7 +68,7 @@ DYNAMIC_STATE_AUTHORITY=00_STATE/BATON.WINGS4.ACTIVE.md
 - Historical ID collision: two entries titled `DEC-W4-PAIR-005` remain historical; not silently renamed (gap retained).
 
 ## Traceability
-- Full table: `HUMAN/Q_AND_A.md` Q-001..Q-089.
-- Decisions: `PORTFOLIO.DECISION_LOG.md` DEC-W4-046..DEC-W4-056 and prior.
+- Full table: `HUMAN/Q_AND_A.md` Q-001..Q-094.
+- Decisions: `PORTFOLIO.DECISION_LOG.md` DEC-W4-046..DEC-W4-060 and prior.
 - Active state: `00_STATE/BATON.WINGS4.ACTIVE.md`.
 - This compiled file is compact interpretation only; consult the full Q&A table for exact wording.

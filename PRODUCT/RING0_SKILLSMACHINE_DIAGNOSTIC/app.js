@@ -1,26 +1,17 @@
 (() => {
   const STORAGE_KEY = "wings4.ring0.skillsmachine.decisions.v1";
-  const SCHEMA_VERSION = 2;
-  const PRODUCT_VERSION = "RING0_RING1_E2";
+  const SCHEMA_VERSION = 4;
+  const PRODUCT_VERSION = "RING0_RING1_RING2_E3";
+  const PACKAGE_SCHEMA_VERSION = "1.0";
   const DEFAULT_OWNER = "Pablo";
-  const DEFAULT_TARGET_PROJECT = "SkillsMachine";
-  const SOURCE_PROJECT = "Wings4.0";
+  const SOURCE_PROJECT_ID = "Wings4.0";
+  const SOURCE_PROJECT_LABEL = "Wings4";
+  const DEFAULT_DESTINATION_ROLE = "ORCHESTRATOR";
+  const COMMIT_POLICY = "NO_COMMIT_WITHOUT_TARGET_LOCAL_AUTHORIZATION";
+  const PUSH_POLICY = "NO_PUSH_WITHOUT_TARGET_LOCAL_AUTHORIZATION";
 
-  const VISIBLE_ACTIONS = {
-    ACCEPT: "ACCEPT",
-    REJECT: "REJECT",
-    MODIFY: "MODIFY",
-    POSTPONE: "POSTPONE",
-    DEFER: "POSTPONE"
-  };
-
-  const ACTION_TO_FINDING_STATUS = {
-    ACCEPT: "ACCEPTED",
-    REJECT: "REJECTED",
-    MODIFY: "MODIFIED",
-    POSTPONE: "DEFERRED",
-    DEFER: "DEFERRED"
-  };
+  const VISIBLE_ACTIONS = { ACCEPT: "ACCEPT", REJECT: "REJECT", MODIFY: "MODIFY", POSTPONE: "POSTPONE", DEFER: "POSTPONE" };
+  const ACTION_TO_FINDING_STATUS = { ACCEPT: "ACCEPTED", REJECT: "REJECTED", MODIFY: "MODIFIED", POSTPONE: "DEFERRED", DEFER: "DEFERRED" };
 
   const els = {
     projectCard: document.getElementById("project-card"),
@@ -38,12 +29,16 @@
   let selectedId = null;
   let storageAvailable = true;
   let memoryState = emptyState();
+  let returnEvidenceDraft = {};
+  let ring2TransientByFinding = {};
 
   function emptyState() {
     return {
       schema_version: SCHEMA_VERSION,
       product_version: PRODUCT_VERSION,
+      package_sequence_by_day: {},
       decisions: {},
+      verifications: {},
       updated_at: null
     };
   }
@@ -55,52 +50,33 @@
 
   function escapeHtml(value) {
     return String(value == null ? "" : value)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#39;");
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
   }
 
-  function nowIso() {
-    return new Date().toISOString();
-  }
+  function nowIso() { return new Date().toISOString(); }
 
-  function normalizeAction(action) {
-    if (action === "DEFER") return "POSTPONE";
-    return action;
-  }
-
-  function visibleActionLabel(action) {
-    return VISIBLE_ACTIONS[action] || action;
-  }
+  function normalizeAction(action) { return action === "DEFER" ? "POSTPONE" : action; }
+  function visibleActionLabel(action) { return VISIBLE_ACTIONS[action] || action; }
 
   function statusLabel(raw) {
     const map = {
-      OPEN: "Open",
-      RESOLVED: "Resolved",
-      ACCEPTED: "Accepted",
-      REJECTED: "Rejected",
-      MODIFIED: "Modified",
-      DEFERRED: "Postponed",
-      POSTPONED: "Postponed",
-      DECIDED: "Decided",
-      IN_ACTION: "In action",
-      CLOSED: "Closed",
-      REOPENED: "Reopened",
-      HIGH: "High",
-      MEDIUM: "Medium",
-      LOW: "Low",
-      CANONICAL_DERIVED: "Derived from canonical evidence",
-      REPRESENTATIVE_NONCANONICAL: "Representative, non-canonical"
+      OPEN: "Open", RESOLVED: "Resolved", ACCEPTED: "Accepted", REJECTED: "Rejected", MODIFIED: "Modified",
+      DEFERRED: "Postponed", POSTPONED: "Postponed", DECIDED: "Decided", IN_ACTION: "In action", CLOSED: "Closed",
+      REOPENED: "Reopened", PACKAGE_READY: "Package ready", PACKAGE_EXPORTED: "Package exported",
+      VERIFIED_PASS: "Verified pass", VERIFIED_PASS_WITH_GAP: "Verified pass with gap", RETURN_INCOMPLETE: "Return incomplete",
+      SCOPE_CONFLICT: "Scope conflict", IDENTITY_MISMATCH: "Identity mismatch", UNVERIFIABLE: "Unverifiable", FAILED: "Failed",
+      HIGH: "High", MEDIUM: "Medium", LOW: "Low",
+      CANONICAL_DERIVED: "Derived from canonical evidence", REPRESENTATIVE_NONCANONICAL: "Representative, non-canonical"
     };
     return map[raw] || raw;
   }
 
   function badgeClassForStatus(raw) {
     if (raw === "POSTPONED") return "DEFERRED";
-    if (raw === "DECIDED" || raw === "IN_ACTION" || raw === "REOPENED") return "MODIFIED";
-    if (raw === "CLOSED") return "RESOLVED";
+    if (["DECIDED", "IN_ACTION", "REOPENED", "PACKAGE_READY", "VERIFIED_PASS_WITH_GAP", "UNVERIFIABLE"].includes(raw)) return "MODIFIED";
+    if (["CLOSED", "PACKAGE_EXPORTED", "VERIFIED_PASS"].includes(raw)) return "RESOLVED";
+    if (["SCOPE_CONFLICT", "IDENTITY_MISMATCH", "FAILED", "RETURN_INCOMPLETE"].includes(raw)) return "REJECTED";
     return raw || "OPEN";
   }
 
@@ -108,20 +84,428 @@
     return prefix + "-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 8);
   }
 
-  function defaultNextAction(action, status) {
+  function yyyymmdd(d) {
+    const x = d || new Date();
+    return String(x.getFullYear()) + String(x.getMonth() + 1).padStart(2, "0") + String(x.getDate()).padStart(2, "0");
+  }
+
+  function sourceMeta() {
+    const s = (fixture && fixture.source_project) || {};
+    return {
+      project_id: s.project_id || SOURCE_PROJECT_ID,
+      display_name: s.display_name || SOURCE_PROJECT_LABEL,
+      project_root: s.project_root || "C:\\01. GitHub\\Wings4.0",
+      role: s.role || "PRODUCT_ORCHESTRATOR",
+      temp_root: s.temp_root || "C:\\Users\\aazcl\\Downloads\\GlobalTempWings4"
+    };
+  }
+
+  function governedTargets() {
+    const opts = (fixture && Array.isArray(fixture.governed_target_options)) ? fixture.governed_target_options.slice() : [];
+    if (!opts.length && fixture && fixture.project) {
+      opts.push({
+        project_id: fixture.project.project_id,
+        display_name: fixture.project.display_name || fixture.project.project_id,
+        project_root: fixture.project.project_root || "",
+        destination_role: DEFAULT_DESTINATION_ROLE,
+        data_class: fixture.project.data_class || "CANONICAL_DERIVED"
+      });
+    }
+    return opts;
+  }
+
+  function isGovernedTarget(projectId) {
+    return governedTargets().some((t) => t.project_id === projectId);
+  }
+
+  function resolveTargetOption(finding, preferredId) {
+    const opts = governedTargets();
+    const preferred = preferredId || (finding && finding.target_project_id) || (fixture && fixture.project && fixture.project.project_id);
+    return opts.find((t) => t.project_id === preferred) || opts[0] || null;
+  }
+
+  function deriveNextAction(action, status, routeStatus, verificationResult) {
+    if (verificationResult === "VERIFIED_PASS" || verificationResult === "VERIFIED_PASS_WITH_GAP") {
+      return "Ring2 verification complete. Await any further human direction; Ring3 automation is not authorized.";
+    }
+    if (verificationResult === "RETURN_INCOMPLETE" || verificationResult === "UNVERIFIABLE") {
+      return "Request complete return evidence from the target ORCHESTRATOR using the same INTERVENTION_PACKAGE_ID.";
+    }
+    if (verificationResult === "IDENTITY_MISMATCH" || verificationResult === "SCOPE_CONFLICT" || verificationResult === "FAILED") {
+      return "Resolve the verification conflict before further portfolio action.";
+    }
     const a = normalizeAction(action);
     if (status === "CLOSED") return "No further Wings4 action required for this local decision.";
     if (status === "POSTPONED") return "Review later and record ACCEPT, REJECT or MODIFY.";
-    if (a === "ACCEPT" || a === "MODIFY") return "Generate controlled intervention package for target ORCHESTRATOR.";
+    if (status === "REOPENED") return "Confirm or record the next human decision action.";
+    if (routeStatus === "PACKAGE_EXPORTED" || status === "IN_ACTION") {
+      return "Await target ORCHESTRATOR return evidence and run Ring2 verification.";
+    }
+    if (a === "ACCEPT" || a === "MODIFY") return "Download the governed intervention package for the target ORCHESTRATOR.";
     if (a === "REJECT") return "Confirm rejection is final or reopen if circumstances change.";
     return "Record a human decision.";
   }
 
   function interventionEligible(decision) {
-    if (!decision) return false;
-    if (decision.status === "CLOSED") return false;
+    if (!decision || decision.status === "CLOSED") return false;
+    const a = normalizeAction(decision.action);
+    return a === "ACCEPT" || a === "MODIFY";
+  }
+
+  function nextPackageId(state) {
+    const day = yyyymmdd();
+    if (!state.package_sequence_by_day || typeof state.package_sequence_by_day !== "object") {
+      state.package_sequence_by_day = {};
+    }
+    const next = Number(state.package_sequence_by_day[day] || 0) + 1;
+    state.package_sequence_by_day[day] = next;
+    const id = "W4IP-" + day + "-" + String(next).padStart(4, "0");
+    const used = Object.keys(state.decisions || {}).some((k) => {
+      const d = state.decisions[k];
+      return d && d.intervention && d.intervention.intervention_package_id === id;
+    });
+    if (used) return nextPackageId(state);
+    return id;
+  }
+
+  function isPendingPackageId(id) {
+    const s = String(id || "");
+    return !s || s === "W4IP-PENDING-ASSIGNMENT" || s.indexOf("PENDING") >= 0;
+  }
+
+  function isValidPackageIdPattern(id) {
+    return /^W4IP-\d{8}-\d{4}$/.test(String(id || ""));
+  }
+
+  function isTemplateValue(value) {
+    const s = String(value == null ? "" : value).trim();
+    if (!s) return true;
+    // Angle-bracket placeholders from package templates, including enums and <n>.
+    if (/^<[^>]*>$/.test(s)) return true;
+    if (s.indexOf("<") === 0 && s.indexOf(">") > 0) return true;
+    if (s.indexOf("|") >= 0 && /<(PASS|YES|NO|FAIL|n|hash|path|compact)/i.test(s)) return true;
+    return false;
+  }
+
+  function isMissingOrTemplate(value) {
+    return value == null || String(value).trim() === "" || isTemplateValue(value);
+  }
+
+  function displayEvidenceValue(value) {
+    if (isMissingOrTemplate(value)) return "(missing / template — not real evidence)";
+    return String(value);
+  }
+
+  function ensurePackageIdentity(state, finding, decision) {
+    if (!state || !finding || !decision || !interventionEligible(decision) || !decision.route) return null;
+    const existing = decision.intervention && decision.intervention.intervention_package_id;
+    if (existing && !isPendingPackageId(existing) && isValidPackageIdPattern(existing)) {
+      return existing;
+    }
+    const packageId = nextPackageId(state);
+    const route = decision.route;
+    const priorVersion = decision.intervention && decision.intervention.version
+      ? Number(decision.intervention.version)
+      : 0;
+    decision.intervention = {
+      intervention_package_id: packageId,
+      package_schema_version: PACKAGE_SCHEMA_VERSION,
+      target_project: route.TARGET_PROJECT,
+      target_root: route.TARGET_ROOT,
+      source_project: route.SOURCE_PROJECT,
+      source_root: route.SOURCE_ROOT,
+      generated_at: nowIso(),
+      version: priorVersion + 1,
+      destination_role: route.DESTINATION_ROLE,
+      route_id: route.route_id,
+      exported: Boolean(decision.intervention && decision.intervention.exported)
+    };
+    if (route.EXECUTION_STATUS !== "PACKAGE_EXPORTED") {
+      route.EXECUTION_STATUS = "PACKAGE_READY";
+    }
+    decision.route = route;
+    decision.next_action = deriveNextAction(
+      decision.action,
+      decision.status,
+      route.EXECUTION_STATUS,
+      decision.verification && decision.verification.overall_result
+    );
+    pushEvent(decision, "INTERVENTION_PACKAGE_ID_ASSIGNED", "Assigned persistent package ID " + packageId + ".", DEFAULT_OWNER);
+    return packageId;
+  }
+
+  function ensureReadyPackage(finding, decision, state) {
+    const ensured = ensureRoute(finding, decision);
+    if (ensured.error) return ensured;
+    const before = decision.intervention && decision.intervention.intervention_package_id;
+    const packageId = ensurePackageIdentity(state, finding, decision);
+    if (!packageId || isPendingPackageId(packageId)) {
+      return { error: "Failed to assign a persistent INTERVENTION_PACKAGE_ID." };
+    }
+    return {
+      route: decision.route,
+      targetOpt: ensured.targetOpt,
+      packageId,
+      identityAssigned: before !== packageId
+    };
+  }
+
+  function buildRoute(finding, decision, targetOpt, executionStatus) {
+    const src = sourceMeta();
+    const destination = targetOpt.project_id;
+    const role = targetOpt.destination_role || DEFAULT_DESTINATION_ROLE;
     const action = normalizeAction(decision.action);
-    return action === "ACCEPT" || action === "MODIFY";
+    const purpose = action === "MODIFY"
+      ? `Governed request for ${finding.finding_id}: apply recommendation with recorded modification.`
+      : `Governed request for ${finding.finding_id}: apply Wings4 recommendation under local target authority.`;
+    const temp = targetOpt.temp_contract || null;
+    const routeId = ["RTE", src.project_id, destination, finding.finding_id, decision.decision_id].join("-").replace(/[^A-Za-z0-9._-]+/g, "_");
+    return {
+      route_id: routeId,
+      SOURCE: src.display_name,
+      SOURCE_PROJECT: src.project_id,
+      SOURCE_ROOT: src.project_root,
+      SOURCE_ROLE: src.role,
+      DESTINATION: destination,
+      TARGET_PROJECT: destination,
+      TARGET_ROOT: targetOpt.project_root || "",
+      DESTINATION_ROLE: role,
+      PURPOSE: purpose,
+      AUTHORIZED_SCOPE: [
+        `Evaluate finding ${finding.finding_id} (${finding.title}).`,
+        `Respect recorded human decision ${action}.`,
+        action === "MODIFY"
+          ? `Apply modification note: ${decision.rationale_or_modification || "(required)"}`
+          : `Apply recommendation: ${finding.recommendation || ""}`,
+        `Respond via ${role} under ${destination} local governance.`
+      ],
+      PROHIBITED_SCOPE: [
+        "Do not treat this package as EXECUTOR authorization.",
+        "Do not authorize Wings4 to mutate the target repository.",
+        "Do not expand scope beyond the finding and recorded decision.",
+        "Do not implement unrelated dirty workstreams under this package.",
+        "Do not claim portfolio resynchronization until Wings4 reviews return evidence."
+      ],
+      INPUT_EVIDENCE: (finding.evidence || []).map((e) => ({
+        label: e.label || "Evidence",
+        pointer: e.pointer || "",
+        data_class: finding.data_class || "UNKNOWN"
+      })),
+      EXPECTED_OUTPUT: [
+        "Local ORCHESTRATOR review recorded under destination governance.",
+        "Decision whether to accept, modify locally, reject or defer under destination authority.",
+        "If local work proceeds, changes remain within authorized scope and exclusions.",
+        "One compact return file/AI block using the same INTERVENTION_PACKAGE_ID."
+      ],
+      RETURN_EVIDENCE: [
+        "project_id / root",
+        "HEAD_BEFORE / HEAD_AFTER",
+        "files_changed",
+        "validation_results",
+        "commit_hash (if any)",
+        "push_status",
+        "conflicts_or_blockers",
+        "resync_ready=YES|NO",
+        "exact return AI block with same INTERVENTION_PACKAGE_ID"
+      ],
+      AUTHORITY_BOUNDARY: [
+        "NOT_EXECUTOR_AUTHORIZATION",
+        "TARGET_PROJECT_RETAINS_LOCAL_AUTHORITY",
+        "NO_CROSS_REPO_MUTATION_BY_WINGS4"
+      ],
+      EXECUTION_STATUS: executionStatus || "PACKAGE_READY",
+      COMMIT_POLICY,
+      PUSH_POLICY,
+      TEMP_CONTRACT: temp,
+      PATHS_ARE_METADATA_ONLY: "YES"
+    };
+  }
+
+  function validateRoute(route, decision) {
+    if (!route) return "Route missing.";
+    const required = [
+      "route_id", "SOURCE_PROJECT", "SOURCE_ROOT", "TARGET_PROJECT", "TARGET_ROOT", "DESTINATION_ROLE",
+      "PURPOSE", "AUTHORIZED_SCOPE", "PROHIBITED_SCOPE", "INPUT_EVIDENCE", "EXPECTED_OUTPUT",
+      "RETURN_EVIDENCE", "AUTHORITY_BOUNDARY", "EXECUTION_STATUS"
+    ];
+    for (let i = 0; i < required.length; i += 1) {
+      if (route[required[i]] == null || route[required[i]] === "") return "Route missing " + required[i];
+    }
+    if (!isGovernedTarget(route.TARGET_PROJECT || route.DESTINATION)) return "Destination is outside governed target options.";
+    if (!interventionEligible(decision)) return "Decision is not intervention-eligible.";
+    if (!(route.AUTHORITY_BOUNDARY || []).includes("NOT_EXECUTOR_AUTHORIZATION")) return "Authority boundary incomplete.";
+    return null;
+  }
+
+  function returnAiBlockTemplate(packageId) {
+    return [
+      "---AI_START---",
+      "INTERVENTION_PACKAGE_ID=" + packageId,
+      "OVERALL_STATUS=<PASS|PASS_WITH_GAP|BLOCKED|FAIL>",
+      "PROJECT_ID=<target project id>",
+      "PROJECT_ROOT=<target root>",
+      "BRANCH=<branch>",
+      "HEAD_BEFORE=<hash>",
+      "HEAD_AFTER=<hash>",
+      "WORKTREE_CLEAN_FINAL=<YES|NO>",
+      "INDEX_CLEAN_FINAL=<YES|NO>",
+      "FILES_CHANGED=<compact value>",
+      "AUTHORIZED_SCOPE_COMPLIANCE=<PASS|PASS_WITH_GAP|FAIL>",
+      "PROHIBITED_SCOPE_VIOLATION=<YES|NO>",
+      "EXPECTED_OUTPUT_STATUS=<PASS|PASS_WITH_GAP|FAIL|NOT_APPLICABLE>",
+      "RETURN_EVIDENCE_STATUS=<PASS|PASS_WITH_GAP|FAIL>",
+      "CANONICAL_CONFLICT_COUNT=<n>",
+      "COMMIT=<hash|NO|NOT_REQUIRED>",
+      "PUSH=<YES|NO>",
+      "RETURN_EVIDENCE_FILE=<path|NONE>",
+      "NEXT_ACTION=<compact next action>",
+      "---AI_END---"
+    ].join("\n");
+  }
+
+  function serializePackage(finding, decision, route, packageId) {
+    if (isPendingPackageId(packageId) || !isValidPackageIdPattern(packageId)) {
+      throw new Error("Refusing to serialize package without a real INTERVENTION_PACKAGE_ID.");
+    }
+    const temp = route.TEMP_CONTRACT;
+    const generatedAt = (decision.intervention && decision.intervention.generated_at) || nowIso();
+    if (decision.intervention && !decision.intervention.generated_at) {
+      decision.intervention.generated_at = generatedAt;
+    }
+    const evidenceLines = (route.INPUT_EVIDENCE || [])
+      .map((e, i) => `  ${i + 1}. ${e.label} | ${e.pointer} | class=${e.data_class}`)
+      .join("\n");
+    const lines = [
+      "WINGS4_CONTROLLED_INTERVENTION_PACKAGE ID: " + packageId,
+      "FORMAT=UTF8_TXT",
+      "PACKAGE_SCHEMA_VERSION=" + PACKAGE_SCHEMA_VERSION,
+      "INTERVENTION_PACKAGE_ID=" + packageId,
+      "ROUTE_ID=" + route.route_id,
+      "GENERATED_AT=" + generatedAt,
+      "NEXT_RETURN_TARGET=Wings4 ORCHESTRATOR",
+      "",
+      "IDENTITY",
+      "SOURCE_PROJECT=" + route.SOURCE_PROJECT,
+      "SOURCE_ROOT=" + route.SOURCE_ROOT,
+      "SOURCE_ROLE=" + route.SOURCE_ROLE,
+      "TARGET_PROJECT=" + route.TARGET_PROJECT,
+      "TARGET_ROOT=" + route.TARGET_ROOT,
+      "DESTINATION_ROLE=" + route.DESTINATION_ROLE,
+      "FINDING_ID=" + finding.finding_id,
+      "DECISION_ID=" + decision.decision_id,
+      "PATHS_ARE_METADATA_ONLY=YES",
+      "PATHS_DO_NOT_AUTHORIZE_READ_OR_MUTATION=YES",
+      "",
+      "AUTHORITY",
+      ...(route.AUTHORITY_BOUNDARY || []),
+      "HUMAN_DECISION_EXISTS=YES",
+      "WINGS4_PREPARES_REQUEST=YES",
+      "CHILD_PROJECT_MUTATION_BY_WINGS4=NO",
+      "COMMIT_POLICY=" + route.COMMIT_POLICY,
+      "PUSH_POLICY=" + route.PUSH_POLICY,
+      "",
+      "HUMAN_DECISION",
+      "ACTION=" + decision.action,
+      "STATUS=" + decision.status,
+      "DECISION_NOTE=" + (decision.rationale_or_modification || ""),
+      "DECIDED_AT=" + (decision.decided_at || decision.created_at),
+      "",
+      "FINDING",
+      "TITLE=" + finding.title,
+      "SUMMARY=" + (finding.summary || ""),
+      "DATA_CLASS=" + (finding.data_class || ""),
+      "RECOMMENDATION=" + (finding.recommendation || ""),
+      "",
+      "GOVERNED_ROUTE",
+      "PURPOSE=" + route.PURPOSE,
+      "EXECUTION_STATUS=" + route.EXECUTION_STATUS,
+      "",
+      "AUTHORIZED_SCOPE",
+      ...(route.AUTHORIZED_SCOPE || []).map((s) => "- " + s),
+      "",
+      "PROHIBITED_SCOPE",
+      ...(route.PROHIBITED_SCOPE || []).map((s) => "- " + s),
+      "",
+      "INPUT_EVIDENCE",
+      evidenceLines || "  (none)",
+      "",
+      "EXPECTED_OUTPUT",
+      ...(route.EXPECTED_OUTPUT || []).map((s) => "- " + s),
+      "",
+      "REQUIRED_RETURN_EVIDENCE",
+      ...(route.RETURN_EVIDENCE || []).map((s) => "- " + s),
+      "",
+      "RETURN_FORMAT",
+      "PREFERRED_RETURN=ONE_CONSOLIDATED_FILE_OR_PASTEABLE_AI_BLOCK",
+      "TARGET_UPLOAD_FILE_COUNT=1",
+      "MINIMIZE_FILE_COUNT=YES",
+      "MINIMIZE_FILE_SIZE=YES",
+      "MINIMIZE_TOTAL_SIZE=YES",
+      "REQUIRED_AI_BLOCK=YES",
+      "RETURN_SAME_PACKAGE_ID_REQUIRED=YES",
+      "",
+      "REQUIRED_RETURN_AI_BLOCK_TEMPLATE",
+      returnAiBlockTemplate(packageId),
+      ""
+    ];
+    if (temp && temp.applicable) {
+      const tempRoot = temp.temp_root == null || temp.temp_root === ""
+        ? "DESTINATION_LOCAL_DISPOSABLE_STAGING"
+        : temp.temp_root;
+      lines.push(
+        "TEMP_CONTRACT",
+        "TEMP_APPLICABLE=YES",
+        "TEMP_ROOT=" + tempRoot,
+        "TEMP_ROOT_SEMANTICS=" + (temp.temp_root_semantics || "Metadata only; Wings4 does not access or mutate this path."),
+        "TEMP_METADATA_DOES_NOT_AUTHORIZE_WINGS4_ACCESS=YES",
+        "TEMP_CLEAN_BEFORE_WRITE=" + (temp.clean_before_write ? "YES" : "NO"),
+        "TEMP_FLAT_ONLY=" + (temp.flat_only ? "YES" : "NO"),
+        "UPLOAD_READY_ONLY=" + (temp.upload_ready_only ? "YES" : "NO"),
+        "MINIMIZE_FILE_COUNT=" + (temp.minimize_file_count ? "YES" : "NO"),
+        "MINIMIZE_FILE_SIZE=" + (temp.minimize_file_size ? "YES" : "NO"),
+        "MINIMIZE_TOTAL_SIZE=" + (temp.minimize_total_size ? "YES" : "NO"),
+        "TARGET_UPLOAD_FILE_COUNT=" + String(temp.target_upload_file_count == null ? 1 : temp.target_upload_file_count),
+        ""
+      );
+    } else {
+      lines.push("TEMP_CONTRACT", "TEMP_APPLICABLE=NO", "");
+    }
+    lines.push(
+      "STOP_CONDITIONS",
+      "- Canonical conflict unresolved",
+      "- Unknown dirty worktree state",
+      "- Scope expansion requested",
+      "- Local authorization absent",
+      "- Evidence-loss risk",
+      "- INTERVENTION_PACKAGE_ID missing from return",
+      "",
+      "PRODUCT_VS_PROJECT_NOTE",
+      "As products, Wings4 may optionally integrate with SkillsMachine for reusable Skills/GRC capabilities; that is not implemented by this package.",
+      "As projects, Wings4 does not develop or modify SkillsMachine; SkillsMachine retains local implementation authority.",
+      "",
+      "END_OF_PACKAGE"
+    );
+    return lines.join("\n");
+  }
+
+  function validatePackageText(text, route, packageId) {
+    if (isPendingPackageId(packageId) || !isValidPackageIdPattern(packageId)) {
+      return "Package ID is not a real assigned W4IP identity.";
+    }
+    const required = [
+      "WINGS4_CONTROLLED_INTERVENTION_PACKAGE ID: " + packageId,
+      "PACKAGE_SCHEMA_VERSION=", "INTERVENTION_PACKAGE_ID=" + packageId, "SOURCE_PROJECT=", "SOURCE_ROOT=",
+      "TARGET_PROJECT=", "TARGET_ROOT=", "DESTINATION_ROLE=", "NOT_EXECUTOR_AUTHORIZATION",
+      "TARGET_PROJECT_RETAINS_LOCAL_AUTHORITY", "NO_CROSS_REPO_MUTATION_BY_WINGS4",
+      "AUTHORIZED_SCOPE", "PROHIBITED_SCOPE", "REQUIRED_RETURN_EVIDENCE", "REQUIRED_RETURN_AI_BLOCK_TEMPLATE",
+      "---AI_START---", "---AI_END---", "RETURN_SAME_PACKAGE_ID_REQUIRED=YES", "MINIMIZE_FILE_COUNT=YES"
+    ];
+    for (let i = 0; i < required.length; i += 1) {
+      if (!text.includes(required[i])) return "Missing package section: " + required[i];
+    }
+    if (text.includes("W4IP-PENDING-ASSIGNMENT")) return "Pending package ID leaked into ready/exported package text.";
+    if (!isGovernedTarget(route.TARGET_PROJECT || route.DESTINATION)) return "Arbitrary destination blocked.";
+    return null;
   }
 
   function probeStorage() {
@@ -161,25 +545,25 @@
       else if (action === "REJECT") status = "CLOSED";
       else status = "DECIDED";
     }
+    const targetOpt = resolveTargetOption({ finding_id: findingId, target_project_id: raw.target_project }, raw.target_project);
     const decision = {
       decision_id: raw.decision_id || makeId("DEC"),
       finding_id: findingId,
       title: raw.title || "",
       action,
       visible_action_label: raw.visible_action_label || visibleActionLabel(action),
-      owner: raw.owner || DEFAULT_OWNER,
+      owner: DEFAULT_OWNER,
       status,
       created_at: created,
       updated_at: updated,
-      next_action: raw.next_action || defaultNextAction(action, status),
-      review_date: raw.review_date || "",
+      next_action: "",
       rationale_or_modification: raw.rationale_or_modification || raw.note || "",
       note: raw.rationale_or_modification || raw.note || "",
       previous_state: raw.previous_state || null,
       new_state: raw.new_state || ACTION_TO_FINDING_STATUS[action] || null,
       decided_at: raw.decided_at || created,
-      project_id: raw.project_id || DEFAULT_TARGET_PROJECT,
-      target_project: raw.target_project || raw.project_id || DEFAULT_TARGET_PROJECT,
+      project_id: raw.project_id || (fixture && fixture.project && fixture.project.project_id) || "",
+      target_project: (targetOpt && targetOpt.project_id) || raw.target_project || "",
       source_data_class: raw.source_data_class || raw.data_class || null,
       data_class: raw.data_class || raw.source_data_class || null,
       recommendation_snapshot: raw.recommendation_snapshot || "",
@@ -188,20 +572,28 @@
       product_version: PRODUCT_VERSION,
       schema_version: SCHEMA_VERSION,
       events: Array.isArray(raw.events) ? raw.events.slice() : [],
-      intervention: raw.intervention || null
+      intervention: raw.intervention || null,
+      route: raw.route || null,
+      verification: raw.verification || null
     };
-    if (!decision.events.length) {
-      pushEvent(decision, "DECISION_RECORDED", "Migrated from Ring0 local state.", decision.owner);
-    }
+    decision.next_action = deriveNextAction(
+      decision.action,
+      decision.status,
+      decision.route && decision.route.EXECUTION_STATUS,
+      decision.verification && decision.verification.overall_result
+    );
+    if (!decision.events.length) pushEvent(decision, "DECISION_RECORDED", "Migrated into schema v4.", decision.owner);
     return decision;
   }
 
   function normalizeState(parsed) {
     const state = emptyState();
     if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) return state;
-    const decisionsIn = parsed.decisions && typeof parsed.decisions === "object" && !Array.isArray(parsed.decisions)
-      ? parsed.decisions
+    state.package_sequence_by_day = (parsed.package_sequence_by_day && typeof parsed.package_sequence_by_day === "object")
+      ? parsed.package_sequence_by_day
       : {};
+    state.verifications = (parsed.verifications && typeof parsed.verifications === "object") ? parsed.verifications : {};
+    const decisionsIn = parsed.decisions && typeof parsed.decisions === "object" && !Array.isArray(parsed.decisions) ? parsed.decisions : {};
     Object.keys(decisionsIn).forEach((key) => {
       state.decisions[key] = migrateDecision(decisionsIn[key], key);
     });
@@ -213,12 +605,7 @@
 
   function validateStateShape(state) {
     if (!state || typeof state !== "object") return "State root missing.";
-    if (Number(state.schema_version) !== SCHEMA_VERSION && Number(state.schema_version) !== 1) {
-      /* allow load then migrate */
-    }
-    if (!state.decisions || typeof state.decisions !== "object" || Array.isArray(state.decisions)) {
-      return "Missing decisions object.";
-    }
+    if (!state.decisions || typeof state.decisions !== "object" || Array.isArray(state.decisions)) return "Missing decisions object.";
     return null;
   }
 
@@ -247,11 +634,7 @@
     } catch (err) {
       setStatus("Local state was invalid and has been reset for this session.", true);
       memoryState = emptyState();
-      try {
-        localStorage.removeItem(STORAGE_KEY);
-      } catch (removeErr) {
-        /* ignore */
-      }
+      try { localStorage.removeItem(STORAGE_KEY); } catch (e) { /* ignore */ }
       return memoryState;
     }
   }
@@ -261,9 +644,8 @@
     state.product_version = PRODUCT_VERSION;
     memoryState = state;
     if (storageAvailable) {
-      try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-      } catch (err) {
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+      catch (err) {
         storageAvailable = false;
         setStatus("Could not persist to browser storage. Continuing with in-memory state only.", true);
       }
@@ -271,12 +653,16 @@
     renderState(state);
   }
 
-  function renderState(state) {
-    els.stateView.textContent = JSON.stringify(state, null, 2);
-  }
+  function renderState(state) { els.stateView.textContent = JSON.stringify(state, null, 2); }
+  function getDecision(state, findingId) { return state.decisions[findingId] || null; }
 
-  function getDecision(state, findingId) {
-    return state.decisions[findingId] || null;
+  function findDecisionByPackageId(state, packageId) {
+    const ids = Object.keys(state.decisions || {});
+    for (let i = 0; i < ids.length; i += 1) {
+      const d = state.decisions[ids[i]];
+      if (d && d.intervention && d.intervention.intervention_package_id === packageId) return d;
+    }
+    return null;
   }
 
   function effectiveFindingStatus(finding, state) {
@@ -293,24 +679,20 @@
     els.wings4Summary.innerHTML = `
       <article><h3>Product</h3><p>${escapeHtml(w.product || "Wings4")}</p></article>
       <article><h3>Problem</h3><p>${escapeHtml(w.problem || "")}</p></article>
-      <article><h3>How it works</h3><p>${escapeHtml(w.how_it_works || "")}</p></article>
-    `;
+      <article><h3>How it works</h3><p>${escapeHtml(w.how_it_works || "")}</p></article>`;
   }
 
   function renderProject(project) {
     const dataClass = project.data_class || "";
     els.projectCard.innerHTML = `
-      <div class="title">
-        <strong>${escapeHtml(project.display_name || project.project_id)}</strong>
-        <span class="badge ${escapeHtml(dataClass)}">${escapeHtml(statusLabel(dataClass))}</span>
-      </div>
+      <div class="title"><strong>${escapeHtml(project.display_name || project.project_id)}</strong>
+        <span class="badge ${escapeHtml(dataClass)}">${escapeHtml(statusLabel(dataClass))}</span></div>
       <p><strong>ID:</strong> ${escapeHtml(project.project_id)}</p>
       <p>${escapeHtml(project.identity || "")}</p>
       <p><strong>Purpose:</strong> ${escapeHtml(project.purpose || "")}</p>
       <p class="meta-line"><strong>Portfolio role:</strong> ${escapeHtml(project.portfolio_role || "")}</p>
       <p class="meta-line"><strong>Product relationship:</strong> ${escapeHtml(project.wings4_relationship_product || "")}</p>
-      <p class="meta-line"><strong>Project relationship:</strong> ${escapeHtml(project.wings4_relationship_project || "")}</p>
-    `;
+      <p class="meta-line"><strong>Project relationship:</strong> ${escapeHtml(project.wings4_relationship_project || "")}</p>`;
   }
 
   function renderFindings(findings, state) {
@@ -323,21 +705,16 @@
       btn.type = "button";
       btn.className = "finding" + (selectedId === f.finding_id ? " active" : "");
       btn.setAttribute("aria-pressed", selectedId === f.finding_id ? "true" : "false");
-      btn.setAttribute("aria-label", `Finding ${f.finding_id}: ${f.title}. Status ${statusLabel(status)}.`);
       btn.innerHTML = `
         <div class="title">${escapeHtml(f.title)}</div>
         <div class="meta-line badge-row">
           <span class="badge ${escapeHtml(badgeClassForStatus(status))}">${escapeHtml(statusLabel(status))}</span>
           ${decision ? `<span class="badge ${escapeHtml(badgeClassForStatus(decision.status))}">${escapeHtml(statusLabel(decision.status))}</span>` : ""}
+          ${decision && decision.verification ? `<span class="badge ${escapeHtml(badgeClassForStatus(decision.verification.overall_result))}">${escapeHtml(statusLabel(decision.verification.overall_result))}</span>` : ""}
           <span class="badge ${escapeHtml(f.severity || "")}">${escapeHtml(statusLabel(f.severity || ""))}</span>
-          <span class="badge ${escapeHtml(f.data_class || "")}">${escapeHtml(statusLabel(f.data_class || ""))}</span>
         </div>
-        <div class="meta-line">${escapeHtml(f.finding_id)}</div>
-      `;
-      btn.addEventListener("click", () => {
-        selectedId = f.finding_id;
-        renderAll();
-      });
+        <div class="meta-line">${escapeHtml(f.finding_id)}</div>`;
+      btn.addEventListener("click", () => { selectedId = f.finding_id; renderAll(); });
       li.appendChild(btn);
       els.findingsList.appendChild(li);
     });
@@ -346,157 +723,485 @@
   function renderHistory(decision) {
     const events = (decision && decision.events) || [];
     if (!events.length) return "<p class='muted'>No events yet.</p>";
-    return `<ol class="event-list">${events
-      .slice()
-      .sort((a, b) => String(a.timestamp).localeCompare(String(b.timestamp)))
-      .map((e) => `
-        <li>
-          <strong>${escapeHtml(e.event_type)}</strong>
-          <span class="muted"> · ${escapeHtml(e.timestamp)} · ${escapeHtml(e.actor || "")}</span>
-          ${e.note ? `<div>${escapeHtml(e.note)}</div>` : ""}
-        </li>
-      `)
-      .join("")}</ol>`;
+    return `<ol class="event-list">${events.slice().sort((a, b) => String(a.timestamp).localeCompare(String(b.timestamp))).map((e) => `
+      <li><strong>${escapeHtml(e.event_type)}</strong><span class="muted"> · ${escapeHtml(e.timestamp)}</span>
+      ${e.note ? `<div>${escapeHtml(e.note)}</div>` : ""}</li>`).join("")}</ol>`;
   }
 
-  function buildInterventionPackage(finding, decision) {
-    const target = decision.target_project || DEFAULT_TARGET_PROJECT;
-    const packageId = (decision.intervention && decision.intervention.package_id) || makeId("PKG");
-    const generatedAt = nowIso();
-    const evidenceLines = (finding.evidence || [])
-      .map((e, i) => `  ${i + 1}. ${e.label || "Evidence"} | ${e.pointer || ""} | class=${finding.data_class || "UNKNOWN"}`)
-      .join("\n");
-    const scope = decision.action === "MODIFY"
-      ? `Apply the Wings4 recommendation with the recorded modification/rationale: ${decision.rationale_or_modification || "(none)"}`
-      : `Apply the Wings4 recommendation for finding ${finding.finding_id}: ${finding.recommendation || ""}`;
-    const text = [
-      "WINGS4_CONTROLLED_INTERVENTION_PACKAGE",
-      "FORMAT=UTF8_TXT",
-      `PACKAGE_ID=${packageId}`,
-      `SOURCE_PROJECT=${SOURCE_PROJECT}`,
-      `TARGET_PROJECT=${target}`,
-      `FINDING_ID=${finding.finding_id}`,
-      `DECISION_ID=${decision.decision_id}`,
-      `GENERATED_AT=${generatedAt}`,
-      "DESTINATION_ROLE=ORCHESTRATOR",
-      "",
-      "AUTHORITY",
-      "NOT_EXECUTOR_AUTHORIZATION",
-      "TARGET_PROJECT_RETAINS_LOCAL_AUTHORITY",
-      "NO_CROSS_REPO_MUTATION",
-      "HUMAN_DECISION_EXISTS=YES",
-      "WINGS4_PREPARES_REQUEST=YES",
-      "CHILD_PROJECT_MUTATION_BY_WINGS4=NO",
-      "",
-      "HUMAN_DECISION",
-      `ACTION=${decision.action}`,
-      `OWNER=${decision.owner}`,
-      `STATUS=${decision.status}`,
-      `RATIONALE_OR_MODIFICATION=${decision.rationale_or_modification || ""}`,
-      `DECIDED_AT=${decision.decided_at || decision.created_at}`,
-      "",
-      "FINDING",
-      `TITLE=${finding.title}`,
-      `SUMMARY=${finding.summary || ""}`,
-      `SEVERITY=${finding.severity || ""}`,
-      `DATA_CLASS=${finding.data_class || ""}`,
-      `RECOMMENDATION=${finding.recommendation || ""}`,
-      "",
-      "REQUESTED_OUTCOME_SCOPE",
-      scope,
-      "",
-      "EVIDENCE_POINTERS",
-      evidenceLines || "  (none)",
-      "",
-      "EXCLUSIONS",
-      "- Do not treat this package as EXECUTOR authorization.",
-      "- Do not authorize Wings4 to mutate the target repository.",
-      "- Do not expand scope beyond the finding and recorded decision.",
-      "- Do not implement unrelated dirty workstreams under this package.",
-      "- Do not claim portfolio resynchronization until return evidence is reviewed by Wings4.",
-      "",
-      "ACCEPTANCE_CRITERIA",
-      "- Target ORCHESTRATOR reviews package under local HUMAN/Q&A/governance.",
-      "- Local decision is recorded before any EXECUTOR work.",
-      "- Any accepted local change remains within package scope and exclusions.",
-      "- Return evidence package is prepared for Wings4.",
-      "",
-      "REQUIRED_RETURN_EVIDENCE",
-      "- project_id / root",
-      "- HEAD_BEFORE / HEAD_AFTER",
-      "- files_changed",
-      "- validation_results",
-      "- commit_hash (if any)",
-      "- push_status",
-      "- conflicts_or_blockers",
-      "- resync_ready=YES|NO",
-      "",
-      "STOP_CONDITIONS",
-      "- Canonical conflict unresolved",
-      "- Unknown dirty worktree state",
-      "- Scope expansion requested",
-      "- Local authorization absent",
-      "- Evidence-loss risk",
-      "",
-      "PRODUCT_VS_PROJECT_NOTE",
-      "As products, Wings4 may optionally integrate with SkillsMachine for reusable Skills/GRC capabilities; that is not implemented by this package.",
-      "As projects, Wings4 does not develop or modify SkillsMachine; SkillsMachine retains local implementation authority.",
-      "",
-      "END_OF_PACKAGE"
-    ].join("\n");
-
-    return {
-      package_id: packageId,
-      source_project: SOURCE_PROJECT,
-      target_project: target,
-      finding_id: finding.finding_id,
-      decision_id: decision.decision_id,
-      generated_at: generatedAt,
-      destination_role: "ORCHESTRATOR",
-      text,
-      version: (decision.intervention && decision.intervention.version ? Number(decision.intervention.version) : 0) + 1
-    };
-  }
-
-  function validateInterventionPackage(pkg, decision) {
-    if (!pkg || !pkg.text) return "Package text missing.";
-    const required = [
-      "PACKAGE_ID=",
-      "SOURCE_PROJECT=",
-      "TARGET_PROJECT=",
-      "FINDING_ID=",
-      "DECISION_ID=",
-      "NOT_EXECUTOR_AUTHORIZATION",
-      "TARGET_PROJECT_RETAINS_LOCAL_AUTHORITY",
-      "NO_CROSS_REPO_MUTATION",
-      "REQUESTED_OUTCOME_SCOPE",
-      "EVIDENCE_POINTERS",
-      "EXCLUSIONS",
-      "ACCEPTANCE_CRITERIA",
-      "REQUIRED_RETURN_EVIDENCE",
-      "STOP_CONDITIONS"
-    ];
-    for (let i = 0; i < required.length; i += 1) {
-      if (!pkg.text.includes(required[i])) return "Missing section: " + required[i];
-    }
-    if (!interventionEligible(decision)) return "Decision is not eligible for intervention export.";
-    return null;
+  function listToHtml(items) {
+    return `<ul class="alt-list">${(items || []).map((i) => `<li>${escapeHtml(typeof i === "string" ? i : JSON.stringify(i))}</li>`).join("")}</ul>`;
   }
 
   function downloadText(filename, text) {
     const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
-    a.href = url;
-    a.download = filename;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
+    a.href = url; a.download = filename;
+    document.body.appendChild(a); a.click(); a.remove();
     URL.revokeObjectURL(url);
   }
 
   function safeFilenamePart(value) {
-    return String(value || "x").replace(/[^A-Za-z0-9._-]+/g, "_").slice(0, 48);
+    return String(value || "x").replace(/[^A-Za-z0-9._-]+/g, "_").slice(0, 64);
+  }
+
+  function ensureRoute(finding, decision) {
+    const targetOpt = resolveTargetOption(finding, decision.target_project);
+    if (!targetOpt) return { error: "No governed target option is available." };
+    if (!targetOpt.project_root) return { error: "Governed target root metadata is missing." };
+    decision.target_project = targetOpt.project_id;
+    const execStatus = (decision.route && decision.route.EXECUTION_STATUS === "PACKAGE_EXPORTED") ? "PACKAGE_EXPORTED" : "PACKAGE_READY";
+    decision.route = buildRoute(finding, decision, targetOpt, execStatus);
+    decision.next_action = deriveNextAction(decision.action, decision.status, decision.route.EXECUTION_STATUS, decision.verification && decision.verification.overall_result);
+    const invalid = validateRoute(decision.route, decision);
+    if (invalid) return { error: invalid };
+    return { route: decision.route, targetOpt };
+  }
+
+  function extractAiBlock(text) {
+    const normalized = String(text || "").replace(/^\uFEFF/, "");
+    const re = /---AI_START---([\s\S]*?)---AI_END---/g;
+    const bodies = [];
+    let m = re.exec(normalized);
+    while (m) {
+      bodies.push(m[1]);
+      m = re.exec(normalized);
+    }
+    if (!bodies.length) return { ok: false, error: "NO_AI_BLOCK", body: null };
+    if (bodies.length > 1) return { ok: false, error: "DUPLICATE_AI_BLOCKS", body: null };
+    return { ok: true, error: null, body: bodies[0] };
+  }
+
+  function parseKeyValues(blockBody) {
+    const out = {};
+    const duplicateKeys = [];
+    String(blockBody || "").replace(/^\uFEFF/, "").split(/\r?\n/).forEach((line) => {
+      const trimmed = line.trim();
+      if (!trimmed || trimmed.startsWith("#")) return;
+      const idx = trimmed.indexOf("=");
+      if (idx < 1) return;
+      const key = trimmed.slice(0, idx).trim();
+      // Preserve Windows path backslashes; only trim outer whitespace on values.
+      const value = trimmed.slice(idx + 1).trim();
+      if (Object.prototype.hasOwnProperty.call(out, key) && out[key] !== value) {
+        duplicateKeys.push(key);
+      }
+      out[key] = value;
+    });
+    return { values: out, duplicate_keys: duplicateKeys };
+  }
+
+  function classifyVerification(expected, actual) {
+    const missing = [];
+    const required = [
+      "INTERVENTION_PACKAGE_ID", "OVERALL_STATUS", "PROJECT_ID", "PROJECT_ROOT", "BRANCH",
+      "HEAD_BEFORE", "HEAD_AFTER", "WORKTREE_CLEAN_FINAL", "INDEX_CLEAN_FINAL", "FILES_CHANGED",
+      "AUTHORIZED_SCOPE_COMPLIANCE", "PROHIBITED_SCOPE_VIOLATION", "EXPECTED_OUTPUT_STATUS",
+      "RETURN_EVIDENCE_STATUS", "CANONICAL_CONFLICT_COUNT", "COMMIT", "PUSH", "RETURN_EVIDENCE_FILE", "NEXT_ACTION"
+    ];
+    required.forEach((k) => {
+      if (isMissingOrTemplate(actual[k])) missing.push(k);
+    });
+
+    // Deterministic precedence: missing ID → pattern → identity → incomplete → scope → push → conflicts → fail → pass-with-gap → pass.
+    if (isMissingOrTemplate(actual.INTERVENTION_PACKAGE_ID)) {
+      return { result: "RETURN_INCOMPLETE", reason: "INTERVENTION_PACKAGE_ID missing or still a template placeholder." };
+    }
+    if (!isValidPackageIdPattern(actual.INTERVENTION_PACKAGE_ID)) {
+      return { result: "IDENTITY_MISMATCH", reason: "Returned INTERVENTION_PACKAGE_ID does not match W4IP-YYYYMMDD-NNNN." };
+    }
+    if (actual.INTERVENTION_PACKAGE_ID !== expected.package_id) {
+      return { result: "IDENTITY_MISMATCH", reason: "Returned package ID does not match the expected Wings4 package." };
+    }
+    // Do not treat template placeholders as real identity claims.
+    if (!isMissingOrTemplate(actual.PROJECT_ID) && actual.PROJECT_ID !== expected.target_project) {
+      return { result: "IDENTITY_MISMATCH", reason: "Returned PROJECT_ID does not match governed destination." };
+    }
+    if (!isMissingOrTemplate(actual.PROJECT_ROOT) && expected.target_root) {
+      const a = String(actual.PROJECT_ROOT).replace(/\//g, "\\");
+      const e = String(expected.target_root).replace(/\//g, "\\");
+      if (a !== e) {
+        return { result: "IDENTITY_MISMATCH", reason: "Returned PROJECT_ROOT does not match governed target root metadata." };
+      }
+    }
+    if (missing.length) {
+      return { result: "RETURN_INCOMPLETE", reason: "Missing or template return fields: " + missing.join(", ") };
+    }
+    // Scope conflict overrides a claimed OVERALL_STATUS=PASS.
+    if (String(actual.PROHIBITED_SCOPE_VIOLATION).toUpperCase() === "YES") {
+      return { result: "SCOPE_CONFLICT", reason: "Prohibited-scope violation reported by target return; cannot be VERIFIED_PASS." };
+    }
+    if (["FAIL"].includes(String(actual.AUTHORIZED_SCOPE_COMPLIANCE).toUpperCase())) {
+      return { result: "SCOPE_CONFLICT", reason: "Authorized-scope compliance failed." };
+    }
+    if (String(actual.PUSH).toUpperCase() === "YES" && String(expected.push_policy || "").includes("NO_PUSH")) {
+      return { result: "FAILED", reason: "Return reports PUSH=YES while package push policy forbids unauthorized push." };
+    }
+    const conflictCount = Number(actual.CANONICAL_CONFLICT_COUNT);
+    if (!Number.isNaN(conflictCount) && conflictCount > 0) {
+      return { result: "UNVERIFIABLE", reason: "Canonical conflicts reported; distinct from generic execution failure." };
+    }
+    if (["FAIL"].includes(String(actual.RETURN_EVIDENCE_STATUS).toUpperCase())) {
+      return { result: "FAILED", reason: "Return evidence status is FAIL." };
+    }
+    if (["FAIL"].includes(String(actual.EXPECTED_OUTPUT_STATUS).toUpperCase())) {
+      return { result: "FAILED", reason: "Expected output status is FAIL." };
+    }
+    if (["FAIL", "BLOCKED"].includes(String(actual.OVERALL_STATUS).toUpperCase())) {
+      return { result: "FAILED", reason: "Target OVERALL_STATUS reports failure/block." };
+    }
+    if (["PASS_WITH_GAP"].includes(String(actual.OVERALL_STATUS).toUpperCase()) ||
+        ["PASS_WITH_GAP"].includes(String(actual.AUTHORIZED_SCOPE_COMPLIANCE).toUpperCase()) ||
+        ["PASS_WITH_GAP"].includes(String(actual.EXPECTED_OUTPUT_STATUS).toUpperCase()) ||
+        ["PASS_WITH_GAP"].includes(String(actual.RETURN_EVIDENCE_STATUS).toUpperCase())) {
+      return { result: "VERIFIED_PASS_WITH_GAP", reason: "Return is acceptable with non-blocking gaps." };
+    }
+    if (["PASS"].includes(String(actual.OVERALL_STATUS).toUpperCase())) {
+      return { result: "VERIFIED_PASS", reason: "Return correlated and required checks passed." };
+    }
+    return { result: "UNVERIFIABLE", reason: "Return present but overall status is not a clear PASS." };
+  }
+
+  function setRing2Transient(findingId, payload) {
+    ring2TransientByFinding[findingId] = payload || null;
+  }
+
+  function runRing2Verification(finding, pastedText) {
+    const findingId = finding.finding_id;
+    returnEvidenceDraft[findingId] = pastedText == null ? "" : String(pastedText);
+    const raw = String(pastedText || "");
+    if (!raw.trim()) {
+      setRing2Transient(findingId, {
+        overall_result: "RETURN_INCOMPLETE",
+        reason_summary: "Return evidence is empty. Paste or import text, then verify.",
+        state_updated: false
+      });
+      setStatus("Return evidence is empty. Paste or import a return AI block, then verify.", true);
+      renderAll();
+      return;
+    }
+    const extracted = extractAiBlock(raw);
+    if (!extracted.ok) {
+      const reason = extracted.error === "DUPLICATE_AI_BLOCKS"
+        ? "Multiple ---AI_START--- / ---AI_END--- blocks found. Remove ambiguity and keep exactly one block."
+        : "No ---AI_START--- / ---AI_END--- block found. Do not infer unmarked arbitrary text.";
+      setRing2Transient(findingId, {
+        overall_result: "UNVERIFIABLE",
+        reason_summary: reason,
+        state_updated: false
+      });
+      setStatus(reason, true);
+      renderAll();
+      return;
+    }
+    const parsed = parseKeyValues(extracted.body);
+    if (parsed.duplicate_keys.length) {
+      const reason = "Conflicting duplicate keys in return block: " + parsed.duplicate_keys.join(", ");
+      setRing2Transient(findingId, {
+        overall_result: "UNVERIFIABLE",
+        reason_summary: reason,
+        state_updated: false
+      });
+      setStatus(reason, true);
+      renderAll();
+      return;
+    }
+    const actual = parsed.values;
+    if (!actual.INTERVENTION_PACKAGE_ID) {
+      setRing2Transient(findingId, {
+        overall_result: "RETURN_INCOMPLETE",
+        reason_summary: "Return AI block is missing INTERVENTION_PACKAGE_ID.",
+        state_updated: false
+      });
+      setStatus("Return AI block is missing INTERVENTION_PACKAGE_ID.", true);
+      renderAll();
+      return;
+    }
+    if (!isValidPackageIdPattern(actual.INTERVENTION_PACKAGE_ID)) {
+      setRing2Transient(findingId, {
+        overall_result: "IDENTITY_MISMATCH",
+        reason_summary: "Malformed INTERVENTION_PACKAGE_ID; expected W4IP-YYYYMMDD-NNNN.",
+        state_updated: false
+      });
+      setStatus("Malformed INTERVENTION_PACKAGE_ID; expected W4IP-YYYYMMDD-NNNN.", true);
+      renderAll();
+      return;
+    }
+    const state = loadState();
+    const decision = findDecisionByPackageId(state, actual.INTERVENTION_PACKAGE_ID);
+    if (!decision) {
+      setRing2Transient(findingId, {
+        overall_result: "IDENTITY_MISMATCH",
+        reason_summary: "Unknown INTERVENTION_PACKAGE_ID. No Wings4-local intervention was updated.",
+        state_updated: false,
+        intervention_package_id: actual.INTERVENTION_PACKAGE_ID
+      });
+      setStatus("Unknown INTERVENTION_PACKAGE_ID. Correlate against a package generated in this Wings4 local state.", true);
+      renderAll();
+      return;
+    }
+    if (decision.finding_id !== finding.finding_id) {
+      setRing2Transient(findingId, {
+        overall_result: "IDENTITY_MISMATCH",
+        reason_summary: "Package ID belongs to a different finding. No state update applied here.",
+        state_updated: false,
+        intervention_package_id: actual.INTERVENTION_PACKAGE_ID
+      });
+      setStatus("Package ID belongs to a different finding. Open the correlated finding or paste against the correct one.", true);
+      renderAll();
+      return;
+    }
+    const expected = {
+      package_id: decision.intervention.intervention_package_id,
+      target_project: decision.route.TARGET_PROJECT || decision.target_project,
+      target_root: decision.route.TARGET_ROOT || "",
+      push_policy: decision.route.PUSH_POLICY || PUSH_POLICY,
+      commit_policy: decision.route.COMMIT_POLICY || COMMIT_POLICY
+    };
+    const classified = classifyVerification(expected, actual);
+    const verification = {
+      verification_id: makeId("VER"),
+      intervention_package_id: expected.package_id,
+      decision_id: decision.decision_id,
+      finding_id: decision.finding_id,
+      route_id: decision.route && decision.route.route_id,
+      verified_at: nowIso(),
+      overall_result: classified.result,
+      reason_summary: classified.reason,
+      expected,
+      actual,
+      checks: {
+        package_id_match: actual.INTERVENTION_PACKAGE_ID === expected.package_id,
+        project_id_match: !isMissingOrTemplate(actual.PROJECT_ID) && actual.PROJECT_ID === expected.target_project,
+        project_root_match: !isMissingOrTemplate(actual.PROJECT_ROOT) && !!expected.target_root &&
+          String(actual.PROJECT_ROOT).replace(/\//g, "\\") === String(expected.target_root).replace(/\//g, "\\"),
+        branch_captured: !isMissingOrTemplate(actual.BRANCH),
+        head_before_present: !isMissingOrTemplate(actual.HEAD_BEFORE),
+        head_after_present: !isMissingOrTemplate(actual.HEAD_AFTER),
+        worktree_clean_final: actual.WORKTREE_CLEAN_FINAL || "",
+        index_clean_final: actual.INDEX_CLEAN_FINAL || "",
+        authorized_scope_compliance: actual.AUTHORIZED_SCOPE_COMPLIANCE || "",
+        prohibited_scope_violation: String(actual.PROHIBITED_SCOPE_VIOLATION || "").toUpperCase() === "YES",
+        expected_output_status: actual.EXPECTED_OUTPUT_STATUS || "",
+        return_evidence_status: actual.RETURN_EVIDENCE_STATUS || "",
+        commit: actual.COMMIT || "",
+        push: actual.PUSH || "",
+        canonical_conflict_count: actual.CANONICAL_CONFLICT_COUNT || "",
+        return_evidence_file: actual.RETURN_EVIDENCE_FILE || "",
+        next_action_captured: actual.NEXT_ACTION || "",
+        raw_actual_preserved: true
+      }
+    };
+    decision.verification = verification;
+    decision.next_action = deriveNextAction(decision.action, decision.status, decision.route && decision.route.EXECUTION_STATUS, verification.overall_result);
+    decision.updated_at = nowIso();
+    pushEvent(decision, "RING2_VERIFICATION", verification.overall_result + ": " + verification.reason_summary, DEFAULT_OWNER);
+    state.decisions[decision.finding_id] = decision;
+    state.verifications[verification.verification_id] = {
+      verification_id: verification.verification_id,
+      intervention_package_id: verification.intervention_package_id,
+      finding_id: verification.finding_id,
+      overall_result: verification.overall_result,
+      verified_at: verification.verified_at
+    };
+    state.updated_at = decision.updated_at;
+    saveState(state);
+    setRing2Transient(findingId, {
+      overall_result: verification.overall_result,
+      reason_summary: verification.reason_summary,
+      state_updated: true,
+      intervention_package_id: verification.intervention_package_id
+    });
+    setStatus(`Ring2 verification ${verification.overall_result} for ${verification.intervention_package_id}.`);
+    renderAll();
+  }
+
+  function importReturnTxt(finding, textarea) {
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = ".txt,text/plain";
+    input.addEventListener("change", () => {
+      const file = input.files && input.files[0];
+      if (!file) return;
+      const nameOk = /\.txt$/i.test(file.name || "");
+      const type = String(file.type || "");
+      if (!nameOk && type && !(type.indexOf("text/") === 0 || type === "application/json")) {
+        setStatus("Unsupported file type. Import a UTF-8 TXT file containing the return AI block.", true);
+        return;
+      }
+      if (!nameOk && type === "application/json") {
+        setStatus("JSON editing is not required. Import a UTF-8 TXT file or paste the AI block.", true);
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = () => {
+        const text = String(reader.result == null ? "" : reader.result);
+        if (textarea) textarea.value = text;
+        returnEvidenceDraft[finding.finding_id] = text;
+        setStatus("Return evidence TXT imported into the textarea (UTF-8).");
+      };
+      reader.onerror = () => setStatus("Could not read the selected file as UTF-8 text.", true);
+      reader.readAsText(file, "UTF-8");
+    });
+    input.click();
+  }
+
+  function exportVerification(finding) {
+    const state = loadState();
+    const decision = getDecision(state, finding.finding_id);
+    if (!decision || !decision.verification) {
+      setStatus("No Ring2 verification record to export for this finding.", true);
+      return;
+    }
+    const v = decision.verification;
+    const text = [
+      "WINGS4_RING2_VERIFICATION_EXPORT",
+      "VERIFICATION_ID=" + v.verification_id,
+      "INTERVENTION_PACKAGE_ID=" + v.intervention_package_id,
+      "FINDING_ID=" + v.finding_id,
+      "DECISION_ID=" + v.decision_id,
+      "ROUTE_ID=" + (v.route_id || ""),
+      "VERIFIED_AT=" + v.verified_at,
+      "OVERALL_RESULT=" + v.overall_result,
+      "REASON=" + v.reason_summary,
+      "",
+      "EXPECTED",
+      JSON.stringify(v.expected, null, 2),
+      "",
+      "ACTUAL",
+      JSON.stringify(v.actual, null, 2),
+      "",
+      "CHECKS",
+      JSON.stringify(v.checks, null, 2),
+      "",
+      "END"
+    ].join("\n");
+    downloadText(`wings4-ring2-verification-${safeFilenamePart(v.intervention_package_id)}.txt`, text);
+    setStatus("Ring2 verification TXT exported.");
+  }
+
+  function formatCheckValue(value) {
+    const shown = displayEvidenceValue(value);
+    if (shown.indexOf("missing / template") >= 0) {
+      return `<span class="display-missing">${escapeHtml(shown)}</span>`;
+    }
+    return escapeHtml(shown);
+  }
+
+  function renderRing2Panel(finding, decision) {
+    if (!decision || !decision.intervention || isPendingPackageId(decision.intervention.intervention_package_id)) {
+      return `
+        <div class="detail-block" id="ring2-panel">
+          <h3>Ring2 return verification</h3>
+          <p class="muted">A real Intervention Package ID must be assigned first (ACCEPT/MODIFY creates PACKAGE_READY with a persistent W4IP ID).</p>
+        </div>`;
+    }
+    const v = decision.verification;
+    const transient = ring2TransientByFinding[finding.finding_id];
+    const draft = returnEvidenceDraft[finding.finding_id] || "";
+    const resultBlock = v
+      ? `
+          <div class="ring2-result" aria-live="polite">
+            <p class="meta-line"><strong>Overall result:</strong>
+              <span class="badge ${escapeHtml(badgeClassForStatus(v.overall_result))}">${escapeHtml(statusLabel(v.overall_result))}</span>
+            </p>
+            <p>${escapeHtml(v.reason_summary || "")}</p>
+            <p class="meta-line"><strong>Correlated package:</strong> <code>${escapeHtml(v.intervention_package_id)}</code> → ${escapeHtml(decision.target_project)}</p>
+            <h4 class="subhead">Compact checks</h4>
+            <ul class="alt-list">
+              <li>Identity: package ${v.checks && v.checks.package_id_match ? "match" : "fail"}; project ${formatCheckValue(v.actual && v.actual.PROJECT_ID)}; root ${formatCheckValue(v.actual && v.actual.PROJECT_ROOT)}</li>
+              <li>Scope: authorized=${formatCheckValue(v.checks && v.checks.authorized_scope_compliance)}; prohibited_violation=${v.checks && v.checks.prohibited_scope_violation ? "YES" : "NO"}</li>
+              <li>Output/evidence: expected=${formatCheckValue(v.checks && v.checks.expected_output_status)}; evidence=${formatCheckValue(v.checks && v.checks.return_evidence_status)}</li>
+              <li>Policy: commit=${formatCheckValue(v.checks && v.checks.commit)}; push=${formatCheckValue(v.checks && v.checks.push)}; conflicts=${formatCheckValue(v.checks && v.checks.canonical_conflict_count)}</li>
+            </ul>
+          </div>`
+      : (transient
+        ? `<div class="ring2-result" aria-live="polite">
+             <p class="meta-line"><strong>Overall result:</strong>
+               <span class="badge ${escapeHtml(badgeClassForStatus(transient.overall_result))}">${escapeHtml(statusLabel(transient.overall_result))}</span>
+             </p>
+             <p>${escapeHtml(transient.reason_summary || "")}</p>
+             <p class="muted">${transient.state_updated ? "Wings4-local state updated." : "No Wings4-local intervention state was mutated."}</p>
+           </div>`
+        : "<p class='muted'>No verification yet.</p>");
+    return `
+      <div class="detail-block" id="ring2-panel">
+        <h3>Ring2 return verification</h3>
+        <p class="decision-help">Minimal input: paste or import return evidence, then verify. No JSON editing.</p>
+        <label class="field-label" for="return-paste">Return evidence</label>
+        <textarea id="return-paste" class="modify-box return-evidence" rows="14" placeholder="Paste the target ORCHESTRATOR return AI block, or a full TXT that contains:&#10;---AI_START---&#10;INTERVENTION_PACKAGE_ID=W4IP-...&#10;...&#10;---AI_END---">${escapeHtml(draft)}</textarea>
+        <div class="decision-row">
+          <button type="button" class="btn secondary" id="btn-import-return">IMPORT TXT</button>
+          <button type="button" class="btn" id="btn-verify-return">VERIFY RETURN</button>
+          <button type="button" class="btn ghost" id="btn-export-verification" ${v ? "" : "disabled"}>Export verification TXT</button>
+        </div>
+        ${resultBlock}
+      </div>`;
+  }
+
+  function renderRouteAndPackage(finding, decision, state) {
+    if (!interventionEligible(decision)) {
+      return `
+        <div class="detail-block">
+          <h3>Governed route</h3>
+          <p class="muted">Intervention routing is available after ACCEPT or MODIFY. REJECT and POSTPONE do not create packages by default.</p>
+        </div>`;
+    }
+    const ready = ensureReadyPackage(finding, decision, state);
+    if (ready.error) {
+      return `<div class="detail-block"><h3>Governed route</h3><p class="status error">${escapeHtml(ready.error)}</p></div>`;
+    }
+    if (ready.identityAssigned) {
+      state.decisions[finding.finding_id] = decision;
+      state.updated_at = nowIso();
+      saveState(state);
+    }
+    const route = ready.route;
+    const opts = governedTargets();
+    const packageId = ready.packageId;
+    let packageText = "";
+    try {
+      packageText = serializePackage(finding, decision, route, packageId);
+    } catch (err) {
+      return `<div class="detail-block"><h3>Intervention package</h3><p class="status error">${escapeHtml(err.message)}</p></div>`;
+    }
+    const targetControl = opts.length > 1
+      ? `<label class="field-label" for="target-project-select">Target project (governed options)</label>
+         <select id="target-project-select" class="text-input">
+           ${opts.map((o) => `<option value="${escapeHtml(o.project_id)}" ${o.project_id === route.TARGET_PROJECT ? "selected" : ""}>${escapeHtml(o.display_name || o.project_id)}</option>`).join("")}
+         </select>
+         <p class="decision-help">Target is controlled by governance. Free-text entry is not allowed.</p>`
+      : `<p><strong>Target project:</strong> ${escapeHtml(route.TARGET_PROJECT)} <span class="badge ACCEPTED">Preselected</span></p>
+         <p class="decision-help">Target root metadata: <code>${escapeHtml(route.TARGET_ROOT)}</code> (metadata only; no Wings4 read/write).</p>`;
+
+    return `
+      <div class="detail-block" id="route-panel">
+        <h3>Governed route</h3>
+        <p class="meta-line"><strong>Direction:</strong> ${escapeHtml(route.SOURCE_PROJECT)} → ${escapeHtml(route.TARGET_PROJECT)} → ${escapeHtml(route.DESTINATION_ROLE)}</p>
+        <p><strong>Purpose:</strong> ${escapeHtml(route.PURPOSE)}</p>
+        <p class="meta-line"><strong>Source root:</strong> <code>${escapeHtml(route.SOURCE_ROOT)}</code></p>
+        <p class="meta-line"><strong>Target root:</strong> <code>${escapeHtml(route.TARGET_ROOT)}</code></p>
+        ${targetControl}
+        <p class="meta-line">Route status:
+          <span class="badge ${escapeHtml(badgeClassForStatus(route.EXECUTION_STATUS))}">${escapeHtml(statusLabel(route.EXECUTION_STATUS))}</span>
+        </p>
+        <h4 class="subhead">Authorized scope</h4>${listToHtml(route.AUTHORIZED_SCOPE)}
+        <h4 class="subhead">Prohibited scope / limits</h4>${listToHtml(route.PROHIBITED_SCOPE)}
+        <h4 class="subhead">Expected output</h4>${listToHtml(route.EXPECTED_OUTPUT)}
+        <h4 class="subhead">Required return evidence</h4>${listToHtml(route.RETURN_EVIDENCE)}
+        <div class="authority-banner" role="note">${(route.AUTHORITY_BOUNDARY || []).map((b) => escapeHtml(b)).join("<br />")}</div>
+      </div>
+      <div class="detail-block" id="intervention-panel">
+        <h3>Intervention package</h3>
+        <p><strong>WINGS4_CONTROLLED_INTERVENTION_PACKAGE ID:</strong> <code>${escapeHtml(packageId)}</code></p>
+        <p class="decision-help">Package content is self-sufficient for the target ORCHESTRATOR. COPY and DOWNLOAD use the same canonical text. ID is assigned at PACKAGE_READY and reused on rerender/copy/download.</p>
+        <pre class="package-preview" id="package-preview">${escapeHtml(packageText)}</pre>
+        <div class="decision-row">
+          <button type="button" class="btn secondary" id="btn-copy-package">COPY PACKAGE</button>
+          <button type="button" class="btn accept" id="btn-download-package">DOWNLOAD INTERVENTION PACKAGE</button>
+        </div>
+      </div>
+      ${renderRing2Panel(finding, decision)}`;
   }
 
   function renderDetail(finding, state) {
@@ -511,25 +1216,30 @@
     const decision = getDecision(state, finding.finding_id);
     const status = effectiveFindingStatus(finding, state);
     const evidenceHtml = (finding.evidence || []).map((e) => `
-      <div class="evidence-item">
-        <div class="label">${escapeHtml(e.label || "Evidence")}</div>
-        <div class="pointer">${escapeHtml(e.pointer || "")}</div>
-        <p class="excerpt">${escapeHtml(e.excerpt || "")}</p>
-      </div>
-    `).join("");
+      <div class="evidence-item"><div class="label">${escapeHtml(e.label || "Evidence")}</div>
+      <div class="pointer">${escapeHtml(e.pointer || "")}</div>
+      <p class="excerpt">${escapeHtml(e.excerpt || "")}</p></div>`).join("");
     const alts = (finding.alternatives || []).map((a) => `<li>${escapeHtml(a)}</li>`).join("");
-    const eligible = interventionEligible(decision);
     const canClose = decision && decision.status !== "CLOSED";
     const canReopen = decision && (decision.status === "CLOSED" || decision.status === "POSTPONED");
 
-    let lifecycleHtml = `
-      <div class="detail-block" id="lifecycle-panel">
-        <h3>Decision lifecycle (Ring1)</h3>
-        <p class="muted">No decision recorded yet. Use ACCEPT / REJECT / MODIFY / POSTPONE above.</p>
-      </div>
-    `;
+    let lifecycleHtml = `<div class="detail-block"><h3>Decision lifecycle (Ring1)</h3>
+      <p class="muted">No decision recorded yet. Choose ACCEPT / REJECT / MODIFY / POSTPONE.</p></div>`;
 
     if (decision) {
+      if (interventionEligible(decision)) {
+        const ready = ensureReadyPackage(finding, decision, state);
+        if (!ready.error && ready.identityAssigned) {
+          state.decisions[finding.finding_id] = decision;
+          state.updated_at = nowIso();
+          saveState(state);
+        }
+      }
+      decision.next_action = deriveNextAction(
+        decision.action, decision.status,
+        decision.route && decision.route.EXECUTION_STATUS,
+        decision.verification && decision.verification.overall_result
+      );
       lifecycleHtml = `
         <div class="detail-block" id="lifecycle-panel">
           <h3>Decision lifecycle (Ring1)</h3>
@@ -538,44 +1248,17 @@
             <span class="badge ${escapeHtml(badgeClassForStatus(decision.status))}">${escapeHtml(statusLabel(decision.status))}</span>
             · Action: <strong>${escapeHtml(visibleActionLabel(decision.action))}</strong>
           </p>
-          <label class="field-label" for="decision-owner">Owner</label>
-          <input id="decision-owner" class="text-input" type="text" value="${escapeHtml(decision.owner || DEFAULT_OWNER)}" />
-          <label class="field-label" for="decision-next-action">Next action</label>
-          <input id="decision-next-action" class="text-input" type="text" value="${escapeHtml(decision.next_action || "")}" />
-          <label class="field-label" for="decision-review-date">Review date (optional)</label>
-          <input id="decision-review-date" class="text-input" type="date" value="${escapeHtml((decision.review_date || "").slice(0, 10))}" />
+          <p><strong>Next action (system-derived):</strong> ${escapeHtml(decision.next_action)}</p>
+          <p class="decision-help">Wings4 derives the next action from the decision, route and Ring2 verification result.</p>
           <p class="meta-line">Created: ${escapeHtml(decision.created_at || "")}</p>
           <p class="meta-line">Updated: ${escapeHtml(decision.updated_at || "")}</p>
           <div class="decision-row lifecycle-actions">
-            <button type="button" class="btn secondary" id="btn-save-lifecycle">Save lifecycle edits</button>
             <button type="button" class="btn ghost" id="btn-close-decision" ${canClose ? "" : "disabled"}>Close decision</button>
             <button type="button" class="btn ghost" id="btn-reopen-decision" ${canReopen ? "" : "disabled"}>Reopen decision</button>
           </div>
-          <p class="decision-help">Closing tracks Wings4-local completion only. It does not claim the target project implemented the change.</p>
-          <h4 class="subhead">History</h4>
-          ${renderHistory(decision)}
+          <h4 class="subhead">History</h4>${renderHistory(decision)}
         </div>
-        <div class="detail-block" id="intervention-panel">
-          <h3>Controlled intervention package (Ring1)</h3>
-          <div class="authority-banner" role="note">
-            <strong>NOT_EXECUTOR_AUTHORIZATION</strong><br />
-            TARGET_PROJECT_RETAINS_LOCAL_AUTHORITY<br />
-            NO_CROSS_REPO_MUTATION
-          </div>
-          <p class="meta-line">Eligibility:
-            <span class="badge ${eligible ? "ACCEPTED" : "REJECTED"}">${eligible ? "Eligible (ACCEPT/MODIFY)" : "Not eligible by default"}</span>
-          </p>
-          <label class="field-label" for="target-project">Target project</label>
-          <input id="target-project" class="text-input" type="text" value="${escapeHtml(decision.target_project || DEFAULT_TARGET_PROJECT)}" ${eligible ? "" : "disabled"} />
-          <p class="decision-help">Pilot default is SkillsMachine. The field remains generic for later projects.</p>
-          <div id="intervention-preview" class="package-preview ${eligible ? "" : "hidden"}" aria-live="polite"></div>
-          <div class="decision-row">
-            <button type="button" class="btn" id="btn-preview-package" ${eligible ? "" : "disabled"}>Preview package</button>
-            <button type="button" class="btn accept" id="btn-export-package" ${eligible ? "" : "disabled"}>Export intervention TXT</button>
-          </div>
-          ${decision.intervention ? `<p class="meta-line">Last package: ${escapeHtml(decision.intervention.package_id)} @ ${escapeHtml(decision.intervention.generated_at)} (v${escapeHtml(String(decision.intervention.version || 1))})</p>` : ""}
-        </div>
-      `;
+        ${renderRouteAndPackage(finding, decision, state)}`;
     }
 
     els.detailBody.innerHTML = `
@@ -589,148 +1272,147 @@
           <span class="badge ${escapeHtml(finding.data_class || "")}">${escapeHtml(statusLabel(finding.data_class || ""))}</span>
         </p>
       </div>
-      <div class="detail-block">
-        <h3>Evidence</h3>
-        ${evidenceHtml || "<p class='muted'>No evidence recorded for this finding.</p>"}
-      </div>
-      <div class="detail-block">
-        <h3>Impact</h3>
-        <p>${escapeHtml(finding.impact || "")}</p>
-      </div>
-      <div class="detail-block">
-        <h3>Alternatives</h3>
-        <ul class="alt-list">${alts || "<li class='muted'>No alternatives listed.</li>"}</ul>
-      </div>
-      <div class="detail-block">
-        <h3>Recommendation</h3>
-        <p>${escapeHtml(finding.recommendation || "")}</p>
-      </div>
+      <div class="detail-block"><h3>Evidence</h3>${evidenceHtml || "<p class='muted'>No evidence recorded for this finding.</p>"}</div>
+      <div class="detail-block"><h3>Impact</h3><p>${escapeHtml(finding.impact || "")}</p></div>
+      <div class="detail-block"><h3>Alternatives</h3><ul class="alt-list">${alts || "<li class='muted'>No alternatives listed.</li>"}</ul></div>
+      <div class="detail-block"><h3>Recommendation</h3><p>${escapeHtml(finding.recommendation || "")}</p></div>
       <div class="detail-block">
         <h3>Decision</h3>
-        <p class="decision-help">Record a human decision for Wings4 local state. POSTPONE keeps the finding open so you can decide later; it is not a rejection.</p>
+        <p class="decision-help">Decision note is the only free-text field; required for MODIFY.</p>
         <div class="decision-row" role="group" aria-label="Decision actions">
           <button type="button" class="btn accept" data-action="ACCEPT">ACCEPT</button>
           <button type="button" class="btn reject" data-action="REJECT">REJECT</button>
           <button type="button" class="btn modify" data-action="MODIFY">MODIFY</button>
-          <button type="button" class="btn postpone" data-action="POSTPONE" title="Keep open and decide later">POSTPONE</button>
+          <button type="button" class="btn postpone" data-action="POSTPONE">POSTPONE</button>
         </div>
-        <label class="field-label" for="modify-note">Modification or rationale</label>
-        <textarea id="modify-note" class="modify-box" placeholder="Required for MODIFY. Optional notes for ACCEPT, REJECT or POSTPONE.">${escapeHtml((decision && (decision.rationale_or_modification || decision.note)) || "")}</textarea>
+        <label class="field-label" for="decision-note">Decision note</label>
+        <textarea id="decision-note" class="modify-box" placeholder="Optional for ACCEPT, REJECT or POSTPONE. Required for MODIFY.">${escapeHtml((decision && (decision.rationale_or_modification || decision.note)) || "")}</textarea>
         ${decision ? `<p class="meta-line">Last decision: ${escapeHtml(visibleActionLabel(decision.action))} @ ${escapeHtml(decision.decided_at || "")}</p>` : ""}
         <div id="decision-confirm" class="confirm-banner hidden" role="status"></div>
       </div>
-      ${lifecycleHtml}
-    `;
+      ${lifecycleHtml}`;
 
     els.detailBody.querySelectorAll("button[data-action]").forEach((btn) => {
       btn.addEventListener("click", () => decide(finding, btn.getAttribute("data-action")));
     });
-
-    const saveBtn = document.getElementById("btn-save-lifecycle");
-    if (saveBtn) saveBtn.addEventListener("click", () => saveLifecycleEdits(finding));
     const closeBtn = document.getElementById("btn-close-decision");
     if (closeBtn) closeBtn.addEventListener("click", () => closeDecision(finding));
     const reopenBtn = document.getElementById("btn-reopen-decision");
     if (reopenBtn) reopenBtn.addEventListener("click", () => reopenDecision(finding));
-    const previewBtn = document.getElementById("btn-preview-package");
-    if (previewBtn) previewBtn.addEventListener("click", () => previewIntervention(finding));
-    const exportBtn = document.getElementById("btn-export-package");
-    if (exportBtn) exportBtn.addEventListener("click", () => exportIntervention(finding));
-
-    if (decision && eligible) {
-      previewIntervention(finding, true);
+    const downloadBtn = document.getElementById("btn-download-package");
+    if (downloadBtn) downloadBtn.addEventListener("click", () => exportIntervention(finding));
+    const copyBtn = document.getElementById("btn-copy-package");
+    if (copyBtn) copyBtn.addEventListener("click", () => copyPackage(finding));
+    const pasteEl = document.getElementById("return-paste");
+    if (pasteEl) {
+      pasteEl.addEventListener("input", () => {
+        returnEvidenceDraft[finding.finding_id] = pasteEl.value;
+      });
+    }
+    const importBtn = document.getElementById("btn-import-return");
+    if (importBtn) {
+      importBtn.addEventListener("click", () => {
+        const paste = document.getElementById("return-paste");
+        importReturnTxt(finding, paste);
+      });
+    }
+    const verifyBtn = document.getElementById("btn-verify-return");
+    if (verifyBtn) {
+      verifyBtn.addEventListener("click", () => {
+        const paste = document.getElementById("return-paste");
+        runRing2Verification(finding, paste ? paste.value : "");
+      });
+    }
+    const exportVerBtn = document.getElementById("btn-export-verification");
+    if (exportVerBtn) exportVerBtn.addEventListener("click", () => exportVerification(finding));
+    const targetSelect = document.getElementById("target-project-select");
+    if (targetSelect) {
+      targetSelect.addEventListener("change", () => {
+        const stateNow = loadState();
+        const d = getDecision(stateNow, finding.finding_id);
+        if (!d) return;
+        if (!isGovernedTarget(targetSelect.value)) {
+          setStatus("Selected target is not a governed option.", true);
+          return;
+        }
+        d.target_project = targetSelect.value;
+        d.updated_at = nowIso();
+        // Changing governed target before export requires a fresh package identity for the new destination.
+        if (!(d.route && d.route.EXECUTION_STATUS === "PACKAGE_EXPORTED")) {
+          d.intervention = null;
+        }
+        const ready = ensureReadyPackage(finding, d, stateNow);
+        if (ready.error) {
+          setStatus(ready.error, true);
+          return;
+        }
+        pushEvent(d, "GOVERNED_TARGET_SELECTED", "Target set to " + targetSelect.value + "; package identity=" + ready.packageId, DEFAULT_OWNER);
+        stateNow.decisions[finding.finding_id] = d;
+        stateNow.updated_at = d.updated_at;
+        saveState(stateNow);
+        renderAll();
+      });
     }
   }
 
   function decide(finding, action) {
-    const noteEl = document.getElementById("modify-note");
+    const noteEl = document.getElementById("decision-note");
     const note = ((noteEl && noteEl.value) || "").trim();
     const normalized = normalizeAction(action);
     if (normalized === "MODIFY" && !note) {
-      setStatus("MODIFY requires an explicit modification or rationale before it can be recorded.", true);
+      setStatus("MODIFY requires a Decision note that states the modification.", true);
       if (noteEl) noteEl.focus();
       return;
     }
     const state = loadState();
     const prior = getDecision(state, finding.finding_id);
-    const previousState = prior ? prior.status : (finding.status || "OPEN");
     const decidedAt = nowIso();
     let status = "DECIDED";
     if (normalized === "POSTPONE") status = "POSTPONED";
     if (normalized === "REJECT") status = "CLOSED";
-
+    const targetOpt = resolveTargetOption(finding, prior && prior.target_project);
     const decision = migrateDecision({
       decision_id: (prior && prior.decision_id) || makeId("DEC"),
       finding_id: finding.finding_id,
       title: finding.title,
       action: normalized,
-      owner: (prior && prior.owner) || DEFAULT_OWNER,
       status,
       created_at: (prior && prior.created_at) || decidedAt,
       updated_at: decidedAt,
-      next_action: defaultNextAction(normalized, status),
-      review_date: (prior && prior.review_date) || "",
       rationale_or_modification: note,
-      previous_state: previousState,
+      previous_state: prior ? prior.status : (finding.status || "OPEN"),
       new_state: ACTION_TO_FINDING_STATUS[normalized],
       decided_at: decidedAt,
       project_id: fixture.project.project_id,
-      target_project: (prior && prior.target_project) || fixture.project.project_id || DEFAULT_TARGET_PROJECT,
+      target_project: targetOpt ? targetOpt.project_id : fixture.project.project_id,
       source_data_class: finding.data_class,
       recommendation_snapshot: finding.recommendation,
       events: (prior && prior.events) || [],
-      intervention: prior ? prior.intervention : null
+      intervention: prior ? prior.intervention : null,
+      route: null,
+      verification: prior ? prior.verification : null
     }, finding.finding_id);
-
-    pushEvent(decision, "DECISION_RECORDED", `${visibleActionLabel(normalized)} recorded.`, decision.owner);
-    if (normalized === "POSTPONE") {
-      pushEvent(decision, "POSTPONED", "Finding kept open for a later decision.", decision.owner);
+    pushEvent(decision, "DECISION_RECORDED", visibleActionLabel(normalized) + " recorded.", DEFAULT_OWNER);
+    if (normalized === "POSTPONE") pushEvent(decision, "POSTPONED", "Finding kept open for a later decision.", DEFAULT_OWNER);
+    if (normalized === "REJECT") pushEvent(decision, "REJECTED_AND_CLOSED", "Rejection recorded; intervention package blocked by default.", DEFAULT_OWNER);
+    if (interventionEligible(decision)) {
+      const ready = ensureReadyPackage(finding, decision, state);
+      if (ready.error) {
+        setStatus(ready.error, true);
+        return;
+      }
+      pushEvent(decision, "ROUTE_DERIVED", "Governed route prepared for " + decision.target_project + " with package " + ready.packageId + ".", DEFAULT_OWNER);
+    } else {
+      decision.next_action = deriveNextAction(decision.action, decision.status, null, null);
     }
-    if (normalized === "REJECT") {
-      pushEvent(decision, "REJECTED_AND_CLOSED", "Rejection recorded; intervention package blocked by default.", decision.owner);
-    }
-
     state.decisions[finding.finding_id] = decision;
     state.updated_at = decidedAt;
     saveState(state);
-    const confirm = `Recorded ${visibleActionLabel(normalized)} for ${finding.finding_id}. Lifecycle status: ${statusLabel(status)}. Time: ${decidedAt}.`;
+    const confirm = `Recorded ${visibleActionLabel(normalized)} for ${finding.finding_id}. Status: ${statusLabel(status)}.`;
     setStatus(confirm);
     renderAll();
     const banner = document.getElementById("decision-confirm");
-    if (banner) {
-      banner.textContent = confirm;
-      banner.classList.remove("hidden");
-    }
-  }
-
-  function saveLifecycleEdits(finding) {
-    const state = loadState();
-    const decision = getDecision(state, finding.finding_id);
-    if (!decision) return;
-    const ownerEl = document.getElementById("decision-owner");
-    const nextEl = document.getElementById("decision-next-action");
-    const reviewEl = document.getElementById("decision-review-date");
-    const targetEl = document.getElementById("target-project");
-    const owner = ((ownerEl && ownerEl.value) || "").trim() || DEFAULT_OWNER;
-    const nextAction = ((nextEl && nextEl.value) || "").trim();
-    if (!nextAction) {
-      setStatus("Next action cannot be empty.", true);
-      if (nextEl) nextEl.focus();
-      return;
-    }
-    decision.owner = owner;
-    decision.next_action = nextAction;
-    decision.review_date = (reviewEl && reviewEl.value) || "";
-    if (targetEl && !targetEl.disabled) {
-      decision.target_project = (targetEl.value || "").trim() || DEFAULT_TARGET_PROJECT;
-    }
-    decision.updated_at = nowIso();
-    pushEvent(decision, "LIFECYCLE_UPDATED", "Owner / next action / review date updated.", owner);
-    state.decisions[finding.finding_id] = decision;
-    state.updated_at = decision.updated_at;
-    saveState(state);
-    setStatus(`Lifecycle updated for ${decision.decision_id}.`);
-    renderAll();
+    if (banner) { banner.textContent = confirm; banner.classList.remove("hidden"); }
   }
 
   function closeDecision(finding) {
@@ -738,53 +1420,118 @@
     const decision = getDecision(state, finding.finding_id);
     if (!decision || decision.status === "CLOSED") return;
     decision.status = "CLOSED";
-    decision.next_action = defaultNextAction(decision.action, "CLOSED");
+    decision.next_action = deriveNextAction(decision.action, "CLOSED", null, decision.verification && decision.verification.overall_result);
     decision.updated_at = nowIso();
-    pushEvent(decision, "DECISION_CLOSED", "Closed in Wings4 local tracking only; no child-project implementation claim.", decision.owner);
+    pushEvent(decision, "DECISION_CLOSED", "Closed in Wings4 local tracking only.", DEFAULT_OWNER);
     state.decisions[finding.finding_id] = decision;
     state.updated_at = decision.updated_at;
     saveState(state);
-    setStatus(`Decision ${decision.decision_id} closed locally.`);
+    setStatus("Decision " + decision.decision_id + " closed locally.");
     renderAll();
   }
 
   function reopenDecision(finding) {
     const state = loadState();
     const decision = getDecision(state, finding.finding_id);
-    if (!decision) return;
-    if (!(decision.status === "CLOSED" || decision.status === "POSTPONED")) return;
+    if (!decision || !(decision.status === "CLOSED" || decision.status === "POSTPONED")) return;
     const previous = decision.status;
     decision.status = "REOPENED";
-    decision.next_action = "Record or confirm the next human decision action.";
+    decision.next_action = deriveNextAction(decision.action, "REOPENED", null, null);
     decision.updated_at = nowIso();
-    pushEvent(decision, "DECISION_REOPENED", `Reopened from ${previous}; history preserved.`, decision.owner);
+    pushEvent(decision, "DECISION_REOPENED", "Reopened from " + previous + "; history preserved.", DEFAULT_OWNER);
     state.decisions[finding.finding_id] = decision;
     state.updated_at = decision.updated_at;
     saveState(state);
-    setStatus(`Decision ${decision.decision_id} reopened.`);
+    setStatus("Decision " + decision.decision_id + " reopened.");
     renderAll();
   }
 
-  function previewIntervention(finding, silent) {
+  function getCanonicalPackageText(finding, decision, state) {
+    if (!decision || !interventionEligible(decision)) {
+      return { error: "Intervention package is not eligible for this decision." };
+    }
+    const packageIdBefore = decision.intervention && decision.intervention.intervention_package_id;
+    const ready = ensureReadyPackage(finding, decision, state);
+    if (ready.error) return { error: ready.error };
+    if (packageIdBefore && !isPendingPackageId(packageIdBefore) && ready.packageId !== packageIdBefore) {
+      return { error: "Package ID changed unexpectedly while preparing canonical text." };
+    }
+    let text = "";
+    try {
+      text = serializePackage(finding, decision, ready.route, ready.packageId);
+    } catch (err) {
+      return { error: err.message || String(err) };
+    }
+    const invalid = validatePackageText(text, ready.route, ready.packageId);
+    if (invalid) return { error: "Package validation failed: " + invalid };
+    return {
+      text,
+      packageId: ready.packageId,
+      route: ready.route,
+      packageIdUnchanged: !packageIdBefore || packageIdBefore === ready.packageId
+    };
+  }
+
+  function copyTextFallback(text) {
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    ta.setAttribute("readonly", "readonly");
+    ta.style.position = "fixed";
+    ta.style.left = "-9999px";
+    document.body.appendChild(ta);
+    ta.select();
+    let ok = false;
+    try {
+      ok = document.execCommand("copy");
+    } catch (err) {
+      ok = false;
+    }
+    ta.remove();
+    return ok;
+  }
+
+  async function copyPackage(finding) {
     const state = loadState();
     const decision = getDecision(state, finding.finding_id);
-    const preview = document.getElementById("intervention-preview");
-    if (!decision || !preview) return;
-    if (!interventionEligible(decision)) {
-      if (!silent) setStatus("Intervention package is not eligible for this decision.", true);
+    if (!decision || !interventionEligible(decision)) {
+      setStatus("Intervention package is not eligible to copy.", true);
       return;
     }
-    const targetEl = document.getElementById("target-project");
-    if (targetEl) decision.target_project = (targetEl.value || "").trim() || DEFAULT_TARGET_PROJECT;
-    const pkg = buildInterventionPackage(finding, decision);
-    const invalid = validateInterventionPackage(pkg, decision);
-    if (invalid) {
-      setStatus("Package validation failed: " + invalid, true);
+    const idBefore = decision.intervention && decision.intervention.intervention_package_id;
+    const got = getCanonicalPackageText(finding, decision, state);
+    if (got.error) {
+      setStatus(got.error, true);
       return;
     }
-    preview.classList.remove("hidden");
-    preview.textContent = pkg.text;
-    if (!silent) setStatus("Intervention package preview ready. Export when satisfied.");
+    if (idBefore && got.packageId !== idBefore) {
+      setStatus("COPY PACKAGE aborted: package ID must not change during copy.", true);
+      return;
+    }
+    // Persist any first-time identity assignment without marking as exported.
+    state.decisions[finding.finding_id] = decision;
+    state.updated_at = nowIso();
+    saveState(state);
+
+    let copied = false;
+    if (navigator.clipboard && typeof navigator.clipboard.writeText === "function") {
+      try {
+        await navigator.clipboard.writeText(got.text);
+        copied = true;
+      } catch (err) {
+        copied = false;
+      }
+    }
+    if (!copied) copied = copyTextFallback(got.text);
+    if (!copied) {
+      setStatus("Could not copy the package to the clipboard. Use DOWNLOAD INTERVENTION PACKAGE instead.", true);
+      return;
+    }
+    const idAfter = decision.intervention && decision.intervention.intervention_package_id;
+    if (idAfter !== got.packageId) {
+      setStatus("Clipboard copy succeeded but package ID integrity check failed.", true);
+      return;
+    }
+    setStatus("Intervention package copied (" + got.packageId + "). Same canonical text as download.");
   }
 
   function exportIntervention(finding) {
@@ -794,159 +1541,84 @@
       setStatus("Intervention package is not eligible for this decision.", true);
       return;
     }
-    const targetEl = document.getElementById("target-project");
-    if (targetEl) decision.target_project = (targetEl.value || "").trim() || DEFAULT_TARGET_PROJECT;
-    const pkg = buildInterventionPackage(finding, decision);
-    const invalid = validateInterventionPackage(pkg, decision);
-    if (invalid) {
-      setStatus("Package validation failed: " + invalid, true);
-      return;
-    }
-    const filename = `wings4-intervention-${safeFilenamePart(pkg.target_project)}-${safeFilenamePart(pkg.decision_id)}-${safeFilenamePart(pkg.package_id)}.txt`;
-    downloadText(filename, pkg.text);
+    const got = getCanonicalPackageText(finding, decision, state);
+    if (got.error) { setStatus(got.error, true); return; }
+    const route = got.route;
+    const packageId = got.packageId;
+    const text = got.text;
+    const filename = `wings4-intervention-${safeFilenamePart(packageId)}-${safeFilenamePart(route.TARGET_PROJECT)}.txt`;
+    downloadText(filename, text);
+    route.EXECUTION_STATUS = "PACKAGE_EXPORTED";
+    decision.route = route;
+    decision.status = "IN_ACTION";
     decision.intervention = {
-      package_id: pkg.package_id,
-      target_project: pkg.target_project,
-      generated_at: pkg.generated_at,
-      version: pkg.version,
-      destination_role: "ORCHESTRATOR",
+      intervention_package_id: packageId,
+      package_schema_version: PACKAGE_SCHEMA_VERSION,
+      target_project: route.TARGET_PROJECT,
+      target_root: route.TARGET_ROOT,
+      source_project: route.SOURCE_PROJECT,
+      source_root: route.SOURCE_ROOT,
+      generated_at: (decision.intervention && decision.intervention.generated_at) || nowIso(),
+      version: (decision.intervention && decision.intervention.version ? Number(decision.intervention.version) : 1),
+      destination_role: route.DESTINATION_ROLE,
+      route_id: route.route_id,
       exported: true
     };
-    decision.status = "IN_ACTION";
-    decision.next_action = "Await target-project ORCHESTRATOR review and return evidence.";
+    decision.next_action = deriveNextAction(decision.action, decision.status, route.EXECUTION_STATUS, decision.verification && decision.verification.overall_result);
     decision.updated_at = nowIso();
-    pushEvent(decision, "INTERVENTION_PACKAGE_EXPORTED", `Exported ${pkg.package_id} for ${pkg.target_project}. Not implementation-complete.`, decision.owner);
+    pushEvent(decision, "INTERVENTION_PACKAGE_EXPORTED", "Downloaded " + packageId + " for " + route.TARGET_PROJECT + ".", DEFAULT_OWNER);
     state.decisions[finding.finding_id] = decision;
     state.updated_at = decision.updated_at;
     saveState(state);
-    setStatus(`Intervention package exported: ${filename}. SkillsMachine was not written.`);
+    setStatus("Intervention package downloaded: " + filename + ". SkillsMachine was not written.");
     renderAll();
   }
 
   function buildExportPayload(state) {
-    const decisions = {};
-    Object.keys(state.decisions || {}).forEach((id) => {
-      const d = state.decisions[id];
-      const action = normalizeAction(d.action);
-      decisions[id] = {
-        schema_version: SCHEMA_VERSION,
-        decision_id: d.decision_id,
-        project_id: d.project_id || (fixture && fixture.project && fixture.project.project_id) || DEFAULT_TARGET_PROJECT,
-        target_project: d.target_project || d.project_id || DEFAULT_TARGET_PROJECT,
-        finding_id: d.finding_id || id,
-        action,
-        visible_action_label: d.visible_action_label || visibleActionLabel(action),
-        owner: d.owner || DEFAULT_OWNER,
-        status: d.status,
-        next_action: d.next_action || "",
-        review_date: d.review_date || "",
-        rationale_or_modification: d.rationale_or_modification || d.note || "",
-        previous_state: d.previous_state || null,
-        new_state: d.new_state || ACTION_TO_FINDING_STATUS[action] || null,
-        created_at: d.created_at || null,
-        updated_at: d.updated_at || null,
-        decided_at: d.decided_at || null,
-        source_data_class: d.source_data_class || d.data_class || null,
-        product_version: PRODUCT_VERSION,
-        analyzed_project_mutation: "NO",
-        events: d.events || [],
-        intervention: d.intervention || null
-      };
-    });
     return {
       schema_version: SCHEMA_VERSION,
-      export_id: "WINGS4_RING0_RING1_DECISION_EXPORT",
+      export_id: "WINGS4_RING0_RING1_RING2_EXPORT",
       product_version: PRODUCT_VERSION,
-      ring0_marker: "RING0_SKILLSMACHINE_DIAGNOSTIC",
-      ring1_marker: "RING1_DECISION_LIFECYCLE_AND_MIN_INTERVENTION",
+      package_schema_version: PACKAGE_SCHEMA_VERSION,
       exported_at: nowIso(),
-      project_id: fixture && fixture.project ? fixture.project.project_id : DEFAULT_TARGET_PROJECT,
+      project_id: fixture && fixture.project ? fixture.project.project_id : "",
       analyzed_project_mutation: "NO",
-      storage: storageAvailable ? "localStorage+download" : "memory+download",
-      decisions
+      decisions: state.decisions || {},
+      verifications: state.verifications || {}
     };
   }
 
-  function validateExportPayload(payload) {
-    if (!payload || typeof payload !== "object") return "Export root missing.";
-    if (payload.schema_version == null) return "schema_version missing.";
-    if (!payload.project_id) return "project_id missing.";
-    const ids = Object.keys(payload.decisions || {});
-    for (let i = 0; i < ids.length; i += 1) {
-      const d = payload.decisions[ids[i]];
-      const required = ["schema_version", "project_id", "finding_id", "action", "visible_action_label", "status", "decided_at", "source_data_class"];
-      for (let r = 0; r < required.length; r += 1) {
-        if (d[required[r]] == null || d[required[r]] === "") return `Decision ${ids[i]} missing ${required[r]}.`;
-      }
-      if (d.action === "MODIFY" && !(d.rationale_or_modification || "").trim()) {
-        return `Decision ${ids[i]} MODIFY lacks rationale_or_modification.`;
-      }
-    }
-    return null;
-  }
-
   function exportJson() {
-    if (!fixture) {
-      setStatus("Cannot export until the fixture has loaded.", true);
-      return;
-    }
-    const state = loadState();
-    const payload = buildExportPayload(state);
-    const invalid = validateExportPayload(payload);
-    if (invalid) {
-      setStatus("Export validation failed: " + invalid, true);
-      return;
-    }
+    if (!fixture) { setStatus("Cannot export until the fixture has loaded.", true); return; }
+    const payload = buildExportPayload(loadState());
     const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
-    a.href = url;
-    a.download = `wings4-ring0-ring1-decisions-${Date.now()}.json`;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    URL.revokeObjectURL(url);
+    a.href = url; a.download = "wings4-ring0-ring1-ring2-decisions-" + Date.now() + ".json";
+    document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
     setStatus("Decision JSON exported. SkillsMachine was not written.");
   }
 
   function resetState() {
-    const ok = window.confirm("Reset demo and clear all Ring0/Ring1 local decisions? This cannot be undone.");
-    if (!ok) {
-      setStatus("Reset cancelled.");
-      return;
+    if (!window.confirm("Reset demo and clear all Ring0/Ring1/Ring2 local state?")) {
+      setStatus("Reset cancelled."); return;
     }
     memoryState = emptyState();
     if (storageAvailable) {
-      try {
-        localStorage.removeItem(STORAGE_KEY);
-      } catch (err) {
-        setStatus("Could not clear browser storage, but in-memory state was reset.", true);
-        renderState(memoryState);
-        renderAll();
-        return;
-      }
+      try { localStorage.removeItem(STORAGE_KEY); } catch (err) { /* ignore */ }
     }
     renderState(memoryState);
-    setStatus("Demo reset. Local Ring0/Ring1 decisions cleared. You can repeat the flow.");
+    setStatus("Demo reset. Local Ring0/Ring1/Ring2 state cleared.");
     renderAll();
   }
 
   function validateFixture(data) {
     if (!data || typeof data !== "object") return "Fixture is not a JSON object.";
     if (!data.project || !data.project.project_id) return "Fixture is missing project.project_id.";
-    if (!Array.isArray(data.findings) || data.findings.length < 3) {
-      return "Fixture must include at least three findings.";
-    }
-    for (let i = 0; i < data.findings.length; i += 1) {
-      const f = data.findings[i];
-      const need = ["finding_id", "title", "status", "evidence", "impact", "alternatives", "recommendation", "data_class"];
-      for (let n = 0; n < need.length; n += 1) {
-        if (f[need[n]] == null || f[need[n]] === "") return `Finding ${f.finding_id || i} missing ${need[n]}.`;
-      }
-      if (!["CANONICAL_DERIVED", "REPRESENTATIVE_NONCANONICAL"].includes(f.data_class)) {
-        return `Finding ${f.finding_id} has unknown data_class.`;
-      }
-    }
+    if (!Array.isArray(data.findings) || data.findings.length < 3) return "Fixture must include at least three findings.";
+    if (!Array.isArray(data.governed_target_options) || !data.governed_target_options.length) return "Fixture must include governed_target_options.";
+    if (!data.governed_target_options[0].project_root) return "Governed target root metadata missing.";
+    if (!data.source_project || !data.source_project.project_root) return "Source project root metadata missing.";
     return null;
   }
 
@@ -974,25 +1646,18 @@
       fixture = data;
       selectedId = fixture.findings[0].finding_id;
       renderAll();
-      setStatus("Fixture loaded. Ring0 diagnosis and Ring1 lifecycle are ready.");
+      setStatus("Fixture loaded. Ring0/Ring1/Ring2 local flow is ready.");
     } catch (err) {
       els.projectCard.innerHTML = `<p class="status error">Could not load the diagnostic fixture.</p><p class="muted">${escapeHtml(err.message)}</p>`;
-      setStatus(
-        "Could not load skillsmachine.fixture.json: " +
-          err.message +
-          ". If you opened the HTML via file://, start a local static server instead.",
-        true
-      );
+      setStatus("Could not load skillsmachine.fixture.json: " + err.message, true);
     }
   }
 
   window.Wings4Ring0 = {
-    validateExportPayload,
-    validateFixture,
-    buildExportPayload,
-    validateInterventionPackage,
-    SCHEMA_VERSION,
-    PRODUCT_VERSION
+    SCHEMA_VERSION, PRODUCT_VERSION, PACKAGE_SCHEMA_VERSION,
+    extractAiBlock, parseKeyValues, classifyVerification, validateFixture,
+    isValidPackageIdPattern, isPendingPackageId, isTemplateValue, isMissingOrTemplate,
+    displayEvidenceValue, getCanonicalPackageText
   };
 
   boot();

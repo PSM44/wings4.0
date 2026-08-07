@@ -43,7 +43,7 @@ body {
 .skip-link:focus { left: 0.75rem; }
 
 .top, .panel, .foot {
-  width: min(1120px, calc(100% - 2rem));
+  width: min(1480px, calc(100% - 2rem));
   margin: 1rem auto;
 }
 
@@ -146,10 +146,11 @@ h1 {
 }
 
 .layout {
-  width: min(1120px, calc(100% - 2rem));
+  width: min(1480px, calc(100% - 2rem));
   margin: 0 auto 1rem;
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr 1.2fr;
+  /* Findings stay navigable; detail/package/Ring2 consume most horizontal space. */
+  grid-template-columns: minmax(200px, 0.8fr) minmax(180px, 0.65fr) minmax(480px, 2.4fr);
   gap: 1rem;
   align-items: start;
 }
@@ -158,6 +159,20 @@ h1 {
   display: flex;
   flex-direction: column;
   min-width: 0;
+}
+
+#detail-panel,
+#detail-body {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.detail-block code,
+.meta-line code,
+.authority-banner,
+.pointer {
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .card, .finding, .detail-block {
@@ -367,6 +382,34 @@ h1 {
   line-height: 1.4;
 }
 
+.modify-box.return-evidence {
+  min-height: 16rem;
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: 0.92rem;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
+.ring2-result {
+  margin-top: 0.85rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--line);
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.ring2-result .alt-list {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.display-missing {
+  color: var(--accent-2);
+  font-style: italic;
+}
+
 .field-label {
   display: block;
   margin-top: 0.75rem;
@@ -456,9 +499,10 @@ h1 {
 
 .package-preview {
   margin-top: 0.75rem;
-  max-height: 280px;
+  max-height: 380px;
   overflow: auto;
   white-space: pre-wrap;
+  overflow-wrap: anywhere;
   word-break: break-word;
   background: #1c1a16;
   color: #f3efe6;
@@ -466,6 +510,7 @@ h1 {
   padding: 0.85rem;
   font-size: 0.78rem;
   line-height: 1.4;
+  max-width: 100%;
 }
 
 .lifecycle-actions { margin-top: 0.75rem; }
@@ -480,9 +525,10 @@ h1 {
 
 @media (max-width: 560px) {
   .top, .panel, .foot, .layout {
-    width: min(1120px, calc(100% - 1rem));
+    width: min(1480px, calc(100% - 1rem));
   }
   .decision-row .btn { flex: 1 1 calc(50% - 0.5rem); }
   .pill { font-size: 0.74rem; }
-  .package-preview { max-height: 220px; }
+  .package-preview { max-height: 240px; }
+  .modify-box.return-evidence { min-height: 12rem; }
 }

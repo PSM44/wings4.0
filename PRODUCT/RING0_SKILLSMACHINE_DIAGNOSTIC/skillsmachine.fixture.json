@@ -11,6 +11,7 @@
   "project": {
     "project_id": "SkillsMachine",
     "display_name": "SkillsMachine / PS.SkillsMachine",
+    "project_root": "C:\\01. GitHub\\Skills",
     "data_class": "CANONICAL_DERIVED",
     "source_pointers": [
       "PORTFOLIO.DECISION_LOG.md#DEC-W4-036",
@@ -23,6 +24,38 @@
     "wings4_relationship_product": "Optional Skills/GRC integration surface; not a mandatory dependency for every Wings4 function.",
     "wings4_relationship_project": "Needs transfer via governed request; SkillsMachine implements locally; Wings4 verifies resynchronization."
   },
+  "source_project": {
+    "project_id": "Wings4.0",
+    "display_name": "Wings4",
+    "project_root": "C:\\01. GitHub\\Wings4.0",
+    "role": "PRODUCT_ORCHESTRATOR",
+    "temp_root": "C:\\Users\\aazcl\\Downloads\\GlobalTempWings4"
+  },
+  "governed_target_options": [
+    {
+      "project_id": "SkillsMachine",
+      "display_name": "SkillsMachine / PS.SkillsMachine",
+      "project_root": "C:\\01. GitHub\\Skills",
+      "destination_role": "ORCHESTRATOR",
+      "data_class": "CANONICAL_DERIVED",
+      "temp_contract": {
+        "applicable": true,
+        "temp_root": "C:\\Users\\aazcl\\Downloads\\Temp.SkillMachine",
+        "temp_root_semantics": "Known governed destination disposable staging path (metadata only). Wings4 does not read or write this path. Temp metadata does not authorize Wings4 access or mutation.",
+        "clean_before_write": true,
+        "flat_only": true,
+        "upload_ready_only": true,
+        "minimize_file_count": true,
+        "minimize_file_size": true,
+        "minimize_total_size": true,
+        "target_upload_file_count": 1
+      },
+      "source_pointers": [
+        "PORTFOLIO.DECISION_LOG.md#DEC-W4-053",
+        "PORTFOLIO.ARCHITECTURE/WINGS4.RING1.DECISION.AND.INTERVENTION.SPEC.md"
+      ]
+    }
+  ],
   "findings": [
     {
       "finding_id": "F-SM-001",

@@ -608,3 +608,72 @@ Decision:
 - First pilot target project remains SkillsMachine; generic target model required.
 - Not authorized: child-project mutation, return/resync automation, product-to-product live integration, market scanning, Ring2+, RADAR.
 - PUSH remains unauthorized unless separately approved.
+
+## DEC-W4-057 — Ring1 UX simplification and governed routing
+
+Status: APPROVED_HUMAN_DIRECTION
+Date: 2026-08-06
+Scope: Ring1 UX; Q-090; authorization `RING1_UX_SIMPLIFICATION_AND_GOVERNED_ROUTING`
+
+Decision:
+
+- Minimize user free text to one Decision note field.
+- Owner is not user-editable in the current single-user UI (internal attribution may remain).
+- Next Action is system-derived and read-only.
+- Generic Review Date input is removed from the normal Ring1 UI.
+- Target Project is never free text; it is preselected from finding evidence or selected from governed options already represented by Wings4.
+- Preview package control is removed; package content remains visible; primary eligible action is DOWNLOAD INTERVENTION PACKAGE.
+- Wings4 derives a Governed Route for eligible decisions: SOURCE, DESTINATION, DESTINATION_ROLE, PURPOSE, AUTHORIZED_SCOPE, PROHIBITED_SCOPE, INPUT_EVIDENCE, EXPECTED_OUTPUT, RETURN_EVIDENCE, AUTHORITY_BOUNDARY, EXECUTION_STATUS.
+- Intervention export must derive from the governed route and cannot target arbitrary projects.
+- Ring2 remains design-only (return-evidence/resynchronization contract may be defined, not implemented).
+- No staging/commit/push in W4P005 without separate authorization after live validation.
+
+## DEC-W4-058 — Intervention package hardening and Ring2 return verification
+
+Status: APPROVED_HUMAN_DIRECTION
+Date: 2026-08-07
+Scope: Intervention contract + Ring2; Q-091, Q-092; authorization `INTERVENTION_PACKAGE_HARDENING_PLUS_RING2_IMPLEMENTATION`
+
+Decision:
+
+- W4P005_HUMAN_LIVE_VALIDATION=PASS.
+- Harden Intervention Package: unique INTERVENTION_PACKAGE_ID (pattern `W4IP-YYYYMMDD-NNNN`), schema version, source/target project and root metadata, destination role, temp/minimization policies when applicable, mandatory return AI block with the same package ID, authority banners.
+- Package must be self-sufficient for a target ORCHESTRATOR without additional explanation.
+- Implement Ring2: ingest return evidence / AI block, correlate by package ID, verify identity/root/scope/prohibitions/output/evidence/commit/push/conflicts, classify missing evidence separately from failure, update Wings4-local state only.
+- Paths and temp metadata are metadata only; they do not authorize Wings4 to read or mutate the target repository.
+- Ring3+ and RADAR remain unauthorized.
+- No staging/commit/push in W4P006 without separate authorization after live validation.
+
+## DEC-W4-059 — W4P006A Ring2 functional recovery after human-detected gaps
+
+Status: APPROVED_HUMAN_DIRECTION
+Date: 2026-08-07
+Scope: W4P006A recovery + Ring2 backlog; Q-093; authorization `W4P006A_RING2_FUNCTIONAL_RECOVERY_PLUS_BACKLOG`
+
+Decision:
+
+- Preserve `W4P005_HUMAN_LIVE_VALIDATION=PASS` and accepted Ring0/Ring1 UX constraints.
+- Record W4P006 static-validation false positive without rewriting historical report files:
+  - prior claim `INTERVENTION_PACKAGE_ID_IMPLEMENTED=YES` contradicted by human export showing `W4IP-PENDING-ASSIGNMENT`;
+  - prior claim `RING2_RETURN_INPUT=PASS` contradicted by absent usable textarea / TXT import / VERIFY wiring.
+- Assign a real persistent `W4IP-YYYYMMDD-NNNN` no later than PACKAGE_READY; visible header must show `WINGS4_CONTROLLED_INTERVENTION_PACKAGE ID: W4IP-...`; machine-readable `INTERVENTION_PACKAGE_ID=` remains; never leave pending once ready/exported.
+- SkillsMachine temp metadata resolves to `C:\Users\aazcl\Downloads\Temp.SkillMachine` when applicable; metadata does not authorize Wings4 access/mutation.
+- Ring2 minimal UI: one Return evidence textarea, optional IMPORT TXT, VERIFY RETURN; no JSON editing required.
+- Useful Ring2 parser/classifier/state-safety backlog is authorized; Ring3+, RADAR, child mutation, staging/commit/push remain unauthorized.
+- Interactive functions must not be marked PASS solely from static/code presence.
+
+## DEC-W4-060 — W4P006B Ring2 UX hardening and baseline-prep gate
+
+Status: APPROVED_HUMAN_DIRECTION
+Date: 2026-08-07
+Scope: W4P006B UX/hardening/close-prep; Q-094; authorization `W4P006B_RING2_UX_HARDENING_BASELINE_PREP`
+
+Decision:
+
+- Human negative-path Ring2 tests PASS: unknown ID, incomplete return, scope conflict (even when OVERALL_STATUS=PASS), unauthorized PUSH=YES.
+- Add COPY PACKAGE adjacent to DOWNLOAD; copy and download must use identical canonical package text; copy must not regenerate package ID.
+- Widen detail/package/Ring2 geometry; wrap/break long paths and machine-readable lines; keep UI minimal (no graph framework).
+- Angle-bracket template placeholders (`<PASS|...>`, `<YES|NO>`, `<n>`, etc.) are missing/invalid evidence, not real values.
+- Do not mark `HUMAN_RING2_LIVE_VALIDATION=PASS` until valid-return VERIFIED_PASS is proven by human or existing browser automation.
+- Product baseline commit authorized only after that valid-return proof plus static/logical gates; PUSH remains unauthorized.
+- Ring3+, RADAR, SkillsMachine read/write, child mutation remain unauthorized.
