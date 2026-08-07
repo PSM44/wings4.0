@@ -15,10 +15,9 @@ ROLE_TO_ASSUME=ORCHESTRATOR
 EXPECTED_BRANCH=main
 RING0_BASELINE_COMMIT=1e8315d3836c941ba8cc6ef4a1b7c6981bb0c33c
 RING1_COMMIT=16b28d19c6342271b4e5e417a84649a69a14443e
-RING1_COMMIT_MESSAGE=20260806.Wings4.Ring1DecisionLifecycleAndIntervention
 RING1_RING2_BASELINE_COMMIT=03a589dd3f6b8e7c4d3314c340d550327cb203f3
-RING1_RING2_BASELINE_MESSAGE=20260807.Wings4.Ring1Ring2FunctionalBaseline
-HEAD_BEFORE_CONTINUITY_REFRESH=03a589dd3f6b8e7c4d3314c340d550327cb203f3
+CONTINUITY_COMMIT_AT_BASELINE_CLOSE=ecf89b54a37a1e2d9bcf91e8796ee6b753707a32
+HEAD_BEFORE_CONTINUITY_REFRESH=ecf89b54a37a1e2d9bcf91e8796ee6b753707a32
 CURRENT_HEAD_AT_RESUME=RESOLVE_FROM_GIT
 HEAD_AT_GENERATION_SEMANTICS=HISTORICAL_EVIDENCE_ONLY
 CURRENT_HEAD_SEMANTICS=RUNTIME_GIT_IS_SOURCE_OF_TRUTH
@@ -32,112 +31,44 @@ FIRST_RUNTIME_GATE=Resolve and validate root, branch, HEAD, index and worktree b
 
 1. Assume ROLE=ORCHESTRATOR for Wings4.0 at C:\01. GitHub\Wings4.0.
 2. Validate BRANCH=main and clean worktree/index unless an authorized dirty exception exists.
-3. Confirm Ring0 `1e8315d`, Ring1 `16b28d1`, and Ring1/Ring2 baseline `03a589d` are ancestors of HEAD.
+3. Confirm Ring0 `1e8315d`, Ring1 `16b28d1`, Ring1/Ring2 baseline `03a589d`, and Product North Star canon commit are ancestors of HEAD.
 4. Do not inspect AI.History/.
 5. Do not mutate SkillsMachine, Brainy, Wings3 or any child project.
 
 ## 02 Product model
 
-- PRODUCT_WINGS4 = operable diagnosis, decision lifecycle, intervention package export, Ring2 return verification.
-- PROJECT_WINGS4 = development initiative/process.
-- REPOSITORY_WINGS4 = versioned logical unit.
-- ROOT = C:\01. GitHub\Wings4.0
-- INITIAL_USER=Pablo
-- MANAGEMENT_ROLE=consumer-eye reviewer / deploy-readiness authority
+- One unified user-facing Wings product.
+- PRODUCT_NORTH_STAR canonized under DEC-W4-061 / Q-095..Q-109.
+- MARKET_CHECK = core on-demand diagnostic; MARKET_MONITORING = future unauthorized capability.
+- MANAGEMENT_DELIVERY_1 = cumulative live demo of committed Ring0+Ring1+Ring2.
+- Ring2 = RETURN VERIFICATION (not independent resynchronization).
 
-## 03 Ring0 baseline (immutable cumulative)
+## 03 Committed product baseline
 
-RING0_HARDENED_FUNCTIONAL_ACCEPTANCE=PASS
-LOCAL_DEPLOY_READINESS=PASS_FOR_SINGLE_USER_LOCAL_RING0
-VISIBLE_ACTIONS=ACCEPT|REJECT|MODIFY|POSTPONE
-FIRST_ANALYZED_PROJECT=SkillsMachine
+RING0+RING1+RING2_BASELINE=03a589dd3f6b8e7c4d3314c340d550327cb203f3
+PRODUCT_NORTH_STAR_CANON=COMMITTED_IN_NORTH_STAR_BASELINE_COMMIT
 PATH=PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/
 SKILLSMACHINE_MUTATION=NO
+RING3_IMPLEMENTED=NO
+RADAR_IMPLEMENTED=NO
+MARKET_MONITORING_IMPLEMENTED=NO
 
-## 04 Ring1 + Ring2 cumulative baseline
+## 04 Exact next frontier
 
-RING1_SCOPE=DECISION_LIFECYCLE_PLUS_MINIMAL_CONTROLLED_INTERVENTION_PACKAGE
-RING2_SCOPE=RETURN_EVIDENCE_CORRELATION_AND_VERIFICATION
-AUTHORITY=DEC-W4-056..DEC-W4-060 / Q-089..Q-094
-STATE_SCHEMA_VERSION=4
-PACKAGE_SCHEMA_VERSION=1.0
-SPEC_RING1=PORTFOLIO.ARCHITECTURE/WINGS4.RING1.DECISION.AND.INTERVENTION.SPEC.md
-SPEC_RING2=PORTFOLIO.ARCHITECTURE/WINGS4.RING2.RETURN.VERIFICATION.SPEC.md
-W4P005_HUMAN_LIVE_VALIDATION=PASS
-HUMAN_RING2_NEGATIVE_PATHS=PASS
-HUMAN_RING2_VALID_RETURN=PASS_BROWSER_AUTOMATED
-PRODUCT_BASELINE_COMMIT=03a589dd3f6b8e7c4d3314c340d550327cb203f3
+1. Prepare and run `WINGS4_MANAGEMENT_DELIVERY_1_CANDIDATE_AND_REALISTIC_DRY_RUN`.
+2. Do not implement Ring3+, RADAR or MARKET_MONITORING without separate authorization.
+3. Keep PUSH=NO unless separately authorized.
 
-Capabilities:
-- Ring0 diagnosis preserved.
-- Ring1 decision lifecycle + governed intervention package with real W4IP ID at PACKAGE_READY.
-- COPY PACKAGE + DOWNLOAD INTERVENTION PACKAGE share identical canonical text.
-- Wider detail/package/Ring2 panels; overflow-safe path/ID wrapping.
-- Ring2 Return evidence textarea + IMPORT TXT + VERIFY RETURN.
-- Template placeholders treated as missing/invalid evidence.
-- Unknown ID / incomplete / scope conflict / unauthorized push regressions preserved.
-- Browser-proven VERIFIED_PASS on valid return path.
-
-## 05 Cumulative delivery
-
-Ring2 preserves Ring0/Ring1. Presentations/reports/BATON/RADAR/architecture alone are not product functionality. Ring3 must not replace Ring0/Ring1/Ring2 without human authorization.
-
-## 06 SkillsMachine boundary
-
-As products: optional Skills/GRC integration surface — not implemented live in this increment.
-As projects: Wings4 does not develop/modify SkillsMachine; governed transfer + local authority + return evidence.
-
-## 07 Open blockers / gaps
-
-- PC-012 closed; PC-013 resolved (capability unassigned).
-- Ring3+/resync automation/RADAR unauthorized.
-- Clipboard copy may require a trusted user gesture in some browsers; DOWNLOAD remains available.
-- PUSH remains unauthorized.
-
-## 08 Exact next frontier
-
-1. Confirm the committed Ring1/Ring2 baseline with Pablo / gerencia as needed.
-2. Decide the next product increment (not Ring3 by default).
-3. Do not implement Ring3 until separately authorized.
-4. Keep PUSH=NO unless separately authorized.
-
-## 09 In / out of scope now
-
-IN:
-- Runtime validation against HEAD from Git
-- Baseline confirmation
-- Next-increment decision
-
-OUT:
-- Ring3+ implementation
-- Child mutation
-- RADAR
-- Market scanning
-- Product-to-product live integration
-- Push
-
-## 10 Prohibitions
+## 05 Prohibitions
 
 CHILD_PROJECT_MUTATION=PROHIBITED
 SKILLSMACHINE_MUTATION=PROHIBITED
 AI_HISTORY_INSPECTION=PROHIBITED
 RING3_PLUS_IMPLEMENTATION_AUTHORIZED=NO
+MARKET_MONITORING_AUTHORIZED=NO
 RADAR_IMPLEMENTATION_AUTHORIZED=NO
 PUSH_POLICY=NO_PUSH_WITHOUT_EXPLICIT_HUMAN_AUTHORIZATION
 
-## 11 Startup checks
+## 06 Singular next action
 
-CHECK_ROOT=C:\01. GitHub\Wings4.0
-CHECK_BRANCH=main
-CHECK_HEAD=RESOLVE_FROM_GIT
-CHECK_WORKTREE_CLEAN=REQUIRED
-CHECK_RING0_ANCESTOR=1e8315d3836c941ba8cc6ef4a1b7c6981bb0c33c
-CHECK_RING1_ANCESTOR=16b28d19c6342271b4e5e417a84649a69a14443e
-CHECK_RING1_RING2_BASELINE_ANCESTOR=03a589dd3f6b8e7c4d3314c340d550327cb203f3
-CHECK_PRODUCT_EXISTS=PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/
-CHECK_NO_CHILD_MUTATION=YES
-CHECK_PUSH=NO
-
-## 12 Singular next action
-
-Return to Wings4 ORCHESTRATOR to confirm the Ring1/Ring2 functional baseline and decide the next authorized increment without implementing Ring3.
+Return to Wings4 ORCHESTRATOR for WINGS4_MANAGEMENT_DELIVERY_1_CANDIDATE_AND_REALISTIC_DRY_RUN without implementing Ring3.

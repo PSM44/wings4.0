@@ -1,14 +1,27 @@
 # Wings4 Incremental Delivery Model
 
 Status: ACTIVE
-Authority: DEC-W4-052, Q-075, Q-076, Q-083
+Authority: DEC-W4-052, DEC-W4-061, Q-075, Q-076, Q-083
 Scope: Wings4 product deliveries to gerencia
 
-## Model
+## Two layers (do not conflate)
 
-Deliveries are cumulative: E1, E2, … EN until gerencia declares deploy readiness.
+### Internal product increments (engineering)
 
-Each delivery must:
+| Increment | Focus | Status |
+|---|---|---|
+| Ring0 | Interactive actionable diagnosis | Committed baseline |
+| Ring1 | Decision lifecycle + governed intervention package | Committed in Ring1/Ring2 baseline |
+| Ring2 | Return verification (Wings4-local) | Committed in Ring1/Ring2 baseline |
+| Later rings | Only after separate human authorization | Unauthorized |
+
+Internal Rings are product-engineering increments. They are **not** automatically separate management deliveries to gerencia.
+
+### Actual management deliveries (gerencia)
+
+Management deliveries are cumulative live demonstrations until gerencia declares deploy readiness.
+
+Each management delivery must:
 
 1. briefly explain what Wings4 is, what problem it solves and how it works;
 2. demonstrate real functionality live;
@@ -29,6 +42,34 @@ The following alone do **not** count as product functionality:
 - promises;
 - planning.
 
+## Management Delivery #1
+
+`MANAGEMENT_DELIVERY_1` = one cumulative live demonstration of committed Ring0 + Ring1 + Ring2.
+
+Management-facing story:
+
+1. Wings understands a portfolio/project context.
+2. Wings detects a material issue/opportunity.
+3. Evidence is shown.
+4. FACT / INFERENCE / RECOMMENDATION are distinguishable.
+5. Internal/external alternatives are considered when materially relevant (MARKET_CHECK when applicable).
+6. Pablo decides.
+7. Wings derives the governed route.
+8. Wings prepares the intervention package.
+9. Return evidence is received.
+10. Wings verifies that return within current Ring2 limits.
+11. Limitations are stated accurately: current Ring2 is RETURN VERIFICATION, not independent child-state resynchronization.
+
+### Management success questions
+
+| ID | Question |
+|---|---|
+| G1 | Can the reviewer immediately understand what is happening? |
+| G2 | Did Wings surface something costly to discover manually? |
+| G3 | Could the issue be acted on primarily through Wings? |
+| G4 | Is it clear what is fact, inference and recommendation? |
+| G5 | Was the process faster/safer than direct manual coordination? |
+
 ## Live demo requirement
 
 Every delivery to gerencia must include a live operable path with clear input → action → output.
@@ -39,9 +80,8 @@ Gerencia declares readiness when the product is functionally operable by a non-d
 
 ## Current mapping
 
-| Delivery | Focus |
-|---|---|
-| E1 / Ring0 | Interactive actionable diagnosis of SkillsMachine (local prototype) |
-| E2 / Ring1 | Decision lifecycle + governed intervention package export |
-| E3 / Ring2 | Return evidence correlation and verification (Wings4-local) |
-| Later | Only after separate human authorization |
+| Layer | Item | Meaning |
+|---|---|---|
+| Internal increment | Ring0 / Ring1 / Ring2 | Committed cumulative product capability |
+| Management delivery | MANAGEMENT_DELIVERY_1 | First actual gerencia demo of Ring0+Ring1+Ring2 |
+| Later | Only after separate human authorization | Not authorized by this model alone |

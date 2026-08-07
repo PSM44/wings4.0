@@ -6,10 +6,10 @@
 |---|---|---:|---|---|
 | GOV-003 | Reconcile Wings4.0 canonical definition | P0 | COMPLETED | HUMAN, Q&A, principles, decisions, glossary, runbook, BATON, README, and technical debt reflect the listen/decide/intervene/resynchronize model. |
 | GOV-004 | Define active-project listening cycle | P0 | COMPLETED | Runbook contains a bounded cycle for receiving HUMAN, creating a portfolio card, comparing, deciding, intervening, and verifying. |
-| GOV-005 | Define cross-HUMAN conflict model | P0 | NEXT | Conflict types, severity, evidence, confidence, and blocking rules are documented. |
-| GOV-006 | Define portfolio decision package | P0 | NOT_STARTED | Facts, interpretations, options, recommendation, user decision, and verification criteria are standardized. |
-| GOV-007 | Define project intervention prompt contract | P0 | NOT_STARTED | Every prompt states project identity, approved decision, exact change, preserved content, exclusions, acceptance evidence, and rollback. |
-| GOV-008 | Define resynchronization verification | P0 | NOT_STARTED | Updated HUMAN and bounded evidence can be compared against an approved decision. |
+| GOV-005 | Define cross-HUMAN conflict model | P0 | COMPLETED_ABSORBED_INTO_CURRENT_TAXONOMY | Conflict/finding classes, evidence/confidence and FACT/INFERENCE/RECOMMENDATION are canonized (Q-100/Q-101, Conflict Register, Ring0 finding model). Dedicated blocking-rule matrix remains thin but is no longer a stale NEXT definition gap. |
+| GOV-006 | Define portfolio decision package | P0 | COMPLETED_OPERATIONALIZED_IN_RING0_RING1 | Ring0/Ring1 operationalize evidence, alternatives, recommendation, human decision, Wings4-local state update and verification criteria; supersedes a separate not-started package definition. |
+| GOV-007 | Define project intervention prompt contract | P0 | COMPLETED_OPERATIONALIZED_AS_W4IP_RING1 | Committed Ring1 W4IP contract covers identity, decision, scope, prohibitions, expected output, return evidence and authority banners (`03a589d`). Explicit rollback section remains thinner than the original wording. |
+| GOV-008 | Define resynchronization verification | P0 | PARTIALLY_COMPLETE_SEMANTICS_SPLIT | Do not conflate layers: (1) historical PILOT-004 completed a bounded independent resync verification; (2) product Ring2 is RETURN VERIFICATION of target return evidence (`03a589d`); (3) future independent fresh-evidence resynchronization remains NOT_IMPLEMENTED (Ring3+). |
 
 ## Operational pilots
 
@@ -27,21 +27,40 @@
 | WINGS4_PRODUCT_001_SKILLSMACHINE_DIAGNOSTIC_RING0 | First Wings4 product ring: interactive actionable diagnosis of SkillsMachine | P0 | COMPLETED_BASELINE_PRESERVED | Local prototype shows SkillsMachine identity, >=3 findings, evidence/impact/alternatives/recommendation, ACCEPT/REJECT/MODIFY/POSTPONE (visible; was DEFER), updates Wings4-local state, exports decision JSON, does not mutate SkillsMachine, and is demoable live. Human manual browser validation of 15 functional checks = PASS. PRODUCT_001 task-count correction: 19 PASS + 1 PASS_WITH_GAP for 20 tasks (not 18+1). |
 | WINGS4_PRODUCT_002_RING0_HARDENING_AND_LOCAL_DEPLOY_READINESS | Harden Ring0: English C1 UI, POSTPONE, UX/a11y, local state resilience, deploy-readiness review pack | P0 | COMPLETED_HARDENED_ACCEPTED | Entire visible UI English; POSTPONE replaces DEFER; alignment/usability hardened; localStorage versioned and resilient; reset+orientation+provenance present; static validation PASS; human hardened final live acceptance PASS; local deploy posture PASS_FOR_SINGLE_USER_LOCAL_RING0; no SkillsMachine mutation; no Ring1 implementation. |
 | WINGS4_PRODUCT_003_RING0_BASELINE_COMMIT_AND_CONTINUITY_CLOSE | Commit accepted Ring0 Product_001/002 baseline and close continuity | P0 | COMPLETED | Local commits `1e8315d` (Ring0 baseline) and `3cef9b4` (continuity); PUSH=NO; worktree clean; Ring1 not implemented in PRODUCT_003. |
-| WINGS4_PRODUCT_004_RING1_DECISION_LIFECYCLE_AND_MIN_INTERVENTION | Ring1 decision lifecycle + minimal controlled intervention package | P0 | COMPLETED_HARDENED_ACCEPTED | Implementation committed (`16b28d1`); W4P005 live validation PASS; Ring1 cumulative baseline accepted for local single-user use pending separate commit authorization of W4P005/W4P006 diffs. |
-| WINGS4_PRODUCT_005_RING1_SIMPLIFY_AND_GOVERNED_ROUTING | Simplify Ring1 UX; system-derived governed routing; remove free-text operational fields | P0 | COMPLETED_HARDENED_ACCEPTED | Human live validation PASS. Owner/next-action/review-date/target free-text/preview removed; Decision note only; governed target; route-derived package. Uncommitted until separate commit authorization. |
-| WINGS4_PRODUCT_006_INTERVENTION_CONTRACT_AND_RING2_RETURN_VERIFICATION | Harden intervention package contract; implement Ring2 return correlation/verification | P0 | SUPERSEDED_BY_W4P006A_RECOVERY | Human live evidence found GAP_A (pending package ID) and GAP_B (no usable Ring2 input) despite prior static PASS; corrected under W4P006A / DEC-W4-059 without rewriting historical reports. |
-| WINGS4_PRODUCT_006A_RING2_FUNCTIONAL_RECOVERY_AND_BACKLOG | Recover real package-ID assignment + Ring2 return input; useful Ring2 backlog; no Ring3 | P0 | CLOSED_INTO_W4P006B_BASELINE | Human negative-path Ring2 PASS; valid-return VERIFIED_PASS proven under W4P006B browser automation; cumulative baseline commit gated/authorized by DEC-W4-060. |
-| WINGS4_PRODUCT_006B_RING2_UX_BASELINE_HARDENING_AND_CLOSE_PREP | COPY PACKAGE, wider panels, template-as-missing, valid-return proof, conditional baseline commit | P0 | READY_FOR_BASELINE_COMMIT | Priority UX/hardening complete; browser valid-return VERIFIED_PASS proven; commit authorized under DEC-W4-060; push still NO. |
+| WINGS4_PRODUCT_004_RING1_DECISION_LIFECYCLE_AND_MIN_INTERVENTION | Ring1 decision lifecycle + minimal controlled intervention package | P0 | COMPLETED_HARDENED_ACCEPTED | Implementation committed (`16b28d1`); W4P005 live validation PASS; later absorbed into cumulative Ring1/Ring2 baseline `03a589d`. |
+| WINGS4_PRODUCT_005_RING1_SIMPLIFY_AND_GOVERNED_ROUTING | Simplify Ring1 UX; system-derived governed routing; remove free-text operational fields | P0 | COMPLETED_IN_BASELINE_03a589d | Human live validation PASS. Owner/next-action/review-date/target free-text/preview removed; Decision note only; governed target; route-derived package. Committed in `03a589d`. |
+| WINGS4_PRODUCT_006_INTERVENTION_CONTRACT_AND_RING2_RETURN_VERIFICATION | Harden intervention package contract; implement Ring2 return correlation/verification | P0 | SUPERSEDED_BY_W4P006A_RECOVERY | Historical: human live evidence found GAP_A (pending package ID) and GAP_B (no usable Ring2 input) despite prior static PASS; corrected under W4P006A / DEC-W4-059 without rewriting historical reports. |
+| WINGS4_PRODUCT_006A_RING2_FUNCTIONAL_RECOVERY_AND_BACKLOG | Recover real package-ID assignment + Ring2 return input; useful Ring2 backlog; no Ring3 | P0 | CLOSED_INTO_W4P006B_BASELINE | Human negative-path Ring2 PASS; valid-return VERIFIED_PASS proven under W4P006B browser automation; closed into cumulative baseline `03a589d`. |
+| WINGS4_PRODUCT_006B_RING2_UX_BASELINE_HARDENING_AND_CLOSE_PREP | COPY PACKAGE, wider panels, template-as-missing, valid-return proof, conditional baseline commit | P0 | COMPLETED_BASELINE_COMMITTED | Priority UX/hardening complete; browser valid-return VERIFIED_PASS proven; product baseline commit `03a589d` + continuity `ecf89b5`; PUSH=NO. |
+| WINGS4_PRODUCT_NORTH_STAR_AND_MANAGEMENT_DELIVERY_PREP | Canonize Product North Star / MARKET_CHECK semantics / Management Delivery #1; no new ring implementation | P0 | COMPLETED_CANON_COMMITTED | Q-095..Q-109 + DEC-W4-061; post-Ring2 state reconcile; Management Delivery #1 defined; MARKET_CHECK≠MONITORING; GOV-005..008/MIG-019 current-status reconciled; no Ring3/RADAR runtime. |
+
+## Ring0–Ring2 regression / eval inventory (compact)
+
+Evidence-backed cases for reuse. Static code presence alone never establishes user-facing FUNCTIONAL_PASS.
+
+| EVAL_ID | Behavior | Input/trigger | Expected result | Evidence source | Automation | Gap |
+|---|---|---|---|---|---|---|
+| EV-R2-001 | Pending W4IP must never export as ready | Package becomes PACKAGE_READY / export | Real `W4IP-YYYYMMDD-NNNN`; no `W4IP-PENDING-ASSIGNMENT` | W4P006A/B; human export; app.js assignment gate | LOGICAL + HUMAN + BROWSER | None known |
+| EV-R2-002 | Unknown W4IP rejected | Return block with unused package ID | Rejection; no local intervention mutation | Human negative-path PASS; app.js | LOGICAL + HUMAN | None known |
+| EV-R2-003 | Incomplete return must not PASS | Missing fields / template placeholders | `RETURN_INCOMPLETE` (not PASS) | Human negative-path; classifier | LOGICAL + HUMAN | None known |
+| EV-R2-004 | Scope conflict overrides claimed PASS | `PROHIBITED_SCOPE_VIOLATION=YES` + `OVERALL_STATUS=PASS` | `SCOPE_CONFLICT` | Human negative-path; classifier | LOGICAL + HUMAN | None known |
+| EV-R2-005 | Unauthorized PUSH cannot VERIFIED_PASS | `PUSH=YES` vs no-push policy | `FAILED` | Human negative-path; classifier | LOGICAL + HUMAN | None known |
+| EV-R2-006 | Template placeholders are missing/invalid | Values like `<PASS\|...>`, `<YES\|NO>`, `<n>` | Treated as missing/incomplete | W4P006B; isTemplateValue | LOGICAL + BROWSER | None known |
+| EV-R2-007 | COPY equals DOWNLOAD canonical text | COPY PACKAGE vs DOWNLOAD | Identical text; ID unchanged | W4P006B; getCanonicalPackageText | LOGICAL + BROWSER | Clipboard may need trusted user gesture |
+| EV-R2-008 | Ring0 decision actions preserved | ACCEPT/REJECT/MODIFY/POSTPONE | Labels/behavior preserved; Decision note rules | Ring0 acceptance; Q-085 | HUMAN | None known |
+| EV-R2-009 | Valid return reaches VERIFIED_PASS | Canonical valid AI block for real package ID | `VERIFIED_PASS` | W4P006B browser automation | LOGICAL + BROWSER | Human live optional confirmation |
+| EV-R2-010 | Static presence ≠ FUNCTIONAL_PASS | Code/UI presence only | Must classify IMPLEMENTED_STATICALLY / LOGICALLY_TESTED / BROWSER_AUTOMATED / HUMAN_LIVE_VALIDATED | Q-093/Q-094; acceptance checklist | POLICY | Ongoing discipline |
 
 Scope:
-- Wings4-local product Ring0 baseline preserved; Ring1 extends the same local prototype.
+- Wings4-local product Ring0+Ring1+Ring2 cumulative baseline committed (`03a589d`).
 - Fixture/canonical-derived data from Wings4-held evidence; no direct SkillsMachine repository read/write.
 - Decision updates Wings4/prototype state only; intervention packages are export-only.
 
 Out of scope:
 - SkillsMachine mutation;
-- Ring2..Ring5 implementation (beyond minimal package generation authorized in Ring1);
-- Return/resynchronization automation;
+- Ring3..Ring5 implementation (Ring2 return verification is already committed in baseline `03a589d`);
+- Independent resynchronization beyond Ring2 return verification;
+- Proactive MARKET_MONITORING implementation;
 - RADAR implementation;
 - Product-to-product live integration;
 - WPI/SMDI rollout;
@@ -79,7 +98,7 @@ Out of scope:
 | MIG-016 | Integrate approved legacy doctrine | P1 | NOT_STARTED | Adopted doctrine is incorporated without whole-folder copying. |
 | MIG-017 | Review CIS as bounded tool or GRC candidate | P2 | NOT_STARTED | Security, correctness, tests, ownership, and present need evaluated. |
 | MIG-018 | Review RADAR legacy skill and scripts | P2 | NOT_STARTED | Reusable elements mapped to current ownership. |
-| MIG-019 | Define IA.History snapshot policy | P1 | NEXT | History retention, privacy, indexing, and root placement approved. |
+| MIG-019 | Define IA.History snapshot policy | P1 | OPEN_RESIDUAL_AFTER_DEC_W4_040 | DEC-W4-040 / PC-010 resolve `AI.History/` placement, Git-ignore, privacy and RADAR exclusion (no content inspection). Distinct residual remains if an immutable indexed `IA.History` snapshot product is still desired (WI-009); do not treat exclusion policy as full snapshot-policy closure. |
 | MIG-020 | Route legacy Portafolio transcript outside governance canon | P2 | NOT_STARTED | Personal/career destination decided. |
 
 ## Documentation Migration

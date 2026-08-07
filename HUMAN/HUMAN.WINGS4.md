@@ -19,16 +19,20 @@ HUMAN remains the transitional human-first entry point. See `HUMAN/DOCUMENTATION
 
 ## 2. Purpose
 
+Wings4 maintains an integrated, current and actionable understanding of the complete portfolio. It detects conflicts, discrepancies, interference, omissions, duplication and opportunities; checks whether existing portfolio capabilities or external solutions can replace or complement planned development; recommends and prioritizes action; coordinates controlled execution through the appropriate project authority; and independently verifies the resulting state while preserving human authority and project-local governance.
+
 Wings4.0 exists to make the complete portfolio understandable and coordinated by:
 
 - listening to the canonical HUMAN of each portfolio entity;
-- consolidating project identity, purpose, boundaries, capabilities, and relationships;
-- detecting conflicts, discrepancies, interferences, omissions, duplication, overlap, ambiguity, and missing ownership within projects and across the portfolio;
+- consolidating identity, purpose, boundaries, capabilities, and relationships across portfolio entities;
+- detecting conflicts, discrepancies, interferences, omissions, duplication, overlap, ambiguity, and missing ownership within entities and across the portfolio;
 - identifying opportunities for optional integration;
-- evaluating whether existing open-source or commercial solutions can replace, complement or reduce own development;
+- performing bounded on-demand MARKET_CHECK when material build/project decisions may already have internal or external solutions;
 - presenting evidence, alternatives, risks, and recommendations to the human authority;
-- preparing project-specific intervention prompts after human approval;
-- verifying whether affected projects became synchronized after local changes.
+- preparing project-specific intervention requests after human approval;
+- verifying returned intervention evidence (Ring2 return verification) and, when later authorized, obtaining fresh independent evidence for full resynchronization.
+
+Daily user outcome: before Pablo starts work in individual projects, Wings should make clear whether the portfolio is synchronized; what materially changed; what projects interfere or overlap; what requires a decision; what remains UNKNOWN; and what relevant internal or external alternatives could reduce or replace planned work.
 
 Presentations, reports, BATON, RADAR, GRC, architecture, promises and planning alone are not product functionality. Product value requires operable demonstrated behavior.
 
@@ -36,19 +40,23 @@ Presentations, reports, BATON, RADAR, GRC, architecture, promises and planning a
 
 Pablo is the initial operational user, portfolio sponsor, and final decision authority.
 
+Wings presents one unified user-facing product. ORCHESTRATOR, EXECUTOR, workers, tools or subagents may remain internal implementation roles; Pablo should not manually coordinate multiple Wings personas.
+
 Gerencia represents the consumer's eyes: reviews live demonstrations and declares readiness for deploy. Gerencia is not the initial operational user unless later decided.
+
+Wings is push-first and pull-supported: it should proactively surface material changes, desynchronization, conflicts, duplication, opportunities, unknowns, external solutions and decisions requiring attention, while still allowing pull exploration.
 
 The operating cycle is:
 
-1. Wings4.0 receives or reads a project HUMAN.
+1. Wings4.0 receives or reads a portfolio-entity HUMAN or equivalent evidence.
 2. Wings4.0 interprets the declared purpose, boundaries, capabilities, and relationships.
-3. Wings4.0 compares the project with the governed portfolio.
+3. Wings4.0 compares the entity with the governed portfolio.
 4. Wings4.0 separates facts from interpretations and records confidence.
 5. Wings4.0 presents conflicts, duplication candidates, integration opportunities, and alternatives.
 6. Pablo approves, rejects, modifies, or defers a portfolio decision.
-7. Wings4.0 prepares a focalized prompt for each affected project.
+7. Wings4.0 prepares a focalized request for each affected project/entity.
 8. Each affected project evaluates the approved intervention under its own local governance and implements only the locally accepted changes consistent with the portfolio decision.
-9. Wings4.0 listens again to the updated HUMAN and verifies resynchronization.
+9. Wings4.0 verifies return evidence and, when later authorized, obtains fresh independent evidence to confirm resynchronization.
 
 ## 4. Authority model
 
@@ -86,7 +94,16 @@ Wings4.0 does not merge or retire projects automatically. It prepares a review a
 
 ## 7. Build, adopt, integrate, or retire
 
-Before building a capability, Wings4.0 may require review of existing open-source or commercial alternatives.
+Before material custom development, Wings should evaluate when relevant:
+
+1. existing capability in the same project;
+2. reusable capability elsewhere in the portfolio;
+3. reusable Skills/GRC;
+4. suitable open-source solution;
+5. suitable commercial solution;
+6. justified residual custom development.
+
+MARKET_CHECK is the bounded on-demand diagnostic for this review. Continuous/proactive MARKET_MONITORING is a separate future capability and remains unauthorized. Discovery alone does not authorize adoption.
 
 The existence of an external solution does not automatically terminate a project. It triggers an evidence-based review of:
 
@@ -112,6 +129,9 @@ Possible outcomes are `CONTINUE_BUILD`, `ADOPT`, `ADOPT_AND_EXTEND`, `INTEGRATE`
 - There is no global RADAR owner and none is required.
 - Wings4.0 may use bounded descendant evidence to identify possible drift, but it must not silently replace the HUMAN interpretation.
 - Every material finding should preserve source, evidence, interpretation, confidence, and human decision.
+- Core finding classes include CONFLICT, DISCREPANCY, INTERFERENCE, OMISSION, DUPLICATION, OPPORTUNITY and EXTERNAL_SOLUTION.
+- FACT, INFERENCE and RECOMMENDATION must remain distinguishable.
+- UNKNOWN must state why evidence is insufficient, what evidence would resolve it and a bounded next action; UNKNOWN must never be silently converted to certainty.
 - Dynamic operational state belongs in BATON and session outputs, not in HUMAN.
 
 ## 9. Legacy relation
@@ -138,7 +158,11 @@ Wings4.0 reads, analyzes, coordinates, and recommends.
 Pablo approves, rejects, modifies, or defers portfolio decisions.
 Wings4.0 prepares evidence-backed intervention requests.
 Each affected project evaluates and implements accepted changes under its own local canon and governance.
-Wings4.0 re-reads updated canon and verifies portfolio resynchronization.
+Wings4.0 verifies returned evidence and, when later authorized, obtains fresh independent evidence for full resynchronization.
+
+Preferred governed-work execution uses Bounded Outcome Loops: outcome, success condition, mutation boundary, readable context, prohibitions, evidence contract and escalation path; maximum six iterations; one mutation owner per artifact/workstream; cross-boundary discoveries escalate rather than mutate outside ownership.
+
+Wings must reduce net human effort, elapsed delivery time, errors, duplicated work and unnecessary development. If repeated real cases require equal or greater effort than direct project operation, redesign, scope reduction or replacement must be considered.
 
 ## 11. Architecture and deploy constraints
 
@@ -159,9 +183,10 @@ Wings4.0 re-reads updated canon and verifies portfolio resynchronization.
 - Open-source substitution review has not yet been exercised on a real product decision.
 - Wings4.0 project-local RADAR is required as AI-only local evidence infrastructure but is not yet implemented; implementation remains unauthorized.
 - Product Ring0 (SkillsMachine interactive diagnosis) is committed and accepted as the first cumulative functional baseline; it does not mutate SkillsMachine.
-- Product Ring1 (decision lifecycle + minimal controlled intervention package export) is authorized and live-validated under W4P005; it does not mutate SkillsMachine.
-- Product Ring2 (return evidence correlation/verification) is authorized under `DEC-W4-058` / Q-092, recovered under `DEC-W4-059` / Q-093, and UX-hardened under `DEC-W4-060` / Q-094; Wings4-local only; no child mutation. Valid-return live proof may remain pending before baseline commit.
-- Rings 3..5 and portfolio-wide automation remain unauthorized.
+- Product Ring1 (decision lifecycle + minimal controlled intervention package export) is committed in the cumulative Ring1/Ring2 baseline (`03a589d`) and live-validated under W4P005; it does not mutate SkillsMachine.
+- Product Ring2 is committed as RETURN VERIFICATION (return-evidence correlation/verification) in the same baseline; it is Wings4-local only and is not full independent child-state resynchronization. Human negative-path PASS and browser-automated valid-return VERIFIED_PASS are recorded.
+- Independent resynchronization beyond Ring2 return verification remains unimplemented.
+- Rings 3..5 and proactive MARKET_MONITORING remain unauthorized; bounded on-demand MARKET_CHECK is part of current product diagnostic direction and must not be deferred solely because Ring5 monitoring is unauthorized.
 - Dynamic state (HEAD, worktree, next minibattle) is intentionally excluded from this HUMAN file.
 
 ## External solutions before material custom development

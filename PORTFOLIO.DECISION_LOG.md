@@ -677,3 +677,25 @@ Decision:
 - Do not mark `HUMAN_RING2_LIVE_VALIDATION=PASS` until valid-return VERIFIED_PASS is proven by human or existing browser automation.
 - Product baseline commit authorized only after that valid-return proof plus static/logical gates; PUSH remains unauthorized.
 - Ring3+, RADAR, SkillsMachine read/write, child mutation remain unauthorized.
+
+## DEC-W4-061 — Product North Star, operating model and success contract
+
+Status: APPROVED_HUMAN_DIRECTION
+Date: 2026-08-07
+Scope: Product North Star / operating model; Q-095..Q-109; authorization `WINGS4_PRODUCT_NORTH_STAR_AND_MANAGEMENT_DELIVERY_PREP`
+
+Decision:
+
+- Canonize one unified user-facing Wings; internal roles may exist but Pablo does not manually coordinate multiple personas (Q-095).
+- Portfolio scope includes active/potential projects, initiatives, investigations, businesses, ideas and not-yet-repository work; software/AI is the initial priority (Q-096).
+- Wings is push-first and pull-supported (Q-097).
+- Distinguish core on-demand MARKET_CHECK from future unauthorized proactive MARKET_MONITORING (Q-098).
+- Before material custom development, evaluate same-project, portfolio-reusable, Skills/GRC, open-source, commercial, then residual custom options; discovery alone does not authorize adoption (Q-099).
+- Core finding classes: CONFLICT, DISCREPANCY, INTERFERENCE, OMISSION, DUPLICATION, OPPORTUNITY, EXTERNAL_SOLUTION; preserve FACT/INFERENCE/RECOMMENDATION (Q-100).
+- UNKNOWN must explain insufficiency, required evidence and bounded next action; never silently convert to certainty (Q-101).
+- Progressive low-risk automation is preferred early; high-risk/strategic/irreversible/material cross-project changes remain human-gated unless separately authorized (Q-102).
+- Target return evidence is not sufficient independent proof for final closure; current Ring2 is RETURN VERIFICATION, not full independent resynchronization (Q-103).
+- Human acceptance remains required for residual subjective/visual/experiential/business judgment (Q-104).
+- Preferred execution model is Bounded Outcome Loops with max 6 iterations, one mutation owner per artifact, and cross-boundary escalation rather than unauthorized mutation (Q-105..Q-108).
+- Wings must reduce net human effort/time/errors/duplication/unnecessary development or be redesigned/reduced/replaced (Q-109).
+- This decision does not authorize Ring3+, RADAR, MARKET_MONITORING implementation, child mutation, staging, commit or push.
