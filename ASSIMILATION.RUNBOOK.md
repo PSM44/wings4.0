@@ -4,7 +4,7 @@
 
 - `C:\01. GitHub\Wings3.0` is a read-only legacy source unless a task explicitly authorizes a change.
 - `C:\01. GitHub\Wings4.0` is the portfolio governance canon.
-- `C:\Users\aazcl\Downloads\T.Wings4.0` is disposable staging.
+- `C:\Users\aazcl\Downloads\T.Wings4.0` is the sole active Wings4 disposable staging folder (`TEMP_ROOT`). Before any temp output: purge all previous contents; keep the folder flat; create no subdirectories; leave only final upload-ready artifacts; consolidate into the fewest files and minimize total size. Do not leave `node_modules`, `package.json`/`package-lock.json`, dependency trees, intermediate scripts, logs, or disposable test harnesses. Working dependencies must be created elsewhere or removed before completion. `C:\Users\aazcl\Downloads\GlobalTempWings4` is retired and must not be used as active staging.
 - Project-local repositories remain authoritative for project-local execution.
 - Wings4.0 does not silently edit another project's HUMAN.
 

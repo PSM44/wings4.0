@@ -96,7 +96,7 @@
       display_name: s.display_name || SOURCE_PROJECT_LABEL,
       project_root: s.project_root || "C:\\01. GitHub\\Wings4.0",
       role: s.role || "PRODUCT_ORCHESTRATOR",
-      temp_root: s.temp_root || "C:\\Users\\aazcl\\Downloads\\GlobalTempWings4"
+      temp_root: s.temp_root || "C:\\Users\\aazcl\\Downloads\\T.Wings4.0"
     };
   }
 
