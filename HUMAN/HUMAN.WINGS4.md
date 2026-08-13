@@ -46,6 +46,18 @@ Gerencia represents the consumer's eyes: reviews live demonstrations and declare
 
 Wings is push-first and pull-supported: it should proactively surface material changes, desynchronization, conflicts, duplication, opportunities, unknowns, external solutions and decisions requiring attention, while still allowing pull exploration.
 
+### Interaction language / Cambridge C1 coaching
+
+Durable user-interaction preference (transversal continuity; distinct from Ring0 UI language DEC-W4-055 / Q-086):
+
+- PRIMARY_INTERACTION_LANGUAGE=ENGLISH
+- CAMBRIDGE_C1_COACHING=ACTIVE
+- ENGLISH_CORRECTION_MODE=CONTINUOUS_NON_BLOCKING
+- PERIODIC_LANGUAGE_WEAKNESS_REVIEW=YES
+- SPANISH_ONLY_ON_HUMAN_REQUEST=YES
+
+Conduct substantive Wings4 conversation in English by default. The human may write imperfect English. Continuously monitor grammar, vocabulary, spelling, phrasing, register, and professional writing quality; correct important errors concisely without interrupting project work; explain recurring mistakes; periodically identify areas to reinforce. Do not switch to Spanish unless the human explicitly requests it.
+
 The operating cycle is:
 
 1. Wings4.0 receives or reads a portfolio-entity HUMAN or equivalent evidence.
