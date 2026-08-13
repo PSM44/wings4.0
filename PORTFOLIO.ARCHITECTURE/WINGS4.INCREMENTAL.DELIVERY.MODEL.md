@@ -1,7 +1,7 @@
 # Wings4 Incremental Delivery Model
 
 Status: ACTIVE
-Authority: DEC-W4-052, DEC-W4-061, Q-075, Q-076, Q-083
+Authority: DEC-W4-052, DEC-W4-061, DEC-W4-062, Q-075, Q-076, Q-083
 Scope: Wings4 product deliveries to gerencia
 
 ## Two layers (do not conflate)
@@ -83,5 +83,18 @@ Gerencia declares readiness when the product is functionally operable by a non-d
 | Layer | Item | Meaning |
 |---|---|---|
 | Internal increment | Ring0 / Ring1 / Ring2 | Committed cumulative product capability |
-| Management delivery | MANAGEMENT_DELIVERY_1 | First actual gerencia demo of Ring0+Ring1+Ring2 |
-| Later | Only after separate human authorization | Not authorized by this model alone |
+| Management delivery | MANAGEMENT_DELIVERY_1 | First actual gerencia demo of Ring0+Ring1+Ring2; ACCEPTED_BY_GERENCIA / CLOSED under DEC-W4-062 for BOUNDED_MD1 |
+| Later | Only after separate human authorization | Not authorized by this model or by MD1 closure |
+
+### Current MD1 gerencia status (DEC-W4-062)
+
+MANAGEMENT_READY=YES
+MANAGEMENT_READY_SCOPE=BOUNDED_MD1
+MANAGEMENT_DELIVERY_1=ACCEPTED_BY_GERENCIA
+MANAGEMENT_DELIVERY_1_STATUS=CLOSED
+GERENCIA_DECISION_DATE=2026-08-13
+GERENCIA_ACCEPTANCE_BASIS=READY_FOR_GERENCIA_ACCEPTANCE_WITH_NON_BLOCKING_GAPS
+BLOCKING_GAP_COUNT=0
+NET_MANAGEMENT_VALUE_AT_ACCEPTANCE=PARTIAL
+
+MANAGEMENT_READY does not mean Wings4 is feature-complete or production-complete across future capabilities. Accepted non-blocking limitations GAP_01..GAP_05 remain visible. Later deliveries and unimplemented capabilities require separate human authorization.

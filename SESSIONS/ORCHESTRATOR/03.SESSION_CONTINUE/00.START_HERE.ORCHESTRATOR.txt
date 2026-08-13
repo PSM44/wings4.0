@@ -16,6 +16,11 @@ MISSING_EVIDENCE_POLICY=REQUEST_OR_MARK_UNKNOWN
 DO_NOT_CLAIM_EXTERNAL_EVIDENCE_WILL_NEVER_BE_REQUIRED=YES
 PROJECT_CONTEXT_ISOLATION=MANDATORY
 
+TARGET_MAX_ACTIVATION_ITERATIONS=3
+ITERATION_1=ACTIVATE_AND_RUNTIME_GATE
+ITERATION_2=CONSUME_OPTIONAL_CONSOLIDATED_EVIDENCE_IF_NEEDED
+ITERATION_3=DECIDE_AND_START_NEXT_PRODUCT_MINIBATTLE
+
 PRIMARY_INTERACTION_LANGUAGE=ENGLISH
 CAMBRIDGE_C1_COACHING=ACTIVE
 ENGLISH_CORRECTION_MODE=CONTINUOUS_NON_BLOCKING
@@ -34,7 +39,9 @@ RING1_RING2_BASELINE_COMMIT=03a589dd3f6b8e7c4d3314c340d550327cb203f3
 PRODUCT_NORTH_STAR_COMMIT=d23d29294e39287c75140b767bee300a42958a73
 TEMP_HYGIENE_COMMIT=e199d8b8296c290d018b4b2b282c9618ceb121f4
 MD1_UX_COMMIT=6bb3bfcede2fbe0417191bdcf76115fcf1eab483
-HEAD_AT_GENERATION=9e301acfd3d2c633777650d3518d58ed19690826
+CONTINUITY_CANON_COMMIT=9e301acfd3d2c633777650d3518d58ed19690826
+POST_MD1_CONTINUITY_COMMIT=edc3b86f752f7c464c15c8873843ddad79b127e9
+HEAD_AT_GENERATION=edc3b86f752f7c464c15c8873843ddad79b127e9
 CURRENT_HEAD_AT_RESUME=RESOLVE_FROM_GIT
 HEAD_AT_GENERATION_SEMANTICS=HISTORICAL_EVIDENCE_ONLY
 CURRENT_HEAD_SEMANTICS=RUNTIME_GIT_IS_SOURCE_OF_TRUTH
@@ -42,20 +49,24 @@ REMOTE_COUNT_AT_GENERATION=0
 PUSH=NO
 COMMIT=NO
 STAGING=NO
-MANAGEMENT_READY=NO
+MANAGEMENT_READY=YES
+MANAGEMENT_READY_SCOPE=BOUNDED_MD1
+MANAGEMENT_DELIVERY_1=ACCEPTED_BY_GERENCIA
+MANAGEMENT_DELIVERY_1_STATUS=CLOSED
 
-INSTRUCTION_TO_NEW_SESSION=Read this file as the complete current continuation package and start without requesting another prompt or additional files for session start. Later in the session, request bounded additional evidence when needed; never guess missing evidence. Conduct substantive conversation in English with continuous non-blocking Cambridge C1 coaching.
+INSTRUCTION_TO_NEW_SESSION=Read this file as the complete current continuation package and start without requesting another prompt or additional files for session start. Later in the session, request bounded additional evidence when needed; never guess missing evidence. Optional consolidated evidence may exist at C:\Users\aazcl\Downloads\T.Wings4.0\WINGS4_NEXT_ORCHESTRATOR_CONSOLIDATED.txt; it is not required for session start. Conduct substantive conversation in English with continuous non-blocking Cambridge C1 coaching.
 FIRST_RUNTIME_GATE=Run the durable PowerShell runtime gate below from any directory before opening new work. Do not treat HEAD_AT_GENERATION as permanently current. Never call .ToUpper() on a Boolean; use ($expr).ToString().ToUpperInvariant().
 
 ## 00 Additional evidence protocol
 
-1. Use available current context first.
+1. Use available current context first. This file already contains Iteration 1 activation state.
 2. If evidence is insufficient, identify what is missing; ask the human; do not infer or fabricate.
 3. If one small file is enough, request that file directly.
 4. If multiple/large/distributed files are needed, provide a PowerShell consolidation script that runs from any directory, uses absolute paths, collects only required evidence, excludes AI.History/, avoids unnecessary content, consolidates to minimum reliable output, and prints heartbeat when long.
 5. Upload-ready output only to C:\Users\aazcl\Downloads\T.Wings4.0: purge before write; flat only; no subfolders; minimum files/size; no node_modules, package-manager files, scripts, logs, or intermediate artifacts left behind.
 6. Missing evidence remains UNKNOWN until obtained. Evidence collection does not authorize child-project mutation, broad dumps, unrestricted collection, or AI.History inspection.
 7. Session start does not require extra files. That does not mean external evidence will never be required later.
+8. Optional Iteration 2 file: C:\Users\aazcl\Downloads\T.Wings4.0\WINGS4_NEXT_ORCHESTRATOR_CONSOLIDATED.txt. Consume only if useful; do not block session start if absent.
 
 ## 01 What Wings4 is
 
@@ -63,12 +74,14 @@ Wings4.0 is Pablo's portfolio architecture and governance product and the reposi
 
 ## 02 Activation / durable runtime gate
 
+ITERATION_1=ACTIVATE_AND_RUNTIME_GATE. This section is sufficient for Iteration 1.
+
 1. Assume ROLE=ORCHESTRATOR at C:\01. GitHub\Wings4.0.
 2. Validate BRANCH=main via the script below.
-3. Resolve CURRENT HEAD from Git (generation evidence only: 9e301acf ContinuityContractsAndInteractionCanon).
+3. Resolve CURRENT HEAD from Git (generation evidence only: edc3b86 PostMD1ContinuityRefresh; the MD1 gerencia-acceptance close commit may already be HEAD).
 4. Expect index clean. Do not expect dirty MD1 UX product files. PRODUCT_UX_RESIDUAL=0. Do not reopen PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/ unless a real integrity failure proves commit `6bb3bfc` invalid.
-5. Expect a clean worktree unless Git shows otherwise. Post-MD1 continuity/canon residual is closed (HUMAN C1 + stable contracts, then BATON/START_HERE refresh).
-6. Confirm ancestors include Ring0 `1e8315d`, Ring1 `16b28d1`, Ring1/Ring2 `03a589d`, North Star `d23d292`, temp hygiene `e199d8b`, MD1 UX `6bb3bfc`, continuity contracts `9e301acf`.
+5. Expect a clean worktree unless Git shows otherwise. MD1 is accepted by gerencia and closed.
+6. Confirm ancestors include Ring0 `1e8315d`, Ring1 `16b28d1`, Ring1/Ring2 `03a589d`, North Star `d23d292`, temp hygiene `e199d8b`, MD1 UX `6bb3bfc`, continuity contracts `9e301acf`, post-MD1 continuity `edc3b86`.
 7. Do not inspect AI.History/.
 8. Do not mutate SkillsMachine, Brainy, Wings3 or any child project.
 9. Keep PRIMARY_INTERACTION_LANGUAGE=ENGLISH with CAMBRIDGE_C1_COACHING=ACTIVE.
@@ -90,7 +103,8 @@ $ExpectedAncestors = @(
   'd23d29294e39287c75140b767bee300a42958a73',
   'e199d8b8296c290d018b4b2b282c9618ceb121f4',
   '6bb3bfcede2fbe0417191bdcf76115fcf1eab483',
-  '9e301acfd3d2c633777650d3518d58ed19690826'
+  '9e301acfd3d2c633777650d3518d58ed19690826',
+  'edc3b86f752f7c464c15c8873843ddad79b127e9'
 )
 $AncestorFail = New-Object System.Collections.Generic.List[string]
 foreach ($c in $ExpectedAncestors) {
@@ -127,19 +141,34 @@ $Lines | ForEach-Object { $_ }
 - RING3_IMPLEMENTED=NO
 - RADAR_IMPLEMENTED=NO
 - MULTI_PROJECT_COMBINED_ANALYSIS_IMPLEMENTED=NO
+- PUSH_FIRST_PORTFOLIO_BRIEFING_IMPLEMENTED=NO
 - PUSH_FIRST_DAILY_BRIEF_IMPLEMENTED=NO
 
 ## 04 Management Delivery #1 status
 
-MANAGEMENT_DELIVERY_1_HUMAN_ACCEPTANCE=PASS
+MANAGEMENT_DELIVERY_1=ACCEPTED_BY_GERENCIA
+MANAGEMENT_DELIVERY_1_STATUS=CLOSED
+MANAGEMENT_READY=YES
+MANAGEMENT_READY_SCOPE=BOUNDED_MD1
 HUMAN_MD1_ACCEPTANCE=PASS_8_OF_8
+GERENCIA_READY_VERDICT=READY_FOR_GERENCIA_ACCEPTANCE_WITH_NON_BLOCKING_GAPS
+GERENCIA_ACCEPTANCE_BASIS=READY_FOR_GERENCIA_ACCEPTANCE_WITH_NON_BLOCKING_GAPS
+GERENCIA_DECISION_DATE=2026-08-13
+DEC_W4_062=MD1_ACCEPTED_BY_GERENCIA_BOUNDED
+BLOCKING_GAP_COUNT=0
+NET_MANAGEMENT_VALUE=PARTIAL
 UX_MD1_001_TO_008=PASS_8_OF_8
 EV_R2_001_TO_010=PASS_10_OF_10
 MD1_UX_CORRECTION_SET=CLOSED
+MD1_UX_COMMIT=6bb3bfcede2fbe0417191bdcf76115fcf1eab483
+CONTINUITY_CANON_COMMIT=9e301acfd3d2c633777650d3518d58ed19690826
+POST_MD1_CONTINUITY_COMMIT=edc3b86f752f7c464c15c8873843ddad79b127e9
+PRODUCT_UX_RESIDUAL=0
 CONTRACT_GAP_001=FIXED
 VR_PUSH_001=PASS_HUMAN_VALIDATED
-MANAGEMENT_READY=NO
 PUSH=NO
+
+MANAGEMENT_READY does not mean Wings4 is feature-complete or production-complete across future capabilities.
 
 Historical Ring2 human functional evidence (do not rewrite):
 - Package W4IP-20260812-0001
@@ -148,10 +177,14 @@ Historical Ring2 human functional evidence (do not rewrite):
 - UNAUTHORIZED_PUSH function = PASS
 - VALID_RETURN = PASS
 
-Non-blocking residual UX observation (not an MD1 blocker):
-- STAGE_INDICATORS_LOOK_CLICKABLE_BUT_ARE_NOT_NAVIGATION=OPEN_NON_BLOCKING
+Accepted non-blocking MD1 limitations (not blockers; remain visible):
+- GAP_01=STAGE_INDICATORS_LOOK_CLICKABLE_BUT_ARE_NOT_NAVIGATION=OPEN_NON_BLOCKING
+- GAP_02=ABOUT_ORIENTATION_PARTLY_COLLAPSED_OR_HIDDEN=OPEN_NON_BLOCKING
+- GAP_03=RESIDUAL_JARGON_AND_FACT_FALLBACK_IN_SOME_FINDINGS=OPEN_NON_BLOCKING
+- GAP_04=MANUAL_INTERVENTION_PACKAGE_TRANSFER=OPEN_NON_BLOCKING
+- GAP_05=FIXTURE_OR_WINGS_HELD_EVIDENCE_NOT_LIVE_CHILD_REPOSITORY_READ=OPEN_NON_BLOCKING
 
-Do not claim MANAGEMENT_READY. Do not reopen the accepted MD1 UX commit. Do not rewrite historical automated PASS evidence.
+Do not reopen the accepted/closed MD1 delivery. Do not rewrite historical automated PASS evidence. Do not convert future-capability absence into an MD1 blocker.
 
 ## 05 Continuity architecture
 
@@ -162,22 +195,48 @@ STABLE_CONTRACT_IS_NOT_SESSION_START_PACKAGE=YES
 EXECUTOR_STABLE_CONTRACT=SESSIONS/EXECUTOR/03.SESSION_CONTINUE/EXECUTOR.CONTINUE.CONTRACT.txt
 HUMAN_IS_STABLE_SEMANTIC_CANON=YES
 HUMAN_MUST_NOT_HOLD_RUNTIME_GIT_STATE=YES
+MD1_DECISION_AUTHORITY=PORTFOLIO.DECISION_LOG.md DEC-W4-062
+MD1_DELIVERY_MODEL=PORTFOLIO.ARCHITECTURE/WINGS4.INCREMENTAL.DELIVERY.MODEL.md
 EXPECTED_CONTEXT_INSTANCES_NEXT_SESSION=1
 
 ## 06 Exact next action
 
 NEXT_PRODUCT_MINIBATTLE=HUMAN_DECISION_REQUIRED
-NEXT_CONTINUITY_ACTION=POST_MD1_CONTINUITY_COMMITS_CLOSED
-SCOPE=Post-MD1 continuity/canon residual is committed. Do not invent the next product capability. Gerencia MANAGEMENT_READY remains a human decision.
-DO_NOT_IMPLEMENT_IN_THIS_RESUME=Ring3; RADAR; MARKET_MONITORING; MARKET_CHECK runtime; independent resynchronization; child mutation; push; MD1 UX reopen.
+NEXT_CONTINUITY_ACTION=DECIDE_NEXT_PRODUCT_MINIBATTLE_THEN_START_ONLY_IF_AUTHORIZED
+SCOPE=MD1 is accepted and closed for bounded management use. Do not invent or auto-start the next product capability. Do not claim Wings4 complete.
 
-Missing capabilities (separate; not auto-selected):
+ITERATION_2=CONSUME_OPTIONAL_CONSOLIDATED_EVIDENCE_IF_NEEDED
+OPTIONAL_EVIDENCE=C:\Users\aazcl\Downloads\T.Wings4.0\WINGS4_NEXT_ORCHESTRATOR_CONSOLIDATED.txt
+ITERATION_2_REQUIRED_FOR_SESSION_START=NO
+
+ITERATION_3=DECIDE_AND_START_NEXT_PRODUCT_MINIBATTLE
+Do not implement any candidate in the activation window. Present the compact candidate set and obtain an explicit human decision before starting work.
+
+NEXT_CANDIDATE_1=BOUNDED_OPERATOR_UX_FRICTION_CLEANUP
+CANDIDATE_1_VALUE=LOW_TO_MEDIUM
+CANDIDATE_1_EFFORT=LOW
+CANDIDATE_1_RISK=LOW
+
+NEXT_CANDIDATE_2=MARKET_CHECK_RUNTIME_BOUNDED_PRODUCTIZATION
+CANDIDATE_2_VALUE=HIGH
+CANDIDATE_2_EFFORT=HIGH
+CANDIDATE_2_RISK=MEDIUM
+CANDIDATE_2_STATUS=DIRECTION_CANONIZED_RUNTIME_NOT_AUTHORIZED
+
+NEXT_CANDIDATE_3=INDEPENDENT_RESYNCHRONIZATION_BEYOND_RING2
+CANDIDATE_3_VALUE=HIGH
+CANDIDATE_3_EFFORT=HIGH
+CANDIDATE_3_RISK=HIGHER
+CANDIDATE_3_STATUS=NOT_AUTHORIZED
+
+DO_NOT_IMPLEMENT_IN_THIS_RESUME=Ring3; RADAR; MARKET_MONITORING; MARKET_CHECK runtime; independent resynchronization; child mutation; push; MD1 reopen.
+
+Missing capabilities (separate; not auto-selected; not MD1 blockers):
 - fresh independent project evidence / independent resynchronization
 - on-demand MARKET_CHECK runtime
 - multi-project combined analysis
 - push-first portfolio briefing
 - Ring3 / RADAR / MARKET_MONITORING
-- gerencia MANAGEMENT_READY declaration
 
 ## 07 Prohibitions
 
@@ -188,10 +247,14 @@ RING3_PLUS_IMPLEMENTATION_AUTHORIZED=NO
 MARKET_MONITORING_AUTHORIZED=NO
 RADAR_IMPLEMENTATION_AUTHORIZED=NO
 INDEPENDENT_RESYNCHRONIZATION_AUTHORIZED=NO
+MARKET_CHECK_RUNTIME_AUTHORIZED=NO
 PRODUCT_UX_REOPEN=NO
+MD1_REOPEN=NO
 PUSH_POLICY=NO_PUSH_WITHOUT_EXPLICIT_HUMAN_AUTHORIZATION
 COMMIT_POLICY=NO_COMMIT_WITHOUT_EXPLICIT_HUMAN_AUTHORIZATION_AND_EXACT_STAGING
+WINGS4_COMPLETE_CLAIM=PROHIBITED
+PRODUCTION_COMPLETE_FOR_ALL_FUTURE_CAPABILITIES_CLAIM=PROHIBITED
 
 ## 08 Singular next action
 
-Return to Wings4 ORCHESTRATOR for MANAGEMENT_DELIVERY_1 gerencia-ready review. Next product minibattle requires human decision. No additional prompt required for session start; request later evidence only when needed.
+Return to Wings4 ORCHESTRATOR, run Iteration 1 runtime gate from this file, optionally consume the consolidated temp evidence in Iteration 2, then in Iteration 3 obtain an explicit human decision among the three next-product candidates before starting any minibattle. No additional prompt required for session start; request later evidence only when needed.
