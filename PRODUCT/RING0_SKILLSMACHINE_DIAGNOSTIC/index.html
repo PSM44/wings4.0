@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Wings4 Ring0+Ring1 — SkillsMachine Diagnostic</title>
+  <title>Wings4 — SkillsMachine Diagnostic</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -11,63 +11,43 @@
 
   <header class="top" role="banner">
     <div>
-      <p class="eyebrow">Wings4 Product · Ring0 + Ring1 + Ring2</p>
+      <p class="eyebrow">Wings4</p>
       <h1>Wings4</h1>
-      <p class="lede">Detect conflicts, discrepancies, interference and omissions — record decisions, derive governed routes, download self-sufficient intervention packages, and verify returned evidence locally without mutating the analyzed project.</p>
+      <p class="lede">Find portfolio conflicts, decide with evidence, and send a controlled request to the owning project — without Wings rewriting that project.</p>
     </div>
     <div class="meta" aria-label="Product constraints">
       <span class="pill">Local-first</span>
-      <span class="pill">No SkillsMachine mutation</span>
-      <span class="pill">Demo E1+E2+E3</span>
+      <span class="pill">No project mutation by Wings</span>
+      <span class="pill">Human decides</span>
     </div>
   </header>
 
-  <section class="panel orient" aria-labelledby="orient-heading">
-    <h2 id="orient-heading">First use</h2>
-    <p class="orient-text"><strong>What Wings4 is:</strong> a portfolio governance product that surfaces evidence-backed findings for human decision.</p>
-    <p class="orient-text"><strong>What this screen does:</strong> Ring0 diagnosis, Ring1 governed intervention packages, and Ring2 return-evidence verification — all Wings4-local.</p>
-    <p class="orient-text"><strong>What to do first:</strong> decide on a finding, download the intervention package (ACCEPT/MODIFY), then paste the target return AI block to verify.</p>
-  </section>
-
-  <section class="panel how" aria-labelledby="how-heading">
-    <h2 id="how-heading">What it is / what it solves / how it works</h2>
-    <div class="grid3" id="wings4-summary">
-      <article>
-        <h3>Product</h3>
-        <p>An operable portfolio governance tool for Pablo; management reviews live demos and declares deploy readiness.</p>
-      </article>
-      <article>
-        <h3>Problem</h3>
-        <p>Projects accumulate conflicts, omissions and overlap without a clear, actionable decision path.</p>
-      </article>
-      <article>
-        <h3>Flow</h3>
-        <p>View project → findings → evidence → decide → Wings4 derives route → download intervention package.</p>
-      </article>
+  <details class="panel compact-details orient" id="about-panel">
+    <summary id="orient-heading">About this view</summary>
+    <div class="details-body">
+      <p class="orient-text"><strong>Case:</strong> SkillsMachine findings from evidence already held in Wings. Wings does not open the SkillsMachine repository from this screen.</p>
+      <p class="orient-text"><strong>Path:</strong> 1 Understand → 2 Decide → 3 Act → 4 Verify. Inside Understand: Fact → Inference → Alternatives → Recommendation.</p>
+      <p class="orient-text limitation-inline"><strong>Limit:</strong> Wings verifies returned evidence only. It cannot yet re-check the destination project independently.</p>
+      <div class="grid3" id="wings4-summary" hidden>
+        <article>
+          <h3>Product</h3>
+          <p>Wings4</p>
+        </article>
+        <article>
+          <h3>Problem</h3>
+          <p>Conflicts, omissions and overlap without a clear decision path.</p>
+        </article>
+        <article>
+          <h3>Flow</h3>
+          <p>Findings → decision → package → verify return.</p>
+        </article>
+      </div>
     </div>
-  </section>
-
-  <section class="panel notices" aria-labelledby="notices-heading">
-    <h2 id="notices-heading">Scope and data provenance</h2>
-    <div class="notice-grid">
-      <article class="notice">
-        <h3>Scope boundary</h3>
-        <p>Ring0/Ring1 analyse SkillsMachine from evidence already held in Wings4. They do not read or modify the SkillsMachine repository. Intervention packages are export-only.</p>
-      </article>
-      <article class="notice">
-        <h3>Canonical-derived</h3>
-        <p>Grounded in Wings4-held canon or transfer evidence. Source paths remain available for audit.</p>
-      </article>
-      <article class="notice">
-        <h3>Representative, non-canonical</h3>
-        <p>Illustrative synthesis for demo clarity. Not claimed as SkillsMachine local canon.</p>
-      </article>
-    </div>
-  </section>
+  </details>
 
   <main class="layout" id="main">
     <section class="panel project" id="project-panel" aria-labelledby="project-heading">
-      <h2 id="project-heading">Selected project</h2>
+      <h2 id="project-heading">Project</h2>
       <div id="project-card" class="card" aria-live="polite">Loading…</div>
     </section>
 
@@ -77,26 +57,29 @@
     </section>
 
     <section class="panel detail" id="detail-panel" aria-labelledby="detail-heading">
-      <h2 id="detail-heading">Finding detail</h2>
-      <p id="detail-empty" class="muted">Select a finding to review evidence, impact, alternatives and the recommendation.</p>
+      <h2 id="detail-heading">Selected finding</h2>
+      <p id="detail-empty" class="muted">Select a finding to Understand (Fact → Inference → Alternatives → Recommendation), then Decide, Act and Verify.</p>
       <div id="detail-body" class="hidden"></div>
     </section>
   </main>
 
   <section class="panel decisions-log" aria-labelledby="state-heading">
     <div class="row">
-      <h2 id="state-heading">Wings4 local state (prototype)</h2>
+      <h2 id="state-heading">Session</h2>
       <div class="actions">
         <button type="button" id="btn-export" class="btn">Export decisions JSON</button>
         <button type="button" id="btn-reset" class="btn secondary">Reset demo</button>
       </div>
     </div>
-    <pre id="state-view" class="state-view" aria-label="Local decision state">{}</pre>
     <p id="status-line" class="status" role="status" aria-live="polite"></p>
+    <details class="compact-details audit-block">
+      <summary>Raw session state</summary>
+      <pre id="state-view" class="state-view" aria-label="Local decision state">{}</pre>
+    </details>
   </section>
 
   <footer class="foot" role="contentinfo">
-    <p>Fixture path: <code>skillsmachine.fixture.json</code>. Canonical-derived records use Wings4-held evidence; representative non-canonical records are labeled. This prototype does not read or write <code>C:\01. GitHub\Skills</code>. Ring1 packages are NOT EXECUTOR authorization.</p>
+    <p>Evidence is Wings-held. Wings does not read or write <code>C:\01. GitHub\Skills</code>. Packages are requests for the destination project authority — not automatic execution.</p>
   </footer>
 
   <script src="app.js"></script>

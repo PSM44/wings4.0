@@ -67,9 +67,165 @@
       VERIFIED_PASS: "Verified pass", VERIFIED_PASS_WITH_GAP: "Verified pass with gap", RETURN_INCOMPLETE: "Return incomplete",
       SCOPE_CONFLICT: "Scope conflict", IDENTITY_MISMATCH: "Identity mismatch", UNVERIFIABLE: "Unverifiable", FAILED: "Failed",
       HIGH: "High", MEDIUM: "Medium", LOW: "Low",
-      CANONICAL_DERIVED: "Derived from canonical evidence", REPRESENTATIVE_NONCANONICAL: "Representative, non-canonical"
+      CANONICAL_DERIVED: "Wings-held evidence", REPRESENTATIVE_NONCANONICAL: "Illustrative"
     };
     return map[raw] || raw;
+  }
+
+  function findingDisplayTitle(finding) {
+    return (finding && (finding.title || finding.technical_title)) || "";
+  }
+
+  const HELP_COPY = {
+    FACT: "A Fact is something Wings can support with held evidence. It is not a recommendation.",
+    INFERENCE: "An Inference is Wings' reasoned conclusion from the facts. It may be wrong; the human decides.",
+    DUPLICATION: "Duplication means overlapping ownership or instruction sources for the same concern inside one project or across projects.",
+    INTERFERENCE: "Interference means one workstream or change blocks, confuses or contaminates another.",
+    "governed intervention": "A governed intervention is a controlled request to a destination project authority. Wings does not rewrite that project.",
+    verification: "Verification checks returned evidence against the approved package. It is not yet an independent re-check of the destination repository.",
+    W4IP: "W4IP is the Wings Intervention Package ID (W4IP-YYYYMMDD-NNNN). Returns must reuse the same ID."
+  };
+
+  function helpControl(termKey) {
+    const text = HELP_COPY[termKey] || "";
+    const label = termKey;
+    return `<button type="button" class="help-chip" data-help-key="${escapeHtml(termKey)}" title="${escapeHtml(text)}" aria-label="Help: ${escapeHtml(label)}" aria-expanded="false">?</button><span class="help-tip" hidden role="note">${escapeHtml(text)}</span>`;
+  }
+
+  function stageLabel(n, name) {
+    return `<span class="stage-label"><span class="stage-num">${n}</span> ${escapeHtml(name)}</span>`;
+  }
+
+  function workflowNav(active) {
+    const stages = [
+      { id: "understand", n: "1", name: "Understand" },
+      { id: "decide", n: "2", name: "Decide" },
+      { id: "act", n: "3", name: "Act" },
+      { id: "verify", n: "4", name: "Verify" }
+    ];
+    return `<nav class="workflow-stages" aria-label="Management workflow">${stages.map((s) =>
+      `<span class="workflow-stage${s.id === active ? " is-active" : ""}">${s.n} ${escapeHtml(s.name)}</span>`
+    ).join("")}</nav>`;
+  }
+
+  function findingFactText(finding) {
+    if (finding && finding.fact) return finding.fact;
+    if (finding && finding.evidence && finding.evidence[0] && finding.evidence[0].excerpt) return finding.evidence[0].excerpt;
+    return "";
+  }
+
+  function findingInferenceText(finding) {
+    if (finding && finding.inference) return finding.inference;
+    return (finding && finding.summary) || "";
+  }
+
+  function compactJoin(items, maxItems) {
+    const arr = (items || []).map((x) => String(x || "").trim()).filter(Boolean);
+    if (!arr.length) return "None listed.";
+    const max = maxItems == null ? 3 : maxItems;
+    if (arr.length <= max) return arr.join(" ");
+    return arr.slice(0, max).join(" ") + ` (+${arr.length - max} more in details)`;
+  }
+
+  function operatorInterventionSummary(route, finding, decision) {
+    const requested = route && route.PURPOSE
+      ? route.PURPOSE
+      : (decision && normalizeAction(decision.action) === "MODIFY"
+        ? "Apply the recorded modification under local project authority."
+        : `Apply the Wings recommendation for ${(finding && finding.finding_id) || "this finding"} under local project authority.`);
+    const limits = compactJoin(route && route.PROHIBITED_SCOPE, 3);
+    const ret = compactJoin(route && route.RETURN_EVIDENCE, 4);
+    return { requested_action: requested, limits: limits, return_required: ret };
+  }
+
+  function buildVerificationExplanation(overallResult, reasonSummary, actual, expected) {
+    const pushYes = actual && String(actual.PUSH || "").toUpperCase() === "YES";
+    const pushForbidden = String((expected && expected.push_policy) || PUSH_POLICY).includes("NO_PUSH");
+    if (overallResult === "FAILED" && pushYes && pushForbidden) {
+      return {
+        error_code: "VR-PUSH-001",
+        what_happened: "The returned evidence reports a push.",
+        why_it_failed: "The intervention package does not authorize push without explicit local authorization.",
+        corrective_action: "Resolve the unauthorized push condition in the target project and submit corrected return evidence."
+      };
+    }
+    if (overallResult === "SCOPE_CONFLICT") {
+      return {
+        error_code: "VR-SCOPE-001",
+        what_happened: "The return reports a scope problem against the approved package.",
+        why_it_failed: reasonSummary || "Prohibited-scope or authorized-scope compliance failed.",
+        corrective_action: "Correct out-of-scope work or return evidence that stays within package limits."
+      };
+    }
+    if (overallResult === "IDENTITY_MISMATCH") {
+      return {
+        error_code: "VR-ID-001",
+        what_happened: "The return could not be matched to the expected intervention identity.",
+        why_it_failed: reasonSummary || "Package ID, project ID, or project root does not match.",
+        corrective_action: "Use the correct W4IP package ID and governed destination, then verify again."
+      };
+    }
+    if (overallResult === "RETURN_INCOMPLETE") {
+      return {
+        error_code: "VR-INCOMPLETE-001",
+        what_happened: "Required return fields are missing or still template placeholders.",
+        why_it_failed: reasonSummary || "The return AI block is incomplete.",
+        corrective_action: "Complete all required return fields with real values, then verify again."
+      };
+    }
+    if (overallResult === "UNVERIFIABLE") {
+      return {
+        error_code: "VR-UNVERIFIABLE-001",
+        what_happened: "Wings could not treat the return as a clear pass or controlled failure.",
+        why_it_failed: reasonSummary || "Return content is ambiguous or conflicted.",
+        corrective_action: "Submit one unambiguous return AI block with clear status values."
+      };
+    }
+    if (overallResult === "FAILED") {
+      return {
+        error_code: "VR-FAIL-001",
+        what_happened: "The destination return reports failure.",
+        why_it_failed: reasonSummary || "One or more required checks failed.",
+        corrective_action: "Fix the reported failure in the destination project and submit corrected return evidence."
+      };
+    }
+    return {
+      error_code: "",
+      what_happened: reasonSummary || "",
+      why_it_failed: "",
+      corrective_action: ""
+    };
+  }
+
+  function renderVerificationExplanation(expl) {
+    if (!expl || !expl.error_code) {
+      return expl && expl.what_happened ? `<p>${escapeHtml(expl.what_happened)}</p>` : "";
+    }
+    return `<div class="verification-explain" data-error-code="${escapeHtml(expl.error_code)}">
+      <p class="meta-line"><strong>ERROR_CODE:</strong> <code>${escapeHtml(expl.error_code)}</code> ${helpControl("verification")}</p>
+      <p><strong>WHAT_HAPPENED:</strong> ${escapeHtml(expl.what_happened)}</p>
+      <p><strong>WHY_IT_FAILED:</strong> ${escapeHtml(expl.why_it_failed)}</p>
+      <p><strong>CORRECTIVE_ACTION:</strong> ${escapeHtml(expl.corrective_action)}</p>
+    </div>`;
+  }
+
+  function bindHelpChips(root) {
+    if (!root) return;
+    root.querySelectorAll(".help-chip").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const tip = btn.nextElementSibling;
+        if (!tip || !tip.classList.contains("help-tip")) return;
+        const open = tip.hasAttribute("hidden");
+        tip.toggleAttribute("hidden", !open);
+        btn.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+    });
+  }
+
+  function destinationRoleLabel(role) {
+    if (role === "ORCHESTRATOR") return "Project authority";
+    if (role === "EXECUTOR") return "Local execution";
+    return role || "";
   }
 
   function badgeClassForStatus(raw) {
@@ -126,22 +282,22 @@
 
   function deriveNextAction(action, status, routeStatus, verificationResult) {
     if (verificationResult === "VERIFIED_PASS" || verificationResult === "VERIFIED_PASS_WITH_GAP") {
-      return "Ring2 verification complete. Await any further human direction; Ring3 automation is not authorized.";
+      return "Return evidence verified. Independent re-check of the destination project is not available yet; await further human direction.";
     }
     if (verificationResult === "RETURN_INCOMPLETE" || verificationResult === "UNVERIFIABLE") {
-      return "Request complete return evidence from the target ORCHESTRATOR using the same INTERVENTION_PACKAGE_ID.";
+      return "Request complete return evidence from the destination project authority using the same package ID.";
     }
     if (verificationResult === "IDENTITY_MISMATCH" || verificationResult === "SCOPE_CONFLICT" || verificationResult === "FAILED") {
       return "Resolve the verification conflict before further portfolio action.";
     }
     const a = normalizeAction(action);
-    if (status === "CLOSED") return "No further Wings4 action required for this local decision.";
+    if (status === "CLOSED") return "No further Wings action required for this local decision.";
     if (status === "POSTPONED") return "Review later and record ACCEPT, REJECT or MODIFY.";
     if (status === "REOPENED") return "Confirm or record the next human decision action.";
     if (routeStatus === "PACKAGE_EXPORTED" || status === "IN_ACTION") {
-      return "Await target ORCHESTRATOR return evidence and run Ring2 verification.";
+      return "Await return evidence from the destination project, then verify it here.";
     }
-    if (a === "ACCEPT" || a === "MODIFY") return "Download the governed intervention package for the target ORCHESTRATOR.";
+    if (a === "ACCEPT" || a === "MODIFY") return "Copy or download the governed intervention package for the destination project.";
     if (a === "REJECT") return "Confirm rejection is final or reopen if circumstances change.";
     return "Record a human decision.";
   }
@@ -256,10 +412,11 @@
     const role = targetOpt.destination_role || DEFAULT_DESTINATION_ROLE;
     const action = normalizeAction(decision.action);
     const purpose = action === "MODIFY"
-      ? `Governed request for ${finding.finding_id}: apply recommendation with recorded modification.`
-      : `Governed request for ${finding.finding_id}: apply Wings4 recommendation under local target authority.`;
+      ? `Controlled request for ${finding.finding_id}: apply the recommendation with the recorded modification.`
+      : `Controlled request for ${finding.finding_id}: apply the Wings recommendation under local project authority.`;
     const temp = targetOpt.temp_contract || null;
     const routeId = ["RTE", src.project_id, destination, finding.finding_id, decision.decision_id].join("-").replace(/[^A-Za-z0-9._-]+/g, "_");
+    const techTitle = finding.technical_title || finding.title;
     return {
       route_id: routeId,
       SOURCE: src.display_name,
@@ -272,7 +429,7 @@
       DESTINATION_ROLE: role,
       PURPOSE: purpose,
       AUTHORIZED_SCOPE: [
-        `Evaluate finding ${finding.finding_id} (${finding.title}).`,
+        `Evaluate finding ${finding.finding_id} (${techTitle}).`,
         `Respect recorded human decision ${action}.`,
         action === "MODIFY"
           ? `Apply modification note: ${decision.rationale_or_modification || "(required)"}`
@@ -357,6 +514,7 @@
       "CANONICAL_CONFLICT_COUNT=<n>",
       "COMMIT=<hash|NO|NOT_REQUIRED>",
       "PUSH=<YES|NO>",
+      "RESYNC_READY=<YES|NO>",
       "RETURN_EVIDENCE_FILE=<path|NONE>",
       "NEXT_ACTION=<compact next action>",
       "---AI_END---"
@@ -411,7 +569,7 @@
       "DECIDED_AT=" + (decision.decided_at || decision.created_at),
       "",
       "FINDING",
-      "TITLE=" + finding.title,
+      "TITLE=" + (finding.technical_title || finding.title || ""),
       "SUMMARY=" + (finding.summary || ""),
       "DATA_CLASS=" + (finding.data_class || ""),
       "RECOMMENDATION=" + (finding.recommendation || ""),
@@ -675,24 +833,35 @@
   }
 
   function renderWings4(w) {
-    if (!w) return;
+    if (!w || !els.wings4Summary) return;
     els.wings4Summary.innerHTML = `
       <article><h3>Product</h3><p>${escapeHtml(w.product || "Wings4")}</p></article>
       <article><h3>Problem</h3><p>${escapeHtml(w.problem || "")}</p></article>
       <article><h3>How it works</h3><p>${escapeHtml(w.how_it_works || "")}</p></article>`;
   }
 
-  function renderProject(project) {
+  function renderProject(project, findings, state) {
     const dataClass = project.data_class || "";
+    const openCount = (findings || []).filter((f) => {
+      const st = effectiveFindingStatus(f, state);
+      return st === "OPEN" || st === "ACCEPTED" || st === "MODIFIED" || st === "DEFERRED";
+    }).length;
     els.projectCard.innerHTML = `
       <div class="title"><strong>${escapeHtml(project.display_name || project.project_id)}</strong>
         <span class="badge ${escapeHtml(dataClass)}">${escapeHtml(statusLabel(dataClass))}</span></div>
-      <p><strong>ID:</strong> ${escapeHtml(project.project_id)}</p>
-      <p>${escapeHtml(project.identity || "")}</p>
-      <p><strong>Purpose:</strong> ${escapeHtml(project.purpose || "")}</p>
-      <p class="meta-line"><strong>Portfolio role:</strong> ${escapeHtml(project.portfolio_role || "")}</p>
-      <p class="meta-line"><strong>Product relationship:</strong> ${escapeHtml(project.wings4_relationship_product || "")}</p>
-      <p class="meta-line"><strong>Project relationship:</strong> ${escapeHtml(project.wings4_relationship_project || "")}</p>`;
+      <p class="meta-line">${escapeHtml(project.portfolio_role || "")}</p>
+      <p class="meta-line"><strong>Open / active findings:</strong> ${openCount}</p>
+      <p class="compact-line">${escapeHtml(project.wings4_relationship_project || "")}</p>
+      <details class="compact-details audit-block">
+        <summary>Project details</summary>
+        <div class="details-body">
+          <p><strong>ID:</strong> ${escapeHtml(project.project_id)}</p>
+          <p>${escapeHtml(project.identity || "")}</p>
+          <p><strong>Purpose:</strong> ${escapeHtml(project.purpose || "")}</p>
+          <p class="meta-line"><strong>Product relationship:</strong> ${escapeHtml(project.wings4_relationship_product || "")}</p>
+          <p class="meta-line"><strong>Root (metadata):</strong> <code>${escapeHtml(project.project_root || "")}</code></p>
+        </div>
+      </details>`;
   }
 
   function renderFindings(findings, state) {
@@ -706,14 +875,14 @@
       btn.className = "finding" + (selectedId === f.finding_id ? " active" : "");
       btn.setAttribute("aria-pressed", selectedId === f.finding_id ? "true" : "false");
       btn.innerHTML = `
-        <div class="title">${escapeHtml(f.title)}</div>
+        <div class="title">${escapeHtml(findingDisplayTitle(f))}</div>
         <div class="meta-line badge-row">
           <span class="badge ${escapeHtml(badgeClassForStatus(status))}">${escapeHtml(statusLabel(status))}</span>
-          ${decision ? `<span class="badge ${escapeHtml(badgeClassForStatus(decision.status))}">${escapeHtml(statusLabel(decision.status))}</span>` : ""}
+          ${f.finding_class ? `<span class="badge">${escapeHtml(f.finding_class)}</span>` : ""}
           ${decision && decision.verification ? `<span class="badge ${escapeHtml(badgeClassForStatus(decision.verification.overall_result))}">${escapeHtml(statusLabel(decision.verification.overall_result))}</span>` : ""}
           <span class="badge ${escapeHtml(f.severity || "")}">${escapeHtml(statusLabel(f.severity || ""))}</span>
         </div>
-        <div class="meta-line">${escapeHtml(f.finding_id)}</div>`;
+        <div class="meta-line audit-id">${escapeHtml(f.finding_id)}</div>`;
       btn.addEventListener("click", () => { selectedId = f.finding_id; renderAll(); });
       li.appendChild(btn);
       els.findingsList.appendChild(li);
@@ -797,7 +966,8 @@
       "INTERVENTION_PACKAGE_ID", "OVERALL_STATUS", "PROJECT_ID", "PROJECT_ROOT", "BRANCH",
       "HEAD_BEFORE", "HEAD_AFTER", "WORKTREE_CLEAN_FINAL", "INDEX_CLEAN_FINAL", "FILES_CHANGED",
       "AUTHORIZED_SCOPE_COMPLIANCE", "PROHIBITED_SCOPE_VIOLATION", "EXPECTED_OUTPUT_STATUS",
-      "RETURN_EVIDENCE_STATUS", "CANONICAL_CONFLICT_COUNT", "COMMIT", "PUSH", "RETURN_EVIDENCE_FILE", "NEXT_ACTION"
+      "RETURN_EVIDENCE_STATUS", "CANONICAL_CONFLICT_COUNT", "COMMIT", "PUSH", "RESYNC_READY",
+      "RETURN_EVIDENCE_FILE", "NEXT_ACTION"
     ];
     required.forEach((k) => {
       if (isMissingOrTemplate(actual[k])) missing.push(k);
@@ -871,9 +1041,11 @@
     returnEvidenceDraft[findingId] = pastedText == null ? "" : String(pastedText);
     const raw = String(pastedText || "");
     if (!raw.trim()) {
+      const explanation = buildVerificationExplanation("RETURN_INCOMPLETE", "Return evidence is empty. Paste or import text, then verify.", null, null);
       setRing2Transient(findingId, {
         overall_result: "RETURN_INCOMPLETE",
         reason_summary: "Return evidence is empty. Paste or import text, then verify.",
+        explanation,
         state_updated: false
       });
       setStatus("Return evidence is empty. Paste or import a return AI block, then verify.", true);
@@ -885,9 +1057,11 @@
       const reason = extracted.error === "DUPLICATE_AI_BLOCKS"
         ? "Multiple ---AI_START--- / ---AI_END--- blocks found. Remove ambiguity and keep exactly one block."
         : "No ---AI_START--- / ---AI_END--- block found. Do not infer unmarked arbitrary text.";
+      const explanation = buildVerificationExplanation("UNVERIFIABLE", reason, null, null);
       setRing2Transient(findingId, {
         overall_result: "UNVERIFIABLE",
         reason_summary: reason,
+        explanation,
         state_updated: false
       });
       setStatus(reason, true);
@@ -897,9 +1071,11 @@
     const parsed = parseKeyValues(extracted.body);
     if (parsed.duplicate_keys.length) {
       const reason = "Conflicting duplicate keys in return block: " + parsed.duplicate_keys.join(", ");
+      const explanation = buildVerificationExplanation("UNVERIFIABLE", reason, null, null);
       setRing2Transient(findingId, {
         overall_result: "UNVERIFIABLE",
         reason_summary: reason,
+        explanation,
         state_updated: false
       });
       setStatus(reason, true);
@@ -908,9 +1084,11 @@
     }
     const actual = parsed.values;
     if (!actual.INTERVENTION_PACKAGE_ID) {
+      const explanation = buildVerificationExplanation("RETURN_INCOMPLETE", "Return AI block is missing INTERVENTION_PACKAGE_ID.", actual, null);
       setRing2Transient(findingId, {
         overall_result: "RETURN_INCOMPLETE",
         reason_summary: "Return AI block is missing INTERVENTION_PACKAGE_ID.",
+        explanation,
         state_updated: false
       });
       setStatus("Return AI block is missing INTERVENTION_PACKAGE_ID.", true);
@@ -918,9 +1096,11 @@
       return;
     }
     if (!isValidPackageIdPattern(actual.INTERVENTION_PACKAGE_ID)) {
+      const explanation = buildVerificationExplanation("IDENTITY_MISMATCH", "Malformed INTERVENTION_PACKAGE_ID; expected W4IP-YYYYMMDD-NNNN.", actual, null);
       setRing2Transient(findingId, {
         overall_result: "IDENTITY_MISMATCH",
         reason_summary: "Malformed INTERVENTION_PACKAGE_ID; expected W4IP-YYYYMMDD-NNNN.",
+        explanation,
         state_updated: false
       });
       setStatus("Malformed INTERVENTION_PACKAGE_ID; expected W4IP-YYYYMMDD-NNNN.", true);
@@ -930,9 +1110,11 @@
     const state = loadState();
     const decision = findDecisionByPackageId(state, actual.INTERVENTION_PACKAGE_ID);
     if (!decision) {
+      const explanation = buildVerificationExplanation("IDENTITY_MISMATCH", "Unknown INTERVENTION_PACKAGE_ID. No Wings4-local intervention was updated.", actual, null);
       setRing2Transient(findingId, {
         overall_result: "IDENTITY_MISMATCH",
         reason_summary: "Unknown INTERVENTION_PACKAGE_ID. No Wings4-local intervention was updated.",
+        explanation,
         state_updated: false,
         intervention_package_id: actual.INTERVENTION_PACKAGE_ID
       });
@@ -941,9 +1123,11 @@
       return;
     }
     if (decision.finding_id !== finding.finding_id) {
+      const explanation = buildVerificationExplanation("IDENTITY_MISMATCH", "Package ID belongs to a different finding. No state update applied here.", actual, null);
       setRing2Transient(findingId, {
         overall_result: "IDENTITY_MISMATCH",
         reason_summary: "Package ID belongs to a different finding. No state update applied here.",
+        explanation,
         state_updated: false,
         intervention_package_id: actual.INTERVENTION_PACKAGE_ID
       });
@@ -959,6 +1143,7 @@
       commit_policy: decision.route.COMMIT_POLICY || COMMIT_POLICY
     };
     const classified = classifyVerification(expected, actual);
+    const explanation = buildVerificationExplanation(classified.result, classified.reason, actual, expected);
     const verification = {
       verification_id: makeId("VER"),
       intervention_package_id: expected.package_id,
@@ -968,6 +1153,7 @@
       verified_at: nowIso(),
       overall_result: classified.result,
       reason_summary: classified.reason,
+      explanation,
       expected,
       actual,
       checks: {
@@ -986,6 +1172,7 @@
         return_evidence_status: actual.RETURN_EVIDENCE_STATUS || "",
         commit: actual.COMMIT || "",
         push: actual.PUSH || "",
+        resync_ready: actual.RESYNC_READY || "",
         canonical_conflict_count: actual.CANONICAL_CONFLICT_COUNT || "",
         return_evidence_file: actual.RETURN_EVIDENCE_FILE || "",
         next_action_captured: actual.NEXT_ACTION || "",
@@ -1009,10 +1196,11 @@
     setRing2Transient(findingId, {
       overall_result: verification.overall_result,
       reason_summary: verification.reason_summary,
+      explanation: verification.explanation,
       state_updated: true,
       intervention_package_id: verification.intervention_package_id
     });
-    setStatus(`Ring2 verification ${verification.overall_result} for ${verification.intervention_package_id}.`);
+    setStatus(`Return verification ${verification.overall_result} for ${verification.intervention_package_id}.`);
     renderAll();
   }
 
@@ -1050,7 +1238,7 @@
     const state = loadState();
     const decision = getDecision(state, finding.finding_id);
     if (!decision || !decision.verification) {
-      setStatus("No Ring2 verification record to export for this finding.", true);
+      setStatus("No return-verification record to export for this finding.", true);
       return;
     }
     const v = decision.verification;
@@ -1064,6 +1252,10 @@
       "VERIFIED_AT=" + v.verified_at,
       "OVERALL_RESULT=" + v.overall_result,
       "REASON=" + v.reason_summary,
+      "ERROR_CODE=" + ((v.explanation && v.explanation.error_code) || ""),
+      "WHAT_HAPPENED=" + ((v.explanation && v.explanation.what_happened) || ""),
+      "WHY_IT_FAILED=" + ((v.explanation && v.explanation.why_it_failed) || ""),
+      "CORRECTIVE_ACTION=" + ((v.explanation && v.explanation.corrective_action) || ""),
       "",
       "EXPECTED",
       JSON.stringify(v.expected, null, 2),
@@ -1077,7 +1269,7 @@
       "END"
     ].join("\n");
     downloadText(`wings4-ring2-verification-${safeFilenamePart(v.intervention_package_id)}.txt`, text);
-    setStatus("Ring2 verification TXT exported.");
+    setStatus("Return-verification TXT exported.");
   }
 
   function formatCheckValue(value) {
@@ -1092,50 +1284,56 @@
     if (!decision || !decision.intervention || isPendingPackageId(decision.intervention.intervention_package_id)) {
       return `
         <div class="detail-block" id="ring2-panel">
-          <h3>Ring2 return verification</h3>
-          <p class="muted">A real Intervention Package ID must be assigned first (ACCEPT/MODIFY creates PACKAGE_READY with a persistent W4IP ID).</p>
+          <h3>Verification</h3>
+          <p class="muted">Available after ACCEPT or MODIFY assigns a package ID.</p>
         </div>`;
     }
     const v = decision.verification;
     const transient = ring2TransientByFinding[finding.finding_id];
     const draft = returnEvidenceDraft[finding.finding_id] || "";
-    const resultBlock = v
-      ? `
-          <div class="ring2-result" aria-live="polite">
-            <p class="meta-line"><strong>Overall result:</strong>
-              <span class="badge ${escapeHtml(badgeClassForStatus(v.overall_result))}">${escapeHtml(statusLabel(v.overall_result))}</span>
-            </p>
-            <p>${escapeHtml(v.reason_summary || "")}</p>
-            <p class="meta-line"><strong>Correlated package:</strong> <code>${escapeHtml(v.intervention_package_id)}</code> → ${escapeHtml(decision.target_project)}</p>
-            <h4 class="subhead">Compact checks</h4>
-            <ul class="alt-list">
-              <li>Identity: package ${v.checks && v.checks.package_id_match ? "match" : "fail"}; project ${formatCheckValue(v.actual && v.actual.PROJECT_ID)}; root ${formatCheckValue(v.actual && v.actual.PROJECT_ROOT)}</li>
-              <li>Scope: authorized=${formatCheckValue(v.checks && v.checks.authorized_scope_compliance)}; prohibited_violation=${v.checks && v.checks.prohibited_scope_violation ? "YES" : "NO"}</li>
-              <li>Output/evidence: expected=${formatCheckValue(v.checks && v.checks.expected_output_status)}; evidence=${formatCheckValue(v.checks && v.checks.return_evidence_status)}</li>
-              <li>Policy: commit=${formatCheckValue(v.checks && v.checks.commit)}; push=${formatCheckValue(v.checks && v.checks.push)}; conflicts=${formatCheckValue(v.checks && v.checks.canonical_conflict_count)}</li>
-            </ul>
-          </div>`
+    const expl = (v && v.explanation) || (transient && transient.explanation) ||
+      (v ? buildVerificationExplanation(v.overall_result, v.reason_summary, v.actual, v.expected) : null) ||
+      (transient ? buildVerificationExplanation(transient.overall_result, transient.reason_summary, null, null) : null);
+    const resultSummary = v
+      ? `<p class="meta-line"><strong>Result:</strong>
+           <span class="badge ${escapeHtml(badgeClassForStatus(v.overall_result))}">${escapeHtml(statusLabel(v.overall_result))}</span>
+           ${helpControl("verification")} ${helpControl("W4IP")}
+         </p>
+         ${renderVerificationExplanation(expl)}
+         <p class="meta-line"><strong>Package:</strong> <code>${escapeHtml(v.intervention_package_id)}</code> → ${escapeHtml(decision.target_project)}</p>`
       : (transient
-        ? `<div class="ring2-result" aria-live="polite">
-             <p class="meta-line"><strong>Overall result:</strong>
-               <span class="badge ${escapeHtml(badgeClassForStatus(transient.overall_result))}">${escapeHtml(statusLabel(transient.overall_result))}</span>
-             </p>
-             <p>${escapeHtml(transient.reason_summary || "")}</p>
-             <p class="muted">${transient.state_updated ? "Wings4-local state updated." : "No Wings4-local intervention state was mutated."}</p>
-           </div>`
+        ? `<p class="meta-line"><strong>Result:</strong>
+             <span class="badge ${escapeHtml(badgeClassForStatus(transient.overall_result))}">${escapeHtml(statusLabel(transient.overall_result))}</span>
+             ${helpControl("verification")}
+           </p>
+           ${renderVerificationExplanation(expl || buildVerificationExplanation(transient.overall_result, transient.reason_summary, null, null))}`
         : "<p class='muted'>No verification yet.</p>");
+    const checksHtml = v
+      ? `<ul class="alt-list">
+           <li>Identity: package ${v.checks && v.checks.package_id_match ? "match" : "fail"}; project ${formatCheckValue(v.actual && v.actual.PROJECT_ID)}; root ${formatCheckValue(v.actual && v.actual.PROJECT_ROOT)}</li>
+           <li>Scope: authorized=${formatCheckValue(v.checks && v.checks.authorized_scope_compliance)}; prohibited_violation=${v.checks && v.checks.prohibited_scope_violation ? "YES" : "NO"}</li>
+           <li>Output/evidence: expected=${formatCheckValue(v.checks && v.checks.expected_output_status)}; evidence=${formatCheckValue(v.checks && v.checks.return_evidence_status)}; resync_ready=${formatCheckValue(v.checks && v.checks.resync_ready)}</li>
+           <li>Policy: commit=${formatCheckValue(v.checks && v.checks.commit)}; push=${formatCheckValue(v.checks && v.checks.push)}; conflicts=${formatCheckValue(v.checks && v.checks.canonical_conflict_count)}</li>
+         </ul>
+         <pre class="package-preview compact-pre">${escapeHtml(JSON.stringify(v.actual || {}, null, 2))}</pre>`
+      : "<p class='muted'>Detailed checks appear after verification.</p>";
     return `
-      <div class="detail-block" id="ring2-panel">
-        <h3>Ring2 return verification</h3>
-        <p class="decision-help">Minimal input: paste or import return evidence, then verify. No JSON editing.</p>
+      <div class="detail-block" id="ring2-panel" data-stage="verify">
+        ${stageLabel("4", "Verify")}
+        <h3>Verification ${helpControl("verification")}</h3>
+        ${resultSummary}
+        <p class="limitation-note" role="note"><strong>Limit:</strong> a verified return confirms the evidence received. Wings cannot yet obtain fresh independent proof from the destination project. RESYNC_READY in the return is target evidence only — not independent resynchronization.</p>
         <label class="field-label" for="return-paste">Return evidence</label>
-        <textarea id="return-paste" class="modify-box return-evidence" rows="14" placeholder="Paste the target ORCHESTRATOR return AI block, or a full TXT that contains:&#10;---AI_START---&#10;INTERVENTION_PACKAGE_ID=W4IP-...&#10;...&#10;---AI_END---">${escapeHtml(draft)}</textarea>
+        <textarea id="return-paste" class="modify-box return-evidence" rows="8" placeholder="Paste return evidence, or import a TXT file.">${escapeHtml(draft)}</textarea>
         <div class="decision-row">
           <button type="button" class="btn secondary" id="btn-import-return">IMPORT TXT</button>
           <button type="button" class="btn" id="btn-verify-return">VERIFY RETURN</button>
           <button type="button" class="btn ghost" id="btn-export-verification" ${v ? "" : "disabled"}>Export verification TXT</button>
         </div>
-        ${resultBlock}
+        <details class="compact-details audit-block">
+          <summary>Verification details</summary>
+          <div class="details-body">${checksHtml}</div>
+        </details>
       </div>`;
   }
 
@@ -1143,13 +1341,13 @@
     if (!interventionEligible(decision)) {
       return `
         <div class="detail-block">
-          <h3>Governed route</h3>
-          <p class="muted">Intervention routing is available after ACCEPT or MODIFY. REJECT and POSTPONE do not create packages by default.</p>
+          <h3>Intervention</h3>
+          <p class="muted">Available after ACCEPT or MODIFY. REJECT and POSTPONE do not create packages by default.</p>
         </div>`;
     }
     const ready = ensureReadyPackage(finding, decision, state);
     if (ready.error) {
-      return `<div class="detail-block"><h3>Governed route</h3><p class="status error">${escapeHtml(ready.error)}</p></div>`;
+      return `<div class="detail-block"><h3>Intervention</h3><p class="status error">${escapeHtml(ready.error)}</p></div>`;
     }
     if (ready.identityAssigned) {
       state.decisions[finding.finding_id] = decision;
@@ -1163,43 +1361,60 @@
     try {
       packageText = serializePackage(finding, decision, route, packageId);
     } catch (err) {
-      return `<div class="detail-block"><h3>Intervention package</h3><p class="status error">${escapeHtml(err.message)}</p></div>`;
+      return `<div class="detail-block"><h3>Intervention</h3><p class="status error">${escapeHtml(err.message)}</p></div>`;
     }
+    const summary = operatorInterventionSummary(route, finding, decision);
     const targetControl = opts.length > 1
-      ? `<label class="field-label" for="target-project-select">Target project (governed options)</label>
+      ? `<label class="field-label" for="target-project-select">Target project</label>
          <select id="target-project-select" class="text-input">
            ${opts.map((o) => `<option value="${escapeHtml(o.project_id)}" ${o.project_id === route.TARGET_PROJECT ? "selected" : ""}>${escapeHtml(o.display_name || o.project_id)}</option>`).join("")}
-         </select>
-         <p class="decision-help">Target is controlled by governance. Free-text entry is not allowed.</p>`
-      : `<p><strong>Target project:</strong> ${escapeHtml(route.TARGET_PROJECT)} <span class="badge ACCEPTED">Preselected</span></p>
-         <p class="decision-help">Target root metadata: <code>${escapeHtml(route.TARGET_ROOT)}</code> (metadata only; no Wings4 read/write).</p>`;
+         </select>`
+      : `<p class="meta-line"><strong>To:</strong> ${escapeHtml(route.TARGET_PROJECT)}</p>`;
 
     return `
-      <div class="detail-block" id="route-panel">
-        <h3>Governed route</h3>
-        <p class="meta-line"><strong>Direction:</strong> ${escapeHtml(route.SOURCE_PROJECT)} → ${escapeHtml(route.TARGET_PROJECT)} → ${escapeHtml(route.DESTINATION_ROLE)}</p>
-        <p><strong>Purpose:</strong> ${escapeHtml(route.PURPOSE)}</p>
-        <p class="meta-line"><strong>Source root:</strong> <code>${escapeHtml(route.SOURCE_ROOT)}</code></p>
-        <p class="meta-line"><strong>Target root:</strong> <code>${escapeHtml(route.TARGET_ROOT)}</code></p>
-        ${targetControl}
-        <p class="meta-line">Route status:
+      <div class="detail-block" id="route-panel" data-stage="act">
+        ${stageLabel("3", "Act")}
+        <h3>Intervention ${helpControl("governed intervention")} ${helpControl("W4IP")}</h3>
+        <div class="operator-summary" id="intervention-operator-summary">
+          <p class="meta-line"><strong>Requested action</strong></p>
+          <p>${escapeHtml(summary.requested_action)}</p>
+          <p class="meta-line"><strong>Limits</strong></p>
+          <p>${escapeHtml(summary.limits)}</p>
+          <p class="meta-line"><strong>Return required</strong></p>
+          <p>${escapeHtml(summary.return_required)}</p>
+        </div>
+        <p class="meta-line"><strong>From:</strong> ${escapeHtml(route.SOURCE_PROJECT)}
+          · <strong>To:</strong> ${escapeHtml(route.TARGET_PROJECT)}
+          · <strong>Authority:</strong> ${escapeHtml(destinationRoleLabel(route.DESTINATION_ROLE))}</p>
+        <p class="meta-line">Status:
           <span class="badge ${escapeHtml(badgeClassForStatus(route.EXECUTION_STATUS))}">${escapeHtml(statusLabel(route.EXECUTION_STATUS))}</span>
+          · <strong>Package ID:</strong> <code>${escapeHtml(packageId)}</code>
         </p>
-        <h4 class="subhead">Authorized scope</h4>${listToHtml(route.AUTHORIZED_SCOPE)}
-        <h4 class="subhead">Prohibited scope / limits</h4>${listToHtml(route.PROHIBITED_SCOPE)}
-        <h4 class="subhead">Expected output</h4>${listToHtml(route.EXPECTED_OUTPUT)}
-        <h4 class="subhead">Required return evidence</h4>${listToHtml(route.RETURN_EVIDENCE)}
-        <div class="authority-banner" role="note">${(route.AUTHORITY_BOUNDARY || []).map((b) => escapeHtml(b)).join("<br />")}</div>
-      </div>
-      <div class="detail-block" id="intervention-panel">
-        <h3>Intervention package</h3>
-        <p><strong>WINGS4_CONTROLLED_INTERVENTION_PACKAGE ID:</strong> <code>${escapeHtml(packageId)}</code></p>
-        <p class="decision-help">Package content is self-sufficient for the target ORCHESTRATOR. COPY and DOWNLOAD use the same canonical text. ID is assigned at PACKAGE_READY and reused on rerender/copy/download.</p>
-        <pre class="package-preview" id="package-preview">${escapeHtml(packageText)}</pre>
+        ${targetControl}
         <div class="decision-row">
           <button type="button" class="btn secondary" id="btn-copy-package">COPY PACKAGE</button>
           <button type="button" class="btn accept" id="btn-download-package">DOWNLOAD INTERVENTION PACKAGE</button>
         </div>
+        <details class="compact-details audit-block">
+          <summary>Route details</summary>
+          <div class="details-body">
+            <p class="meta-line"><strong>Purpose:</strong> ${escapeHtml(route.PURPOSE)}</p>
+            <p class="meta-line"><strong>Source root:</strong> <code>${escapeHtml(route.SOURCE_ROOT)}</code></p>
+            <p class="meta-line"><strong>Target root:</strong> <code>${escapeHtml(route.TARGET_ROOT)}</code></p>
+            <h4 class="subhead">Authorized scope</h4>${listToHtml(route.AUTHORIZED_SCOPE)}
+            <h4 class="subhead">Prohibited scope / limits</h4>${listToHtml(route.PROHIBITED_SCOPE)}
+            <h4 class="subhead">Expected output</h4>${listToHtml(route.EXPECTED_OUTPUT)}
+            <h4 class="subhead">Required return evidence</h4>${listToHtml(route.RETURN_EVIDENCE)}
+            <div class="authority-banner" role="note">${(route.AUTHORITY_BOUNDARY || []).map((b) => escapeHtml(b)).join("<br />")}</div>
+          </div>
+        </details>
+        <details class="compact-details audit-block" id="intervention-panel">
+          <summary>Raw package text</summary>
+          <div class="details-body">
+            <p class="decision-help">COPY and DOWNLOAD use the same canonical text. Package ID is assigned when ready and reused on copy/download. Raw text is for audit/debug; the operator summary above is enough for normal use.</p>
+            <pre class="package-preview" id="package-preview">${escapeHtml(packageText)}</pre>
+          </div>
+        </details>
       </div>
       ${renderRing2Panel(finding, decision)}`;
   }
@@ -1215,6 +1430,7 @@
     els.detailBody.classList.remove("hidden");
     const decision = getDecision(state, finding.finding_id);
     const status = effectiveFindingStatus(finding, state);
+    const evidenceCount = (finding.evidence || []).length;
     const evidenceHtml = (finding.evidence || []).map((e) => `
       <div class="evidence-item"><div class="label">${escapeHtml(e.label || "Evidence")}</div>
       <div class="pointer">${escapeHtml(e.pointer || "")}</div>
@@ -1222,10 +1438,13 @@
     const alts = (finding.alternatives || []).map((a) => `<li>${escapeHtml(a)}</li>`).join("");
     const canClose = decision && decision.status !== "CLOSED";
     const canReopen = decision && (decision.status === "CLOSED" || decision.status === "POSTPONED");
+    const factLead = findingFactText(finding);
+    const inferenceLead = findingInferenceText(finding);
+    const classHelpKey = (finding.finding_class === "DUPLICATION" || finding.finding_class === "INTERFERENCE")
+      ? finding.finding_class
+      : null;
 
-    let lifecycleHtml = `<div class="detail-block"><h3>Decision lifecycle (Ring1)</h3>
-      <p class="muted">No decision recorded yet. Choose ACCEPT / REJECT / MODIFY / POSTPONE.</p></div>`;
-
+    let lifecycleHtml = "";
     if (decision) {
       if (interventionEligible(decision)) {
         const ready = ensureReadyPackage(finding, decision, state);
@@ -1242,55 +1461,88 @@
       );
       lifecycleHtml = `
         <div class="detail-block" id="lifecycle-panel">
-          <h3>Decision lifecycle (Ring1)</h3>
-          <p><strong>Decision ID:</strong> <code>${escapeHtml(decision.decision_id)}</code></p>
+          <h3>Decision status</h3>
           <p class="meta-line">Status:
             <span class="badge ${escapeHtml(badgeClassForStatus(decision.status))}">${escapeHtml(statusLabel(decision.status))}</span>
             · Action: <strong>${escapeHtml(visibleActionLabel(decision.action))}</strong>
           </p>
-          <p><strong>Next action (system-derived):</strong> ${escapeHtml(decision.next_action)}</p>
-          <p class="decision-help">Wings4 derives the next action from the decision, route and Ring2 verification result.</p>
-          <p class="meta-line">Created: ${escapeHtml(decision.created_at || "")}</p>
-          <p class="meta-line">Updated: ${escapeHtml(decision.updated_at || "")}</p>
+          <p><strong>Next step:</strong> ${escapeHtml(decision.next_action)}</p>
           <div class="decision-row lifecycle-actions">
             <button type="button" class="btn ghost" id="btn-close-decision" ${canClose ? "" : "disabled"}>Close decision</button>
             <button type="button" class="btn ghost" id="btn-reopen-decision" ${canReopen ? "" : "disabled"}>Reopen decision</button>
           </div>
-          <h4 class="subhead">History</h4>${renderHistory(decision)}
+          <details class="compact-details audit-block">
+            <summary>Decision history</summary>
+            <div class="details-body">
+              <p class="meta-line"><strong>Decision ID:</strong> <code>${escapeHtml(decision.decision_id)}</code></p>
+              <p class="meta-line">Created: ${escapeHtml(decision.created_at || "")}</p>
+              <p class="meta-line">Updated: ${escapeHtml(decision.updated_at || "")}</p>
+              ${renderHistory(decision)}
+            </div>
+          </details>
         </div>
         ${renderRouteAndPackage(finding, decision, state)}`;
     }
 
     els.detailBody.innerHTML = `
-      <div class="detail-block">
-        <h3>Detail</h3>
-        <p><strong>${escapeHtml(finding.finding_id)}</strong> — ${escapeHtml(finding.title)}</p>
-        <p>${escapeHtml(finding.summary || "")}</p>
-        <p class="meta-line">Current finding state:
+      ${workflowNav(decision ? (interventionEligible(decision) ? (decision.verification ? "verify" : "act") : "decide") : "understand")}
+      <div class="detail-block primary-block" data-stage="understand">
+        ${stageLabel("1", "Understand")}
+        <h3>Finding</h3>
+        <p class="finding-headline">${escapeHtml(findingDisplayTitle(finding))}</p>
+        <p class="meta-line badge-row">
           <span class="badge ${escapeHtml(badgeClassForStatus(status))}">${escapeHtml(statusLabel(status))}</span>
+          ${finding.finding_class ? `<span class="badge">${escapeHtml(finding.finding_class)}</span>${classHelpKey ? helpControl(classHelpKey) : ""}` : ""}
           <span class="badge ${escapeHtml(finding.severity || "")}">${escapeHtml(statusLabel(finding.severity || ""))}</span>
           <span class="badge ${escapeHtml(finding.data_class || "")}">${escapeHtml(statusLabel(finding.data_class || ""))}</span>
         </p>
+        <p class="why-matters"><strong>Why it matters:</strong> ${escapeHtml(finding.impact || "")}</p>
+        <details class="compact-details audit-block">
+          <summary>Finding IDs and technical title</summary>
+          <div class="details-body">
+            <p class="meta-line audit-id">${escapeHtml(finding.finding_id)}</p>
+            ${finding.technical_title ? `<p class="meta-line">Technical title: ${escapeHtml(finding.technical_title)}</p>` : ""}
+          </div>
+        </details>
       </div>
-      <div class="detail-block"><h3>Evidence</h3>${evidenceHtml || "<p class='muted'>No evidence recorded for this finding.</p>"}</div>
-      <div class="detail-block"><h3>Impact</h3><p>${escapeHtml(finding.impact || "")}</p></div>
-      <div class="detail-block"><h3>Alternatives</h3><ul class="alt-list">${alts || "<li class='muted'>No alternatives listed.</li>"}</ul></div>
-      <div class="detail-block"><h3>Recommendation</h3><p>${escapeHtml(finding.recommendation || "")}</p></div>
-      <div class="detail-block">
+      <div class="detail-block claim-block" data-stage="understand" data-section="fact">
+        <h3><span class="claim-tag fact">Fact</span> ${helpControl("FACT")} What Wings can prove</h3>
+        <p>${escapeHtml(factLead)}</p>
+        <details class="compact-details audit-block">
+          <summary>Evidence (${evidenceCount} source${evidenceCount === 1 ? "" : "s"})</summary>
+          <div class="details-body">${evidenceHtml || "<p class='muted'>No evidence recorded for this finding.</p>"}</div>
+        </details>
+      </div>
+      <div class="detail-block claim-block" data-stage="understand" data-section="inference">
+        <h3><span class="claim-tag inference">Inference</span> ${helpControl("INFERENCE")} What Wings concludes</h3>
+        <p>${escapeHtml(inferenceLead)}</p>
+      </div>
+      <div class="detail-block claim-block" data-stage="understand" data-section="alternatives">
+        <h3><span class="claim-tag alternatives">Alternatives</span> Options before the recommendation</h3>
+        <ul class="alt-list">${alts || "<li class='muted'>No alternatives listed.</li>"}</ul>
+      </div>
+      <div class="detail-block claim-block" data-stage="understand" data-section="recommendation">
+        <h3><span class="claim-tag recommendation">Recommendation</span> What Wings proposes</h3>
+        <p>${escapeHtml(finding.recommendation || "")}</p>
+      </div>
+      <div class="detail-block" data-stage="decide" id="decision-panel">
+        ${stageLabel("2", "Decide")}
         <h3>Decision</h3>
-        <p class="decision-help">Decision note is the only free-text field; required for MODIFY.</p>
+        <p class="decision-help">Add a note if needed. A note is required when modifying the recommendation.</p>
         <div class="decision-row" role="group" aria-label="Decision actions">
           <button type="button" class="btn accept" data-action="ACCEPT">ACCEPT</button>
-          <button type="button" class="btn reject" data-action="REJECT">REJECT</button>
           <button type="button" class="btn modify" data-action="MODIFY">MODIFY</button>
+          <button type="button" class="btn reject" data-action="REJECT">REJECT</button>
           <button type="button" class="btn postpone" data-action="POSTPONE">POSTPONE</button>
         </div>
         <label class="field-label" for="decision-note">Decision note</label>
-        <textarea id="decision-note" class="modify-box" placeholder="Optional for ACCEPT, REJECT or POSTPONE. Required for MODIFY.">${escapeHtml((decision && (decision.rationale_or_modification || decision.note)) || "")}</textarea>
+        <textarea id="decision-note" class="modify-box" placeholder="Optional note. Required for MODIFY.">${escapeHtml((decision && (decision.rationale_or_modification || decision.note)) || "")}</textarea>
         ${decision ? `<p class="meta-line">Last decision: ${escapeHtml(visibleActionLabel(decision.action))} @ ${escapeHtml(decision.decided_at || "")}</p>` : ""}
         <div id="decision-confirm" class="confirm-banner hidden" role="status"></div>
       </div>
       ${lifecycleHtml}`;
+
+    bindHelpChips(els.detailBody);
 
     els.detailBody.querySelectorAll("button[data-action]").forEach((btn) => {
       btn.addEventListener("click", () => decide(finding, btn.getAttribute("data-action")));
@@ -1600,7 +1852,7 @@
   }
 
   function resetState() {
-    if (!window.confirm("Reset demo and clear all Ring0/Ring1/Ring2 local state?")) {
+    if (!window.confirm("Reset demo and clear all local Wings decision and verification state?")) {
       setStatus("Reset cancelled."); return;
     }
     memoryState = emptyState();
@@ -1608,7 +1860,7 @@
       try { localStorage.removeItem(STORAGE_KEY); } catch (err) { /* ignore */ }
     }
     renderState(memoryState);
-    setStatus("Demo reset. Local Ring0/Ring1/Ring2 state cleared.");
+    setStatus("Demo reset. Local decision and verification state cleared.");
     renderAll();
   }
 
@@ -1626,7 +1878,7 @@
     if (!fixture) return;
     const state = loadState();
     renderWings4(fixture.wings4);
-    renderProject(fixture.project);
+    renderProject(fixture.project, fixture.findings || [], state);
     renderFindings(fixture.findings || [], state);
     const selected = (fixture.findings || []).find((f) => f.finding_id === selectedId) || null;
     renderDetail(selected, state);
@@ -1646,7 +1898,7 @@
       fixture = data;
       selectedId = fixture.findings[0].finding_id;
       renderAll();
-      setStatus("Fixture loaded. Ring0/Ring1/Ring2 local flow is ready.");
+      setStatus("Fixture loaded. Diagnosis, decision, package and return-verification flow is ready.");
     } catch (err) {
       els.projectCard.innerHTML = `<p class="status error">Could not load the diagnostic fixture.</p><p class="muted">${escapeHtml(err.message)}</p>`;
       setStatus("Could not load skillsmachine.fixture.json: " + err.message, true);
@@ -1657,7 +1909,9 @@
     SCHEMA_VERSION, PRODUCT_VERSION, PACKAGE_SCHEMA_VERSION,
     extractAiBlock, parseKeyValues, classifyVerification, validateFixture,
     isValidPackageIdPattern, isPendingPackageId, isTemplateValue, isMissingOrTemplate,
-    displayEvidenceValue, getCanonicalPackageText
+    displayEvidenceValue, getCanonicalPackageText, buildVerificationExplanation,
+    returnAiBlockTemplate, HELP_COPY, findingFactText, findingInferenceText,
+    operatorInterventionSummary
   };
 
   boot();

@@ -5,12 +5,12 @@
   "note": "No direct read of C:\\01. GitHub\\Skills. Records are grounded in Wings4-held evidence or explicitly marked representative.",
   "wings4": {
     "product": "Wings4",
-    "problem": "Detect conflicts, discrepancies, interferences and omissions within and across portfolio projects, and surface market alternatives when useful.",
-    "how_it_works": "Listen to project evidence, present findings with evidence and alternatives, capture a human decision, update Wings4 state, and export the decision without automatically mutating the analyzed project."
+    "problem": "Detect conflicts, omissions and overlap across portfolio projects, and present evidence-backed findings for human decision.",
+    "how_it_works": "Present findings as Fact → Inference → Alternatives → Recommendation, capture a human decision, prepare a controlled intervention package, and verify returned evidence without mutating the analyzed project."
   },
   "project": {
     "project_id": "SkillsMachine",
-    "display_name": "SkillsMachine / PS.SkillsMachine",
+    "display_name": "SkillsMachine",
     "project_root": "C:\\01. GitHub\\Skills",
     "data_class": "CANONICAL_DERIVED",
     "source_pointers": [
@@ -18,11 +18,11 @@
       "PORTFOLIO.REVIEWS/PAIRWISE.BRAINY_VS_SKILLSMACHINE.md",
       "PORTFOLIO.TRANSFERS/SKILLSMACHINE_WHOAMI_TO_HUMAN_TRANSFER_PACKAGE.md"
     ],
-    "identity": "Portfolio-enabling product that owns reusable Skills/GRC canon and distribution-oriented updater capabilities.",
-    "purpose": "Provide governed reusable Skills/GRC capability and related distribution contracts without becoming portfolio coordinator or mutating other projects.",
-    "portfolio_role": "REUSABLE_WORK_CAPABILITY_PROVIDER",
-    "wings4_relationship_product": "Optional Skills/GRC integration surface; not a mandatory dependency for every Wings4 function.",
-    "wings4_relationship_project": "Needs transfer via governed request; SkillsMachine implements locally; Wings4 verifies resynchronization."
+    "identity": "Owns reusable Skills/GRC capability and related distribution contracts.",
+    "purpose": "Provide governed reusable Skills/GRC capability without becoming the portfolio coordinator or mutating other projects.",
+    "portfolio_role": "Reusable capability provider",
+    "wings4_relationship_product": "Optional Skills/GRC integration surface; not required for every Wings function.",
+    "wings4_relationship_project": "Changes go through a controlled request; SkillsMachine implements locally; Wings verifies returned evidence (independent re-check not yet available)."
   },
   "source_project": {
     "project_id": "Wings4.0",
@@ -34,7 +34,7 @@
   "governed_target_options": [
     {
       "project_id": "SkillsMachine",
-      "display_name": "SkillsMachine / PS.SkillsMachine",
+      "display_name": "SkillsMachine",
       "project_root": "C:\\01. GitHub\\Skills",
       "destination_role": "ORCHESTRATOR",
       "data_class": "CANONICAL_DERIVED",
@@ -59,11 +59,15 @@
   "findings": [
     {
       "finding_id": "F-SM-001",
-      "title": "WHOAMI competes with HUMAN as semantic home",
+      "title": "SkillsMachine has two overlapping sources of project instructions",
+      "technical_title": "WHOAMI competes with HUMAN as semantic home",
+      "finding_class": "DUPLICATION",
       "status": "OPEN",
       "severity": "HIGH",
       "data_class": "CANONICAL_DERIVED",
-      "summary": "Wings4 recorded a human directive that useful WHOAMI context/data must be absorbed into HUMAN so WHOAMI does not remain competing canon.",
+      "fact": "Useful project context exists in WHOAMI while HUMAN is intended to be the canonical semantic home.",
+      "inference": "Keeping both as instruction sources can create ambiguity inside SkillsMachine.",
+      "summary": "Keeping both as instruction sources can create ambiguity inside SkillsMachine.",
       "evidence": [
         {
           "label": "DEC-W4-047",
@@ -81,23 +85,25 @@
           "excerpt": "STATUS ready for SkillsMachine ORCHESTRATOR review; THIS_IS_NOT_AN_EXECUTOR_PROMPT=YES."
         }
       ],
-      "impact": "If left unresolved, operators and AI sessions may treat WHOAMI as competing doctrine, weakening HUMAN authority and creating duplicate continuity semantics.",
+      "impact": "If unresolved, people and AI sessions may follow competing project instructions and weaken a single source of authority.",
       "alternatives": [
-        "A. Retire WHOAMI after dependency validation",
-        "B. Reduce WHOAMI to a minimal pointer to HUMAN",
-        "C. Retain WHOAMI temporarily with explicit deprecation"
+        "A. Retire WHOAMI after checking dependencies",
+        "B. Reduce WHOAMI to a short pointer to HUMAN",
+        "C. Keep WHOAMI temporarily with an explicit deprecation notice"
       ],
-      "recommendation": "Deliver the prepared transfer to SkillsMachine ORCHESTRATOR; prefer minimal pointer to HUMAN if local dependencies allow; require return evidence before Wings4 resync.",
+      "recommendation": "Send the prepared transfer to SkillsMachine; prefer a short WHOAMI pointer to HUMAN if local dependencies allow; require return evidence before treating the work as verified. Independent project re-check is not yet available.",
       "decision_options": ["ACCEPT", "REJECT", "MODIFY", "POSTPONE"],
       "decision_options_note": "Visible POSTPONE replaces DEFER; internal legacy DEFER/DEFERRED mapping remains acceptable."
     },
     {
       "finding_id": "F-SM-002",
-      "title": "SkillsMachine dirty multi-scope worktree blocks clean execution readiness",
+      "title": "Unrelated unfinished work is blocking a clean handoff",
+      "technical_title": "SkillsMachine dirty multi-scope worktree blocks clean execution readiness",
+      "finding_class": "INTERFERENCE",
       "status": "OPEN",
       "severity": "HIGH",
       "data_class": "CANONICAL_DERIVED",
-      "summary": "Wings4-held reconciliation evidence recorded a ten-path dirty SkillsMachine worktree, including an unapproved SMDI harness candidate, as out-of-scope for the WHOAMI transfer and not EXECUTOR-ready.",
+      "summary": "SkillsMachine has unfinished local changes outside the WHOAMI transfer scope; mixing them would risk a dirty handoff.",
       "evidence": [
         {
           "label": "Active BATON",
@@ -115,23 +121,25 @@
           "excerpt": "Unrelated SkillsMachine dirty workstreams remain out of scope."
         }
       ],
-      "impact": "Mixing unrelated dirty scopes risks invalid attribution, accidental combined commits and delayed product/demo readiness inside SkillsMachine.",
+      "impact": "Mixing unrelated unfinished work risks wrong attribution, accidental combined commits and delayed readiness.",
       "alternatives": [
-        "Disposition each dirty path independently under SkillsMachine governance",
-        "Freeze SMDI candidate until separate review",
-        "Postpone all unrelated dirty work while WHOAMI→HUMAN proceeds alone"
+        "Handle each unfinished path separately under SkillsMachine ownership",
+        "Freeze the SMDI candidate until a separate review",
+        "Postpone unrelated work while the WHOAMI→HUMAN transfer proceeds alone"
       ],
-      "recommendation": "Keep dirty technical workstreams out of the WHOAMI transfer. Require SkillsMachine-local independent disposition before any SkillsMachine EXECUTOR authorization.",
+      "recommendation": "Keep unrelated unfinished work out of the WHOAMI transfer. Require SkillsMachine-local disposition before any local execution authorization.",
       "decision_options": ["ACCEPT", "REJECT", "MODIFY", "POSTPONE"],
       "decision_options_note": "Visible POSTPONE replaces DEFER; internal legacy DEFER/DEFERRED mapping remains acceptable."
     },
     {
       "finding_id": "F-SM-003",
-      "title": "Hermes tool-integration ownership no longer blocks via PC-013",
+      "title": "Hermes ownership blocker is already closed",
+      "technical_title": "Hermes tool-integration ownership no longer blocks via PC-013",
+      "finding_class": "OPPORTUNITY",
       "status": "RESOLVED",
       "severity": "MEDIUM",
       "data_class": "CANONICAL_DERIVED",
-      "summary": "PC-013 is resolved: Hermes stays frozen; generic tool-integration capability remains unassigned until a real use case; Brainy is preferred if later needed.",
+      "summary": "PC-013 is resolved: Hermes stays frozen; generic tool-integration ownership stays unassigned until a real use case; Brainy is preferred if later needed.",
       "evidence": [
         {
           "label": "PC-013",
@@ -147,20 +155,22 @@
       "impact": "Removes an open portfolio blocker without creating a successor project or reactivating Hermes.",
       "alternatives": [
         "Reactivate Hermes (rejected)",
-        "Create immediate successor (rejected without concrete need)",
-        "Leave capability unassigned until real use case (approved)"
+        "Create an immediate successor (rejected without concrete need)",
+        "Leave the capability unassigned until a real use case (approved)"
       ],
-      "recommendation": "Accept the resolved PC-013 posture and do not reopen Hermes reactivation through SkillsMachine diagnosis.",
+      "recommendation": "Keep the resolved PC-013 posture and do not reopen Hermes reactivation through this diagnosis.",
       "decision_options": ["ACCEPT", "REJECT", "MODIFY", "POSTPONE"],
       "decision_options_note": "Visible POSTPONE replaces DEFER; internal legacy DEFER/DEFERRED mapping remains acceptable."
     },
     {
       "finding_id": "F-SM-004",
-      "title": "Updater maturity exceeds real-consumer proof",
+      "title": "Updater readiness is ahead of real-user proof",
+      "technical_title": "Updater maturity exceeds real-consumer proof",
+      "finding_class": "DISCREPANCY",
       "status": "OPEN",
       "severity": "MEDIUM",
       "data_class": "REPRESENTATIVE_NONCANONICAL",
-      "summary": "Representative synthesis of Wings4-held SkillsMachine readiness notes: updater LAB evidence is stronger than proven real-consumer acceptance. Marked noncanonical because this Ring0 build did not re-open SkillsMachine files.",
+      "summary": "Lab evidence for the updater looks stronger than proven real-user acceptance. Marked illustrative because this build did not reopen SkillsMachine files.",
       "evidence": [
         {
           "label": "Wings4 product relationship decision",
@@ -173,13 +183,13 @@
           "excerpt": "Reports and architecture alone are not product functionality; live operable proof is required."
         }
       ],
-      "impact": "Over-claiming distribution readiness could create false management confidence before a real consumer pilot exists.",
+      "impact": "Overstating distribution readiness could create false management confidence before a real user pilot exists.",
       "alternatives": [
-        "Treat updater as proven only at LAB/fixture level until real-consumer evidence returns",
-        "Open a separate governed SkillsMachine product slice after local readiness",
-        "Postpone distribution claims from Wings4 demos"
+        "Treat the updater as proven only at lab/fixture level until real-user evidence returns",
+        "Open a separate SkillsMachine product slice after local readiness",
+        "Postpone distribution claims from Wings demos"
       ],
-      "recommendation": "In Wings4 demos, state updater readiness cautiously and keep real-consumer proof as a SkillsMachine-local future gate.",
+      "recommendation": "State updater readiness cautiously and keep real-user proof as a SkillsMachine-local future gate.",
       "decision_options": ["ACCEPT", "REJECT", "MODIFY", "POSTPONE"],
       "decision_options_note": "Visible POSTPONE replaces DEFER; internal legacy DEFER/DEFERRED mapping remains acceptable."
     }
