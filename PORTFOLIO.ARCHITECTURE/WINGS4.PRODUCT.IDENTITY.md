@@ -48,7 +48,7 @@ Wings4 maintains an integrated, current and actionable understanding of the comp
 - Preserve FACT vs INFERENCE vs RECOMMENDATION.
 - Handle UNKNOWN without silently converting it to certainty.
 - Operate push-first and pull-supported.
-- Perform bounded on-demand MARKET_CHECK when material build/project decisions may already have internal or external solutions.
+- Perform bounded on-demand MARKET_CHECK when material build/project decisions may already have internal or external solutions. Bounded runtime: `PORTFOLIO.ARCHITECTURE/WINGS4.MARKET_CHECK.RUNTIME.SPEC.md`.
 - Treat continuous MARKET_MONITORING as a separate future capability (unauthorized now).
 
 ## Architecture

@@ -38,7 +38,8 @@ Wings4.0 is Pablo's portfolio architecture and governance system and the reposit
 - SKILLSMACHINE_MUTATION_BY_WINGS4=NO
 - AI.History inspection prohibited
 - Push unauthorized without explicit human authorization
-- Ring3 / RADAR / MARKET_MONITORING / MARKET_CHECK runtime / independent resynchronization = not implemented / not authorized here
+- Ring3 / RADAR / MARKET_MONITORING / independent resynchronization = not implemented / not authorized here
+- MARKET_CHECK bounded on-demand runtime slice is the current authorized product minibattle; it is not monitoring and is not complete across future market capabilities
 - MANAGEMENT_READY does not mean Wings4 is feature-complete or production-complete across future capabilities.
 
 ## Interaction language / Cambridge C1
@@ -65,7 +66,7 @@ RUNTIME_GATE_PROHIBITED_PATTERN=Boolean.ToUpper_without_ToString
 
 ## Current objective
 
-Management Delivery #1 is accepted by gerencia and closed for bounded MD1 scope. MANAGEMENT_READY=YES for BOUNDED_MD1 only. Next product minibattle requires a separate human decision. Ring3+ unauthorized.
+Management Delivery #1 remains accepted and closed for bounded MD1 scope. Current authorized product minibattle is the bounded on-demand Market Check runtime slice. Do not reopen MD1. Ring3+ unauthorized.
 
 ## Current confirmed state
 
@@ -112,7 +113,9 @@ Management Delivery #1 is accepted by gerencia and closed for bounded MD1 scope.
 - GAP_05=FIXTURE_OR_WINGS_HELD_EVIDENCE_NOT_LIVE_CHILD_REPOSITORY_READ=OPEN_NON_BLOCKING
 - MODIFY_SEMANTICS_DEFECT=NO
 - MANUAL_PACKAGE_TRANSFER=ACCEPTABLE_FOR_CURRENT_STAGE
-- MARKET_CHECK_RUNTIME_IMPLEMENTED=NO
+- MARKET_CHECK_RUNTIME_IMPLEMENTED=BOUNDED_ON_DEMAND_SLICE
+- MARKET_CHECK_RUNTIME_COMPLETE=NO
+- MARKET_CHECK_HUMAN_LIVE_VALIDATED=NO
 - MARKET_MONITORING_IMPLEMENTED=NO
 - RING3_IMPLEMENTED=NO
 - RADAR_IMPLEMENTED=NO
@@ -127,19 +130,20 @@ SPEC_RING1=PORTFOLIO.ARCHITECTURE/WINGS4.RING1.DECISION.AND.INTERVENTION.SPEC.md
 SPEC_RING2=PORTFOLIO.ARCHITECTURE/WINGS4.RING2.RETURN.VERIFICATION.SPEC.md
 IDENTITY=PORTFOLIO.ARCHITECTURE/WINGS4.PRODUCT.IDENTITY.md
 DELIVERY=PORTFOLIO.ARCHITECTURE/WINGS4.INCREMENTAL.DELIVERY.MODEL.md
+SPEC_MARKET_CHECK=PORTFOLIO.ARCHITECTURE/WINGS4.MARKET_CHECK.RUNTIME.SPEC.md
 DECISION_MD1=PORTFOLIO.DECISION_LOG.md#dec-w4-062
 HUMAN_CANON=HUMAN/HUMAN.WINGS4.md
 
 ## Next action
 
-CURRENT_MINIBATTLE=CLOSED_MD1_GERENCIA_ACCEPTANCE
+CURRENT_MINIBATTLE=W4_MARKET_CHECK_RUNTIME_DIRTY_SLICE_ADOPTION_GATE_002
 NEXT_ROLE=ORCHESTRATOR
 NEXT_ROOT=C:\01. GitHub\Wings4.0
-NEXT_PRODUCT_MINIBATTLE=HUMAN_DECISION_REQUIRED
+NEXT_PRODUCT_MINIBATTLE=HUMAN_DECISION_REQUIRED_BEYOND_THIS_BOUNDED_SLICE
 NEXT_CANDIDATE_1=BOUNDED_OPERATOR_UX_FRICTION_CLEANUP
-NEXT_CANDIDATE_2=MARKET_CHECK_RUNTIME_BOUNDED_PRODUCTIZATION
+NEXT_CANDIDATE_2=MARKET_CHECK_HUMAN_LIVE_VALIDATION
 NEXT_CANDIDATE_3=INDEPENDENT_RESYNCHRONIZATION_BEYOND_RING2
-NEXT_CONTINUITY_ACTION=OPEN_FRESH_ORCHESTRATOR_SESSION_AND_DECIDE_NEXT_PRODUCT_MINIBATTLE
+NEXT_CONTINUITY_ACTION=HUMAN_COMMIT_GATE_FOR_BOUNDED_MARKET_CHECK_SLICE
 RING3_IMPLEMENTATION_AUTHORIZED=NO
 COMMIT_POLICY=NO_COMMIT_WITHOUT_EXACT_STAGING_VALIDATION_AND_EXPLICIT_HUMAN_AUTHORIZATION
 PUSH_POLICY=NO_PUSH_WITHOUT_EXPLICIT_HUMAN_AUTHORIZATION
@@ -147,13 +151,13 @@ PUSH_POLICY=NO_PUSH_WITHOUT_EXPLICIT_HUMAN_AUTHORIZATION
 ## Resume instruction (blank AI context)
 
 1. Resolve root, branch, HEAD, worktree and index from Git. Serialize Booleans only via ($expr).ToString().ToUpperInvariant().
-2. Do not expect dirty MD1 UX product files. PRODUCT_UX_RESIDUAL=0. Do not reopen PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/ unless a real integrity failure proves commit `6bb3bfc` invalid.
+2. Do not reopen MD1 as an open delivery. PRODUCT_UX_RESIDUAL=0 for MD1. Additive Market Check files may exist in PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/; they do not reopen MD1.
 3. Expect a clean worktree unless Git shows otherwise. MD1 is accepted and closed; do not reopen MD1 as an open delivery.
 4. Treat Ring0 `1e8315d`, Ring1 `16b28d1`, Ring1/Ring2 `03a589d`, North Star `d23d292`, temp hygiene `e199d8b`, MD1 UX `6bb3bfc`, continuity contracts `9e301acf`, and post-MD1 continuity `edc3b86` as ancestors.
 5. Keep English/C1 coaching active; request missing evidence or mark UNKNOWN; never guess.
-6. Do not implement Ring3+, RADAR, MARKET_MONITORING, MARKET_CHECK runtime, or independent resynchronization without separate authorization.
+6. Do not implement Ring3+, RADAR, MARKET_MONITORING, or independent resynchronization without separate authorization. Do not expand Market Check into monitoring or claim MARKET_CHECK_RUNTIME_COMPLETE.
 7. Do not inspect AI.History/.
 8. Do not mutate SkillsMachine or any child project.
 9. Do not push without explicit authorization.
 10. For same-workspace delta continuity after bootstrap, use SESSION_CONTINUE_ENTRYPOINT; do not treat BATON as SESSION_CONTINUE.
-LAST_REFRESHED_AT: 2026-08-13T18:40:00-04:00
+LAST_REFRESHED_AT: 2026-08-14T14:40:00-04:00

@@ -761,3 +761,24 @@ Next product minibattle is not authorized by this closure:
 - NEXT_CANDIDATE_3=INDEPENDENT_RESYNCHRONIZATION_BEYOND_RING2 (VALUE=HIGH; EFFORT=HIGH; RISK=HIGHER; STATUS=NOT_AUTHORIZED)
 
 This decision does not authorize Ring3+, RADAR, MARKET_MONITORING, MARKET_CHECK runtime, independent resynchronization, child mutation, or push.
+
+## DEC-W4-063 — Bounded on-demand Market Check runtime slice
+
+Status: APPROVED_HUMAN_DIRECTION
+Date: 2026-08-13
+Scope: MARKET_CHECK_RUNTIME_BOUNDED_PRODUCTIZATION_ONLY; authorization `W4_MARKET_CHECK_RUNTIME_BOUNDED_PRODUCTIZATION_001`
+
+Decision:
+
+- Authorize the smallest on-demand Market Check runtime slice inside the existing Ring0+Ring1+Ring2 product surface.
+- MARKET_CHECK remains a diagnostic capability, not a new ring, not MARKET_MONITORING, not RADAR, and not Ring3.
+- Operator invokes Market Check on demand from a finding, using governed questions only.
+- Evidence is Wings-held/fixture only. Do not read child repositories. Do not scan the live web.
+- UNKNOWN is required when evidence is missing; do not fabricate alternatives, fitness, or prices.
+- Evaluation order remains Q-099 / PR-PORT-006. Discovery does not authorize adoption.
+- This slice does not reopen MD1 and does not rewrite historical Ring0/Ring1/Ring2 acceptance evidence.
+- This decision does not claim MARKET_CHECK_RUNTIME_COMPLETE, Wings4 complete, or production-complete future capabilities.
+- MARKET_MONITORING, RADAR, Ring3, independent resynchronization, child mutation, and push remain unauthorized.
+
+Spec: `PORTFOLIO.ARCHITECTURE/WINGS4.MARKET_CHECK.RUNTIME.SPEC.md`
+Prototype: `PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/`

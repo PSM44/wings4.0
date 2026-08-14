@@ -1,7 +1,7 @@
 (() => {
   const STORAGE_KEY = "wings4.ring0.skillsmachine.decisions.v1";
   const SCHEMA_VERSION = 4;
-  const PRODUCT_VERSION = "RING0_RING1_RING2_E3";
+  const PRODUCT_VERSION = "RING0_RING1_RING2_MC1";
   const PACKAGE_SCHEMA_VERSION = "1.0";
   const DEFAULT_OWNER = "Pablo";
   const SOURCE_PROJECT_ID = "Wings4.0";
@@ -31,6 +31,7 @@
   let memoryState = emptyState();
   let returnEvidenceDraft = {};
   let ring2TransientByFinding = {};
+  let lastMarketQuestionByFinding = {};
 
   function emptyState() {
     return {
@@ -39,6 +40,7 @@
       package_sequence_by_day: {},
       decisions: {},
       verifications: {},
+      market_checks: {},
       updated_at: null
     };
   }
@@ -66,7 +68,7 @@
       REOPENED: "Reopened", PACKAGE_READY: "Package ready", PACKAGE_EXPORTED: "Package exported",
       VERIFIED_PASS: "Verified pass", VERIFIED_PASS_WITH_GAP: "Verified pass with gap", RETURN_INCOMPLETE: "Return incomplete",
       SCOPE_CONFLICT: "Scope conflict", IDENTITY_MISMATCH: "Identity mismatch", UNVERIFIABLE: "Unverifiable", FAILED: "Failed",
-      HIGH: "High", MEDIUM: "Medium", LOW: "Low",
+      HIGH: "High", MEDIUM: "Medium", LOW: "Low", UNKNOWN: "Unknown",
       CANONICAL_DERIVED: "Wings-held evidence", REPRESENTATIVE_NONCANONICAL: "Illustrative"
     };
     return map[raw] || raw;
@@ -83,7 +85,8 @@
     INTERFERENCE: "Interference means one workstream or change blocks, confuses or contaminates another.",
     "governed intervention": "A governed intervention is a controlled request to a destination project authority. Wings does not rewrite that project.",
     verification: "Verification checks returned evidence against the approved package. It is not yet an independent re-check of the destination repository.",
-    W4IP: "W4IP is the Wings Intervention Package ID (W4IP-YYYYMMDD-NNNN). Returns must reuse the same ID."
+    W4IP: "W4IP is the Wings Intervention Package ID (W4IP-YYYYMMDD-NNNN). Returns must reuse the same ID.",
+    "Market Check": "Market Check is an on-demand comparison of Wings-held options before building. It is not monitoring, not RADAR, and not an independent project re-check."
   };
 
   function helpControl(termKey) {
@@ -751,6 +754,7 @@
       ? parsed.package_sequence_by_day
       : {};
     state.verifications = (parsed.verifications && typeof parsed.verifications === "object") ? parsed.verifications : {};
+    state.market_checks = (parsed.market_checks && typeof parsed.market_checks === "object") ? parsed.market_checks : {};
     const decisionsIn = parsed.decisions && typeof parsed.decisions === "object" && !Array.isArray(parsed.decisions) ? parsed.decisions : {};
     Object.keys(decisionsIn).forEach((key) => {
       state.decisions[key] = migrateDecision(decisionsIn[key], key);
@@ -899,6 +903,114 @@
 
   function listToHtml(items) {
     return `<ul class="alt-list">${(items || []).map((i) => `<li>${escapeHtml(typeof i === "string" ? i : JSON.stringify(i))}</li>`).join("")}</ul>`;
+  }
+
+  function defaultMarketQuestion(finding) {
+    if (finding && (finding.finding_id === "F-SM-002" || finding.finding_id === "F-SM-003")) return "MCQ-KILL_OR_DEFER";
+    return "MCQ-BUILD_VS_ADOPT";
+  }
+
+  function altStatusLabel(status) {
+    if (status === "CONSIDERED") return "Considered";
+    if (status === "UNKNOWN") return "Unknown";
+    if (status === "NOT_EVIDENCED") return "Not evidenced";
+    return status || "";
+  }
+
+  function renderMarketCheckPanel(finding, state) {
+    const mc = fixture && fixture.market_check;
+    if (!mc || !Array.isArray(mc.questions) || !mc.questions.length) {
+      return `<div class="detail-block claim-block" data-stage="understand" data-section="market-check">
+        <h3><span class="claim-tag market">Market Check</span> ${helpControl("Market Check")} On-demand options check</h3>
+        <p class="muted">Market Check catalog is not available in this fixture.</p>
+      </div>`;
+    }
+    const selectedQ = lastMarketQuestionByFinding[finding.finding_id] || defaultMarketQuestion(finding);
+    const options = mc.questions.map((q) =>
+      `<option value="${escapeHtml(q.id)}"${q.id === selectedQ ? " selected" : ""}>${escapeHtml(q.label)}</option>`
+    ).join("");
+    const stored = state && state.market_checks ? state.market_checks[finding.finding_id] : null;
+    let resultHtml = "<p class=\"muted\">Not run yet. Choose a question and run Market Check. Wings will not invent a market.</p>";
+    if (stored && stored.result) {
+      const r = stored.result;
+      const alts = (r.alternatives || []).map((a) =>
+        `<li><span class="badge">${escapeHtml(altStatusLabel(a.status))}</span> ${escapeHtml(a.option)}${a.summary ? ` — ${escapeHtml(a.summary)}` : ""}</li>`
+      ).join("");
+      const unknownBlock = r.recommendation === "UNKNOWN"
+        ? `<p><strong>Why unknown:</strong> ${escapeHtml(r.unknown_reason || "")}</p>
+           <p><strong>Evidence needed:</strong> ${escapeHtml(r.required_evidence || "")}</p>
+           <p><strong>Next step:</strong> ${escapeHtml(r.next_action || "")}</p>`
+        : `<p><strong>Next step:</strong> ${escapeHtml(r.next_action || "Human decides. This check does not adopt or mutate anything.")}</p>`;
+      const evCount = (r.evidence || []).length;
+      const evHtml = (r.evidence || []).map((e) =>
+        `<div class="evidence-item"><div class="label">${escapeHtml(e.label || "Evidence")}</div>
+         <div class="pointer">${escapeHtml(e.pointer || "")}</div>
+         <p class="excerpt">${escapeHtml(e.excerpt || "")}</p></div>`
+      ).join("");
+      resultHtml = `
+        <div class="market-result" id="market-check-result">
+          <p class="meta-line"><strong>Target:</strong> ${escapeHtml(r.finding_id || finding.finding_id)} — ${escapeHtml(finding.title || "")}</p>
+          <p class="meta-line"><strong>Question:</strong> ${escapeHtml(r.question_label || "")}</p>
+          <h4>Alternatives considered</h4>
+          <ul class="alt-list">${alts || "<li class='muted'>No alternatives listed.</li>"}</ul>
+          <h4>Recommendation</h4>
+          <p class="meta-line badge-row">
+            <span class="badge ${r.recommendation === "UNKNOWN" ? "DEFERRED" : "RESOLVED"}">${escapeHtml(r.recommendation_label || r.recommendation)}</span>
+            <span class="badge">${escapeHtml(statusLabel(r.confidence || "UNKNOWN"))}</span>
+          </p>
+          <p>${escapeHtml(r.fact || "")}</p>
+          <p class="meta-line">${escapeHtml(r.inference || "")}</p>
+          ${unknownBlock}
+          <p class="meta-line"><strong>Scope:</strong> ${escapeHtml(r.scope || "")}</p>
+          <p class="meta-line"><strong>Authority:</strong> ${escapeHtml(r.authority || "")}</p>
+          <p class="meta-line"><strong>Limits:</strong> ${escapeHtml((r.limits || []).join(" · "))}</p>
+          <details class="compact-details audit-block">
+            <summary>Evidence and raw check (${evCount})</summary>
+            <div class="details-body">
+              ${evHtml || "<p class='muted'>No evidence items on this result.</p>"}
+              <pre class="package-preview">${escapeHtml(JSON.stringify(r, null, 2))}</pre>
+            </div>
+          </details>
+        </div>`;
+    }
+    return `<div class="detail-block claim-block" data-stage="understand" data-section="market-check" id="market-check-panel">
+      <h3><span class="claim-tag market">Market Check</span> ${helpControl("Market Check")} On-demand options check</h3>
+      <p class="decision-help">Ask whether to reuse, adopt, build a remaining gap, defer, or stop. This is not monitoring, RADAR, or an independent project re-check.</p>
+      <label class="field-label" for="market-check-question">Question</label>
+      <select id="market-check-question" class="text-input">${options}</select>
+      <div class="decision-row">
+        <button type="button" class="btn" id="btn-run-market-check">Run Market Check</button>
+      </div>
+      ${resultHtml}
+    </div>`;
+  }
+
+  function runMarketCheckForFinding(finding) {
+    if (!finding) return;
+    if (!window.Wings4MarketCheck || typeof window.Wings4MarketCheck.runMarketCheck !== "function") {
+      setStatus("Market Check engine is not loaded.", true);
+      return;
+    }
+    const select = document.getElementById("market-check-question");
+    const questionId = select ? select.value : defaultMarketQuestion(finding);
+    lastMarketQuestionByFinding[finding.finding_id] = questionId;
+    const result = window.Wings4MarketCheck.runMarketCheck({
+      finding: finding,
+      question_id: questionId,
+      market_check: fixture.market_check
+    });
+    const state = loadState();
+    if (!state.market_checks || typeof state.market_checks !== "object") state.market_checks = {};
+    state.market_checks[finding.finding_id] = {
+      finding_id: finding.finding_id,
+      question_id: questionId,
+      ran_at: nowIso(),
+      result: result
+    };
+    state.updated_at = nowIso();
+    saveState(state);
+    setStatus("Market Check completed for " + finding.finding_id + ": " + (result.recommendation_label || result.recommendation) + ".");
+    renderAll();
   }
 
   function downloadText(filename, text) {
@@ -1521,6 +1633,7 @@
         <h3><span class="claim-tag alternatives">Alternatives</span> Options before the recommendation</h3>
         <ul class="alt-list">${alts || "<li class='muted'>No alternatives listed.</li>"}</ul>
       </div>
+      ${renderMarketCheckPanel(finding, state)}
       <div class="detail-block claim-block" data-stage="understand" data-section="recommendation">
         <h3><span class="claim-tag recommendation">Recommendation</span> What Wings proposes</h3>
         <p>${escapeHtml(finding.recommendation || "")}</p>
@@ -1543,6 +1656,15 @@
       ${lifecycleHtml}`;
 
     bindHelpChips(els.detailBody);
+
+    const mcQuestion = document.getElementById("market-check-question");
+    if (mcQuestion) {
+      mcQuestion.addEventListener("change", () => {
+        lastMarketQuestionByFinding[finding.finding_id] = mcQuestion.value;
+      });
+    }
+    const mcRun = document.getElementById("btn-run-market-check");
+    if (mcRun) mcRun.addEventListener("click", () => runMarketCheckForFinding(finding));
 
     els.detailBody.querySelectorAll("button[data-action]").forEach((btn) => {
       btn.addEventListener("click", () => decide(finding, btn.getAttribute("data-action")));
@@ -1836,7 +1958,8 @@
       project_id: fixture && fixture.project ? fixture.project.project_id : "",
       analyzed_project_mutation: "NO",
       decisions: state.decisions || {},
-      verifications: state.verifications || {}
+      verifications: state.verifications || {},
+      market_checks: state.market_checks || {}
     };
   }
 
@@ -1856,11 +1979,14 @@
       setStatus("Reset cancelled."); return;
     }
     memoryState = emptyState();
+    lastMarketQuestionByFinding = {};
+    returnEvidenceDraft = {};
+    ring2TransientByFinding = {};
     if (storageAvailable) {
       try { localStorage.removeItem(STORAGE_KEY); } catch (err) { /* ignore */ }
     }
     renderState(memoryState);
-    setStatus("Demo reset. Local decision and verification state cleared.");
+    setStatus("Demo reset. Local decision, verification and Market Check state cleared.");
     renderAll();
   }
 
@@ -1871,6 +1997,9 @@
     if (!Array.isArray(data.governed_target_options) || !data.governed_target_options.length) return "Fixture must include governed_target_options.";
     if (!data.governed_target_options[0].project_root) return "Governed target root metadata missing.";
     if (!data.source_project || !data.source_project.project_root) return "Source project root metadata missing.";
+    if (!data.market_check || data.market_check.mode !== "ON_DEMAND") return "Fixture must include on-demand market_check.";
+    if (!Array.isArray(data.market_check.questions) || data.market_check.questions.length < 1) return "Market Check questions missing.";
+    if (!Array.isArray(data.market_check.catalog)) return "Market Check catalog missing.";
     return null;
   }
 
@@ -1898,7 +2027,7 @@
       fixture = data;
       selectedId = fixture.findings[0].finding_id;
       renderAll();
-      setStatus("Fixture loaded. Diagnosis, decision, package and return-verification flow is ready.");
+      setStatus("Fixture loaded. Diagnosis, decision, package, return-verification and on-demand Market Check are ready.");
     } catch (err) {
       els.projectCard.innerHTML = `<p class="status error">Could not load the diagnostic fixture.</p><p class="muted">${escapeHtml(err.message)}</p>`;
       setStatus("Could not load skillsmachine.fixture.json: " + err.message, true);
@@ -1911,7 +2040,7 @@
     isValidPackageIdPattern, isPendingPackageId, isTemplateValue, isMissingOrTemplate,
     displayEvidenceValue, getCanonicalPackageText, buildVerificationExplanation,
     returnAiBlockTemplate, HELP_COPY, findingFactText, findingInferenceText,
-    operatorInterventionSummary
+    operatorInterventionSummary, runMarketCheckForFinding, defaultMarketQuestion
   };
 
   boot();

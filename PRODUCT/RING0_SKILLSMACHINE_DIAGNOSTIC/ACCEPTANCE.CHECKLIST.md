@@ -54,3 +54,26 @@ IMPLEMENTED_STATICALLY / LOGICALLY_TESTED / BROWSER_AUTOMATED / HUMAN_LIVE_VALID
 | STATE_SCHEMA_VERSION | 4 |
 | PACKAGE_SCHEMA_VERSION | 1.0 |
 | COMMIT | NO until valid-return proof + gate |
+
+## Market Check bounded runtime (additive; does not reopen MD1)
+
+Interactive claims must be classified separately. This slice is LOGICALLY_TESTED; not HUMAN_LIVE_VALIDATED in this minibattle.
+
+- [ ] Market Check is invoked only on demand (Run Market Check).
+- [ ] Question is a governed select; no free-text question.
+- [ ] Result is management-readable (recommendation label, alternatives, confidence).
+- [ ] Alternatives are listed before relying on the recommendation.
+- [ ] Scope, authority, limits, and confidence are visible.
+- [ ] UNKNOWN is returned when evidence is missing (do not fabricate).
+- [ ] Limits include NOT_MARKET_MONITORING, NOT_RADAR, NOT_RING3.
+- [ ] No child-repository access; no live web scan.
+- [ ] Ring0/Ring1/Ring2 historical acceptance records are not rewritten.
+
+| Field | Value |
+|---|---|
+| MARKET_CHECK_RUNTIME | BOUNDED_ON_DEMAND_SLICE |
+| MARKET_CHECK_LOGICAL_TEST | PASS (node market_check.logical.test.js) |
+| MARKET_CHECK_HUMAN_LIVE_VALIDATED | NO |
+| MARKET_MONITORING_IMPLEMENTED | NO |
+| RADAR_IMPLEMENTED | NO |
+| RING3_IMPLEMENTED | NO |

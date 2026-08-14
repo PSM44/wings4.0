@@ -56,6 +56,165 @@
       ]
     }
   ],
+  "market_check": {
+    "schema_version": "1.0",
+    "capability": "MARKET_CHECK",
+    "mode": "ON_DEMAND",
+    "not": ["MARKET_MONITORING", "RADAR", "RING3", "LIVE_WEB_SCAN", "CHILD_REPOSITORY_READ"],
+    "evidence_policy": "WINGS_HELD_OR_FIXTURE_ONLY",
+    "unknown_policy": "DO_NOT_FABRICATE",
+    "evaluation_order": ["SAME_PROJECT", "PORTFOLIO_REUSABLE", "SKILL_GRC", "OPEN_SOURCE", "COMMERCIAL", "RESIDUAL_CUSTOM"],
+    "questions": [
+      {
+        "id": "MCQ-BUILD_VS_ADOPT",
+        "label": "Should we build this, or use something that already exists?"
+      },
+      {
+        "id": "MCQ-PORTFOLIO_REUSE",
+        "label": "Does the portfolio or a Skill/GRC already cover this?"
+      },
+      {
+        "id": "MCQ-KILL_OR_DEFER",
+        "label": "Should this work be deferred or stopped?"
+      }
+    ],
+    "catalog": [
+      {
+        "entry_id": "MC-SM-001-SAME",
+        "applies_to_finding_ids": ["F-SM-001"],
+        "applies_to_questions": ["MCQ-BUILD_VS_ADOPT", "MCQ-PORTFOLIO_REUSE"],
+        "eval_class": "SAME_PROJECT",
+        "title": "Keep HUMAN as the semantic home",
+        "disposition_if_selected": "REUSE_SAME_PROJECT",
+        "fit": "HIGH",
+        "confidence": "HIGH",
+        "data_class": "CANONICAL_DERIVED",
+        "evidence_status": "PRESENT",
+        "summary": "SkillsMachine already has HUMAN as the intended semantic home. The finding is overlapping instruction sources, not a missing product to buy.",
+        "evidence": [
+          {
+            "label": "DEC-W4-047",
+            "pointer": "PORTFOLIO.DECISION_LOG.md",
+            "excerpt": "HUMAN must become the semantic home of useful WHOAMI context/data."
+          }
+        ]
+      },
+      {
+        "entry_id": "MC-SM-001-PORTFOLIO",
+        "applies_to_finding_ids": ["F-SM-001"],
+        "applies_to_questions": ["MCQ-BUILD_VS_ADOPT", "MCQ-PORTFOLIO_REUSE"],
+        "eval_class": "PORTFOLIO_REUSABLE",
+        "title": "Use the existing Wings governed transfer",
+        "disposition_if_selected": "REUSE_PORTFOLIO",
+        "fit": "MEDIUM",
+        "confidence": "HIGH",
+        "data_class": "CANONICAL_DERIVED",
+        "evidence_status": "PRESENT",
+        "summary": "Wings already prepared a WHOAMI-to-HUMAN transfer. That is coordination, not a new market product.",
+        "evidence": [
+          {
+            "label": "Transfer package",
+            "pointer": "PORTFOLIO.TRANSFERS/SKILLSMACHINE_WHOAMI_TO_HUMAN_TRANSFER_PACKAGE.md",
+            "excerpt": "STATUS ready for SkillsMachine ORCHESTRATOR review."
+          }
+        ]
+      },
+      {
+        "entry_id": "MC-SM-001-OS",
+        "applies_to_finding_ids": ["F-SM-001"],
+        "applies_to_questions": ["MCQ-BUILD_VS_ADOPT"],
+        "eval_class": "OPEN_SOURCE",
+        "title": "Replace HUMAN/WHOAMI with an external knowledge tool",
+        "disposition_if_selected": "UNKNOWN",
+        "fit": "UNKNOWN",
+        "confidence": "UNKNOWN",
+        "data_class": "REPRESENTATIVE_NONCANONICAL",
+        "evidence_status": "MISSING",
+        "missing_evidence": "No named open-source comparison was collected for replacing HUMAN.",
+        "required_evidence": "A bounded named-tool comparison against HUMAN purpose, if that question is later authorized.",
+        "next_action": "Do not shop for a HUMAN replacement from this finding. Keep this class UNKNOWN.",
+        "summary": "External tool shopping is not evidenced and is not the decision this finding needs.",
+        "evidence": []
+      },
+      {
+        "entry_id": "MC-SM-002-DEFER",
+        "applies_to_finding_ids": ["F-SM-002"],
+        "applies_to_questions": ["MCQ-KILL_OR_DEFER"],
+        "eval_class": "DEFER",
+        "title": "Keep unrelated unfinished work out of this transfer",
+        "disposition_if_selected": "DEFER",
+        "fit": "HIGH",
+        "confidence": "HIGH",
+        "data_class": "CANONICAL_DERIVED",
+        "evidence_status": "PRESENT",
+        "summary": "Mixing unrelated dirty workstreams with the WHOAMI transfer would contaminate the handoff. Defer that unrelated work.",
+        "evidence": [
+          {
+            "label": "Transfer exclusions",
+            "pointer": "PORTFOLIO.TRANSFERS/SKILLSMACHINE_WHOAMI_TO_HUMAN_TRANSFER_PACKAGE.md",
+            "excerpt": "Unrelated SkillsMachine dirty workstreams remain out of this transfer scope."
+          }
+        ]
+      },
+      {
+        "entry_id": "MC-SM-003-KILL",
+        "applies_to_finding_ids": ["F-SM-003"],
+        "applies_to_questions": ["MCQ-KILL_OR_DEFER"],
+        "eval_class": "KILL",
+        "title": "Do not reactivate Hermes",
+        "disposition_if_selected": "KILL",
+        "fit": "HIGH",
+        "confidence": "HIGH",
+        "data_class": "CANONICAL_DERIVED",
+        "evidence_status": "PRESENT",
+        "summary": "PC-013 is already resolved: Hermes stays frozen and must not be reactivated through this diagnosis.",
+        "evidence": [
+          {
+            "label": "DEC-W4-054",
+            "pointer": "PORTFOLIO.DECISION_LOG.md",
+            "excerpt": "Capability unassigned until a real use case; do not reactivate Hermes."
+          }
+        ]
+      },
+      {
+        "entry_id": "MC-SM-004-SAME",
+        "applies_to_finding_ids": ["F-SM-004"],
+        "applies_to_questions": ["MCQ-BUILD_VS_ADOPT", "MCQ-PORTFOLIO_REUSE"],
+        "eval_class": "SAME_PROJECT",
+        "title": "Keep updater readiness as a SkillsMachine-local proof problem",
+        "disposition_if_selected": "REUSE_SAME_PROJECT",
+        "fit": "HIGH",
+        "confidence": "MEDIUM",
+        "data_class": "REPRESENTATIVE_NONCANONICAL",
+        "evidence_status": "PRESENT",
+        "summary": "Wings should not build a second updater. The gap is real-user proof inside SkillsMachine, not a missing Wings product.",
+        "evidence": [
+          {
+            "label": "DEC-W4-053",
+            "pointer": "PORTFOLIO.DECISION_LOG.md#DEC-W4-053",
+            "excerpt": "Optional product integration for reusable Skills/GRCs is distinct from proven consumer rollout."
+          }
+        ]
+      },
+      {
+        "entry_id": "MC-SM-004-OS",
+        "applies_to_finding_ids": ["F-SM-004"],
+        "applies_to_questions": ["MCQ-BUILD_VS_ADOPT"],
+        "eval_class": "OPEN_SOURCE",
+        "title": "External distribution/updater tools",
+        "disposition_if_selected": "UNKNOWN",
+        "fit": "UNKNOWN",
+        "confidence": "UNKNOWN",
+        "data_class": "REPRESENTATIVE_NONCANONICAL",
+        "evidence_status": "MISSING",
+        "missing_evidence": "No live market scan or child-repository read was performed for updater tools.",
+        "required_evidence": "A bounded, human-authorized comparison of named tools against the SkillsMachine updater purpose.",
+        "next_action": "Keep this class UNKNOWN unless a named-tool comparison is separately authorized.",
+        "summary": "Open-source updater alternatives are not evidenced in this slice.",
+        "evidence": []
+      }
+    ]
+  },
   "findings": [
     {
       "finding_id": "F-SM-001",

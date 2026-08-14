@@ -41,6 +41,17 @@ Open `http://localhost:8765/`.
 16. **Unauthorized push:** `PUSH=YES` against no-push policy → `FAILED`.
 17. Confirm SkillsMachine was not read or written by Wings4.
 
+### Market Check — on demand (bounded slice)
+
+18. Open a finding (start with `F-SM-001`).
+19. In **Market Check**, keep the governed question and click **Run Market Check**.
+20. Expect alternatives first, then a management-readable recommendation, scope, authority, limits, and confidence.
+21. Open `F-SM-002`, choose **Should we build this, or use something that already exists?**, run Market Check.
+22. Expect **Unknown — evidence is missing** (do not fabricate a buy/build).
+23. Confirm the result states this is not monitoring, RADAR, or Ring3.
+
+Do not mark Market Check HUMAN_LIVE_VALIDATED from this runbook until a separate live proof is recorded.
+
 ## Evidence classification
 
 Interactive claims must state separately: IMPLEMENTED_STATICALLY / LOGICALLY_TESTED / BROWSER_AUTOMATED / HUMAN_LIVE_VALIDATED.
@@ -51,5 +62,6 @@ Do not mark HUMAN_RING2_LIVE_VALIDATION=PASS until the valid-return path is prov
 - No child-project execution by Wings4.
 - No Ring3 automation.
 - Human Ring2 live validation may still be pending after this build.
+- Bounded on-demand Market Check uses Wings-held/fixture evidence only; it is not MARKET_MONITORING, RADAR, or Ring3.
 - W4P005/W4P006/W4P006A changes may remain uncommitted until authorized.
 - Interactive functions must not be marked PASS from static/code presence alone.

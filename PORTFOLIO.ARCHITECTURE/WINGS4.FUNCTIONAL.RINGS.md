@@ -1,7 +1,7 @@
 # Wings4 Functional Rings
 
 Status: ACTIVE_DEFINITION
-Authority: DEC-W4-049, DEC-W4-056, DEC-W4-058, DEC-W4-061, Q-072, Q-079, Q-084, Q-089, Q-092, Q-098, Q-103
+Authority: DEC-W4-049, DEC-W4-056, DEC-W4-058, DEC-W4-061, DEC-W4-063, Q-072, Q-079, Q-084, Q-089, Q-092, Q-098, Q-103
 Scope: Wings4-local product ring model
 
 ## Rings
@@ -19,7 +19,7 @@ Scope: Wings4-local product ring model
 
 | Capability | Meaning | Status |
 |---|---|---|
-| MARKET_CHECK | Bounded, on-demand diagnostic when a material capability/project/build decision may already have internal or external solutions | Core product diagnostic direction (not deferred solely because Ring5 is unauthorized); runtime productization may still be incomplete |
+| MARKET_CHECK | Bounded, on-demand diagnostic when a material capability/project/build decision may already have internal or external solutions | Bounded on-demand runtime slice in the cumulative product surface (`WINGS4.MARKET_CHECK.RUNTIME.SPEC.md`); not monitoring |
 | MARKET_MONITORING | Proactive/continuous/scheduled external discovery | Separate future capability; unauthorized; do not invent a monitoring engine here |
 
 Historical wording that placed all market-tool review exclusively under Ring5 is clarified: Ring5 refers to MARKET_MONITORING. On-demand MARKET_CHECK belongs to current diagnostic/direction semantics under DEC-W4-061 / Q-098.
@@ -40,3 +40,5 @@ Historical wording that placed all market-tool review exclusively under Ring5 is
 - No MARKET_MONITORING implementation via this minibattle.
 - No autonomous agents.
 - No commit/push without separate authorization.
+
+Bounded on-demand MARKET_CHECK runtime is specified separately in `WINGS4.MARKET_CHECK.RUNTIME.SPEC.md` and is not Ring5.

@@ -33,6 +33,7 @@
 | WINGS4_PRODUCT_006A_RING2_FUNCTIONAL_RECOVERY_AND_BACKLOG | Recover real package-ID assignment + Ring2 return input; useful Ring2 backlog; no Ring3 | P0 | CLOSED_INTO_W4P006B_BASELINE | Human negative-path Ring2 PASS; valid-return VERIFIED_PASS proven under W4P006B browser automation; closed into cumulative baseline `03a589d`. |
 | WINGS4_PRODUCT_006B_RING2_UX_BASELINE_HARDENING_AND_CLOSE_PREP | COPY PACKAGE, wider panels, template-as-missing, valid-return proof, conditional baseline commit | P0 | COMPLETED_BASELINE_COMMITTED | Priority UX/hardening complete; browser valid-return VERIFIED_PASS proven; product baseline commit `03a589d` + continuity `ecf89b5`; PUSH=NO. |
 | WINGS4_PRODUCT_NORTH_STAR_AND_MANAGEMENT_DELIVERY_PREP | Canonize Product North Star / MARKET_CHECK semantics / Management Delivery #1; no new ring implementation | P0 | COMPLETED_CANON_COMMITTED | Q-095..Q-109 + DEC-W4-061; post-Ring2 state reconcile; Management Delivery #1 defined; MARKET_CHECK≠MONITORING; GOV-005..008/MIG-019 current-status reconciled; no Ring3/RADAR runtime. |
+| W4_MARKET_CHECK_RUNTIME_BOUNDED_PRODUCTIZATION_001 | Smallest on-demand Market Check runtime slice on the existing product surface | P0 | COMMIT_CANDIDATE_UNCOMMITTED | Governed question; on-demand invoke; alternatives before recommendation; UNKNOWN when evidence missing; not monitoring/RADAR/Ring3; logical tests PASS; human live validation not claimed; commit requires separate human authorization. |
 
 ## Ring0–Ring2 regression / eval inventory (compact)
 
@@ -50,6 +51,9 @@ Evidence-backed cases for reuse. Static code presence alone never establishes us
 | EV-R2-008 | Ring0 decision actions preserved | ACCEPT/REJECT/MODIFY/POSTPONE | Labels/behavior preserved; Decision note rules | Ring0 acceptance; Q-085 | HUMAN | None known |
 | EV-R2-009 | Valid return reaches VERIFIED_PASS | Canonical valid AI block for real package ID | `VERIFIED_PASS` | W4P006B browser automation | LOGICAL + BROWSER | Human live optional confirmation |
 | EV-R2-010 | Static presence ≠ FUNCTIONAL_PASS | Code/UI presence only | Must classify IMPLEMENTED_STATICALLY / LOGICALLY_TESTED / BROWSER_AUTOMATED / HUMAN_LIVE_VALIDATED | Q-093/Q-094; acceptance checklist | POLICY | Ongoing discipline |
+| EV-MC-001 | Market Check invoked on demand | Run Market Check with governed question | Result record with invoked_on_demand | market_check.engine.js; logical test | LOGICAL | Human live not claimed |
+| EV-MC-002 | Missing evidence → UNKNOWN | F-SM-002 / BUILD_VS_ADOPT | UNKNOWN; no fabricated buy/build | logical test MC-02 | LOGICAL | Human live not claimed |
+| EV-MC-003 | Limits remain explicit | Any Market Check result | NOT_MARKET_MONITORING, NOT_RADAR, NOT_RING3 | logical test MC-01/MC-07 | LOGICAL | None known |
 
 Scope:
 - Wings4-local product Ring0+Ring1+Ring2 cumulative baseline committed (`03a589d`).
