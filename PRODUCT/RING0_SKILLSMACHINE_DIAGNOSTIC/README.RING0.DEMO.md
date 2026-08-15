@@ -52,7 +52,7 @@ Open `http://localhost:8765/`.
 24. Open `F-MC-001`, keep **Should we build this, or use something that already exists?**, run Market Check. Expect **Build only the remaining gap**, with a human-provided sample marked not production evidence.
 25. Open `F-MC-002`, keep **Should we integrate an existing solution, or build a remaining gap?**, run Market Check. Expect **Integrate an existing solution**. Confirm EXTERNAL_CHECKED stays pending with no live scan.
 
-Do not treat this runbook as live market intelligence. Bounded human-live validation is recorded for F-SM-001 and F-SM-002 UNKNOWN. F-MC-001 BUILD and F-MC-002 INTEGRATE are LOGICALLY_TESTED only.
+Do not treat this runbook as live market intelligence. Bounded human-live validation is recorded for F-SM-001, F-SM-002 UNKNOWN, F-MC-001 BUILD, and F-MC-002 INTEGRATE (DEC-W4-064, DEC-W4-067).
 
 ## Evidence classification
 
@@ -64,6 +64,6 @@ Do not mark HUMAN_RING2_LIVE_VALIDATION=PASS until the valid-return path is prov
 - No child-project execution by Wings4.
 - No Ring3 automation.
 - Human Ring2 live validation may still be pending after this build.
-- Bounded on-demand Market Check uses Wings-held/fixture evidence only; it is not MARKET_MONITORING, RADAR, Ring3, or live market intelligence. Human-live validation for this bounded slice is recorded (DEC-W4-064).
+- Bounded on-demand Market Check uses Wings-held/fixture evidence only; it is not MARKET_MONITORING, RADAR, Ring3, or live market intelligence. Human-live validation for this bounded slice is recorded (DEC-W4-064, DEC-W4-067). MARKET_CHECK_RUNTIME_COMPLETE remains NO. HUMAN_PROVIDED remains sample/not production. EXTERNAL_CHECKED remains manual record pending / no live scan.
 - W4P005/W4P006/W4P006A changes may remain uncommitted until authorized.
 - Interactive functions must not be marked PASS from static/code presence alone.

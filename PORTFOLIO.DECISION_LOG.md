@@ -859,3 +859,43 @@ Decision:
 
 Spec: `PORTFOLIO.ARCHITECTURE/WINGS4.MARKET_CHECK.RUNTIME.SPEC.md`
 Prototype: `PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/`
+
+## DEC-W4-067 — Market Check BUILD/INTEGRATE live UI validation recorded
+
+Status: EVIDENCE_RECORDED
+Date: 2026-08-15
+Scope: RECORD_ONLY; authorizations `W4_MARKET_CHECK_BUILD_INTEGRATE_LIVE_UI_VALIDATION_001`, `W4_RECORD_BUILD_INTEGRATE_LIVE_UI_VALIDATION_002`
+Runtime HEAD: `3063dad5bba4368cac4c3a2df6240e84eae3be01`
+
+Recorded evidence:
+
+- TASK_ID=W4_MARKET_CHECK_BUILD_INTEGRATE_LIVE_UI_VALIDATION_001
+- STATUS=PASS
+- LOGICAL_TESTS=PASS; CASES=20
+- UI_VALIDATION_METHOD=LOCAL_CHROME_CDP
+- CURSOR_BROWSER_MCP=UNAVAILABLE
+- SERVER_URL=http://127.0.0.1:8785/
+- BROWSER_STORAGE_CLEARED=YES
+- F-MC-001_BUILD_UI_VALIDATED=YES
+- F-MC-002_INTEGRATE_UI_VALIDATED=YES
+- UNKNOWN_HANDLING_AVAILABLE=YES
+- HUMAN_PROVIDED_SAMPLE_NOT_PRODUCTION=YES
+- EXTERNAL_CHECKED_MANUAL_PENDING=YES
+- MARKET_CHECK_RUNTIME_COMPLETE=NO
+- NOT_MARKET_MONITORING=YES
+- NOT_RADAR=YES
+- NOT_RING3=YES
+- MD1_REOPENED=NO
+- CHILD_PROJECT_MUTATION=NO
+- AI_HISTORY_INSPECTED=NO
+
+This record supersedes the live-validation gap in DEC-W4-066 for F-MC-001 BUILD and F-MC-002 INTEGRATE. It does not rewrite DEC-W4-066. UNKNOWN remains available (F-SM-002 / MCQ-BUILD_VS_ADOPT). HUMAN_PROVIDED remains sample/not production. EXTERNAL_CHECKED remains a manual-record contract pending a named human-authorized check; it is not a live web scan.
+
+Known limitations:
+
+- Evidence remains fixture/Wings-held only.
+- Cursor browser MCP was unavailable; validation used local Chrome CDP against the demo UI (`http://127.0.0.1:8785/`).
+- This is bounded live UI validation, not live market intelligence.
+- This record does not claim MARKET_CHECK_RUNTIME_COMPLETE.
+
+This decision does not authorize product behavior changes, fixture/UI changes, Ring3+, RADAR, MARKET_MONITORING, independent resynchronization, child mutation, MD1 reopening, or push.
