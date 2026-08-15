@@ -104,11 +104,178 @@ eq(extAlt && extAlt.check_method, "MANUAL_RECORD", "MC-20 EXTERNAL_CHECKED metho
 ok(fixture.market_check.external_checked_policy && fixture.market_check.external_checked_policy.live_web_search === false, "MC-20 no live web in policy");
 ok(fixture.market_check.runtime_complete === false, "MC-20 complete remains false");
 
+function runCustom(findingId, questionId, catalog) {
+  return engine.runMarketCheck({
+    finding: { finding_id: findingId, title: "Synthetic intake case" },
+    question_id: questionId,
+    market_check: {
+      questions: fixture.market_check.questions,
+      evaluation_order: fixture.market_check.evaluation_order,
+      catalog: catalog
+    }
+  });
+}
+
+var hpProdIntake = {
+  evidence_id: "MCEV-SYN-HP-001",
+  evidence_level: "HUMAN_PROVIDED",
+  source_type: "HUMAN_DECISION",
+  source_label: "Synthetic human decision",
+  source_date: "2026-08-15",
+  captured_by: "Pablo",
+  summary: "Complete HUMAN_PROVIDED production intake.",
+  confidence: "MEDIUM",
+  limitations: "Manual fixture record only.",
+  approval_required: true,
+  authority: "Pablo",
+  review_status: "CURRENT"
+};
+
+var rHpProd = runCustom("SYN-HP-PROD", "MCQ-BUILD_VS_ADOPT", [{
+  entry_id: "SYN-HP-PROD",
+  applies_to_finding_ids: ["SYN-HP-PROD"],
+  applies_to_questions: ["MCQ-BUILD_VS_ADOPT"],
+  eval_class: "RESIDUAL_CUSTOM",
+  title: "Build remaining gap from human decision",
+  disposition_if_selected: "BUILD_RESIDUAL",
+  fit: "HIGH",
+  confidence: "MEDIUM",
+  evidence_status: "PRESENT",
+  evidence_level: "HUMAN_PROVIDED",
+  production_evidence: true,
+  intake: hpProdIntake,
+  summary: "Complete HUMAN_PROVIDED production record.",
+  evidence: [{ label: "Intake", pointer: "synthetic", excerpt: "metadata present" }]
+}]);
+eq(rHpProd.recommendation, "BUILD_RESIDUAL", "MC-21 HUMAN_PROVIDED production with intake can win");
+eq(rHpProd.evidence_level, "HUMAN_PROVIDED", "MC-21 winner level HUMAN_PROVIDED");
+ok((rHpProd.alternatives || []).some(function (a) { return a.intake_status === "VALID" && a.production_evidence === true; }), "MC-21 valid intake is production");
+
+var rHpMissing = runCustom("SYN-HP-MISS", "MCQ-BUILD_VS_ADOPT", [{
+  entry_id: "SYN-HP-MISS",
+  applies_to_finding_ids: ["SYN-HP-MISS"],
+  applies_to_questions: ["MCQ-BUILD_VS_ADOPT"],
+  eval_class: "RESIDUAL_CUSTOM",
+  title: "Claimed production without intake",
+  disposition_if_selected: "BUILD_RESIDUAL",
+  fit: "HIGH",
+  confidence: "HIGH",
+  evidence_status: "PRESENT",
+  evidence_level: "HUMAN_PROVIDED",
+  production_evidence: true,
+  summary: "Missing intake metadata.",
+  evidence: []
+}]);
+eq(rHpMissing.recommendation, "UNKNOWN", "MC-22 missing HUMAN_PROVIDED intake cannot win");
+ok((rHpMissing.alternatives || []).some(function (a) {
+  return a.intake_status === "PENDING" && a.production_evidence === false && a.confidence === "UNKNOWN";
+}), "MC-22 missing metadata stays PENDING and cannot upgrade confidence");
+
+var rEcProd = runCustom("SYN-EC-PROD", "MCQ-BUILD_VS_ADOPT", [{
+  entry_id: "SYN-EC-PROD",
+  applies_to_finding_ids: ["SYN-EC-PROD"],
+  applies_to_questions: ["MCQ-BUILD_VS_ADOPT"],
+  eval_class: "OPEN_SOURCE",
+  title: "Manual named external record",
+  disposition_if_selected: "ADOPT_OPEN_SOURCE",
+  fit: "MEDIUM",
+  confidence: "MEDIUM",
+  evidence_status: "PRESENT",
+  evidence_level: "EXTERNAL_CHECKED",
+  check_method: "MANUAL_RECORD",
+  production_evidence: true,
+  intake: {
+    evidence_id: "MCEV-SYN-EC-001",
+    evidence_level: "EXTERNAL_CHECKED",
+    source_type: "MANUAL_EXTERNAL_RECORD",
+    source_label: "Named prior check held in Wings",
+    source_date: "2026-08-15",
+    captured_by: "Pablo",
+    summary: "Manual record only.",
+    confidence: "MEDIUM",
+    limitations: "No live scan.",
+    approval_required: true,
+    authority: "Pablo",
+    review_status: "CURRENT"
+  },
+  summary: "Complete EXTERNAL_CHECKED manual record.",
+  evidence: [{ label: "Manual record", pointer: "synthetic", excerpt: "source metadata present" }]
+}]);
+eq(rEcProd.recommendation, "ADOPT_OPEN_SOURCE", "MC-23 EXTERNAL_CHECKED with source metadata can be represented");
+eq(rEcProd.evidence_level, "EXTERNAL_CHECKED", "MC-23 winner level EXTERNAL_CHECKED");
+ok((rEcProd.alternatives || []).some(function (a) {
+  return a.check_method === "MANUAL_RECORD" && a.intake_status === "VALID";
+}), "MC-23 method remains MANUAL_RECORD");
+
+var rEcMiss = runCustom("SYN-EC-MISS", "MCQ-BUILD_VS_ADOPT", [{
+  entry_id: "SYN-EC-MISS",
+  applies_to_finding_ids: ["SYN-EC-MISS"],
+  applies_to_questions: ["MCQ-BUILD_VS_ADOPT"],
+  eval_class: "OPEN_SOURCE",
+  title: "External claim without source",
+  disposition_if_selected: "ADOPT_OPEN_SOURCE",
+  fit: "HIGH",
+  confidence: "HIGH",
+  evidence_status: "PRESENT",
+  evidence_level: "EXTERNAL_CHECKED",
+  production_evidence: true,
+  summary: "No source metadata.",
+  evidence: []
+}]);
+eq(rEcMiss.recommendation, "UNKNOWN", "MC-24 EXTERNAL_CHECKED without source metadata cannot win");
+ok((rEcMiss.alternatives || []).some(function (a) {
+  return a.evidence_level === "EXTERNAL_CHECKED" && a.intake_status === "PENDING" && a.production_evidence === false;
+}), "MC-24 missing EXTERNAL_CHECKED source stays PENDING");
+
+var rEcLive = runCustom("SYN-EC-LIVE", "MCQ-BUILD_VS_ADOPT", [{
+  entry_id: "SYN-EC-LIVE",
+  applies_to_finding_ids: ["SYN-EC-LIVE"],
+  applies_to_questions: ["MCQ-BUILD_VS_ADOPT"],
+  eval_class: "OPEN_SOURCE",
+  title: "Claimed live scan",
+  disposition_if_selected: "ADOPT_OPEN_SOURCE",
+  fit: "HIGH",
+  confidence: "HIGH",
+  evidence_status: "PRESENT",
+  evidence_level: "EXTERNAL_CHECKED",
+  check_method: "LIVE_WEB_SCAN",
+  production_evidence: true,
+  intake: {
+    evidence_id: "MCEV-SYN-EC-LIVE",
+    evidence_level: "EXTERNAL_CHECKED",
+    source_type: "MANUAL_EXTERNAL_RECORD",
+    source_label: "Invalid live scan claim",
+    source_date: "2026-08-15",
+    captured_by: "fixture",
+    summary: "Must not become production.",
+    confidence: "HIGH",
+    limitations: "Live scan is forbidden.",
+    approval_required: true,
+    authority: "Pablo",
+    review_status: "CURRENT"
+  },
+  summary: "Live scan method is invalid.",
+  evidence: []
+}]);
+eq(rEcLive.recommendation, "UNKNOWN", "MC-25 live-scan method cannot become EXTERNAL_CHECKED production");
+
+ok(fixture.market_check.evidence_intake_contract && fixture.market_check.evidence_intake_contract.mode === "MANUAL_ONLY", "MC-26 intake contract is manual only");
+ok(fixture.market_check.evidence_intake_contract.live_web_search === false, "MC-26 no live web in intake contract");
+ok((engine.INTAKE_REQUIRED_FIELDS || []).indexOf("evidence_id") >= 0, "MC-26 evidence_id required");
+ok((rBuild.alternatives || []).some(function (a) { return a.entry_id === "MC-MC-001-HUMAN-INCOMPLETE" && a.intake_status === "PENDING"; }), "MC-27 incomplete HUMAN_PROVIDED fixture stays PENDING");
+ok((rBuild.alternatives || []).some(function (a) { return a.entry_id === "MC-MC-001-HUMAN-PRODUCTION" && a.intake_status === "VALID" && a.production_evidence === true; }), "MC-27 complete HUMAN_PROVIDED fixture is valid and not the winner");
+eq(rBuild.recommendation, "BUILD_RESIDUAL", "MC-27 F-MC-001 winner remains Wings-held BUILD");
+eq(rBuild.evidence_level, "WINGS_HELD", "MC-27 F-MC-001 winner evidence remains WINGS_HELD");
+ok((rInt.alternatives || []).some(function (a) { return a.entry_id === "MC-MC-002-EXTERNAL-MANUAL" && a.intake_status === "VALID"; }), "MC-28 complete EXTERNAL_CHECKED manual record is visible");
+eq(rInt.recommendation, "INTEGRATE", "MC-28 F-MC-002 winner remains INTEGRATE");
+ok(hasLimit(rHpProd, "MANUAL_EVIDENCE_INTAKE_ONLY") && hasLimit(rHpProd, "NOT_RADAR") && hasLimit(rHpProd, "NOT_MARKET_MONITORING"), "MC-29 intake path keeps monitoring/RADAR limits");
+ok(fixture.market_check.runtime_complete === false, "MC-29 runtime_complete remains false");
+
 if (fails.length) {
   console.error("MARKET_CHECK_LOGICAL_TEST=FAIL");
   fails.forEach(function (f) { console.error(" - " + f); });
   process.exit(1);
 }
 console.log("MARKET_CHECK_LOGICAL_TEST=PASS");
-console.log("CASES=20");
+console.log("CASES=29");
 console.log("VALIDATION_RESULT=LOGICALLY_TESTED");

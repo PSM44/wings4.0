@@ -68,6 +68,7 @@ Interactive claims must be classified separately. Bounded Market Check slice is 
 - [x] Limits include NOT_MARKET_MONITORING, NOT_RADAR, NOT_RING3.
 - [x] No child-repository access; no live web scan.
 - [x] Ring0/Ring1/Ring2 historical acceptance records are not rewritten.
+- [x] Manual evidence intake requires evidence_id/source/authority metadata; missing fields stay PENDING/UNKNOWN.
 
 | Field | Value |
 |---|---|
@@ -89,8 +90,9 @@ Interactive claims must be classified separately. Bounded Market Check slice is 
 | MARKET_CHECK_BUILD_WINNER | F-MC-001 HUMAN_LIVE_VALIDATED |
 | F-MC-001_BUILD_UI_VALIDATION | PASS |
 | F-MC-002_INTEGRATE_UI_VALIDATION | PASS |
-| MARKET_CHECK_HUMAN_PROVIDED_PATH | SAMPLE_NOT_PRODUCTION |
-| MARKET_CHECK_EXTERNAL_CHECKED_PATH | MANUAL_RECORD_PENDING |
+| MARKET_CHECK_HUMAN_PROVIDED_PATH | INTAKE_CONTRACT; SAMPLE_NOT_PRODUCTION |
+| MARKET_CHECK_EXTERNAL_CHECKED_PATH | MANUAL_RECORD with source metadata, or PENDING |
+| MARKET_CHECK_EVIDENCE_INTAKE_CONTRACT | MANUAL_ONLY (DEC-W4-068) |
 | MARKET_MONITORING_IMPLEMENTED | NO |
 | RADAR_IMPLEMENTED | NO |
 | RING3_IMPLEMENTED | NO |

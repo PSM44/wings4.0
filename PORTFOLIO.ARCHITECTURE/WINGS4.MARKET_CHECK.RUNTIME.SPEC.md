@@ -1,7 +1,7 @@
 # Wings4 Market Check — Bounded On-Demand Runtime Spec
 
 Status: ACTIVE_BOUNDED_SLICE
-Authority: DEC-W4-061, DEC-W4-063, DEC-W4-066, DEC-W4-067, Q-098, Q-099, Q-101, PR-PORT-006
+Authority: DEC-W4-061, DEC-W4-063, DEC-W4-066, DEC-W4-067, DEC-W4-068, Q-098, Q-099, Q-101, PR-PORT-006
 Prototype: `PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/`
 Engine: `PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/market_check.engine.js`
 
@@ -80,11 +80,40 @@ If catalog evidence is absent, incomplete, or marked missing:
 | Level | Meaning | Allowed now |
 |---|---|---|
 | WINGS_HELD | Named evidence already in Wings canon/fixture | YES |
-| HUMAN_PROVIDED | Named evidence supplied by the human and already held in this repository | YES, only if the record exists; do not prompt free-text market shopping |
-| EXTERNAL_CHECKED | Wings-held record that a prior human-authorized named check already happened | Defined; MANUAL_RECORD pending; not a live web search |
+| HUMAN_PROVIDED | Named evidence supplied by the human and already held in this repository | YES, only if a manual intake record exists; sample cannot become production; no free-text shopping |
+| EXTERNAL_CHECKED | Wings-held manual record that a prior human-authorized named check already happened | Defined as MANUAL_RECORD only; production requires source metadata; not a live web search |
 | UNKNOWN | Evidence is missing or insufficient | YES; required when any other level cannot be proven |
 
-EXTERNAL_CHECKED never authorizes crawling, scheduling, RADAR, or MARKET_MONITORING. Allowed method in this slice: `MANUAL_RECORD` of a named prior check already held in Wings. If no such record exists, the level is pending and the alternative stays UNKNOWN.
+EXTERNAL_CHECKED never authorizes crawling, scheduling, RADAR, or MARKET_MONITORING. Allowed method in this slice: `MANUAL_RECORD` of a named prior check already held in Wings. If required source metadata is missing, the record stays PENDING/UNKNOWN.
+
+## Manual evidence-intake contract
+
+Manual intake only. No live web search, no monitoring, no RADAR, no Ring3, no child-project mutation, and no operator free-text shopping form.
+
+Required fields:
+
+- `evidence_id`
+- `evidence_level`
+- `source_type` (`HUMAN_NOTE` | `HUMAN_DECISION` | `MANUAL_EXTERNAL_RECORD` | `WINGS_CANON`)
+- `source_label`
+- `source_date`
+- `captured_by`
+- `summary`
+- `confidence`
+- `limitations`
+- `approval_required`
+- `authority`
+- `review_status` (`CURRENT` | `PENDING_REVIEW` | `EXPIRED` | `SAMPLE`)
+
+Rules:
+
+- Missing or invalid fields become `PENDING` or `UNKNOWN`. Do not invent values. Do not silently upgrade confidence.
+- `HUMAN_PROVIDED` sample (`HUMAN_PROVIDED_SAMPLE` / `review_status=SAMPLE`) cannot become production evidence.
+- `HUMAN_PROVIDED` production requires a complete intake with `source_type` `HUMAN_NOTE` or `HUMAN_DECISION` and `review_status=CURRENT`.
+- `EXTERNAL_CHECKED` production requires `check_method=MANUAL_RECORD`, `source_type=MANUAL_EXTERNAL_RECORD`, and complete source metadata. A live-scan method is invalid.
+- `expiry_date` is optional; `review_status=EXPIRED` makes the record non-production.
+
+This contract does not create an evidence-capture desk or claim `MARKET_CHECK_RUNTIME_COMPLETE`.
 
 ## Completion criteria (`MARKET_CHECK_RUNTIME_COMPLETE=YES`)
 
@@ -109,8 +138,8 @@ Recorded live UI evidence (DEC-W4-067; HEAD `3063dad`):
 
 Reasons this slice does not claim complete:
 
-- HUMAN_PROVIDED remains `HUMAN_PROVIDED_SAMPLE` / not production evidence.
-- EXTERNAL_CHECKED remains a `MANUAL_RECORD` contract pending a named human-authorized check. No live web search.
+- HUMAN_PROVIDED production exists only as a manual intake contract plus fixture-validated examples. Sample notes still cannot become production evidence. There is no operator capture form.
+- EXTERNAL_CHECKED production exists only as a manual named record with source metadata. Pending records without metadata remain PENDING/UNKNOWN. No live web search.
 - Meeting a subset of the criteria above does not allow `MARKET_CHECK_RUNTIME_COMPLETE=YES`.
 
 ## Result record (Wings4-local)

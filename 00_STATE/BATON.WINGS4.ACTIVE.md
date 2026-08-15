@@ -39,7 +39,7 @@ Wings4.0 is Pablo's portfolio architecture and governance system and the reposit
 - AI.History inspection prohibited
 - Push unauthorized without explicit human authorization
 - Ring3 / RADAR / MARKET_MONITORING / independent resynchronization = not implemented / not authorized here
-- MARKET_CHECK bounded on-demand runtime is committed and human-live validated for F-SM-001, F-SM-002 UNKNOWN, F-MC-001 BUILD, and F-MC-002 INTEGRATE; it is not monitoring and is not complete across future market capabilities
+- MARKET_CHECK bounded on-demand runtime is committed and human-live validated for F-SM-001, F-SM-002 UNKNOWN, F-MC-001 BUILD, and F-MC-002 INTEGRATE; a manual evidence-intake contract exists for HUMAN_PROVIDED and EXTERNAL_CHECKED; it is not monitoring and is not complete across future market capabilities
 - MANAGEMENT_READY does not mean Wings4 is feature-complete or production-complete across future capabilities.
 
 ## Interaction language / Cambridge C1
@@ -71,7 +71,7 @@ RUNTIME_GATE_PROHIBITED_PATTERN=Boolean.ToUpper_without_ToString
 
 ## Current objective
 
-Management Delivery #1 remains accepted and closed for bounded MD1 scope. Bounded on-demand Market Check runtime is committed (`5a6714d`) and human-live validated, including F-MC-001 BUILD and F-MC-002 INTEGRATE (`3063dad`, DEC-W4-067). Completion criteria are defined; MARKET_CHECK_RUNTIME_COMPLETE remains NO. Do not reopen MD1. Ring3+ unauthorized.
+Management Delivery #1 remains accepted and closed for bounded MD1 scope. Bounded on-demand Market Check runtime is committed (`5a6714d`) and human-live validated, including F-MC-001 BUILD and F-MC-002 INTEGRATE (`3063dad`, DEC-W4-067). A manual evidence-intake contract is defined (DEC-W4-068). Completion criteria are defined; MARKET_CHECK_RUNTIME_COMPLETE remains NO. Do not reopen MD1. Ring3+ unauthorized.
 
 ## Current confirmed state
 
@@ -125,8 +125,9 @@ Management Delivery #1 remains accepted and closed for bounded MD1 scope. Bounde
 - MARKET_CHECK_EVIDENCE_LEVELS=WINGS_HELD|HUMAN_PROVIDED|EXTERNAL_CHECKED|UNKNOWN
 - MARKET_CHECK_INTEGRATE_WINNER=F-MC-002_HUMAN_LIVE_VALIDATED
 - MARKET_CHECK_BUILD_WINNER=F-MC-001_HUMAN_LIVE_VALIDATED
-- MARKET_CHECK_HUMAN_PROVIDED_PATH=SAMPLE_NOT_PRODUCTION
-- MARKET_CHECK_EXTERNAL_CHECKED_PATH=MANUAL_RECORD_PENDING
+- MARKET_CHECK_HUMAN_PROVIDED_PATH=INTAKE_CONTRACT_SAMPLE_CANNOT_BECOME_PRODUCTION
+- MARKET_CHECK_EXTERNAL_CHECKED_PATH=MANUAL_RECORD_WITH_SOURCE_METADATA_OR_PENDING
+- MARKET_CHECK_EVIDENCE_INTAKE_CONTRACT=MANUAL_ONLY
 - MARKET_CHECK_RUNTIME_COMMIT=5a6714db6e9392f0dab216cfa93e766061dedcd9
 - MARKET_CHECK_BUILD_INTEGRATE_COVERAGE_COMMIT=3063dad5bba4368cac4c3a2df6240e84eae3be01
 - MARKET_CHECK_HUMAN_LIVE_VALIDATION=PASS
@@ -162,18 +163,19 @@ DECISION_MC_HLV=PORTFOLIO.DECISION_LOG.md#dec-w4-064
 DECISION_MC_CRITERIA=PORTFOLIO.DECISION_LOG.md#dec-w4-065
 DECISION_MC_BUILD_INTEGRATE=PORTFOLIO.DECISION_LOG.md#dec-w4-066
 DECISION_MC_BUILD_INTEGRATE_LIVE=PORTFOLIO.DECISION_LOG.md#dec-w4-067
+DECISION_MC_EVIDENCE_INTAKE=PORTFOLIO.DECISION_LOG.md#dec-w4-068
 HUMAN_CANON=HUMAN/HUMAN.WINGS4.md
 
 ## Next action
 
-CURRENT_MINIBATTLE=W4_RECORD_BUILD_INTEGRATE_LIVE_UI_VALIDATION_002
+CURRENT_MINIBATTLE=W4_MARKET_CHECK_EVIDENCE_INTAKE_CONTRACT_001
 NEXT_ROLE=ORCHESTRATOR
 NEXT_ROOT=C:\01. GitHub\Wings4.0
 NEXT_PRODUCT_MINIBATTLE=HUMAN_DECISION_REQUIRED_BEYOND_THIS_BOUNDED_SLICE
 NEXT_CANDIDATE_1=BOUNDED_OPERATOR_UX_FRICTION_CLEANUP
 NEXT_CANDIDATE_2=INDEPENDENT_RESYNCHRONIZATION_BEYOND_RING2
 NEXT_CANDIDATE_3=NONE_WITHOUT_SEPARATE_AUTHORIZATION
-NEXT_CONTINUITY_ACTION=KEEP_MARKET_CHECK_RUNTIME_COMPLETE_NO_UNTIL_REMAINING_CRITERIA_AND_SEPARATE_AUTHORIZATION
+NEXT_CONTINUITY_ACTION=KEEP_MARKET_CHECK_RUNTIME_COMPLETE_NO_INTAKE_IS_MANUAL_FIXTURE_ONLY
 RING3_IMPLEMENTATION_AUTHORIZED=NO
 COMMIT_POLICY=NO_COMMIT_WITHOUT_EXACT_STAGING_VALIDATION_AND_EXPLICIT_HUMAN_AUTHORIZATION
 PUSH_POLICY=NO_PUSH_WITHOUT_EXPLICIT_HUMAN_AUTHORIZATION
@@ -190,4 +192,4 @@ PUSH_POLICY=NO_PUSH_WITHOUT_EXPLICIT_HUMAN_AUTHORIZATION
 8. Do not mutate SkillsMachine or any child project.
 9. Do not push without explicit authorization.
 10. For same-workspace delta continuity after bootstrap, use SESSION_CONTINUE_ENTRYPOINT; do not treat BATON as SESSION_CONTINUE.
-LAST_REFRESHED_AT: 2026-08-15T10:34:00-04:00
+LAST_REFRESHED_AT: 2026-08-15T11:04:00-04:00

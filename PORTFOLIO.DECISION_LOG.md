@@ -899,3 +899,22 @@ Known limitations:
 - This record does not claim MARKET_CHECK_RUNTIME_COMPLETE.
 
 This decision does not authorize product behavior changes, fixture/UI changes, Ring3+, RADAR, MARKET_MONITORING, independent resynchronization, child mutation, MD1 reopening, or push.
+
+## DEC-W4-068 — Market Check manual evidence-intake contract
+
+Status: APPROVED_HUMAN_DIRECTION
+Date: 2026-08-15
+Scope: MANUAL_EVIDENCE_INTAKE_CONTRACT_ONLY; authorization `W4_MARKET_CHECK_EVIDENCE_INTAKE_CONTRACT_001`
+
+Decision:
+
+- Add the smallest manual evidence-intake contract for `HUMAN_PROVIDED` and `EXTERNAL_CHECKED`.
+- Required fields: evidence_id, evidence_level, source_type, source_label, source_date, captured_by, summary, confidence, limitations, approval_required, authority, review_status.
+- Manual intake only. Missing fields become UNKNOWN or PENDING. Do not invent metadata. Do not silently upgrade confidence.
+- HUMAN_PROVIDED sample cannot become production evidence. HUMAN_PROVIDED production requires complete intake metadata.
+- EXTERNAL_CHECKED means a human-authorized manual named record already held in Wings, with source metadata. It is not automated checking, live web search, RADAR, or MARKET_MONITORING.
+- Keep `MARKET_CHECK_RUNTIME_COMPLETE=NO`. This slice does not create a capture form, monitoring, Ring3, or child mutation.
+- C1 English coaching remains user-specific collaboration continuity only; it is not a product ring.
+
+Spec: `PORTFOLIO.ARCHITECTURE/WINGS4.MARKET_CHECK.RUNTIME.SPEC.md`
+Prototype: `PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/`

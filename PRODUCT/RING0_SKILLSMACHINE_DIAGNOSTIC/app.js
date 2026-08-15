@@ -86,7 +86,7 @@
     "governed intervention": "A governed intervention is a controlled request to a destination project authority. Wings does not rewrite that project.",
     verification: "Verification checks returned evidence against the approved package. It is not yet an independent re-check of the destination repository.",
     W4IP: "W4IP is the Wings Intervention Package ID (W4IP-YYYYMMDD-NNNN). Returns must reuse the same ID.",
-    "Market Check": "Market Check is an on-demand comparison of Wings-held options before building. It is not monitoring, not RADAR, and not an independent project re-check."
+    "Market Check": "Market Check is an on-demand comparison of Wings-held options before building. Evidence intake is manual. It is not monitoring, not RADAR, and not an independent project re-check."
   };
 
   function helpControl(termKey) {
@@ -922,8 +922,17 @@
   function altStatusLabel(status) {
     if (status === "CONSIDERED") return "Considered";
     if (status === "UNKNOWN") return "Unknown";
+    if (status === "PENDING") return "Pending";
     if (status === "NOT_EVIDENCED") return "Not evidenced";
     return status || "";
+  }
+
+  function intakeStatusLabel(status) {
+    if (status === "VALID") return "Valid manual intake";
+    if (status === "PENDING") return "Pending intake — not production";
+    if (status === "SAMPLE") return "Sample — not production evidence";
+    if (status === "UNKNOWN") return "Intake unknown";
+    return "";
   }
 
   function renderMarketCheckPanel(finding, state) {
@@ -944,13 +953,17 @@
       const r = stored.result;
       const alts = (r.alternatives || []).map((a) => {
         const extra = [];
-        if (a.evidence_reliability === "HUMAN_PROVIDED_SAMPLE" || a.evidence_reliability === "PENDING_HUMAN_CONFIRMATION") {
-          extra.push("<span class=\"badge DEFERRED\">Sample — not production evidence</span>");
+        if (a.intake_status && intakeStatusLabel(a.intake_status) && a.intake_status !== "UNKNOWN") {
+          extra.push(`<span class="badge ${a.intake_status === "VALID" ? "RESOLVED" : "DEFERRED"}">${escapeHtml(intakeStatusLabel(a.intake_status))}</span>`);
         }
         if (a.evidence_level === "EXTERNAL_CHECKED") {
           extra.push("<span class=\"badge\">Manual record only — no live scan</span>");
         }
-        return `<li><span class="badge">${escapeHtml(altStatusLabel(a.status))}</span> <span class="badge">${escapeHtml(evidenceLevelLabel(a.evidence_level || "UNKNOWN"))}</span> ${extra.join(" ")} ${escapeHtml(a.option)}${a.summary ? ` — ${escapeHtml(a.summary)}` : ""}</li>`;
+        const intake = a.intake;
+        const intakeLine = intake && intake.evidence_id
+          ? `<div class="meta-line">${escapeHtml(intake.evidence_id)} · ${escapeHtml(intake.source_type || "")} · ${escapeHtml(intake.source_label || "")}${intake.limitations ? ` — ${escapeHtml(intake.limitations)}` : ""}</div>`
+          : "";
+        return `<li><span class="badge">${escapeHtml(altStatusLabel(a.status))}</span> <span class="badge">${escapeHtml(evidenceLevelLabel(a.evidence_level || "UNKNOWN"))}</span> ${extra.join(" ")} ${escapeHtml(a.option)}${a.summary ? ` — ${escapeHtml(a.summary)}` : ""}${intakeLine}</li>`;
       }).join("");
       const unknownBlock = r.recommendation === "UNKNOWN"
         ? `<p><strong>Why unknown:</strong> ${escapeHtml(r.unknown_reason || "")}</p>
@@ -993,7 +1006,7 @@
     }
     return `<div class="detail-block claim-block" data-stage="understand" data-section="market-check" id="market-check-panel">
       <h3><span class="claim-tag market">Market Check</span> ${helpControl("Market Check")} On-demand options check</h3>
-      <p class="decision-help">Ask whether to reuse, adopt, build a remaining gap, defer, or stop. This is not monitoring, RADAR, or an independent project re-check.</p>
+      <p class="decision-help">Ask whether to reuse, adopt, build a remaining gap, defer, or stop. Evidence records are manual. This is not monitoring, RADAR, or an independent project re-check.</p>
       <label class="field-label" for="market-check-question">Question</label>
       <select id="market-check-question" class="text-input">${options}</select>
       <div class="decision-row">

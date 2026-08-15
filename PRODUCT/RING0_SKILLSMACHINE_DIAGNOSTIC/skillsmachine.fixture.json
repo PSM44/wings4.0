@@ -67,14 +67,40 @@
     "evidence_levels": ["WINGS_HELD", "HUMAN_PROVIDED", "EXTERNAL_CHECKED", "UNKNOWN"],
     "human_provided_policy": {
       "free_text_market_shopping": false,
-      "sample_is_not_production_evidence": true
+      "sample_is_not_production_evidence": true,
+      "production_requires_intake": true
     },
     "external_checked_policy": {
       "live_web_search": false,
       "monitoring": false,
       "radar": false,
       "allowed_methods": ["MANUAL_RECORD"],
-      "status": "CONTRACT_READY_PENDING_NAMED_RECORD"
+      "status": "MANUAL_INTAKE_CONTRACT_DEFINED"
+    },
+    "evidence_intake_contract": {
+      "mode": "MANUAL_ONLY",
+      "live_web_search": false,
+      "monitoring": false,
+      "radar": false,
+      "required_fields": [
+        "evidence_id",
+        "evidence_level",
+        "source_type",
+        "source_label",
+        "source_date",
+        "captured_by",
+        "summary",
+        "confidence",
+        "limitations",
+        "approval_required",
+        "authority",
+        "review_status"
+      ],
+      "source_types": ["HUMAN_NOTE", "HUMAN_DECISION", "MANUAL_EXTERNAL_RECORD", "WINGS_CANON"],
+      "review_statuses": ["CURRENT", "PENDING_REVIEW", "EXPIRED", "SAMPLE"],
+      "missing_fields_policy": "UNKNOWN_OR_PENDING",
+      "sample_cannot_become_production": true,
+      "external_checked_method": "MANUAL_RECORD"
     },
     "evaluation_order": ["SAME_PROJECT", "PORTFOLIO_REUSABLE", "SKILL_GRC", "INTEGRATE", "OPEN_SOURCE", "COMMERCIAL", "RESIDUAL_CUSTOM"],
     "questions": [
@@ -317,12 +343,78 @@
         "evidence_level": "HUMAN_PROVIDED",
         "evidence_reliability": "HUMAN_PROVIDED_SAMPLE",
         "production_evidence": false,
+        "intake": {
+          "evidence_id": "MCEV-20260815-HP-SAMPLE",
+          "evidence_level": "HUMAN_PROVIDED",
+          "source_type": "HUMAN_NOTE",
+          "source_label": "Fixture sample note for operator display",
+          "source_date": "2026-08-15",
+          "captured_by": "Wings4 fixture",
+          "summary": "Sample human-provided note. Not a production gerencia request.",
+          "confidence": "LOW",
+          "limitations": "Sample only. Not production evidence.",
+          "approval_required": true,
+          "authority": "Pablo",
+          "review_status": "SAMPLE"
+        },
         "summary": "Sample human-provided note for operator display only. It is not independently verified production evidence and must not be treated as a live gerencia request.",
         "evidence": [
           {
             "label": "HUMAN_PROVIDED_SAMPLE",
             "pointer": "PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/skillsmachine.fixture.json",
             "excerpt": "PENDING_HUMAN_CONFIRMATION: sample only; not a recorded Pablo instruction to ship export."
+          }
+        ]
+      },
+      {
+        "entry_id": "MC-MC-001-HUMAN-INCOMPLETE",
+        "applies_to_finding_ids": ["F-MC-001"],
+        "applies_to_questions": ["MCQ-BUILD_VS_ADOPT", "MCQ-INTEGRATE_OR_BUILD"],
+        "eval_class": "RESIDUAL_CUSTOM",
+        "title": "Claimed human production note without intake metadata",
+        "disposition_if_selected": "BUILD_RESIDUAL",
+        "fit": "HIGH",
+        "confidence": "HIGH",
+        "data_class": "REPRESENTATIVE_NONCANONICAL",
+        "evidence_status": "PRESENT",
+        "evidence_level": "HUMAN_PROVIDED",
+        "production_evidence": true,
+        "summary": "This record claims production HUMAN_PROVIDED evidence but omits required intake metadata. It must stay PENDING and must not win.",
+        "evidence": []
+      },
+      {
+        "entry_id": "MC-MC-001-HUMAN-PRODUCTION",
+        "applies_to_finding_ids": ["F-MC-001"],
+        "applies_to_questions": ["MCQ-BUILD_VS_ADOPT", "MCQ-INTEGRATE_OR_BUILD"],
+        "eval_class": "RESIDUAL_CUSTOM",
+        "title": "Pablo authorized a manual evidence-intake contract",
+        "disposition_if_selected": "BUILD_RESIDUAL",
+        "fit": "MEDIUM",
+        "confidence": "MEDIUM",
+        "data_class": "CANONICAL_DERIVED",
+        "evidence_status": "PRESENT",
+        "evidence_level": "HUMAN_PROVIDED",
+        "production_evidence": true,
+        "intake": {
+          "evidence_id": "MCEV-20260815-HP-001",
+          "evidence_level": "HUMAN_PROVIDED",
+          "source_type": "HUMAN_DECISION",
+          "source_label": "W4_MARKET_CHECK_EVIDENCE_INTAKE_CONTRACT_001",
+          "source_date": "2026-08-15",
+          "captured_by": "Pablo",
+          "summary": "Human authorization exists for a manual Market Check evidence-intake contract. This is not a request to ship a result export.",
+          "confidence": "MEDIUM",
+          "limitations": "Fixture-held manual record. Does not authorize live web search, monitoring, RADAR, Ring3, or child mutation.",
+          "approval_required": true,
+          "authority": "Pablo",
+          "review_status": "CURRENT"
+        },
+        "summary": "A complete HUMAN_PROVIDED production record can exist only with required intake metadata. It does not replace the Wings-held remaining-gap evidence and does not authorize a live market.",
+        "evidence": [
+          {
+            "label": "Human authorization",
+            "pointer": "PORTFOLIO.DECISION_LOG.md#DEC-W4-068",
+            "excerpt": "Manual evidence intake is authorized as a bounded contract. Discovery does not authorize adoption."
           }
         ]
       },
@@ -367,6 +459,43 @@
         "next_action": "Keep EXTERNAL_CHECKED pending. Do not search the live web from Market Check.",
         "summary": "EXTERNAL_CHECKED is a manual-record contract only. No live web search, monitoring, or RADAR.",
         "evidence": []
+      },
+      {
+        "entry_id": "MC-MC-002-EXTERNAL-MANUAL",
+        "applies_to_finding_ids": ["F-MC-002"],
+        "applies_to_questions": ["MCQ-INTEGRATE_OR_BUILD", "MCQ-BUILD_VS_ADOPT"],
+        "eval_class": "OPEN_SOURCE",
+        "title": "Manual named record: no extra open-source Skills/GRC product authorized",
+        "disposition_if_selected": "ADOPT_OPEN_SOURCE",
+        "fit": "LOW",
+        "confidence": "LOW",
+        "data_class": "CANONICAL_DERIVED",
+        "evidence_status": "PRESENT",
+        "evidence_level": "EXTERNAL_CHECKED",
+        "check_method": "MANUAL_RECORD",
+        "production_evidence": true,
+        "intake": {
+          "evidence_id": "MCEV-20260815-EC-001",
+          "evidence_level": "EXTERNAL_CHECKED",
+          "source_type": "MANUAL_EXTERNAL_RECORD",
+          "source_label": "Named prior check: no additional open-source Skills/GRC product authorized for live comparison",
+          "source_date": "2026-08-15",
+          "captured_by": "Pablo",
+          "summary": "A manual named record exists. It is not a live web scan, watch, or RADAR result.",
+          "confidence": "LOW",
+          "limitations": "Manual record only. No crawl, schedule, or child-repository access.",
+          "approval_required": true,
+          "authority": "Pablo",
+          "review_status": "CURRENT"
+        },
+        "summary": "EXTERNAL_CHECKED can be production only as a manual named record with source metadata. This record does not authorize adoption or live monitoring.",
+        "evidence": [
+          {
+            "label": "Manual named record",
+            "pointer": "PORTFOLIO.DECISION_LOG.md#DEC-W4-068",
+            "excerpt": "EXTERNAL_CHECKED means a human-authorized manual record already held in Wings, not automated checking."
+          }
+        ]
       },
       {
         "entry_id": "MC-MC-002-BUILD",
