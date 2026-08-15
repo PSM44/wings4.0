@@ -84,11 +84,31 @@ ok(buildAlt && (buildAlt.status === "UNKNOWN" || buildAlt.status === "NOT_EVIDEN
 eq(engine.EVIDENCE_LEVELS.indexOf("HUMAN_PROVIDED") >= 0, true, "MC-16 HUMAN_PROVIDED defined");
 ok((r1.limits || []).indexOf("NO_LIVE_WEB_SCAN") >= 0, "MC-16 no live web scan");
 
+var rBuild = run("F-MC-001", "MCQ-BUILD_VS_ADOPT");
+eq(rBuild.recommendation, "BUILD_RESIDUAL", "MC-17 BUILD winner");
+eq(rBuild.evidence_level, "WINGS_HELD", "MC-17 BUILD winner is Wings-held");
+ok((rBuild.alternatives || []).some(function (a) {
+  return a.evidence_level === "HUMAN_PROVIDED" && a.evidence_reliability === "HUMAN_PROVIDED_SAMPLE";
+}), "MC-19 HUMAN_PROVIDED sample visible and not production winner");
+ok(rBuild.recommendation !== "UNKNOWN", "MC-17 BUILD is not UNKNOWN");
+
+var rInt = run("F-MC-002", "MCQ-INTEGRATE_OR_BUILD");
+eq(rInt.recommendation, "INTEGRATE", "MC-18 INTEGRATE winner");
+eq(rInt.evidence_level, "WINGS_HELD", "MC-18 INTEGRATE winner is Wings-held");
+ok((rInt.alternatives || []).some(function (a) {
+  return a.eval_class === "RESIDUAL_CUSTOM" && (a.status === "UNKNOWN" || a.status === "NOT_EVIDENCED");
+}), "MC-18 BUILD remains UNKNOWN on integrate finding");
+var extAlt = (rInt.alternatives || []).filter(function (a) { return a.evidence_level === "EXTERNAL_CHECKED"; })[0];
+ok(extAlt && extAlt.status === "UNKNOWN", "MC-20 EXTERNAL_CHECKED pending, not a live scan winner");
+eq(extAlt && extAlt.check_method, "MANUAL_RECORD", "MC-20 EXTERNAL_CHECKED method is manual record");
+ok(fixture.market_check.external_checked_policy && fixture.market_check.external_checked_policy.live_web_search === false, "MC-20 no live web in policy");
+ok(fixture.market_check.runtime_complete === false, "MC-20 complete remains false");
+
 if (fails.length) {
   console.error("MARKET_CHECK_LOGICAL_TEST=FAIL");
   fails.forEach(function (f) { console.error(" - " + f); });
   process.exit(1);
 }
 console.log("MARKET_CHECK_LOGICAL_TEST=PASS");
-console.log("CASES=16");
+console.log("CASES=20");
 console.log("VALIDATION_RESULT=LOGICALLY_TESTED");

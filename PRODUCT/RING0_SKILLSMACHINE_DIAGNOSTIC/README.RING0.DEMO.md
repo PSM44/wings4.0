@@ -49,8 +49,10 @@ Open `http://localhost:8765/`.
 21. Open `F-SM-002`, choose **Should we build this, or use something that already exists?**, run Market Check.
 22. Expect **Unknown — evidence is missing** (do not fabricate a buy/build).
 23. Confirm the result states this is not monitoring, RADAR, or Ring3.
+24. Open `F-MC-001`, keep **Should we build this, or use something that already exists?**, run Market Check. Expect **Build only the remaining gap**, with a human-provided sample marked not production evidence.
+25. Open `F-MC-002`, keep **Should we integrate an existing solution, or build a remaining gap?**, run Market Check. Expect **Integrate an existing solution**. Confirm EXTERNAL_CHECKED stays pending with no live scan.
 
-Do not treat this runbook as live market intelligence. Bounded human-live validation is recorded: F-SM-001_BROWSER_VALIDATION=PASS; F-SM-002_UNKNOWN_BROWSER_VALIDATION=PASS; MARKET_CHECK_HUMAN_LIVE_VALIDATION=PASS. Evidence remains fixture/Wings-held. Cursor browser MCP was unavailable; UNKNOWN-path proof used local Chrome CDP against the same demo UI.
+Do not treat this runbook as live market intelligence. Bounded human-live validation is recorded for F-SM-001 and F-SM-002 UNKNOWN. F-MC-001 BUILD and F-MC-002 INTEGRATE are LOGICALLY_TESTED only.
 
 ## Evidence classification
 

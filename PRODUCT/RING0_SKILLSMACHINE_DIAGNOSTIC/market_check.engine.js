@@ -72,10 +72,22 @@
   };
 
   function evidenceLevelOf(entry) {
-    if (!entry || isMissingEntry(entry)) return "UNKNOWN";
+    if (!entry) return "UNKNOWN";
     var lvl = String(entry.evidence_level || "").toUpperCase();
+    if (isMissingEntry(entry)) {
+      if (lvl === "EXTERNAL_CHECKED" || lvl === "HUMAN_PROVIDED") return lvl;
+      return "UNKNOWN";
+    }
     if (lvl === "WINGS_HELD" || lvl === "HUMAN_PROVIDED" || lvl === "EXTERNAL_CHECKED") return lvl;
     return "WINGS_HELD";
+  }
+
+  function isProductionEvidence(entry) {
+    if (!entry) return false;
+    if (entry.production_evidence === false) return false;
+    var rel = String(entry.evidence_reliability || "").toUpperCase();
+    if (rel === "HUMAN_PROVIDED_SAMPLE" || rel === "PENDING_HUMAN_CONFIRMATION") return false;
+    return true;
   }
 
   function isMissingEntry(entry) {
@@ -246,12 +258,15 @@
           eval_class: cls,
           status: missing ? "UNKNOWN" : "CONSIDERED",
           evidence_level: evidenceLevelOf(entry),
+          evidence_reliability: entry.evidence_reliability || "",
+          check_method: entry.check_method || "",
+          production_evidence: isProductionEvidence(entry),
           summary: entry.summary || "",
           entry_id: entry.entry_id || ""
         });
         if (missing) {
           missingNotes.push(entry.missing_evidence || entry.summary || ("Missing evidence for " + cls + "."));
-        } else if (!winner) {
+        } else if (!winner && isProductionEvidence(entry)) {
           winner = entry;
         }
       }

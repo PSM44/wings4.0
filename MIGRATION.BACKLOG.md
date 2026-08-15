@@ -36,7 +36,8 @@
 | W4_MARKET_CHECK_RUNTIME_BOUNDED_PRODUCTIZATION_001 | Smallest on-demand Market Check runtime slice on the existing product surface | P0 | COMPLETED_RUNTIME_COMMITTED | Runtime committed `5a6714d`; governed question; on-demand invoke; alternatives before recommendation; UNKNOWN when evidence missing; not monitoring/RADAR/Ring3. |
 | W4_MARKET_CHECK_HUMAN_LIVE_VALIDATION_001 | Browser-live validation of on-demand Market Check F-SM-001 | P0 | COMPLETED_EVIDENCE_RECORDED | F-SM-001_BROWSER_VALIDATION=PASS; auto-run=NO; alternatives before recommendation; scope/authority/limits visible. |
 | W4_MARKET_CHECK_UNKNOWN_BROWSER_VALIDATION_002 | Browser-live UNKNOWN recommendation path on F-SM-002 | P0 | COMPLETED_EVIDENCE_RECORDED | UNKNOWN_PATH_BROWSER_VALIDATION=PASS; recommendation “Unknown — evidence is missing”; local Chrome CDP because Cursor browser MCP unavailable; fixture/Wings-held only. |
-| W4_MARKET_CHECK_COMPLETION_CRITERIA_AND_NEXT_RUNTIME_SLICE_001 | Completion criteria, evidence levels, BUILD/INTEGRATE coverage | P0 | COMPLETED_LOCAL_UNPUSHED | Criteria defined; COMPLETE=NO; evidence levels in runtime/UI; INTEGRATE considered not winner; BUILD UNKNOWN; logical tests expanded; push not authorized. |
+| W4_MARKET_CHECK_COMPLETION_CRITERIA_AND_NEXT_RUNTIME_SLICE_001 | Completion criteria, evidence levels, BUILD/INTEGRATE coverage | P0 | COMPLETED_CRITERIA_PUSHED | Criteria defined; COMPLETE=NO; evidence levels in runtime/UI; later superseded for winner paths by W4_MARKET_CHECK_REAL_EVIDENCE_AND_BUILD_INTEGRATE_PATHS_001. |
+| W4_MARKET_CHECK_REAL_EVIDENCE_AND_BUILD_INTEGRATE_PATHS_001 | Honest BUILD/INTEGRATE winners; HUMAN_PROVIDED sample; EXTERNAL_CHECKED pending | P0 | COMPLETED_LOCAL_UNPUSHED | F-MC-001 BUILD winner; F-MC-002 INTEGRATE winner; HUMAN_PROVIDED_SAMPLE cannot win; EXTERNAL_CHECKED=MANUAL_RECORD pending; COMPLETE=NO; push not authorized. |
 
 ## Ring0–Ring2 regression / eval inventory (compact)
 
@@ -58,7 +59,9 @@ Evidence-backed cases for reuse. Static code presence alone never establishes us
 | EV-MC-002 | Missing evidence → UNKNOWN | F-SM-002 / BUILD_VS_ADOPT | UNKNOWN; no fabricated buy/build; Why unknown visible | logical test MC-02; F-SM-002 browser | LOGICAL + BROWSER | Fixture/Wings-held only; Cursor browser MCP unavailable so local Chrome CDP |
 | EV-MC-003 | Limits remain explicit | Any Market Check result | NOT_MARKET_MONITORING, NOT_RADAR, NOT_RING3; Pablo decides | logical test MC-01/MC-07; F-SM-001/F-SM-002 browser | LOGICAL + BROWSER | Not live market intelligence |
 | EV-MC-004 | Evidence level visible | Any Market Check result | WINGS_HELD / HUMAN_PROVIDED / EXTERNAL_CHECKED / UNKNOWN | engine + UI + logical test MC-11/MC-12 | LOGICAL | HUMAN_PROVIDED and EXTERNAL_CHECKED unused; no live web |
-| EV-MC-005 | INTEGRATE/BUILD coverage | F-SM-004 / BUILD_VS_ADOPT | INTEGRATE considered; BUILD UNKNOWN; winner remains USE_EXISTING | logical test MC-14/MC-15 | LOGICAL | INTEGRATE/BUILD winners deferred; no isolated finding |
+| EV-MC-005 | INTEGRATE/BUILD coverage | F-SM-004 / BUILD_VS_ADOPT | INTEGRATE considered; BUILD UNKNOWN; winner remains USE_EXISTING | logical test MC-14/MC-15 | LOGICAL | F-SM-004 still not a winner path |
+| EV-MC-006 | BUILD winner | F-MC-001 / BUILD_VS_ADOPT | BUILD_RESIDUAL; HUMAN_PROVIDED sample cannot win | logical test MC-17/MC-19 | LOGICAL | Not HUMAN_LIVE_VALIDATED |
+| EV-MC-007 | INTEGRATE winner | F-MC-002 / INTEGRATE_OR_BUILD | INTEGRATE; EXTERNAL_CHECKED pending MANUAL_RECORD | logical test MC-18/MC-20 | LOGICAL | Not HUMAN_LIVE_VALIDATED; no live web |
 
 Scope:
 - Wings4-local product Ring0+Ring1+Ring2 cumulative baseline committed (`03a589d`).

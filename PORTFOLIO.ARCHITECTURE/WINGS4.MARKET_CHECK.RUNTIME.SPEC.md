@@ -84,7 +84,7 @@ If catalog evidence is absent, incomplete, or marked missing:
 | EXTERNAL_CHECKED | Wings-held record that a prior human-authorized named check already happened | Defined; not a live web search; unused until such a record exists |
 | UNKNOWN | Evidence is missing or insufficient | YES; required when any other level cannot be proven |
 
-EXTERNAL_CHECKED never authorizes crawling, scheduling, RADAR, or MARKET_MONITORING.
+EXTERNAL_CHECKED never authorizes crawling, scheduling, RADAR, or MARKET_MONITORING. Allowed method in this slice: `MANUAL_RECORD` of a named prior check already held in Wings. If no such record exists, the level is pending and the alternative stays UNKNOWN.
 
 ## Completion criteria (`MARKET_CHECK_RUNTIME_COMPLETE=YES`)
 
@@ -102,9 +102,10 @@ Current status: **MARKET_CHECK_RUNTIME_COMPLETE=NO**.
 
 Reasons this slice does not claim complete:
 
-- BUILD and INTEGRATE have no isolated winning-path finding in the current fixture without contradicting earlier evaluation-order classes; they are exercised as catalog alternatives. INTEGRATE as a winning recommendation is deferred until a finding exists where earlier classes are not evidenced and a named existing solution is Wings-held.
-- HUMAN_PROVIDED and EXTERNAL_CHECKED have no current instances.
-- New catalog/UI coverage in this slice is LOGICALLY_TESTED only; it does not reopen or replace the recorded F-SM-001 / F-SM-002 live proofs.
+- BUILD and INTEGRATE now have logical winning-path fixtures (`F-MC-001`, `F-MC-002`). Those paths are LOGICALLY_TESTED only; they are not human-live validated.
+- HUMAN_PROVIDED is visible as `HUMAN_PROVIDED_SAMPLE` and is not production evidence.
+- EXTERNAL_CHECKED is a manual-record contract only (`MANUAL_RECORD`). No named production check is recorded. No live web search.
+- Completion still requires human-live proof of the new BUILD/INTEGRATE paths before `MARKET_CHECK_RUNTIME_COMPLETE=YES`.
 
 ## Result record (Wings4-local)
 

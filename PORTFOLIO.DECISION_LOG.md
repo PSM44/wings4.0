@@ -841,3 +841,21 @@ Decision:
 
 Spec: `PORTFOLIO.ARCHITECTURE/WINGS4.MARKET_CHECK.RUNTIME.SPEC.md`
 Prototype: `PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/`
+
+## DEC-W4-066 — Market Check BUILD/INTEGRATE logical winners and evidence-path contracts
+
+Status: APPROVED_HUMAN_DIRECTION
+Date: 2026-08-15
+Scope: BUILD_INTEGRATE_LOGICAL_WINNERS_AND_EVIDENCE_PATHS_ONLY; authorization `W4_MARKET_CHECK_REAL_EVIDENCE_AND_BUILD_INTEGRATE_PATHS_001`
+
+Decision:
+
+- Add honest logical winning paths: BUILD on `F-MC-001` (remaining Market Check result-note gap) and INTEGRATE on `F-MC-002` (optional Skills/GRC product integration per DEC-W4-053).
+- Those winners are LOGICALLY_TESTED only. They do not reopen MD1 and are not human-live validated in this slice.
+- HUMAN_PROVIDED is usable as `HUMAN_PROVIDED_SAMPLE` / `PENDING_HUMAN_CONFIRMATION`. Sample notes are not production evidence and cannot win.
+- EXTERNAL_CHECKED is a `MANUAL_RECORD` contract. No live web search, monitoring, or RADAR. Pending until a named human-authorized record exists.
+- Keep `MARKET_CHECK_RUNTIME_COMPLETE=NO`.
+- Integration means governed product/service integration. It does not authorize child-project mutation.
+
+Spec: `PORTFOLIO.ARCHITECTURE/WINGS4.MARKET_CHECK.RUNTIME.SPEC.md`
+Prototype: `PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/`

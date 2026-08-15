@@ -65,6 +65,17 @@
     "unknown_policy": "DO_NOT_FABRICATE",
     "runtime_complete": false,
     "evidence_levels": ["WINGS_HELD", "HUMAN_PROVIDED", "EXTERNAL_CHECKED", "UNKNOWN"],
+    "human_provided_policy": {
+      "free_text_market_shopping": false,
+      "sample_is_not_production_evidence": true
+    },
+    "external_checked_policy": {
+      "live_web_search": false,
+      "monitoring": false,
+      "radar": false,
+      "allowed_methods": ["MANUAL_RECORD"],
+      "status": "CONTRACT_READY_PENDING_NAMED_RECORD"
+    },
     "evaluation_order": ["SAME_PROJECT", "PORTFOLIO_REUSABLE", "SKILL_GRC", "INTEGRATE", "OPEN_SOURCE", "COMMERCIAL", "RESIDUAL_CUSTOM"],
     "questions": [
       {
@@ -78,6 +89,10 @@
       {
         "id": "MCQ-KILL_OR_DEFER",
         "label": "Should this work be deferred or stopped?"
+      },
+      {
+        "id": "MCQ-INTEGRATE_OR_BUILD",
+        "label": "Should we integrate an existing solution, or build a remaining gap?"
       }
     ],
     "catalog": [
@@ -260,6 +275,116 @@
         "next_action": "Do not build a second updater from this finding. Keep BUILD UNKNOWN.",
         "summary": "A remaining custom build is not evidenced. The updater gap stays SkillsMachine-local.",
         "evidence": []
+      },
+      {
+        "entry_id": "MC-MC-001-BUILD",
+        "applies_to_finding_ids": ["F-MC-001"],
+        "applies_to_questions": ["MCQ-BUILD_VS_ADOPT", "MCQ-INTEGRATE_OR_BUILD"],
+        "eval_class": "RESIDUAL_CUSTOM",
+        "title": "Build a bounded Market Check result note in Wings",
+        "disposition_if_selected": "BUILD_RESIDUAL",
+        "fit": "HIGH",
+        "confidence": "MEDIUM",
+        "data_class": "CANONICAL_DERIVED",
+        "evidence_status": "PRESENT",
+        "evidence_level": "WINGS_HELD",
+        "production_evidence": true,
+        "summary": "The operator surface can run Market Check but cannot export the result as a management note. That remaining gap is Wings-local. No same-project, portfolio, Skill/GRC, or named integration already provides this export.",
+        "evidence": [
+          {
+            "label": "Current operator surface",
+            "pointer": "PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/app.js",
+            "excerpt": "Download/copy exist for the intervention package. Market Check stores a local result record only."
+          },
+          {
+            "label": "Demo runbook",
+            "pointer": "PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/README.RING0.DEMO.md",
+            "excerpt": "Market Check is an on-demand screen result; it is not a downloaded management note."
+          }
+        ]
+      },
+      {
+        "entry_id": "MC-MC-001-HUMAN-SAMPLE",
+        "applies_to_finding_ids": ["F-MC-001"],
+        "applies_to_questions": ["MCQ-BUILD_VS_ADOPT", "MCQ-INTEGRATE_OR_BUILD"],
+        "eval_class": "RESIDUAL_CUSTOM",
+        "title": "Human note that a result export would help gerencia",
+        "disposition_if_selected": "BUILD_RESIDUAL",
+        "fit": "MEDIUM",
+        "confidence": "LOW",
+        "data_class": "REPRESENTATIVE_NONCANONICAL",
+        "evidence_status": "PRESENT",
+        "evidence_level": "HUMAN_PROVIDED",
+        "evidence_reliability": "HUMAN_PROVIDED_SAMPLE",
+        "production_evidence": false,
+        "summary": "Sample human-provided note for operator display only. It is not independently verified production evidence and must not be treated as a live gerencia request.",
+        "evidence": [
+          {
+            "label": "HUMAN_PROVIDED_SAMPLE",
+            "pointer": "PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/skillsmachine.fixture.json",
+            "excerpt": "PENDING_HUMAN_CONFIRMATION: sample only; not a recorded Pablo instruction to ship export."
+          }
+        ]
+      },
+      {
+        "entry_id": "MC-MC-002-INTEGRATE",
+        "applies_to_finding_ids": ["F-MC-002"],
+        "applies_to_questions": ["MCQ-INTEGRATE_OR_BUILD", "MCQ-BUILD_VS_ADOPT"],
+        "eval_class": "INTEGRATE",
+        "title": "Integrate SkillsMachine as an optional Skills/GRC service",
+        "disposition_if_selected": "INTEGRATE",
+        "fit": "HIGH",
+        "confidence": "MEDIUM",
+        "data_class": "CANONICAL_DERIVED",
+        "evidence_status": "PRESENT",
+        "evidence_level": "WINGS_HELD",
+        "production_evidence": true,
+        "summary": "Wings already records an optional product integration with SkillsMachine for Skills/GRC. No same-project implementation exists. This is governed service integration, not monitoring and not child-project mutation.",
+        "evidence": [
+          {
+            "label": "DEC-W4-053",
+            "pointer": "PORTFOLIO.DECISION_LOG.md#DEC-W4-053",
+            "excerpt": "Wings4 may optionally integrate with SkillsMachine for reusable Skills/GRC; that integration is not mandatory for every Wings4 function."
+          }
+        ]
+      },
+      {
+        "entry_id": "MC-MC-002-EXTERNAL-PENDING",
+        "applies_to_finding_ids": ["F-MC-002"],
+        "applies_to_questions": ["MCQ-INTEGRATE_OR_BUILD", "MCQ-BUILD_VS_ADOPT"],
+        "eval_class": "OPEN_SOURCE",
+        "title": "Named external Skills/GRC tools",
+        "disposition_if_selected": "UNKNOWN",
+        "fit": "UNKNOWN",
+        "confidence": "UNKNOWN",
+        "data_class": "REPRESENTATIVE_NONCANONICAL",
+        "evidence_status": "MISSING",
+        "evidence_level": "EXTERNAL_CHECKED",
+        "check_method": "MANUAL_RECORD",
+        "production_evidence": false,
+        "missing_evidence": "No human-authorized named external check is recorded. This is not a live web scan.",
+        "required_evidence": "A manual named-tool record, authorized by Pablo, stored in Wings. No crawl, watch, or RADAR.",
+        "next_action": "Keep EXTERNAL_CHECKED pending. Do not search the live web from Market Check.",
+        "summary": "EXTERNAL_CHECKED is a manual-record contract only. No live web search, monitoring, or RADAR.",
+        "evidence": []
+      },
+      {
+        "entry_id": "MC-MC-002-BUILD",
+        "applies_to_finding_ids": ["F-MC-002"],
+        "applies_to_questions": ["MCQ-INTEGRATE_OR_BUILD"],
+        "eval_class": "RESIDUAL_CUSTOM",
+        "title": "Build a second Skills/GRC platform inside Wings",
+        "disposition_if_selected": "UNKNOWN",
+        "fit": "UNKNOWN",
+        "confidence": "UNKNOWN",
+        "data_class": "REPRESENTATIVE_NONCANONICAL",
+        "evidence_status": "MISSING",
+        "evidence_level": "UNKNOWN",
+        "missing_evidence": "No Wings-held evidence justifies building a second Skills/GRC platform.",
+        "required_evidence": "A named residual gap that SkillsMachine does not already cover.",
+        "next_action": "Do not build a parallel Skills/GRC platform from this finding.",
+        "summary": "A remaining custom Skills/GRC build is not evidenced. Integration of the existing provider is the first evidenced class.",
+        "evidence": []
       }
     ]
   },
@@ -397,6 +522,62 @@
         "Postpone distribution claims from Wings demos"
       ],
       "recommendation": "State updater readiness cautiously and keep real-user proof as a SkillsMachine-local future gate.",
+      "decision_options": ["ACCEPT", "REJECT", "MODIFY", "POSTPONE"],
+      "decision_options_note": "Visible POSTPONE replaces DEFER; internal legacy DEFER/DEFERRED mapping remains acceptable."
+    },
+    {
+      "finding_id": "F-MC-001",
+      "title": "Market Check results cannot be exported as a management note",
+      "technical_title": "No bounded Market Check result export on the operator surface",
+      "finding_class": "OMISSION",
+      "status": "OPEN",
+      "severity": "LOW",
+      "data_class": "CANONICAL_DERIVED",
+      "fact": "The operator can run Market Check on demand and read the result on screen. Copy/download exist for intervention packages, not for the Market Check result record.",
+      "inference": "If gerencia needs a portable note, Wings still has a remaining local gap. That gap is not a reason to buy a market-intelligence product.",
+      "summary": "Market Check is callable, but the result stays on screen. A small Wings-local export would close a remaining custom gap.",
+      "evidence": [
+        {
+          "label": "Operator surface",
+          "pointer": "PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/app.js",
+          "excerpt": "DOWNLOAD INTERVENTION PACKAGE / COPY PACKAGE exist; Market Check persists only in local demo state."
+        }
+      ],
+      "impact": "Operators cannot hand a Market Check result to gerencia without copy-paste from the screen.",
+      "alternatives": [
+        "A. Build a bounded result note/export in Wings",
+        "B. Keep screen-only results",
+        "C. Wait for a named external tool comparison (not evidenced)"
+      ],
+      "recommendation": "Build only the remaining Market Check result-note gap inside Wings. Do not invent a market product.",
+      "decision_options": ["ACCEPT", "REJECT", "MODIFY", "POSTPONE"],
+      "decision_options_note": "Visible POSTPONE replaces DEFER; internal legacy DEFER/DEFERRED mapping remains acceptable."
+    },
+    {
+      "finding_id": "F-MC-002",
+      "title": "Optional Skills/GRC product integration is recorded but not implemented",
+      "technical_title": "DEC-W4-053 integration relationship has no live integration slice",
+      "finding_class": "OMISSION",
+      "status": "OPEN",
+      "severity": "MEDIUM",
+      "data_class": "CANONICAL_DERIVED",
+      "fact": "DEC-W4-053 records that Wings may optionally integrate with SkillsMachine for reusable Skills/GRC. That integration is not mandatory and is not implemented as a live product slice.",
+      "inference": "The first evidenced class is integration of an existing provider, not building a second Skills/GRC platform, and not monitoring the market.",
+      "summary": "Wings already named an optional Skills/GRC integration. No same-project implementation exists. Child-project mutation remains prohibited.",
+      "evidence": [
+        {
+          "label": "DEC-W4-053",
+          "pointer": "PORTFOLIO.DECISION_LOG.md#DEC-W4-053",
+          "excerpt": "As products: Wings4 may optionally integrate with SkillsMachine for reusable Skills/GRC; that integration is not mandatory."
+        }
+      ],
+      "impact": "Without a bounded integration slice, operators cannot use Skills/GRC from Wings except by leaving the current diagnostic.",
+      "alternatives": [
+        "A. Integrate SkillsMachine as an optional Skills/GRC service",
+        "B. Build a second Skills/GRC platform in Wings (not evidenced)",
+        "C. Leave the relationship recorded and unimplemented"
+      ],
+      "recommendation": "Prefer governed integration of the existing SkillsMachine Skills/GRC provider. Do not mutate SkillsMachine from Wings. Do not start market monitoring.",
       "decision_options": ["ACCEPT", "REJECT", "MODIFY", "POSTPONE"],
       "decision_options_note": "Visible POSTPONE replaces DEFER; internal legacy DEFER/DEFERRED mapping remains acceptable."
     }

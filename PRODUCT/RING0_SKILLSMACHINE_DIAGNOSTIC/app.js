@@ -907,6 +907,7 @@
 
   function defaultMarketQuestion(finding) {
     if (finding && (finding.finding_id === "F-SM-002" || finding.finding_id === "F-SM-003")) return "MCQ-KILL_OR_DEFER";
+    if (finding && finding.finding_id === "F-MC-002") return "MCQ-INTEGRATE_OR_BUILD";
     return "MCQ-BUILD_VS_ADOPT";
   }
 
@@ -941,9 +942,16 @@
     let resultHtml = "<p class=\"muted\">Not run yet. Choose a question and run Market Check. Wings will not invent a market.</p>";
     if (stored && stored.result) {
       const r = stored.result;
-      const alts = (r.alternatives || []).map((a) =>
-        `<li><span class="badge">${escapeHtml(altStatusLabel(a.status))}</span> <span class="badge">${escapeHtml(evidenceLevelLabel(a.evidence_level || "UNKNOWN"))}</span> ${escapeHtml(a.option)}${a.summary ? ` — ${escapeHtml(a.summary)}` : ""}</li>`
-      ).join("");
+      const alts = (r.alternatives || []).map((a) => {
+        const extra = [];
+        if (a.evidence_reliability === "HUMAN_PROVIDED_SAMPLE" || a.evidence_reliability === "PENDING_HUMAN_CONFIRMATION") {
+          extra.push("<span class=\"badge DEFERRED\">Sample — not production evidence</span>");
+        }
+        if (a.evidence_level === "EXTERNAL_CHECKED") {
+          extra.push("<span class=\"badge\">Manual record only — no live scan</span>");
+        }
+        return `<li><span class="badge">${escapeHtml(altStatusLabel(a.status))}</span> <span class="badge">${escapeHtml(evidenceLevelLabel(a.evidence_level || "UNKNOWN"))}</span> ${extra.join(" ")} ${escapeHtml(a.option)}${a.summary ? ` — ${escapeHtml(a.summary)}` : ""}</li>`;
+      }).join("");
       const unknownBlock = r.recommendation === "UNKNOWN"
         ? `<p><strong>Why unknown:</strong> ${escapeHtml(r.unknown_reason || "")}</p>
            <p><strong>Evidence needed:</strong> ${escapeHtml(r.required_evidence || "")}</p>
