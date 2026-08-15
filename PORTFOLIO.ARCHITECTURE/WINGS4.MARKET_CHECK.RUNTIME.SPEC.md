@@ -1,7 +1,7 @@
 # Wings4 Market Check — Bounded On-Demand Runtime Spec
 
 Status: ACTIVE_BOUNDED_SLICE
-Authority: DEC-W4-061, DEC-W4-063, Q-098, Q-099, Q-101, PR-PORT-006
+Authority: DEC-W4-061, DEC-W4-063, DEC-W4-066, DEC-W4-067, Q-098, Q-099, Q-101, PR-PORT-006
 Prototype: `PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/`
 Engine: `PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/market_check.engine.js`
 
@@ -81,7 +81,7 @@ If catalog evidence is absent, incomplete, or marked missing:
 |---|---|---|
 | WINGS_HELD | Named evidence already in Wings canon/fixture | YES |
 | HUMAN_PROVIDED | Named evidence supplied by the human and already held in this repository | YES, only if the record exists; do not prompt free-text market shopping |
-| EXTERNAL_CHECKED | Wings-held record that a prior human-authorized named check already happened | Defined; not a live web search; unused until such a record exists |
+| EXTERNAL_CHECKED | Wings-held record that a prior human-authorized named check already happened | Defined; MANUAL_RECORD pending; not a live web search |
 | UNKNOWN | Evidence is missing or insufficient | YES; required when any other level cannot be proven |
 
 EXTERNAL_CHECKED never authorizes crawling, scheduling, RADAR, or MARKET_MONITORING. Allowed method in this slice: `MANUAL_RECORD` of a named prior check already held in Wings. If no such record exists, the level is pending and the alternative stays UNKNOWN.
@@ -100,12 +100,18 @@ All of the following are required. Meeting a subset does not allow the flag.
 
 Current status: **MARKET_CHECK_RUNTIME_COMPLETE=NO**.
 
+Recorded live UI evidence (DEC-W4-067; HEAD `3063dad`):
+
+- F-MC-001 BUILD live UI validation = PASS
+- F-MC-002 INTEGRATE live UI validation = PASS
+- UNKNOWN remains available
+- Method: LOCAL_CHROME_CDP (Cursor browser MCP unavailable)
+
 Reasons this slice does not claim complete:
 
-- BUILD and INTEGRATE now have logical winning-path fixtures (`F-MC-001`, `F-MC-002`). Those paths are LOGICALLY_TESTED only; they are not human-live validated.
-- HUMAN_PROVIDED is visible as `HUMAN_PROVIDED_SAMPLE` and is not production evidence.
-- EXTERNAL_CHECKED is a manual-record contract only (`MANUAL_RECORD`). No named production check is recorded. No live web search.
-- Completion still requires human-live proof of the new BUILD/INTEGRATE paths before `MARKET_CHECK_RUNTIME_COMPLETE=YES`.
+- HUMAN_PROVIDED remains `HUMAN_PROVIDED_SAMPLE` / not production evidence.
+- EXTERNAL_CHECKED remains a `MANUAL_RECORD` contract pending a named human-authorized check. No live web search.
+- Meeting a subset of the criteria above does not allow `MARKET_CHECK_RUNTIME_COMPLETE=YES`.
 
 ## Result record (Wings4-local)
 
