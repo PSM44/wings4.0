@@ -57,23 +57,31 @@ IMPLEMENTED_STATICALLY / LOGICALLY_TESTED / BROWSER_AUTOMATED / HUMAN_LIVE_VALID
 
 ## Market Check bounded runtime (additive; does not reopen MD1)
 
-Interactive claims must be classified separately. This slice is LOGICALLY_TESTED; not HUMAN_LIVE_VALIDATED in this minibattle.
+Interactive claims must be classified separately. Bounded Market Check slice is LOGICALLY_TESTED and HUMAN_LIVE_VALIDATED (browser) for F-SM-001 and F-SM-002 UNKNOWN path. Not live market intelligence.
 
-- [ ] Market Check is invoked only on demand (Run Market Check).
-- [ ] Question is a governed select; no free-text question.
-- [ ] Result is management-readable (recommendation label, alternatives, confidence).
-- [ ] Alternatives are listed before relying on the recommendation.
-- [ ] Scope, authority, limits, and confidence are visible.
-- [ ] UNKNOWN is returned when evidence is missing (do not fabricate).
-- [ ] Limits include NOT_MARKET_MONITORING, NOT_RADAR, NOT_RING3.
-- [ ] No child-repository access; no live web scan.
-- [ ] Ring0/Ring1/Ring2 historical acceptance records are not rewritten.
+- [x] Market Check is invoked only on demand (Run Market Check).
+- [x] Question is a governed select; no free-text question.
+- [x] Result is management-readable (recommendation label, alternatives, confidence).
+- [x] Alternatives are listed before relying on the recommendation.
+- [x] Scope, authority, limits, and confidence are visible.
+- [x] UNKNOWN is returned when evidence is missing (do not fabricate).
+- [x] Limits include NOT_MARKET_MONITORING, NOT_RADAR, NOT_RING3.
+- [x] No child-repository access; no live web scan.
+- [x] Ring0/Ring1/Ring2 historical acceptance records are not rewritten.
 
 | Field | Value |
 |---|---|
 | MARKET_CHECK_RUNTIME | BOUNDED_ON_DEMAND_SLICE |
+| MARKET_CHECK_RUNTIME_SCOPE | BOUNDED_ON_DEMAND |
 | MARKET_CHECK_LOGICAL_TEST | PASS (node market_check.logical.test.js) |
-| MARKET_CHECK_HUMAN_LIVE_VALIDATED | NO |
+| MARKET_CHECK_HUMAN_LIVE_VALIDATION | PASS |
+| UNKNOWN_PATH_BROWSER_VALIDATION | PASS |
+| F-SM-001_BROWSER_VALIDATION | PASS |
+| F-SM-002_UNKNOWN_BROWSER_VALIDATION | PASS |
+| MARKET_CHECK_HUMAN_LIVE_VALIDATED | YES |
+| MARKET_CHECK_EVIDENCE_HEAD | 5a6714db6e9392f0dab216cfa93e766061dedcd9 |
+| MARKET_CHECK_BROWSER_METHOD | LOCAL_CHROME_CDP (Cursor browser MCP unavailable) |
+| MARKET_CHECK_EVIDENCE_LIMIT | FIXTURE_OR_WINGS_HELD_ONLY; NOT_LIVE_MARKET_INTELLIGENCE |
 | MARKET_MONITORING_IMPLEMENTED | NO |
 | RADAR_IMPLEMENTED | NO |
 | RING3_IMPLEMENTED | NO |

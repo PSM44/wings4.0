@@ -5,7 +5,7 @@ NOT_SESSION_CONTINUE: YES
 SESSION_CONTINUE_PURPOSE: SAME_AI_PROJECT_WORKSPACE_CONTINUATION
 SESSION_CONTINUE_ENTRYPOINT: SESSIONS/ORCHESTRATOR/03.SESSION_CONTINUE/00.START_HERE.ORCHESTRATOR.txt
 STATUS: MANAGEMENT_DELIVERY_1_ACCEPTED_AND_CLOSED
-UPDATED_AT: 2026-08-13
+UPDATED_AT: 2026-08-15
 PROJECT_ID: Wings4.0
 PROJECT_ROOT: C:\01. GitHub\Wings4.0
 TEMP_PATH: C:\Users\aazcl\Downloads\T.Wings4.0
@@ -39,7 +39,7 @@ Wings4.0 is Pablo's portfolio architecture and governance system and the reposit
 - AI.History inspection prohibited
 - Push unauthorized without explicit human authorization
 - Ring3 / RADAR / MARKET_MONITORING / independent resynchronization = not implemented / not authorized here
-- MARKET_CHECK bounded on-demand runtime slice is the current authorized product minibattle; it is not monitoring and is not complete across future market capabilities
+- MARKET_CHECK bounded on-demand runtime is committed and human-live validated for the bounded slice; it is not monitoring and is not complete across future market capabilities
 - MANAGEMENT_READY does not mean Wings4 is feature-complete or production-complete across future capabilities.
 
 ## Interaction language / Cambridge C1
@@ -66,7 +66,7 @@ RUNTIME_GATE_PROHIBITED_PATTERN=Boolean.ToUpper_without_ToString
 
 ## Current objective
 
-Management Delivery #1 remains accepted and closed for bounded MD1 scope. Current authorized product minibattle is the bounded on-demand Market Check runtime slice. Do not reopen MD1. Ring3+ unauthorized.
+Management Delivery #1 remains accepted and closed for bounded MD1 scope. Bounded on-demand Market Check runtime is committed (`5a6714d`) and human-live validated. Do not reopen MD1. Ring3+ unauthorized.
 
 ## Current confirmed state
 
@@ -114,8 +114,20 @@ Management Delivery #1 remains accepted and closed for bounded MD1 scope. Curren
 - MODIFY_SEMANTICS_DEFECT=NO
 - MANUAL_PACKAGE_TRANSFER=ACCEPTABLE_FOR_CURRENT_STAGE
 - MARKET_CHECK_RUNTIME_IMPLEMENTED=BOUNDED_ON_DEMAND_SLICE
+- MARKET_CHECK_RUNTIME_SCOPE=BOUNDED_ON_DEMAND
 - MARKET_CHECK_RUNTIME_COMPLETE=NO
-- MARKET_CHECK_HUMAN_LIVE_VALIDATED=NO
+- MARKET_CHECK_RUNTIME_COMMIT=5a6714db6e9392f0dab216cfa93e766061dedcd9
+- MARKET_CHECK_HUMAN_LIVE_VALIDATION=PASS
+- MARKET_CHECK_HUMAN_LIVE_VALIDATED=YES
+- UNKNOWN_PATH_BROWSER_VALIDATION=PASS
+- MARKET_CHECK_EVIDENCE_HEAD=5a6714db6e9392f0dab216cfa93e766061dedcd9
+- MARKET_CHECK_LOGICAL_VALIDATION=PASS
+- F-SM-001_BROWSER_VALIDATION=PASS
+- F-SM-002_UNKNOWN_BROWSER_VALIDATION=PASS
+- MARKET_CHECK_AUTO_RUN=NO
+- MARKET_CHECK_CALLABLE_ON_DEMAND=YES
+- MARKET_CHECK_LIMITATION=FIXTURE_OR_WINGS_HELD_ONLY_NOT_LIVE_MARKET_INTELLIGENCE
+- MARKET_CHECK_BROWSER_METHOD=LOCAL_CHROME_CDP_CURSOR_BROWSER_MCP_UNAVAILABLE
 - MARKET_MONITORING_IMPLEMENTED=NO
 - RING3_IMPLEMENTED=NO
 - RADAR_IMPLEMENTED=NO
@@ -132,18 +144,19 @@ IDENTITY=PORTFOLIO.ARCHITECTURE/WINGS4.PRODUCT.IDENTITY.md
 DELIVERY=PORTFOLIO.ARCHITECTURE/WINGS4.INCREMENTAL.DELIVERY.MODEL.md
 SPEC_MARKET_CHECK=PORTFOLIO.ARCHITECTURE/WINGS4.MARKET_CHECK.RUNTIME.SPEC.md
 DECISION_MD1=PORTFOLIO.DECISION_LOG.md#dec-w4-062
+DECISION_MC_HLV=PORTFOLIO.DECISION_LOG.md#dec-w4-064
 HUMAN_CANON=HUMAN/HUMAN.WINGS4.md
 
 ## Next action
 
-CURRENT_MINIBATTLE=W4_MARKET_CHECK_RUNTIME_DIRTY_SLICE_ADOPTION_GATE_002
+CURRENT_MINIBATTLE=W4_MARKET_CHECK_HUMAN_LIVE_VALIDATION_STATE_RECORD_003
 NEXT_ROLE=ORCHESTRATOR
 NEXT_ROOT=C:\01. GitHub\Wings4.0
 NEXT_PRODUCT_MINIBATTLE=HUMAN_DECISION_REQUIRED_BEYOND_THIS_BOUNDED_SLICE
 NEXT_CANDIDATE_1=BOUNDED_OPERATOR_UX_FRICTION_CLEANUP
-NEXT_CANDIDATE_2=MARKET_CHECK_HUMAN_LIVE_VALIDATION
-NEXT_CANDIDATE_3=INDEPENDENT_RESYNCHRONIZATION_BEYOND_RING2
-NEXT_CONTINUITY_ACTION=HUMAN_COMMIT_GATE_FOR_BOUNDED_MARKET_CHECK_SLICE
+NEXT_CANDIDATE_2=INDEPENDENT_RESYNCHRONIZATION_BEYOND_RING2
+NEXT_CANDIDATE_3=NONE_WITHOUT_SEPARATE_AUTHORIZATION
+NEXT_CONTINUITY_ACTION=OPEN_FRESH_ORCHESTRATOR_SESSION_AND_DECIDE_NEXT_PRODUCT_MINIBATTLE
 RING3_IMPLEMENTATION_AUTHORIZED=NO
 COMMIT_POLICY=NO_COMMIT_WITHOUT_EXACT_STAGING_VALIDATION_AND_EXPLICIT_HUMAN_AUTHORIZATION
 PUSH_POLICY=NO_PUSH_WITHOUT_EXPLICIT_HUMAN_AUTHORIZATION
@@ -153,11 +166,11 @@ PUSH_POLICY=NO_PUSH_WITHOUT_EXPLICIT_HUMAN_AUTHORIZATION
 1. Resolve root, branch, HEAD, worktree and index from Git. Serialize Booleans only via ($expr).ToString().ToUpperInvariant().
 2. Do not reopen MD1 as an open delivery. PRODUCT_UX_RESIDUAL=0 for MD1. Additive Market Check files may exist in PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/; they do not reopen MD1.
 3. Expect a clean worktree unless Git shows otherwise. MD1 is accepted and closed; do not reopen MD1 as an open delivery.
-4. Treat Ring0 `1e8315d`, Ring1 `16b28d1`, Ring1/Ring2 `03a589d`, North Star `d23d292`, temp hygiene `e199d8b`, MD1 UX `6bb3bfc`, continuity contracts `9e301acf`, and post-MD1 continuity `edc3b86` as ancestors.
+4. Treat Ring0 `1e8315d`, Ring1 `16b28d1`, Ring1/Ring2 `03a589d`, North Star `d23d292`, temp hygiene `e199d8b`, MD1 UX `6bb3bfc`, continuity contracts `9e301acf`, post-MD1 continuity `edc3b86`, and Market Check runtime `5a6714d` as ancestors.
 5. Keep English/C1 coaching active; request missing evidence or mark UNKNOWN; never guess.
 6. Do not implement Ring3+, RADAR, MARKET_MONITORING, or independent resynchronization without separate authorization. Do not expand Market Check into monitoring or claim MARKET_CHECK_RUNTIME_COMPLETE.
 7. Do not inspect AI.History/.
 8. Do not mutate SkillsMachine or any child project.
 9. Do not push without explicit authorization.
 10. For same-workspace delta continuity after bootstrap, use SESSION_CONTINUE_ENTRYPOINT; do not treat BATON as SESSION_CONTINUE.
-LAST_REFRESHED_AT: 2026-08-14T14:40:00-04:00
+LAST_REFRESHED_AT: 2026-08-15T00:05:00-04:00

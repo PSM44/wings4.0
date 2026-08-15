@@ -50,7 +50,7 @@ Open `http://localhost:8765/`.
 22. Expect **Unknown — evidence is missing** (do not fabricate a buy/build).
 23. Confirm the result states this is not monitoring, RADAR, or Ring3.
 
-Do not mark Market Check HUMAN_LIVE_VALIDATED from this runbook until a separate live proof is recorded.
+Do not treat this runbook as live market intelligence. Bounded human-live validation is recorded: F-SM-001_BROWSER_VALIDATION=PASS; F-SM-002_UNKNOWN_BROWSER_VALIDATION=PASS; MARKET_CHECK_HUMAN_LIVE_VALIDATION=PASS. Evidence remains fixture/Wings-held. Cursor browser MCP was unavailable; UNKNOWN-path proof used local Chrome CDP against the same demo UI.
 
 ## Evidence classification
 
@@ -62,6 +62,6 @@ Do not mark HUMAN_RING2_LIVE_VALIDATION=PASS until the valid-return path is prov
 - No child-project execution by Wings4.
 - No Ring3 automation.
 - Human Ring2 live validation may still be pending after this build.
-- Bounded on-demand Market Check uses Wings-held/fixture evidence only; it is not MARKET_MONITORING, RADAR, or Ring3.
+- Bounded on-demand Market Check uses Wings-held/fixture evidence only; it is not MARKET_MONITORING, RADAR, Ring3, or live market intelligence. Human-live validation for this bounded slice is recorded (DEC-W4-064).
 - W4P005/W4P006/W4P006A changes may remain uncommitted until authorized.
 - Interactive functions must not be marked PASS from static/code presence alone.
