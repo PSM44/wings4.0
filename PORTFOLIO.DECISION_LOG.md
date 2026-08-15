@@ -821,3 +821,23 @@ Known limitations:
 - This record does not claim MARKET_CHECK_RUNTIME_COMPLETE.
 
 This decision does not authorize Ring3+, RADAR, MARKET_MONITORING, independent resynchronization, child mutation, MD1 reopening, or push.
+
+## DEC-W4-065 — Market Check completion criteria and coverage slice
+
+Status: APPROVED_HUMAN_DIRECTION
+Date: 2026-08-15
+Scope: COMPLETION_CRITERIA_AND_COVERAGE_ONLY; authorization `W4_MARKET_CHECK_COMPLETION_CRITERIA_AND_NEXT_RUNTIME_SLICE_001`
+
+Decision:
+
+- Record explicit completion criteria for `MARKET_CHECK_RUNTIME_COMPLETE=YES` in `WINGS4.MARKET_CHECK.RUNTIME.SPEC.md`.
+- Keep `MARKET_CHECK_RUNTIME_COMPLETE=NO` until those criteria are met. Do not overclaim.
+- Governed evidence levels are: WINGS_HELD, HUMAN_PROVIDED, EXTERNAL_CHECKED, UNKNOWN.
+- EXTERNAL_CHECKED is a Wings-held record of a prior authorized named check. It is not live web search, RADAR, or MARKET_MONITORING.
+- Catalog/tests must exercise USE_EXISTING, BUILD, INTEGRATE, DEFER, REJECT/KILL, and UNKNOWN as a winner or as an explicit alternative.
+- INTEGRATE as a winning recommendation is deferred: current findings still have an earlier evidenced class (same-project). INTEGRATE is exercised as a considered Wings-held alternative (DEC-W4-053).
+- BUILD as a winning recommendation is deferred: no justified remaining custom gap is evidenced. BUILD is exercised as UNKNOWN/not-evidenced.
+- This slice does not reopen MD1 and does not authorize Ring3, RADAR, MARKET_MONITORING, child mutation, live web scan, or push.
+
+Spec: `PORTFOLIO.ARCHITECTURE/WINGS4.MARKET_CHECK.RUNTIME.SPEC.md`
+Prototype: `PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/`

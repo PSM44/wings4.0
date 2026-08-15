@@ -910,6 +910,14 @@
     return "MCQ-BUILD_VS_ADOPT";
   }
 
+  function evidenceLevelLabel(level) {
+    if (level === "WINGS_HELD") return "Wings-held";
+    if (level === "HUMAN_PROVIDED") return "Human-provided";
+    if (level === "EXTERNAL_CHECKED") return "Externally checked";
+    if (level === "UNKNOWN") return "Unknown";
+    return level || "Unknown";
+  }
+
   function altStatusLabel(status) {
     if (status === "CONSIDERED") return "Considered";
     if (status === "UNKNOWN") return "Unknown";
@@ -934,7 +942,7 @@
     if (stored && stored.result) {
       const r = stored.result;
       const alts = (r.alternatives || []).map((a) =>
-        `<li><span class="badge">${escapeHtml(altStatusLabel(a.status))}</span> ${escapeHtml(a.option)}${a.summary ? ` — ${escapeHtml(a.summary)}` : ""}</li>`
+        `<li><span class="badge">${escapeHtml(altStatusLabel(a.status))}</span> <span class="badge">${escapeHtml(evidenceLevelLabel(a.evidence_level || "UNKNOWN"))}</span> ${escapeHtml(a.option)}${a.summary ? ` — ${escapeHtml(a.summary)}` : ""}</li>`
       ).join("");
       const unknownBlock = r.recommendation === "UNKNOWN"
         ? `<p><strong>Why unknown:</strong> ${escapeHtml(r.unknown_reason || "")}</p>
@@ -957,10 +965,12 @@
           <p class="meta-line badge-row">
             <span class="badge ${r.recommendation === "UNKNOWN" ? "DEFERRED" : "RESOLVED"}">${escapeHtml(r.recommendation_label || r.recommendation)}</span>
             <span class="badge">${escapeHtml(statusLabel(r.confidence || "UNKNOWN"))}</span>
+            <span class="badge">${escapeHtml(evidenceLevelLabel(r.evidence_level || "UNKNOWN"))}</span>
           </p>
           <p>${escapeHtml(r.fact || "")}</p>
           <p class="meta-line">${escapeHtml(r.inference || "")}</p>
           ${unknownBlock}
+          <p class="meta-line"><strong>Evidence level:</strong> ${escapeHtml(evidenceLevelLabel(r.evidence_level || "UNKNOWN"))}</p>
           <p class="meta-line"><strong>Scope:</strong> ${escapeHtml(r.scope || "")}</p>
           <p class="meta-line"><strong>Authority:</strong> ${escapeHtml(r.authority || "")}</p>
           <p class="meta-line"><strong>Limits:</strong> ${escapeHtml((r.limits || []).join(" · "))}</p>
@@ -2000,6 +2010,10 @@
     if (!data.market_check || data.market_check.mode !== "ON_DEMAND") return "Fixture must include on-demand market_check.";
     if (!Array.isArray(data.market_check.questions) || data.market_check.questions.length < 1) return "Market Check questions missing.";
     if (!Array.isArray(data.market_check.catalog)) return "Market Check catalog missing.";
+    if (!Array.isArray(data.market_check.evidence_levels) || data.market_check.evidence_levels.indexOf("UNKNOWN") < 0) {
+      return "Market Check evidence_levels missing.";
+    }
+    if (data.market_check.runtime_complete === true) return "Fixture must not claim MARKET_CHECK_RUNTIME_COMPLETE.";
     return null;
   }
 

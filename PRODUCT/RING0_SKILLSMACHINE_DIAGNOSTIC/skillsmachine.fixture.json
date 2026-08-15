@@ -63,7 +63,9 @@
     "not": ["MARKET_MONITORING", "RADAR", "RING3", "LIVE_WEB_SCAN", "CHILD_REPOSITORY_READ"],
     "evidence_policy": "WINGS_HELD_OR_FIXTURE_ONLY",
     "unknown_policy": "DO_NOT_FABRICATE",
-    "evaluation_order": ["SAME_PROJECT", "PORTFOLIO_REUSABLE", "SKILL_GRC", "OPEN_SOURCE", "COMMERCIAL", "RESIDUAL_CUSTOM"],
+    "runtime_complete": false,
+    "evidence_levels": ["WINGS_HELD", "HUMAN_PROVIDED", "EXTERNAL_CHECKED", "UNKNOWN"],
+    "evaluation_order": ["SAME_PROJECT", "PORTFOLIO_REUSABLE", "SKILL_GRC", "INTEGRATE", "OPEN_SOURCE", "COMMERCIAL", "RESIDUAL_CUSTOM"],
     "questions": [
       {
         "id": "MCQ-BUILD_VS_ADOPT",
@@ -90,6 +92,7 @@
         "confidence": "HIGH",
         "data_class": "CANONICAL_DERIVED",
         "evidence_status": "PRESENT",
+        "evidence_level": "WINGS_HELD",
         "summary": "SkillsMachine already has HUMAN as the intended semantic home. The finding is overlapping instruction sources, not a missing product to buy.",
         "evidence": [
           {
@@ -110,6 +113,7 @@
         "confidence": "HIGH",
         "data_class": "CANONICAL_DERIVED",
         "evidence_status": "PRESENT",
+        "evidence_level": "WINGS_HELD",
         "summary": "Wings already prepared a WHOAMI-to-HUMAN transfer. That is coordination, not a new market product.",
         "evidence": [
           {
@@ -130,6 +134,7 @@
         "confidence": "UNKNOWN",
         "data_class": "REPRESENTATIVE_NONCANONICAL",
         "evidence_status": "MISSING",
+        "evidence_level": "UNKNOWN",
         "missing_evidence": "No named open-source comparison was collected for replacing HUMAN.",
         "required_evidence": "A bounded named-tool comparison against HUMAN purpose, if that question is later authorized.",
         "next_action": "Do not shop for a HUMAN replacement from this finding. Keep this class UNKNOWN.",
@@ -147,6 +152,7 @@
         "confidence": "HIGH",
         "data_class": "CANONICAL_DERIVED",
         "evidence_status": "PRESENT",
+        "evidence_level": "WINGS_HELD",
         "summary": "Mixing unrelated dirty workstreams with the WHOAMI transfer would contaminate the handoff. Defer that unrelated work.",
         "evidence": [
           {
@@ -167,6 +173,7 @@
         "confidence": "HIGH",
         "data_class": "CANONICAL_DERIVED",
         "evidence_status": "PRESENT",
+        "evidence_level": "WINGS_HELD",
         "summary": "PC-013 is already resolved: Hermes stays frozen and must not be reactivated through this diagnosis.",
         "evidence": [
           {
@@ -187,6 +194,7 @@
         "confidence": "MEDIUM",
         "data_class": "REPRESENTATIVE_NONCANONICAL",
         "evidence_status": "PRESENT",
+        "evidence_level": "WINGS_HELD",
         "summary": "Wings should not build a second updater. The gap is real-user proof inside SkillsMachine, not a missing Wings product.",
         "evidence": [
           {
@@ -207,10 +215,50 @@
         "confidence": "UNKNOWN",
         "data_class": "REPRESENTATIVE_NONCANONICAL",
         "evidence_status": "MISSING",
+        "evidence_level": "UNKNOWN",
         "missing_evidence": "No live market scan or child-repository read was performed for updater tools.",
         "required_evidence": "A bounded, human-authorized comparison of named tools against the SkillsMachine updater purpose.",
         "next_action": "Keep this class UNKNOWN unless a named-tool comparison is separately authorized.",
         "summary": "Open-source updater alternatives are not evidenced in this slice.",
+        "evidence": []
+      },
+      {
+        "entry_id": "MC-SM-004-INTEGRATE",
+        "applies_to_finding_ids": ["F-SM-004"],
+        "applies_to_questions": ["MCQ-BUILD_VS_ADOPT"],
+        "eval_class": "INTEGRATE",
+        "title": "Optional Skills/GRC product integration",
+        "disposition_if_selected": "INTEGRATE",
+        "fit": "MEDIUM",
+        "confidence": "MEDIUM",
+        "data_class": "CANONICAL_DERIVED",
+        "evidence_status": "PRESENT",
+        "evidence_level": "WINGS_HELD",
+        "summary": "Wings already records an optional Skills/GRC integration relationship with SkillsMachine. That is a product relationship, not a live integration to execute from this updater finding.",
+        "evidence": [
+          {
+            "label": "DEC-W4-053",
+            "pointer": "PORTFOLIO.DECISION_LOG.md#DEC-W4-053",
+            "excerpt": "Wings4 may optionally integrate with SkillsMachine for reusable Skills/GRC; that integration is not mandatory for every Wings4 function."
+          }
+        ]
+      },
+      {
+        "entry_id": "MC-SM-004-BUILD",
+        "applies_to_finding_ids": ["F-SM-004"],
+        "applies_to_questions": ["MCQ-BUILD_VS_ADOPT"],
+        "eval_class": "RESIDUAL_CUSTOM",
+        "title": "Build a second updater inside Wings",
+        "disposition_if_selected": "UNKNOWN",
+        "fit": "UNKNOWN",
+        "confidence": "UNKNOWN",
+        "data_class": "REPRESENTATIVE_NONCANONICAL",
+        "evidence_status": "MISSING",
+        "evidence_level": "UNKNOWN",
+        "missing_evidence": "No Wings-held evidence justifies a remaining custom updater build in Wings.",
+        "required_evidence": "A named residual gap that is not already owned by SkillsMachine-local proof.",
+        "next_action": "Do not build a second updater from this finding. Keep BUILD UNKNOWN.",
+        "summary": "A remaining custom build is not evidenced. The updater gap stays SkillsMachine-local.",
         "evidence": []
       }
     ]

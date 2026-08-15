@@ -11,9 +11,17 @@
     "SAME_PROJECT",
     "PORTFOLIO_REUSABLE",
     "SKILL_GRC",
+    "INTEGRATE",
     "OPEN_SOURCE",
     "COMMERCIAL",
     "RESIDUAL_CUSTOM"
+  ];
+
+  var EVIDENCE_LEVELS = [
+    "WINGS_HELD",
+    "HUMAN_PROVIDED",
+    "EXTERNAL_CHECKED",
+    "UNKNOWN"
   ];
 
   var LIMITS = [
@@ -43,6 +51,7 @@
     SAME_PROJECT: "Already in this project",
     PORTFOLIO_REUSABLE: "Reusable in the portfolio",
     SKILL_GRC: "Skill or GRC",
+    INTEGRATE: "Integrate an existing solution",
     OPEN_SOURCE: "Open-source option",
     COMMERCIAL: "Commercial option",
     RESIDUAL_CUSTOM: "Remaining custom build",
@@ -54,12 +63,20 @@
     SAME_PROJECT: "REUSE_SAME_PROJECT",
     PORTFOLIO_REUSABLE: "REUSE_PORTFOLIO",
     SKILL_GRC: "ADOPT_SKILL_GRC",
+    INTEGRATE: "INTEGRATE",
     OPEN_SOURCE: "ADOPT_OPEN_SOURCE",
     COMMERCIAL: "ADOPT_COMMERCIAL",
     RESIDUAL_CUSTOM: "BUILD_RESIDUAL",
     DEFER: "DEFER",
     KILL: "KILL"
   };
+
+  function evidenceLevelOf(entry) {
+    if (!entry || isMissingEntry(entry)) return "UNKNOWN";
+    var lvl = String(entry.evidence_level || "").toUpperCase();
+    if (lvl === "WINGS_HELD" || lvl === "HUMAN_PROVIDED" || lvl === "EXTERNAL_CHECKED") return lvl;
+    return "WINGS_HELD";
+  }
 
   function isMissingEntry(entry) {
     if (!entry) return true;
@@ -120,6 +137,7 @@
       required_evidence: "",
       next_action: "",
       evidence: [],
+      evidence_level: "UNKNOWN",
       evaluation_order: EVAL_ORDER.slice(),
       not_market_monitoring: true,
       not_radar: true,
@@ -190,6 +208,7 @@
           option: CLASS_LABEL[walk[i]] || walk[i],
           eval_class: walk[i],
           status: "NOT_EVIDENCED",
+          evidence_level: "UNKNOWN",
           summary: "No Wings-held Market Check entry for this class."
         });
       }
@@ -214,6 +233,7 @@
           option: CLASS_LABEL[cls] || cls,
           eval_class: cls,
           status: "NOT_EVIDENCED",
+          evidence_level: "UNKNOWN",
           summary: "No Wings-held evidence for this class."
         });
         continue;
@@ -225,6 +245,7 @@
           option: entry.title || (CLASS_LABEL[cls] || cls),
           eval_class: cls,
           status: missing ? "UNKNOWN" : "CONSIDERED",
+          evidence_level: evidenceLevelOf(entry),
           summary: entry.summary || "",
           entry_id: entry.entry_id || ""
         });
@@ -258,12 +279,14 @@
       unknown_reason: "",
       required_evidence: "",
       next_action: "Human decides among the alternatives. This check does not adopt, buy, build, or mutate any project.",
-      evidence: collectEvidence([winner])
+      evidence: collectEvidence([winner]),
+      evidence_level: evidenceLevelOf(winner)
     });
   }
 
   return {
     EVAL_ORDER: EVAL_ORDER,
+    EVIDENCE_LEVELS: EVIDENCE_LEVELS,
     LIMITS: LIMITS,
     DISPOSITION_LABEL: DISPOSITION_LABEL,
     CLASS_LABEL: CLASS_LABEL,

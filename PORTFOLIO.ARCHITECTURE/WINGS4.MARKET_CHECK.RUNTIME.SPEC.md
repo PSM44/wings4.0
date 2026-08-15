@@ -37,9 +37,10 @@ Market Check does not add a fifth workflow stage. It sits inside Understand, aft
 1. SAME_PROJECT — already exists in this project
 2. PORTFOLIO_REUSABLE — reusable elsewhere in the portfolio
 3. SKILL_GRC — reusable Skill or GRC
-4. OPEN_SOURCE — suitable open-source option
-5. COMMERCIAL — suitable commercial option
-6. RESIDUAL_CUSTOM — justified remaining custom build
+4. INTEGRATE — integrate an existing named solution
+5. OPEN_SOURCE — suitable open-source option
+6. COMMERCIAL — suitable commercial option
+7. RESIDUAL_CUSTOM — justified remaining custom build (BUILD)
 
 First evidenced class in this order becomes the recommendation unless the question is defer/stop.
 
@@ -74,6 +75,37 @@ If catalog evidence is absent, incomplete, or marked missing:
 - GAP_05 remains: fixture/Wings-held evidence is not a live child-repository read.
 - No network calls. No SkillsMachine file access.
 
+## Evidence levels (governed)
+
+| Level | Meaning | Allowed now |
+|---|---|---|
+| WINGS_HELD | Named evidence already in Wings canon/fixture | YES |
+| HUMAN_PROVIDED | Named evidence supplied by the human and already held in this repository | YES, only if the record exists; do not prompt free-text market shopping |
+| EXTERNAL_CHECKED | Wings-held record that a prior human-authorized named check already happened | Defined; not a live web search; unused until such a record exists |
+| UNKNOWN | Evidence is missing or insufficient | YES; required when any other level cannot be proven |
+
+EXTERNAL_CHECKED never authorizes crawling, scheduling, RADAR, or MARKET_MONITORING.
+
+## Completion criteria (`MARKET_CHECK_RUNTIME_COMPLETE=YES`)
+
+All of the following are required. Meeting a subset does not allow the flag.
+
+1. On-demand only: no auto-run, no background watch, no MARKET_MONITORING, no RADAR, no Ring3.
+2. Governed evidence levels above are in the runtime and visible on the operator result.
+3. Result always includes: target, question, alternatives before recommendation, evidence level, UNKNOWN handling, authority, scope limits, confidence.
+4. Logical tests exercise the option set: USE_EXISTING, BUILD, INTEGRATE, DEFER, REJECT/KILL, UNKNOWN — as a winning recommendation or as an explicit catalog alternative.
+5. UNKNOWN is produced when evidence is missing; no fabricated buy/build/price/fitness.
+6. Human-live validation PASS for on-demand invoke and for the UNKNOWN recommendation path.
+7. No child-repository access; no live web scan; discovery does not authorize adoption.
+
+Current status: **MARKET_CHECK_RUNTIME_COMPLETE=NO**.
+
+Reasons this slice does not claim complete:
+
+- BUILD and INTEGRATE have no isolated winning-path finding in the current fixture without contradicting earlier evaluation-order classes; they are exercised as catalog alternatives. INTEGRATE as a winning recommendation is deferred until a finding exists where earlier classes are not evidenced and a named existing solution is Wings-held.
+- HUMAN_PROVIDED and EXTERNAL_CHECKED have no current instances.
+- New catalog/UI coverage in this slice is LOGICALLY_TESTED only; it does not reopen or replace the recorded F-SM-001 / F-SM-002 live proofs.
+
 ## Result record (Wings4-local)
 
 - `check_id`, `finding_id`, `question_id`
@@ -82,8 +114,10 @@ If catalog evidence is absent, incomplete, or marked missing:
 - `fact`, `inference`
 - `alternatives` (always before relying on the recommendation)
 - `scope`, `authority`, `limits`
+- `evidence_level` (`WINGS_HELD` | `HUMAN_PROVIDED` | `EXTERNAL_CHECKED` | `UNKNOWN`)
 - `unknown_reason`, `required_evidence`, `next_action` when UNKNOWN
 - `limits` must include: NOT_MARKET_MONITORING, NOT_RADAR, NOT_RING3, NO_CHILD_REPOSITORY_ACCESS, NO_LIVE_WEB_SCAN
+- each alternative includes `status` and `evidence_level`
 
 ## Acceptance (this slice)
 
@@ -102,4 +136,4 @@ If catalog evidence is absent, incomplete, or marked missing:
 - Ring3+.
 - Multi-project combined analysis.
 - Live market crawl or child-project mutation.
-- Claiming MARKET_CHECK_RUNTIME_COMPLETE or Wings4 complete.
+- Claiming MARKET_CHECK_RUNTIME_COMPLETE or Wings4 complete before the completion criteria above are met.

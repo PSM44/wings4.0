@@ -68,11 +68,27 @@ ok((fixture.market_check.not || []).indexOf("RADAR") >= 0, "MC-09 fixture forbid
 ok(r1.finding_id === "F-SM-001" && r1.question_label && r1.authority && r1.scope, "MC-10 target/intent/authority/scope");
 ok(r1.alternatives[0] && r1.recommendation_label, "MC-10 alternatives exist as first-class output before relying on recommendation");
 
+eq(r1.evidence_level, "WINGS_HELD", "MC-11 winner evidence_level WINGS_HELD");
+ok(r1.alternatives.every(function (a) { return a.evidence_level; }), "MC-11 alternatives carry evidence_level");
+eq(r2.evidence_level, "UNKNOWN", "MC-12 UNKNOWN path evidence_level");
+ok((fixture.market_check.evidence_levels || []).indexOf("EXTERNAL_CHECKED") >= 0, "MC-13 evidence levels include EXTERNAL_CHECKED");
+ok(fixture.market_check.runtime_complete === false, "MC-13 runtime_complete remains false");
+
+var integrateAlt = (r5.alternatives || []).filter(function (a) { return a.eval_class === "INTEGRATE"; })[0];
+ok(integrateAlt && integrateAlt.status === "CONSIDERED", "MC-14 INTEGRATE exercised as considered alternative");
+eq(integrateAlt && integrateAlt.evidence_level, "WINGS_HELD", "MC-14 INTEGRATE evidence is Wings-held");
+eq(r5.recommendation, "REUSE_SAME_PROJECT", "MC-14 INTEGRATE is not a fabricated winner");
+
+var buildAlt = (r5.alternatives || []).filter(function (a) { return a.eval_class === "RESIDUAL_CUSTOM"; })[0];
+ok(buildAlt && (buildAlt.status === "UNKNOWN" || buildAlt.status === "NOT_EVIDENCED"), "MC-15 BUILD exercised without fabricating a build winner");
+eq(engine.EVIDENCE_LEVELS.indexOf("HUMAN_PROVIDED") >= 0, true, "MC-16 HUMAN_PROVIDED defined");
+ok((r1.limits || []).indexOf("NO_LIVE_WEB_SCAN") >= 0, "MC-16 no live web scan");
+
 if (fails.length) {
   console.error("MARKET_CHECK_LOGICAL_TEST=FAIL");
   fails.forEach(function (f) { console.error(" - " + f); });
   process.exit(1);
 }
 console.log("MARKET_CHECK_LOGICAL_TEST=PASS");
-console.log("CASES=10");
+console.log("CASES=16");
 console.log("VALIDATION_RESULT=LOGICALLY_TESTED");

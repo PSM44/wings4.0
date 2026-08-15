@@ -45,7 +45,7 @@ Open `http://localhost:8765/`.
 
 18. Open a finding (start with `F-SM-001`).
 19. In **Market Check**, keep the governed question and click **Run Market Check**.
-20. Expect alternatives first, then a management-readable recommendation, scope, authority, limits, and confidence.
+20. Expect alternatives first, then a management-readable recommendation, evidence level, scope, authority, limits, and confidence.
 21. Open `F-SM-002`, choose **Should we build this, or use something that already exists?**, run Market Check.
 22. Expect **Unknown — evidence is missing** (do not fabricate a buy/build).
 23. Confirm the result states this is not monitoring, RADAR, or Ring3.
