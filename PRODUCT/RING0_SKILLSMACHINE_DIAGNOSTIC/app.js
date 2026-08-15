@@ -953,7 +953,12 @@
       const r = stored.result;
       const alts = (r.alternatives || []).map((a) => {
         const extra = [];
-        if (a.intake_status && intakeStatusLabel(a.intake_status) && a.intake_status !== "UNKNOWN") {
+        const showIntakeBadge = (a.evidence_level === "HUMAN_PROVIDED" || a.evidence_level === "EXTERNAL_CHECKED")
+          && a.intake_status
+          && intakeStatusLabel(a.intake_status)
+          && a.intake_status !== "UNKNOWN"
+          && a.intake_status !== "NOT_APPLICABLE";
+        if (showIntakeBadge) {
           extra.push(`<span class="badge ${a.intake_status === "VALID" ? "RESOLVED" : "DEFERRED"}">${escapeHtml(intakeStatusLabel(a.intake_status))}</span>`);
         }
         if (a.evidence_level === "EXTERNAL_CHECKED") {

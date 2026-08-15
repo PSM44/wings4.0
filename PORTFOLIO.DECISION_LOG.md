@@ -918,3 +918,24 @@ Decision:
 
 Spec: `PORTFOLIO.ARCHITECTURE/WINGS4.MARKET_CHECK.RUNTIME.SPEC.md`
 Prototype: `PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/`
+
+## DEC-W4-069 — Market Check intake badge scoped and live UI recorded
+
+Status: EVIDENCE_RECORDED
+Date: 2026-08-15
+Scope: BADGE_FIX_AND_LIVE_UI_RECORD; authorization `W4_MARKET_CHECK_INTAKE_BADGE_FIX_RECORD_AND_PUSH_004`
+
+Recorded evidence:
+
+- WINGS_HELD / default alternatives no longer show “Valid manual intake”.
+- HUMAN_PROVIDED still shows sample/not production, pending intake, or valid manual intake with source metadata.
+- EXTERNAL_CHECKED still shows pending/manual no-live-scan or valid manual external metadata.
+- UNKNOWN/PENDING handling remains available (F-SM-002 / MCQ-BUILD_VS_ADOPT).
+- Live UI validation PASS via Cursor browser MCP at `http://127.0.0.1:8786/`.
+- LOGICAL_TESTS=PASS; CASES=30
+- MARKET_CHECK_RUNTIME_COMPLETE=NO
+- NOT_MARKET_MONITORING=YES
+- NOT_RADAR=YES
+- NOT_RING3=YES
+
+This decision does not authorize a capture form, live web search, monitoring, Ring3, RADAR, child mutation, MD1 reopening, or force push.

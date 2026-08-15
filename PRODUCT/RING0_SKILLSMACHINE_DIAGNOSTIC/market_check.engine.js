@@ -149,7 +149,7 @@
     }
 
     if (!needsManualIntake(entry)) {
-      rec.status = "VALID";
+      rec.status = "NOT_APPLICABLE";
       rec.production_eligible = !isMissingEntry(entry);
       return rec;
     }

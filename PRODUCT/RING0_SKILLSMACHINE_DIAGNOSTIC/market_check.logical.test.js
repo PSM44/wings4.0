@@ -270,6 +270,12 @@ ok((rInt.alternatives || []).some(function (a) { return a.entry_id === "MC-MC-00
 eq(rInt.recommendation, "INTEGRATE", "MC-28 F-MC-002 winner remains INTEGRATE");
 ok(hasLimit(rHpProd, "MANUAL_EVIDENCE_INTAKE_ONLY") && hasLimit(rHpProd, "NOT_RADAR") && hasLimit(rHpProd, "NOT_MARKET_MONITORING"), "MC-29 intake path keeps monitoring/RADAR limits");
 ok(fixture.market_check.runtime_complete === false, "MC-29 runtime_complete remains false");
+ok((rBuild.alternatives || []).filter(function (a) { return a.evidence_level === "WINGS_HELD"; }).every(function (a) {
+  return a.intake_status !== "VALID";
+}), "MC-30 WINGS_HELD alternatives are not VALID manual intake");
+ok((rInt.alternatives || []).filter(function (a) { return a.evidence_level === "WINGS_HELD"; }).every(function (a) {
+  return a.intake_status !== "VALID";
+}), "MC-30 INTEGRATE WINGS_HELD is not VALID manual intake");
 
 if (fails.length) {
   console.error("MARKET_CHECK_LOGICAL_TEST=FAIL");
@@ -277,5 +283,5 @@ if (fails.length) {
   process.exit(1);
 }
 console.log("MARKET_CHECK_LOGICAL_TEST=PASS");
-console.log("CASES=29");
+console.log("CASES=30");
 console.log("VALIDATION_RESULT=LOGICALLY_TESTED");

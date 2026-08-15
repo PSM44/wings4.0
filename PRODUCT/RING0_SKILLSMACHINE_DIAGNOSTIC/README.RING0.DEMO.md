@@ -52,7 +52,9 @@ Open `http://localhost:8765/`.
 24. Open `F-MC-001`, keep **Should we build this, or use something that already exists?**, run Market Check. Expect **Build only the remaining gap**, with a human-provided sample marked not production evidence.
 25. Open `F-MC-002`, keep **Should we integrate an existing solution, or build a remaining gap?**, run Market Check. Expect **Integrate an existing solution**. Confirm EXTERNAL_CHECKED stays a manual record: pending without source metadata, or valid intake with source metadata and no live scan.
 
-Do not treat this runbook as live market intelligence. Bounded human-live validation is recorded for F-SM-001, F-SM-002 UNKNOWN, F-MC-001 BUILD, and F-MC-002 INTEGRATE (DEC-W4-064, DEC-W4-067). Manual evidence intake is contract-defined (DEC-W4-068); it is not a capture form or live market desk.
+26. Confirm Wings-held alternatives do **not** show **Valid manual intake**. That badge is only for HUMAN_PROVIDED / EXTERNAL_CHECKED records.
+
+Do not treat this runbook as live market intelligence. Bounded human-live validation is recorded for F-SM-001, F-SM-002 UNKNOWN, F-MC-001 BUILD, F-MC-002 INTEGRATE, and evidence-intake display (DEC-W4-064, DEC-W4-067, DEC-W4-069). Manual evidence intake is contract-defined (DEC-W4-068); it is not a capture form or live market desk.
 
 ## Evidence classification
 
@@ -64,6 +66,6 @@ Do not mark HUMAN_RING2_LIVE_VALIDATION=PASS until the valid-return path is prov
 - No child-project execution by Wings4.
 - No Ring3 automation.
 - Human Ring2 live validation may still be pending after this build.
-- Bounded on-demand Market Check uses Wings-held/fixture evidence only; it is not MARKET_MONITORING, RADAR, Ring3, or live market intelligence. Human-live validation for this bounded slice is recorded (DEC-W4-064, DEC-W4-067). Manual evidence intake is defined (DEC-W4-068). MARKET_CHECK_RUNTIME_COMPLETE remains NO. HUMAN_PROVIDED sample cannot become production. EXTERNAL_CHECKED is a manual named record with source metadata, or PENDING.
+- Bounded on-demand Market Check uses Wings-held/fixture evidence only; it is not MARKET_MONITORING, RADAR, Ring3, or live market intelligence. Human-live validation for this bounded slice is recorded (DEC-W4-064, DEC-W4-067, DEC-W4-069). Manual evidence intake is defined (DEC-W4-068). MARKET_CHECK_RUNTIME_COMPLETE remains NO. HUMAN_PROVIDED sample cannot become production. EXTERNAL_CHECKED is a manual named record with source metadata, or PENDING. Wings-held alternatives do not use the Valid manual intake badge.
 - W4P005/W4P006/W4P006A changes may remain uncommitted until authorized.
 - Interactive functions must not be marked PASS from static/code presence alone.
