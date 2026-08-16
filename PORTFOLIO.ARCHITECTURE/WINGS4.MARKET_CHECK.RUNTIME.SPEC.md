@@ -1,7 +1,7 @@
 # Wings4 Market Check — Bounded On-Demand Runtime Spec
 
 Status: ACTIVE_BOUNDED_SLICE
-Authority: DEC-W4-061, DEC-W4-063, DEC-W4-066, DEC-W4-067, DEC-W4-068, DEC-W4-069, Q-098, Q-099, Q-101, PR-PORT-006
+Authority: DEC-W4-061, DEC-W4-063, DEC-W4-066, DEC-W4-067, DEC-W4-068, DEC-W4-069, DEC-W4-070, Q-098, Q-099, Q-101, PR-PORT-006
 Prototype: `PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/`
 Engine: `PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/market_check.engine.js`
 
@@ -150,9 +150,15 @@ Recorded evidence-intake badge-fix live UI (DEC-W4-069; HEAD `d2bb845`):
 
 Reasons this slice does not claim complete:
 
-- HUMAN_PROVIDED production exists only as a manual intake contract plus fixture-validated examples. Sample notes still cannot become production evidence. There is no operator capture form.
-- EXTERNAL_CHECKED production exists only as a manual named record with source metadata. Pending records without metadata remain PENDING/UNKNOWN. No live web search.
-- Meeting a subset of the criteria above does not allow `MARKET_CHECK_RUNTIME_COMPLETE=YES`.
+Current status remains **MARKET_CHECK_RUNTIME_COMPLETE=NO**. The remaining issue is a human decision gate (DEC-W4-070), not an unknown technical defect.
+
+- Numbered criteria 1–7 are largely evidenced at audit HEAD `f59f06a`.
+- HUMAN_PROVIDED and EXTERNAL_CHECKED production examples are fixture-held manual-contract records, not operator-captured production intake. Sample notes still cannot become production.
+- Fixture `runtime_complete=false` is enforced by logical tests and the demo fixture validator. A record-only spec edit cannot flip COMPLETE=YES.
+- A capture form is not automatically authorized.
+- Live web search, MARKET_MONITORING, RADAR, Ring3, and child-project mutation remain out of scope.
+- Pablo must choose among DEC-W4-070 options A (BOUNDED_COMPLETE_ACCEPTED), B (OPERATOR_INTAKE_REQUIRED), or C (DEFER_COMPLETE_AND_MOVE_ON). This spec does not choose.
+- If Option A is later selected, a separate coordinated mutation of fixture, tests, validator, spec, and state records is required. That mutation is not authorized here.
 
 ## Result record (Wings4-local)
 
@@ -184,4 +190,4 @@ Reasons this slice does not claim complete:
 - Ring3+.
 - Multi-project combined analysis.
 - Live market crawl or child-project mutation.
-- Claiming MARKET_CHECK_RUNTIME_COMPLETE or Wings4 complete before the completion criteria above are met.
+- Claiming MARKET_CHECK_RUNTIME_COMPLETE or Wings4 complete before the completion criteria above are met and before Pablo selects a DEC-W4-070 option that authorizes a later coordinated flag update.

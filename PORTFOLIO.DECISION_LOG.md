@@ -939,3 +939,49 @@ Recorded evidence:
 - NOT_RING3=YES
 
 This decision does not authorize a capture form, live web search, monitoring, Ring3, RADAR, child mutation, MD1 reopening, or force push.
+
+## DEC-W4-070 — Market Check completion decision gate
+
+Status: HUMAN_DECISION_PENDING
+Date: 2026-08-16
+Scope: RECORD_ONLY_DECISION_PACKET; authorization `W4_MARKET_CHECK_COMPLETION_DECISION_PACKET_008`
+Runtime HEAD at packet: `f59f06a8269431c1820825f58c20d9ff01038686`
+
+This packet does not choose for Pablo. It does not set `MARKET_CHECK_RUNTIME_COMPLETE=YES`. It does not mutate product code, UI, fixture, or tests. It does not authorize a capture form, live web search, MARKET_MONITORING, RADAR, Ring3, child-project mutation, or MD1 reopening.
+
+Contradiction extracted (`W4_MARKET_CHECK_COMPLETION_READINESS_AUDIT_007`):
+
+- Numbered completion criteria 1–7 in `WINGS4.MARKET_CHECK.RUNTIME.SPEC.md` are largely evidenced (on-demand invoke; evidence levels visible; required result fields; option-set coverage as winner or alternative; UNKNOWN when evidence is missing; live UI for invoke, UNKNOWN, BUILD, and INTEGRATE; no child-repository access or live web scan).
+- Spec remaining-reasons still block `MARKET_CHECK_RUNTIME_COMPLETE=YES`.
+- Fixture `runtime_complete=false` is enforced by logical tests MC-13/MC-20/MC-29 and by `app.js` `validateFixture`.
+- `HUMAN_PROVIDED` and `EXTERNAL_CHECKED` production examples are fixture-held manual-contract records, not operator-captured production intake. Sample notes still cannot become production.
+- No human authorization exists to flip COMPLETE.
+
+Pablo decides among exactly these options:
+
+### Option A — BOUNDED_COMPLETE_ACCEPTED
+
+Treat fixture-held `HUMAN_PROVIDED` and `EXTERNAL_CHECKED` production examples as sufficient for this bounded Ring0 Market Check runtime. Authorize a later coordinated flag/test/fixture/spec update.
+
+- Risk: later readers may treat fixture examples as operator production intake.
+- Required next mutation if selected: coordinated update of fixture `runtime_complete`, logical tests that currently assert false, `validateFixture`, spec remaining-reasons, and state/acceptance records. Not authorized by this packet.
+
+### Option B — OPERATOR_INTAKE_REQUIRED
+
+Require a minimal manual operator evidence-intake path before completion. Do not flip COMPLETE.
+
+- Risk: the path can become a capture desk; live web search and monitoring must remain forbidden.
+- Required next mutation if selected: a separate design authorization. Selecting B does not automatically authorize a capture form.
+
+### Option C — DEFER_COMPLETE_AND_MOVE_ON
+
+Keep `MARKET_CHECK_RUNTIME_COMPLETE=NO` and move to the next Wings4 product minibattle.
+
+- Risk: the complete-claim remains unresolved while other product work proceeds.
+- Required next mutation if selected: none for the Market Check complete flag. A separate product minibattle must be chosen.
+
+Current status remains `MARKET_CHECK_RUNTIME_COMPLETE=NO`. If Option A is later selected, a separate coordinated mutation is required.
+
+Spec: `PORTFOLIO.ARCHITECTURE/WINGS4.MARKET_CHECK.RUNTIME.SPEC.md`
+Prototype: `PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/`
+Audit: `W4_MARKET_CHECK_COMPLETION_READINESS_AUDIT_007`

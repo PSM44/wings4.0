@@ -42,6 +42,9 @@
 | W4_RECORD_BUILD_INTEGRATE_LIVE_UI_VALIDATION_002 | Record BUILD/INTEGRATE live UI validation evidence | P0 | COMPLETED_EVIDENCE_RECORDED | DEC-W4-067; record-only; no product/fixture/UI change; COMPLETE=NO; push not authorized. |
 | W4_MARKET_CHECK_EVIDENCE_INTAKE_CONTRACT_001 | Manual HUMAN_PROVIDED/EXTERNAL_CHECKED evidence-intake contract | P0 | COMPLETED_PUSHED | Intake fields required; sample cannot become production; EXTERNAL_CHECKED=MANUAL_RECORD with source metadata or PENDING; no live scan/RADAR/Ring3; COMPLETE=NO; pushed `ab0c8e9`. |
 | W4_MARKET_CHECK_INTAKE_BADGE_FIX_RECORD_AND_PUSH_004 | Scope intake badges; live-validate; record; push | P0 | COMPLETED_EVIDENCE_RECORDED | WINGS_HELD no longer shows Valid manual intake; HUMAN_PROVIDED/EXTERNAL_CHECKED badges remain correct; UNKNOWN remains; COMPLETE=NO. |
+| W4_MARKET_CHECK_BADGE_FIX_SPEC_SYNC_006 | Record badge-fix live UI in runtime spec | P0 | COMPLETED_PUSHED | DEC-W4-069 / d2bb845 reflected in spec; COMPLETE=NO; pushed `f59f06a`. |
+| W4_MARKET_CHECK_COMPLETION_READINESS_AUDIT_007 | Read-only completion-readiness audit | P0 | COMPLETED_EVIDENCE_RECORDED | Criteria 1–7 largely evidenced; remaining issue is human decision, not unknown defect; COMPLETE=NO; HEAD `f59f06a`. |
+| W4_MARKET_CHECK_COMPLETION_DECISION_PACKET_008 | Record-only completion decision gate | P0 | HUMAN_DECISION_PENDING | DEC-W4-070 options A/B/C recorded; no choice made; capture form not auto-authorized; COMPLETE=NO. |
 
 ## Ring0–Ring2 regression / eval inventory (compact)
 
@@ -69,6 +72,7 @@ Evidence-backed cases for reuse. Static code presence alone never establishes us
 | EV-MC-008 | HUMAN_PROVIDED production intake | Complete intake metadata | Can be production; sample/incomplete stay non-production | logical test MC-21/MC-22/MC-27 | LOGICAL | Fixture-held; no operator capture form |
 | EV-MC-009 | EXTERNAL_CHECKED manual intake | Source metadata + MANUAL_RECORD | Valid manual record or PENDING; live-scan method rejected | logical test MC-23/MC-24/MC-25/MC-28 | LOGICAL | No live web; pending path remains |
 | EV-MC-010 | Intake badge scoped | F-MC-001 / F-MC-002 live UI | WINGS_HELD does not show Valid manual intake; HUMAN_PROVIDED/EXTERNAL_CHECKED remain labeled | logical test MC-30; live UI | LOGICAL + BROWSER | Fixture-held only |
+| EV-MC-011 | Completion decision gate | Audit HEAD f59f06a | COMPLETE remains NO until Pablo selects DEC-W4-070 A/B/C | DEC-W4-070; readiness audit 007 | RECORD_ONLY | Human decision pending; fixture runtime_complete=false enforced |
 
 Scope:
 - Wings4-local product Ring0+Ring1+Ring2 cumulative baseline committed (`03a589d`).
