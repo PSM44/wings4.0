@@ -53,8 +53,10 @@ Open `http://localhost:8765/`.
 25. Open `F-MC-002`, keep **Should we integrate an existing solution, or build a remaining gap?**, run Market Check. Expect **Integrate an existing solution**. Confirm EXTERNAL_CHECKED stays a manual record: pending without source metadata, or valid intake with source metadata and no live scan.
 
 26. Confirm Wings-held alternatives do **not** show **Valid manual intake**. That badge is only for HUMAN_PROVIDED / EXTERNAL_CHECKED records.
+27. Confirm the 1–4 step markers say **Current step — not navigation** and do not act as tabs.
+28. Confirm **Path** and **Limit** are visible without opening **About this view**, and remain visible on the selected finding.
 
-Do not treat this runbook as live market intelligence. Bounded human-live validation is recorded for F-SM-001, F-SM-002 UNKNOWN, F-MC-001 BUILD, F-MC-002 INTEGRATE, and evidence-intake display (DEC-W4-064, DEC-W4-067, DEC-W4-069). Manual evidence intake is contract-defined (DEC-W4-068); it is not a capture form or live market desk. Bounded Market Check runtime complete is accepted (DEC-W4-071) for this Ring0 runtime/demo slice only. Post-complete live UI validation PASS is recorded at HEAD `ad53a94` (DEC-W4-072; Cursor browser MCP; `http://127.0.0.1:8787/`). There is no dedicated MARKET_CHECK_RUNTIME_COMPLETE=YES badge; status is coherent because the fixture loads and Market Check is ready.
+Do not treat this runbook as live market intelligence. Bounded human-live validation is recorded for F-SM-001, F-SM-002 UNKNOWN, F-MC-001 BUILD, F-MC-002 INTEGRATE, and evidence-intake display (DEC-W4-064, DEC-W4-067, DEC-W4-069). Manual evidence intake is contract-defined (DEC-W4-068); it is not a capture form or live market desk. Bounded Market Check runtime complete is accepted (DEC-W4-071) for this Ring0 runtime/demo slice only. Post-complete live UI validation PASS is recorded at HEAD `ad53a94` (DEC-W4-072; Cursor browser MCP; `http://127.0.0.1:8787/`). There is no dedicated MARKET_CHECK_RUNTIME_COMPLETE=YES badge; status is coherent because the fixture loads and Market Check is ready. Additive GAP_01/GAP_02 operator UX cleanup is recorded (DEC-W4-073) and does not reopen MD1.
 
 ## Evidence classification
 
@@ -67,5 +69,6 @@ Do not mark HUMAN_RING2_LIVE_VALIDATION=PASS until the valid-return path is prov
 - No Ring3 automation.
 - Human Ring2 live validation may still be pending after this build.
 - Bounded on-demand Market Check uses Wings-held/fixture evidence only; it is not MARKET_MONITORING, RADAR, Ring3, or live market intelligence. Human-live validation for this bounded slice is recorded (DEC-W4-064, DEC-W4-067, DEC-W4-069). Manual evidence intake is defined (DEC-W4-068). MARKET_CHECK_RUNTIME_COMPLETE=YES for this bounded Ring0 runtime/demo only (DEC-W4-071). Post-complete live UI PASS is recorded (DEC-W4-072). No dedicated COMPLETE badge is visible; this must not be generalized into Wings4 product completion, operator production intake, market monitoring, RADAR, or Ring3 readiness. This does not authorize a capture form. HUMAN_PROVIDED sample cannot become production. EXTERNAL_CHECKED is a manual named record with source metadata, or PENDING. Wings-held alternatives do not use the Valid manual intake badge.
+- GAP_01/GAP_02 operator UX friction is addressed additively (DEC-W4-073) without reopening MD1. Stage markers are status, not navigation. Path/Limit is visible without opening About. GAP_03–GAP_05 remain.
 - W4P005/W4P006/W4P006A changes may remain uncommitted until authorized.
 - Interactive functions must not be marked PASS from static/code presence alone.

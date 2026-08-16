@@ -106,9 +106,13 @@
       { id: "act", n: "3", name: "Act" },
       { id: "verify", n: "4", name: "Verify" }
     ];
-    return `<nav class="workflow-stages" aria-label="Management workflow">${stages.map((s) =>
-      `<span class="workflow-stage${s.id === active ? " is-active" : ""}">${s.n} ${escapeHtml(s.name)}</span>`
-    ).join("")}</nav>`;
+    return `<div class="workflow-status" role="status" aria-label="Current step. Status only, not navigation.">
+      <p class="workflow-status-kicker">Current step — not navigation</p>
+      <ol class="workflow-stages">${stages.map((s) =>
+        `<li class="workflow-stage${s.id === active ? " is-active" : ""}"${s.id === active ? " aria-current=\"step\"" : ""}><span class="workflow-stage-n">${s.n}</span> ${escapeHtml(s.name)}</li>`
+      ).join("")}</ol>
+      <p class="workflow-limit"><strong>Path:</strong> Understand → Decide → Act → Verify. <strong>Limit:</strong> return verification only — not an independent re-check.</p>
+    </div>`;
   }
 
   function findingFactText(finding) {

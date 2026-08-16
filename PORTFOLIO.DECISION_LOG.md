@@ -1065,3 +1065,22 @@ This decision does not authorize a UI badge, capture form, live web search, MARK
 
 Spec: `PORTFOLIO.ARCHITECTURE/WINGS4.MARKET_CHECK.RUNTIME.SPEC.md`
 Prototype: `PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/`
+
+## DEC-W4-073 — Bounded operator UX friction cleanup (GAP_01, GAP_02)
+
+Status: APPROVED_HUMAN_DIRECTION
+Date: 2026-08-16
+Scope: BOUNDED_OPERATOR_UX_FRICTION_CLEANUP_ONLY; authorization `W4_BOUNDED_OPERATOR_UX_FRICTION_CLEANUP_013`
+Human decision: W4_NEXT_PRODUCT_MINIBATTLE_SELECTION_AUDIT_012 recommended option A
+
+Decision:
+
+- Address GAP_01: workflow stage markers are status only, not navigation. They must not look or behave like clickable tabs.
+- Address GAP_02: Path and Limit remain visible without opening About this view, and remain visible at the selected-finding decision moment.
+- This is an additive post-MD1 operator UX slice. It does not reopen MD1.
+- Do not rewrite the historical GAP_01/GAP_02 list in DEC-W4-062.
+- GAP_03, GAP_04, and GAP_05 remain visible non-blocking MD1 limitations.
+- Market Check bounded complete remains YES. Market Check decision logic is unchanged.
+- No capture form, live web search, MARKET_MONITORING, RADAR, Ring3, independent resynchronization, or child-project mutation.
+
+Prototype: `PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/`

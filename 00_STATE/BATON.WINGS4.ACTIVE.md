@@ -71,7 +71,7 @@ RUNTIME_GATE_PROHIBITED_PATTERN=Boolean.ToUpper_without_ToString
 
 ## Current objective
 
-Management Delivery #1 remains accepted and closed for bounded MD1 scope. Bounded on-demand Market Check runtime is committed (`5a6714d`) and human-live validated, including F-MC-001 BUILD and F-MC-002 INTEGRATE (`3063dad`, DEC-W4-067). A manual evidence-intake contract is defined (DEC-W4-068); intake badges are scoped so WINGS_HELD is not labeled Valid manual intake (DEC-W4-069). Pablo selected DEC-W4-070 Option A (DEC-W4-071). MARKET_CHECK_RUNTIME_COMPLETE=YES for the bounded Ring0 runtime/demo only. Post-complete live UI validation PASS is recorded at HEAD `ad53a94` (DEC-W4-072). No dedicated COMPLETE badge is visible; status is coherent because the fixture loads and Market Check is ready. Capture form, live web, monitoring, RADAR, and Ring3 remain unauthorized. Do not reopen MD1. Next product minibattle remains a human decision.
+Management Delivery #1 remains accepted and closed for bounded MD1 scope. Bounded on-demand Market Check runtime is committed (`5a6714d`) and human-live validated, including F-MC-001 BUILD and F-MC-002 INTEGRATE (`3063dad`, DEC-W4-067). A manual evidence-intake contract is defined (DEC-W4-068); intake badges are scoped so WINGS_HELD is not labeled Valid manual intake (DEC-W4-069). Pablo selected DEC-W4-070 Option A (DEC-W4-071). MARKET_CHECK_RUNTIME_COMPLETE=YES for the bounded Ring0 runtime/demo only. Post-complete live UI validation PASS is recorded at HEAD `ad53a94` (DEC-W4-072). No dedicated COMPLETE badge is visible; status is coherent because the fixture loads and Market Check is ready. Additive GAP_01/GAP_02 operator UX cleanup is authorized (DEC-W4-073) and does not reopen MD1. Capture form, live web, monitoring, RADAR, and Ring3 remain unauthorized.
 
 ## Current confirmed state
 
@@ -110,9 +110,9 @@ Management Delivery #1 remains accepted and closed for bounded MD1 scope. Bounde
 - BLOCKING_GAP_COUNT=0
 - NET_MANAGEMENT_VALUE_AT_ACCEPTANCE=PARTIAL
 - CONTRACT_GAP_001=FIXED
-- STAGE_INDICATORS_LOOK_CLICKABLE_BUT_ARE_NOT_NAVIGATION=OPEN_NON_BLOCKING
-- GAP_01=STAGE_INDICATORS_LOOK_CLICKABLE_BUT_ARE_NOT_NAVIGATION=OPEN_NON_BLOCKING
-- GAP_02=ABOUT_ORIENTATION_PARTLY_COLLAPSED_OR_HIDDEN=OPEN_NON_BLOCKING
+- STAGE_INDICATORS_LOOK_CLICKABLE_BUT_ARE_NOT_NAVIGATION=ADDRESSED_POST_MD1_DEC_W4_073
+- GAP_01=STAGE_INDICATORS_LOOK_CLICKABLE_BUT_ARE_NOT_NAVIGATION=ADDRESSED_POST_MD1_DEC_W4_073
+- GAP_02=ABOUT_ORIENTATION_PARTLY_COLLAPSED_OR_HIDDEN=ADDRESSED_POST_MD1_DEC_W4_073
 - GAP_03=RESIDUAL_JARGON_AND_FACT_FALLBACK_IN_SOME_FINDINGS=OPEN_NON_BLOCKING
 - GAP_04=MANUAL_INTERVENTION_PACKAGE_TRANSFER=OPEN_NON_BLOCKING
 - GAP_05=FIXTURE_OR_WINGS_HELD_EVIDENCE_NOT_LIVE_CHILD_REPOSITORY_READ=OPEN_NON_BLOCKING
@@ -178,15 +178,16 @@ DECISION_MC_INTAKE_BADGE=PORTFOLIO.DECISION_LOG.md#dec-w4-069
 DECISION_MC_COMPLETION_GATE=PORTFOLIO.DECISION_LOG.md#dec-w4-070
 DECISION_MC_BOUNDED_COMPLETE=PORTFOLIO.DECISION_LOG.md#dec-w4-071
 DECISION_MC_BOUNDED_COMPLETE_LIVE=PORTFOLIO.DECISION_LOG.md#dec-w4-072
+DECISION_UX_FRICTION=PORTFOLIO.DECISION_LOG.md#dec-w4-073
 HUMAN_CANON=HUMAN/HUMAN.WINGS4.md
 
 ## Next action
 
-CURRENT_MINIBATTLE=W4_MARKET_CHECK_BOUNDED_COMPLETE_LIVE_UI_RECORD_011
+CURRENT_MINIBATTLE=W4_BOUNDED_OPERATOR_UX_FRICTION_CLEANUP_013
 NEXT_ROLE=ORCHESTRATOR
 NEXT_ROOT=C:\01. GitHub\Wings4.0
-NEXT_PRODUCT_MINIBATTLE=HUMAN_DECISION_REQUIRED_BEYOND_BOUNDED_MARKET_CHECK
-NEXT_CANDIDATE_1=BOUNDED_OPERATOR_UX_FRICTION_CLEANUP
+NEXT_PRODUCT_MINIBATTLE=HUMAN_DECISION_REQUIRED_BEYOND_BOUNDED_UX
+NEXT_CANDIDATE_1=GAP_03_JARGON_REWRITE
 NEXT_CANDIDATE_2=INDEPENDENT_RESYNCHRONIZATION_BEYOND_RING2
 NEXT_CANDIDATE_3=NONE_WITHOUT_SEPARATE_AUTHORIZATION
 NEXT_CONTINUITY_ACTION=KEEP_BOUNDED_MARKET_CHECK_COMPLETE_DO_NOT_GENERALIZE
@@ -201,9 +202,9 @@ PUSH_POLICY=NO_PUSH_WITHOUT_EXPLICIT_HUMAN_AUTHORIZATION
 3. Expect a clean worktree unless Git shows otherwise. MD1 is accepted and closed; do not reopen MD1 as an open delivery.
 4. Treat Ring0 `1e8315d`, Ring1 `16b28d1`, Ring1/Ring2 `03a589d`, North Star `d23d292`, temp hygiene `e199d8b`, MD1 UX `6bb3bfc`, continuity contracts `9e301acf`, post-MD1 continuity `edc3b86`, Market Check runtime `5a6714d`, and BUILD/INTEGRATE coverage `3063dad` as ancestors.
 5. Keep English/C1 coaching active; request missing evidence or mark UNKNOWN; never guess.
-6. Do not implement Ring3+, RADAR, MARKET_MONITORING, or independent resynchronization without separate authorization. Bounded Market Check runtime complete (DEC-W4-071) is not Wings4 complete. Post-complete live UI PASS is recorded (DEC-W4-072); no dedicated COMPLETE badge. Do not add a capture form, COMPLETE UI badge, or live web search.
+6. Do not implement Ring3+, RADAR, MARKET_MONITORING, or independent resynchronization without separate authorization. Bounded Market Check runtime complete (DEC-W4-071) is not Wings4 complete. Post-complete live UI PASS is recorded (DEC-W4-072); no dedicated COMPLETE badge. GAP_01/GAP_02 additive UX cleanup is recorded (DEC-W4-073) and does not reopen MD1. Do not add a capture form, COMPLETE UI badge, or live web search.
 7. Do not inspect AI.History/.
 8. Do not mutate SkillsMachine or any child project.
 9. Do not push without explicit authorization.
 10. For same-workspace delta continuity after bootstrap, use SESSION_CONTINUE_ENTRYPOINT; do not treat BATON as SESSION_CONTINUE.
-LAST_REFRESHED_AT: 2026-08-16T11:15:00-04:00
+LAST_REFRESHED_AT: 2026-08-16T11:25:00-04:00

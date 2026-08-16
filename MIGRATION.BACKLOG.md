@@ -48,6 +48,8 @@
 | W4_MARKET_CHECK_BOUNDED_COMPLETE_ACCEPTANCE_009 | Accept bounded Market Check runtime complete | P0 | COMPLETED_BOUNDED_COMPLETE | DEC-W4-071 Option A; fixture-held HP/EC examples accepted for Ring0 runtime/demo; COMPLETE=YES bounded; no capture form/live web/monitoring/RADAR/Ring3. |
 | W4_MARKET_CHECK_BOUNDED_COMPLETE_LIVE_UI_VALIDATION_010 | Live UI validation after COMPLETE=YES | P0 | COMPLETED_EVIDENCE_RECORDED | PASS at HEAD `ad53a94`; logical PASS CASES=31; Cursor browser MCP; `http://127.0.0.1:8787/`; no auto-run; F-SM-001 USE_EXISTING, F-MC-001 BUILD, F-MC-002 INTEGRATE, F-SM-002 UNKNOWN; no capture form/live web; COMPLETE badge not visible. |
 | W4_MARKET_CHECK_BOUNDED_COMPLETE_LIVE_UI_RECORD_011 | Record bounded complete live UI PASS | P0 | COMPLETED_EVIDENCE_RECORDED | DEC-W4-072; record-only; product behavior unchanged; UI badge limitation recorded; next product minibattle remains a human decision. |
+| W4_NEXT_PRODUCT_MINIBATTLE_SELECTION_AUDIT_012 | Read-only next minibattle audit after Market Check complete | P0 | COMPLETED_EVIDENCE_RECORDED | Recommended A: GAP_01+GAP_02 operator UX friction cleanup; no mutation. |
+| W4_BOUNDED_OPERATOR_UX_FRICTION_CLEANUP_013 | Bounded GAP_01/GAP_02 operator UX cleanup | P0 | COMPLETED_BOUNDED_UX | DEC-W4-073; status not navigation; Path/Limit visible without opening About; MD1 not reopened; Market Check logic unchanged. |
 
 ## Ring0–Ring2 regression / eval inventory (compact)
 
@@ -78,6 +80,8 @@ Evidence-backed cases for reuse. Static code presence alone never establishes us
 | EV-MC-011 | Completion decision gate | Audit HEAD f59f06a | COMPLETE remains NO until Pablo selects DEC-W4-070 A/B/C | DEC-W4-070; readiness audit 007 | RECORD_ONLY | Superseded by DEC-W4-071 bounded complete |
 | EV-MC-012 | Bounded runtime complete | DEC-W4-071 Option A | MARKET_CHECK_RUNTIME_COMPLETE=YES for Ring0 runtime/demo only | DEC-W4-071; fixture runtime_complete; logical MC-13/MC-31 | LOGICAL | Not Wings4 complete; no capture form; no live web |
 | EV-MC-013 | Post-complete live UI | HEAD `ad53a94` after DEC-W4-071 | Complete-status coherent; no dedicated COMPLETE badge; winners/UNKNOWN/intake display unchanged | W4_MARKET_CHECK_BOUNDED_COMPLETE_LIVE_UI_VALIDATION_010; DEC-W4-072 | LOGICAL + BROWSER | Not Wings4 complete; no UI badge added |
+| EV-UX-001 | Stage markers are status | Selected finding workflow strip | Not navigation; labelled “not navigation”; not clickable | DEC-W4-073; app.js workflowNav; styles.css | BROWSER | Additive post-MD1; does not rewrite DEC-W4-062 |
+| EV-UX-002 | Path/Limit visible | Page load and selected finding | Path and Limit visible without opening About | DEC-W4-073; index.html orient-strip; workflow-limit | BROWSER | GAP_03–05 remain |
 
 Scope:
 - Wings4-local product Ring0+Ring1+Ring2 cumulative baseline committed (`03a589d`).
