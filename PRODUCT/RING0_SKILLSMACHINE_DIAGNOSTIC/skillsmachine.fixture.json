@@ -564,6 +564,8 @@
       "status": "OPEN",
       "severity": "HIGH",
       "data_class": "CANONICAL_DERIVED",
+      "fact": "SkillsMachine currently has unfinished local work outside the WHOAMI transfer. That unfinished work remains SkillsMachine-owned.",
+      "inference": "Mixing that unrelated unfinished work into the WHOAMI transfer would risk a dirty handoff.",
       "summary": "SkillsMachine has unfinished local changes outside the WHOAMI transfer scope; mixing them would risk a dirty handoff.",
       "evidence": [
         {
@@ -600,6 +602,8 @@
       "status": "RESOLVED",
       "severity": "MEDIUM",
       "data_class": "CANONICAL_DERIVED",
+      "fact": "The Hermes ownership blocker is already closed. Hermes stays frozen, and no successor is authorized without a real use case.",
+      "inference": "This diagnosis should not reopen Hermes reactivation. The capability stays unassigned until a concrete need exists.",
       "summary": "PC-013 is resolved: Hermes stays frozen; generic tool-integration ownership stays unassigned until a real use case; Brainy is preferred if later needed.",
       "evidence": [
         {
@@ -631,6 +635,8 @@
       "status": "OPEN",
       "severity": "MEDIUM",
       "data_class": "REPRESENTATIVE_NONCANONICAL",
+      "fact": "This diagnosis treats updater readiness as illustrative. Wings did not re-check SkillsMachine files for real-user proof from this screen.",
+      "inference": "Lab or fixture signals can look stronger than proven real-user acceptance. Management should not treat updater readiness as proven.",
       "summary": "Lab evidence for the updater looks stronger than proven real-user acceptance. Marked illustrative because this build did not reopen SkillsMachine files.",
       "evidence": [
         {

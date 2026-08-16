@@ -1079,8 +1079,25 @@ Decision:
 - Address GAP_02: Path and Limit remain visible without opening About this view, and remain visible at the selected-finding decision moment.
 - This is an additive post-MD1 operator UX slice. It does not reopen MD1.
 - Do not rewrite the historical GAP_01/GAP_02 list in DEC-W4-062.
-- GAP_03, GAP_04, and GAP_05 remain visible non-blocking MD1 limitations.
-- Market Check bounded complete remains YES. Market Check decision logic is unchanged.
+- No capture form, live web search, MARKET_MONITORING, RADAR, Ring3, independent resynchronization, or child-project mutation.
+
+Prototype: `PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/`
+
+## DEC-W4-074 — Bounded GAP_03 fact-fallback and class-help microcopy
+
+Status: APPROVED_HUMAN_DIRECTION
+Date: 2026-08-16
+Scope: BOUNDED_GAP_03_FACT_INFERENCE_MICROCOPY_ONLY; authorization `W4_GAP_03_BOUNDED_FACT_INFERENCE_MICROCOPY_016`
+Human decision: W4_GAP_03_OPERATOR_LANGUAGE_DECISION_AUDIT_015 recommended option A
+
+Decision:
+
+- Address the fact-fallback part of GAP_03: F-SM-002, F-SM-003, and F-SM-004 must have explicit operator Fact and Inference. Fact must not fall back to a raw evidence excerpt.
+- Add help chips for OMISSION, OPPORTUNITY, and DISCREPANCY. Keep existing DUPLICATION and INTERFERENCE help.
+- Do not remap finding_class codes. Do not rename WHOAMI, HUMAN, or ORCHESTRATOR. Remaining class-code and WHOAMI operator-noun jargon stays deferred under DEC-W4-055.
+- BATON label `GAP_03_JARGON_REWRITE` does not authorize a broad jargon rewrite.
+- This is an additive post-MD1 operator copy slice. It does not reopen MD1. Do not rewrite the historical GAP_03 list in DEC-W4-062.
+- Market Check bounded complete remains YES. Market Check decision logic, questions, winners, intake badges, recommendations, alternatives, and catalog are unchanged.
 - No capture form, live web search, MARKET_MONITORING, RADAR, Ring3, independent resynchronization, or child-project mutation.
 
 Prototype: `PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/`

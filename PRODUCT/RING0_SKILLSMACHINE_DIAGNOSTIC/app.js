@@ -83,6 +83,9 @@
     INFERENCE: "An Inference is Wings' reasoned conclusion from the facts. It may be wrong; the human decides.",
     DUPLICATION: "Duplication means overlapping ownership or instruction sources for the same concern inside one project or across projects.",
     INTERFERENCE: "Interference means one workstream or change blocks, confuses or contaminates another.",
+    OMISSION: "Omission means something expected is missing from the current product surface.",
+    OPPORTUNITY: "Opportunity means a beneficial change is available. It is not automatically a required action.",
+    DISCREPANCY: "Discrepancy means two claims or signals do not match; one may overstate readiness or proof.",
     "governed intervention": "A governed intervention is a controlled request to a destination project authority. Wings does not rewrite that project.",
     verification: "Verification checks returned evidence against the approved package. It is not yet an independent re-check of the destination repository.",
     W4IP: "W4IP is the Wings Intervention Package ID (W4IP-YYYYMMDD-NNNN). Returns must reuse the same ID.",
@@ -117,7 +120,6 @@
 
   function findingFactText(finding) {
     if (finding && finding.fact) return finding.fact;
-    if (finding && finding.evidence && finding.evidence[0] && finding.evidence[0].excerpt) return finding.evidence[0].excerpt;
     return "";
   }
 
@@ -1592,7 +1594,7 @@
     const canReopen = decision && (decision.status === "CLOSED" || decision.status === "POSTPONED");
     const factLead = findingFactText(finding);
     const inferenceLead = findingInferenceText(finding);
-    const classHelpKey = (finding.finding_class === "DUPLICATION" || finding.finding_class === "INTERFERENCE")
+    const classHelpKey = (finding.finding_class && HELP_COPY[finding.finding_class])
       ? finding.finding_class
       : null;
 
