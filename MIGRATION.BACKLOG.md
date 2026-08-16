@@ -53,7 +53,9 @@
 | W4_GAP_03_OPERATOR_LANGUAGE_DECISION_AUDIT_015 | Read-only GAP_03 operator-language audit | P0 | COMPLETED_EVIDENCE_RECORDED | Recommended A: bounded fact/inference microcopy; no WHOAMI rename; no class-code remap; no mutation. |
 | W4_GAP_03_BOUNDED_FACT_INFERENCE_MICROCOPY_016 | Bounded GAP_03 fact-fallback and class-help microcopy | P0 | COMPLETED_BOUNDED_COPY | DEC-W4-074; explicit fact/inference on F-SM-002/003/004; no excerpt-as-Fact; OMISSION/OPPORTUNITY/DISCREPANCY help; WHOAMI kept; Market Check logic unchanged. |
 | W4_GAP_04_MANUAL_PACKAGE_TRANSFER_DECISION_AUDIT_017 | Read-only GAP_04 manual package-transfer audit | P0 | COMPLETED_EVIDENCE_RECORDED | Recommended A: bounded transfer help; COPY lifecycle unchanged; no temp-path write; no mutation in the audit. |
-| W4_GAP_04_BOUNDED_TRANSFER_HELP_018 | Bounded GAP_04 transfer help | P0 | COMPLETED_BOUNDED_COPY_UNCOMMITTED | DEC-W4-075; Act-panel note that Wings prepares and does not send the package; header “send” wording removed; COPY does not mark export; DOWNLOAD unchanged; GAP_05 remains. |
+| W4_GAP_04_BOUNDED_TRANSFER_HELP_018 | Bounded GAP_04 transfer help | P0 | COMPLETED_BOUNDED_COPY | DEC-W4-075; committed `480443a`; validated in 018; committed in 019; Act-panel note that Wings prepares and does not send the package; COPY does not mark export; DOWNLOAD unchanged; GAP_05 remains. |
+| W4_GAP_04_TRANSFER_HELP_LOCAL_COMMIT_019 | Local commit of GAP_04 transfer help | P0 | COMPLETED | Commit `480443a`; seven authorized files; product behavior unchanged from 018; no push in 019. |
+| W4_GAP_04_RECORD_REFRESH_AND_PUSH_020 | Record GAP_04 help committed; push two-commit state | P0 | COMPLETED_PUSHED | Record-only BATON/backlog; GAP_04 help committed at `480443a`; COPY/DOWNLOAD unchanged; GAP_05 unauthorized; no auto-delivery, temp-path write, child mutation, Ring3/RADAR/monitoring/live web. |
 
 ## Ring0–Ring2 regression / eval inventory (compact)
 
@@ -88,7 +90,7 @@ Evidence-backed cases for reuse. Static code presence alone never establishes us
 | EV-UX-002 | Path/Limit visible | Page load and selected finding | Path and Limit visible without opening About | DEC-W4-073; index.html orient-strip; workflow-limit | BROWSER | GAP_05 remains; GAP_04 transfer help addressed DEC-W4-075; WHOAMI/class-code jargon deferred |
 | EV-UX-003 | Fact is not an evidence excerpt | F-SM-002 / F-SM-003 / F-SM-004 selected | Explicit operator Fact/Inference; excerpt remains under Evidence | DEC-W4-074; fixture fact/inference; app.js findingFactText | BROWSER | Remaining WHOAMI/class-code jargon deferred under DEC-W4-055 |
 | EV-UX-004 | Class help chips | OMISSION / OPPORTUNITY / DISCREPANCY findings | Help available; codes not remapped | DEC-W4-074; app.js HELP_COPY | BROWSER | DUPLICATION/INTERFERENCE help preserved |
-| EV-UX-005 | Package transfer is human-mediated | ACCEPT/MODIFY Act panel | Transfer note visible without About or Raw package text; Wings does not send; COPY does not mark export | DEC-W4-075; app.js package-transfer-note; index.html lede | BROWSER | Manual handoff remains; COPY lifecycle unchanged; GAP_05 remains |
+| EV-UX-005 | Package transfer is human-mediated | ACCEPT/MODIFY Act panel | Transfer note visible without About or Raw package text; Wings does not send; COPY does not mark export | DEC-W4-075; app.js package-transfer-note; index.html lede; commit `480443a` | BROWSER | Manual handoff remains; COPY lifecycle unchanged; GAP_05 remains |
 
 Scope:
 - Wings4-local product Ring0+Ring1+Ring2 cumulative baseline committed (`03a589d`).
