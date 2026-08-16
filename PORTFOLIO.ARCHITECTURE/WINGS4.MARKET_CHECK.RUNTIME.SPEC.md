@@ -1,7 +1,7 @@
 # Wings4 Market Check — Bounded On-Demand Runtime Spec
 
 Status: ACTIVE_BOUNDED_SLICE
-Authority: DEC-W4-061, DEC-W4-063, DEC-W4-066, DEC-W4-067, DEC-W4-068, Q-098, Q-099, Q-101, PR-PORT-006
+Authority: DEC-W4-061, DEC-W4-063, DEC-W4-066, DEC-W4-067, DEC-W4-068, DEC-W4-069, Q-098, Q-099, Q-101, PR-PORT-006
 Prototype: `PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/`
 Engine: `PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/market_check.engine.js`
 
@@ -135,6 +135,18 @@ Recorded live UI evidence (DEC-W4-067; HEAD `3063dad`):
 - F-MC-002 INTEGRATE live UI validation = PASS
 - UNKNOWN remains available
 - Method: LOCAL_CHROME_CDP (Cursor browser MCP unavailable)
+
+Recorded evidence-intake badge-fix live UI (DEC-W4-069; HEAD `d2bb845`):
+
+- DEC-W4-069 / `d2bb845` verified the evidence-intake badge fix.
+- WINGS_HELD / default alternatives no longer show “Valid manual intake”.
+- HUMAN_PROVIDED still shows sample/not production, pending intake, or valid manual intake with source metadata where applicable.
+- EXTERNAL_CHECKED still shows pending/manual no-live-scan or valid manual external metadata where applicable.
+- UNKNOWN handling remains available (F-SM-002 / MCQ-BUILD_VS_ADOPT).
+- LOGICAL_TESTS=PASS; CASES=30
+- Live UI validation PASS via Cursor browser MCP at `http://127.0.0.1:8786/`.
+- NOT_MARKET_MONITORING / NOT_RADAR / NOT_RING3 / not live web monitoring.
+- This record does not claim `MARKET_CHECK_RUNTIME_COMPLETE`.
 
 Reasons this slice does not claim complete:
 
