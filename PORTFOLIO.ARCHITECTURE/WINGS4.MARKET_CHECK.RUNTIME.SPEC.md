@@ -1,7 +1,7 @@
 # Wings4 Market Check — Bounded On-Demand Runtime Spec
 
 Status: ACTIVE_BOUNDED_SLICE
-Authority: DEC-W4-061, DEC-W4-063, DEC-W4-066, DEC-W4-067, DEC-W4-068, DEC-W4-069, DEC-W4-070, Q-098, Q-099, Q-101, PR-PORT-006
+Authority: DEC-W4-061, DEC-W4-063, DEC-W4-066, DEC-W4-067, DEC-W4-068, DEC-W4-069, DEC-W4-070, DEC-W4-071, Q-098, Q-099, Q-101, PR-PORT-006
 Prototype: `PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/`
 Engine: `PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/market_check.engine.js`
 
@@ -113,7 +113,7 @@ Rules:
 - `EXTERNAL_CHECKED` production requires `check_method=MANUAL_RECORD`, `source_type=MANUAL_EXTERNAL_RECORD`, and complete source metadata. A live-scan method is invalid.
 - `expiry_date` is optional; `review_status=EXPIRED` makes the record non-production.
 
-This contract does not create an evidence-capture desk or claim `MARKET_CHECK_RUNTIME_COMPLETE`.
+This contract does not create an evidence-capture desk. Bounded runtime complete (DEC-W4-071) does not create a capture form and does not authorize live web search.
 
 ## Completion criteria (`MARKET_CHECK_RUNTIME_COMPLETE=YES`)
 
@@ -127,7 +127,7 @@ All of the following are required. Meeting a subset does not allow the flag.
 6. Human-live validation PASS for on-demand invoke and for the UNKNOWN recommendation path.
 7. No child-repository access; no live web scan; discovery does not authorize adoption.
 
-Current status: **MARKET_CHECK_RUNTIME_COMPLETE=NO**.
+Current status: **MARKET_CHECK_RUNTIME_COMPLETE=YES** for the bounded Ring0 Market Check runtime/demo slice only (DEC-W4-071). This is not Wings4 complete, not a capture form, and not future production-system complete.
 
 Recorded live UI evidence (DEC-W4-067; HEAD `3063dad`):
 
@@ -146,19 +146,18 @@ Recorded evidence-intake badge-fix live UI (DEC-W4-069; HEAD `d2bb845`):
 - LOGICAL_TESTS=PASS; CASES=30
 - Live UI validation PASS via Cursor browser MCP at `http://127.0.0.1:8786/`.
 - NOT_MARKET_MONITORING / NOT_RADAR / NOT_RING3 / not live web monitoring.
-- This record does not claim `MARKET_CHECK_RUNTIME_COMPLETE`.
 
-Reasons this slice does not claim complete:
+Bounded completion accepted (DEC-W4-071; Option A BOUNDED_COMPLETE_ACCEPTED):
 
-Current status remains **MARKET_CHECK_RUNTIME_COMPLETE=NO**. The remaining issue is a human decision gate (DEC-W4-070), not an unknown technical defect.
+Pablo accepted fixture-held HUMAN_PROVIDED and EXTERNAL_CHECKED production examples as sufficient for this bounded Ring0 Market Check runtime/demo. Numbered criteria 1–7 are met for that slice.
 
-- Numbered criteria 1–7 are largely evidenced at audit HEAD `f59f06a`.
-- HUMAN_PROVIDED and EXTERNAL_CHECKED production examples are fixture-held manual-contract records, not operator-captured production intake. Sample notes still cannot become production.
-- Fixture `runtime_complete=false` is enforced by logical tests and the demo fixture validator. A record-only spec edit cannot flip COMPLETE=YES.
-- A capture form is not automatically authorized.
+Still true and unchanged:
+
+- Sample HUMAN_PROVIDED notes cannot become production. Incomplete intake stays PENDING/UNKNOWN.
+- EXTERNAL_CHECKED remains MANUAL_RECORD only. Live-scan methods are invalid.
+- A capture form is not authorized.
 - Live web search, MARKET_MONITORING, RADAR, Ring3, and child-project mutation remain out of scope.
-- Pablo must choose among DEC-W4-070 options A (BOUNDED_COMPLETE_ACCEPTED), B (OPERATOR_INTAKE_REQUIRED), or C (DEFER_COMPLETE_AND_MOVE_ON). This spec does not choose.
-- If Option A is later selected, a separate coordinated mutation of fixture, tests, validator, spec, and state records is required. That mutation is not authorized here.
+- Future operator-captured production intake remains a separate rule.
 
 ## Result record (Wings4-local)
 
@@ -190,4 +189,5 @@ Current status remains **MARKET_CHECK_RUNTIME_COMPLETE=NO**. The remaining issue
 - Ring3+.
 - Multi-project combined analysis.
 - Live market crawl or child-project mutation.
-- Claiming MARKET_CHECK_RUNTIME_COMPLETE or Wings4 complete before the completion criteria above are met and before Pablo selects a DEC-W4-070 option that authorizes a later coordinated flag update.
+- Claiming Wings4 complete, portfolio-wide automation complete, or future production-system complete from this bounded Market Check runtime flag.
+- Operator capture form, live web search, MARKET_MONITORING, RADAR, Ring3, or child-project mutation.

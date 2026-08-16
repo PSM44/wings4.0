@@ -72,7 +72,7 @@ eq(r1.evidence_level, "WINGS_HELD", "MC-11 winner evidence_level WINGS_HELD");
 ok(r1.alternatives.every(function (a) { return a.evidence_level; }), "MC-11 alternatives carry evidence_level");
 eq(r2.evidence_level, "UNKNOWN", "MC-12 UNKNOWN path evidence_level");
 ok((fixture.market_check.evidence_levels || []).indexOf("EXTERNAL_CHECKED") >= 0, "MC-13 evidence levels include EXTERNAL_CHECKED");
-ok(fixture.market_check.runtime_complete === false, "MC-13 runtime_complete remains false");
+ok(fixture.market_check.runtime_complete === true, "MC-13 runtime_complete is bounded YES");
 
 var integrateAlt = (r5.alternatives || []).filter(function (a) { return a.eval_class === "INTEGRATE"; })[0];
 ok(integrateAlt && integrateAlt.status === "CONSIDERED", "MC-14 INTEGRATE exercised as considered alternative");
@@ -102,7 +102,7 @@ var extAlt = (rInt.alternatives || []).filter(function (a) { return a.evidence_l
 ok(extAlt && extAlt.status === "UNKNOWN", "MC-20 EXTERNAL_CHECKED pending, not a live scan winner");
 eq(extAlt && extAlt.check_method, "MANUAL_RECORD", "MC-20 EXTERNAL_CHECKED method is manual record");
 ok(fixture.market_check.external_checked_policy && fixture.market_check.external_checked_policy.live_web_search === false, "MC-20 no live web in policy");
-ok(fixture.market_check.runtime_complete === false, "MC-20 complete remains false");
+ok(fixture.market_check.runtime_complete === true, "MC-20 complete is bounded YES");
 
 function runCustom(findingId, questionId, catalog) {
   return engine.runMarketCheck({
@@ -269,7 +269,7 @@ eq(rBuild.evidence_level, "WINGS_HELD", "MC-27 F-MC-001 winner evidence remains 
 ok((rInt.alternatives || []).some(function (a) { return a.entry_id === "MC-MC-002-EXTERNAL-MANUAL" && a.intake_status === "VALID"; }), "MC-28 complete EXTERNAL_CHECKED manual record is visible");
 eq(rInt.recommendation, "INTEGRATE", "MC-28 F-MC-002 winner remains INTEGRATE");
 ok(hasLimit(rHpProd, "MANUAL_EVIDENCE_INTAKE_ONLY") && hasLimit(rHpProd, "NOT_RADAR") && hasLimit(rHpProd, "NOT_MARKET_MONITORING"), "MC-29 intake path keeps monitoring/RADAR limits");
-ok(fixture.market_check.runtime_complete === false, "MC-29 runtime_complete remains false");
+ok(fixture.market_check.runtime_complete === true, "MC-29 runtime_complete is bounded YES");
 ok((rBuild.alternatives || []).filter(function (a) { return a.evidence_level === "WINGS_HELD"; }).every(function (a) {
   return a.intake_status !== "VALID";
 }), "MC-30 WINGS_HELD alternatives are not VALID manual intake");
@@ -277,11 +277,26 @@ ok((rInt.alternatives || []).filter(function (a) { return a.evidence_level === "
   return a.intake_status !== "VALID";
 }), "MC-30 INTEGRATE WINGS_HELD is not VALID manual intake");
 
+ok(fixture.market_check.mode === "ON_DEMAND", "MC-31 still on-demand only");
+eq(r1.invoked_on_demand, true, "MC-31 still invoked on demand");
+eq(r2.recommendation, "UNKNOWN", "MC-31 UNKNOWN handling preserved");
+ok((rBuild.alternatives || []).some(function (a) {
+  return a.evidence_level === "HUMAN_PROVIDED" && a.evidence_reliability === "HUMAN_PROVIDED_SAMPLE" && rBuild.recommendation !== "UNKNOWN";
+}), "MC-31 HUMAN_PROVIDED sample still cannot be the production winner");
+eq(rHpMissing.recommendation, "UNKNOWN", "MC-31 incomplete HUMAN_PROVIDED still cannot win");
+eq(rEcLive.recommendation, "UNKNOWN", "MC-31 EXTERNAL_CHECKED live-scan still rejected");
+ok((rBuild.alternatives || []).filter(function (a) { return a.evidence_level === "WINGS_HELD"; }).every(function (a) {
+  return a.intake_status !== "VALID";
+}), "MC-31 WINGS_HELD still not VALID manual intake");
+ok(hasLimit(r1, "NOT_MARKET_MONITORING") && hasLimit(r1, "NOT_RADAR") && hasLimit(r1, "NOT_RING3"), "MC-31 still not monitoring/RADAR/Ring3");
+ok((r1.limits || []).indexOf("NO_LIVE_WEB_SCAN") >= 0, "MC-31 still no live web scan");
+ok(fixture.market_check.evidence_intake_contract && fixture.market_check.evidence_intake_contract.mode === "MANUAL_ONLY", "MC-31 capture form still not present");
+
 if (fails.length) {
   console.error("MARKET_CHECK_LOGICAL_TEST=FAIL");
   fails.forEach(function (f) { console.error(" - " + f); });
   process.exit(1);
 }
 console.log("MARKET_CHECK_LOGICAL_TEST=PASS");
-console.log("CASES=30");
+console.log("CASES=31");
 console.log("VALIDATION_RESULT=LOGICALLY_TESTED");

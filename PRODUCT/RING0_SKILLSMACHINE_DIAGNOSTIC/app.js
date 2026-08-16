@@ -2039,7 +2039,7 @@
     if (!Array.isArray(data.market_check.evidence_levels) || data.market_check.evidence_levels.indexOf("UNKNOWN") < 0) {
       return "Market Check evidence_levels missing.";
     }
-    if (data.market_check.runtime_complete === true) return "Fixture must not claim MARKET_CHECK_RUNTIME_COMPLETE.";
+    if (data.market_check.runtime_complete !== true) return "Fixture must record bounded MARKET_CHECK_RUNTIME_COMPLETE.";
     return null;
   }
 

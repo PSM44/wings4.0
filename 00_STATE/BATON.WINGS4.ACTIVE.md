@@ -39,7 +39,7 @@ Wings4.0 is Pablo's portfolio architecture and governance system and the reposit
 - AI.History inspection prohibited
 - Push unauthorized without explicit human authorization
 - Ring3 / RADAR / MARKET_MONITORING / independent resynchronization = not implemented / not authorized here
-- MARKET_CHECK bounded on-demand runtime is committed and human-live validated for F-SM-001, F-SM-002 UNKNOWN, F-MC-001 BUILD, and F-MC-002 INTEGRATE; a manual evidence-intake contract exists for HUMAN_PROVIDED and EXTERNAL_CHECKED; completion is a human decision gate (DEC-W4-070); it is not monitoring and MARKET_CHECK_RUNTIME_COMPLETE remains NO
+- MARKET_CHECK bounded on-demand runtime is committed and human-live validated for F-SM-001, F-SM-002 UNKNOWN, F-MC-001 BUILD, and F-MC-002 INTEGRATE; a manual evidence-intake contract exists for HUMAN_PROVIDED and EXTERNAL_CHECKED; Pablo selected DEC-W4-070 Option A (DEC-W4-071); MARKET_CHECK_RUNTIME_COMPLETE=YES for the bounded Ring0 runtime/demo only; not monitoring; no capture form
 - MANAGEMENT_READY does not mean Wings4 is feature-complete or production-complete across future capabilities.
 
 ## Interaction language / Cambridge C1
@@ -71,7 +71,7 @@ RUNTIME_GATE_PROHIBITED_PATTERN=Boolean.ToUpper_without_ToString
 
 ## Current objective
 
-Management Delivery #1 remains accepted and closed for bounded MD1 scope. Bounded on-demand Market Check runtime is committed (`5a6714d`) and human-live validated, including F-MC-001 BUILD and F-MC-002 INTEGRATE (`3063dad`, DEC-W4-067). A manual evidence-intake contract is defined (DEC-W4-068); intake badges are scoped so WINGS_HELD is not labeled Valid manual intake (DEC-W4-069). Completion-readiness audit PASS at `f59f06a`; remaining issue is a human decision gate (DEC-W4-070), not an unknown technical defect. MARKET_CHECK_RUNTIME_COMPLETE remains NO. Capture form is not automatically authorized. Do not reopen MD1. Ring3+ unauthorized.
+Management Delivery #1 remains accepted and closed for bounded MD1 scope. Bounded on-demand Market Check runtime is committed (`5a6714d`) and human-live validated, including F-MC-001 BUILD and F-MC-002 INTEGRATE (`3063dad`, DEC-W4-067). A manual evidence-intake contract is defined (DEC-W4-068); intake badges are scoped so WINGS_HELD is not labeled Valid manual intake (DEC-W4-069). Pablo selected DEC-W4-070 Option A (DEC-W4-071). MARKET_CHECK_RUNTIME_COMPLETE=YES for the bounded Ring0 runtime/demo only. Capture form, live web, monitoring, RADAR, and Ring3 remain unauthorized. Do not reopen MD1.
 
 ## Current confirmed state
 
@@ -120,11 +120,11 @@ Management Delivery #1 remains accepted and closed for bounded MD1 scope. Bounde
 - MANUAL_PACKAGE_TRANSFER=ACCEPTABLE_FOR_CURRENT_STAGE
 - MARKET_CHECK_RUNTIME_IMPLEMENTED=BOUNDED_ON_DEMAND_SLICE
 - MARKET_CHECK_RUNTIME_SCOPE=BOUNDED_ON_DEMAND
-- MARKET_CHECK_RUNTIME_COMPLETE=NO
+- MARKET_CHECK_RUNTIME_COMPLETE=YES_BOUNDED_RING0_RUNTIME_DEMO
 - MARKET_CHECK_COMPLETION_CRITERIA=DEFINED
 - MARKET_CHECK_COMPLETION_READINESS_AUDIT=PASS_HEAD_F59F06A
-- MARKET_CHECK_COMPLETION_DECISION=PENDING_DEC_W4_070
-- MARKET_CHECK_COMPLETION_DECISION_OPTIONS=A_BOUNDED_COMPLETE_ACCEPTED|B_OPERATOR_INTAKE_REQUIRED|C_DEFER_COMPLETE_AND_MOVE_ON
+- MARKET_CHECK_COMPLETION_DECISION=A_BOUNDED_COMPLETE_ACCEPTED_DEC_W4_071
+- MARKET_CHECK_COMPLETION_SCOPE=BOUNDED_RING0_RUNTIME_DEMO_NOT_WINGS4_COMPLETE
 - MARKET_CHECK_EVIDENCE_LEVELS=WINGS_HELD|HUMAN_PROVIDED|EXTERNAL_CHECKED|UNKNOWN
 - MARKET_CHECK_INTEGRATE_WINNER=F-MC-002_HUMAN_LIVE_VALIDATED
 - MARKET_CHECK_BUILD_WINNER=F-MC-001_HUMAN_LIVE_VALIDATED
@@ -171,18 +171,19 @@ DECISION_MC_BUILD_INTEGRATE_LIVE=PORTFOLIO.DECISION_LOG.md#dec-w4-067
 DECISION_MC_EVIDENCE_INTAKE=PORTFOLIO.DECISION_LOG.md#dec-w4-068
 DECISION_MC_INTAKE_BADGE=PORTFOLIO.DECISION_LOG.md#dec-w4-069
 DECISION_MC_COMPLETION_GATE=PORTFOLIO.DECISION_LOG.md#dec-w4-070
+DECISION_MC_BOUNDED_COMPLETE=PORTFOLIO.DECISION_LOG.md#dec-w4-071
 HUMAN_CANON=HUMAN/HUMAN.WINGS4.md
 
 ## Next action
 
-CURRENT_MINIBATTLE=W4_MARKET_CHECK_COMPLETION_DECISION_PACKET_008
+CURRENT_MINIBATTLE=W4_MARKET_CHECK_BOUNDED_COMPLETE_ACCEPTANCE_009
 NEXT_ROLE=ORCHESTRATOR
 NEXT_ROOT=C:\01. GitHub\Wings4.0
-NEXT_PRODUCT_MINIBATTLE=HUMAN_DECISION_REQUIRED_DEC_W4_070
-NEXT_CANDIDATE_1=DEC_W4_070_OPTION_A_BOUNDED_COMPLETE_ACCEPTED
-NEXT_CANDIDATE_2=DEC_W4_070_OPTION_B_OPERATOR_INTAKE_REQUIRED
-NEXT_CANDIDATE_3=DEC_W4_070_OPTION_C_DEFER_COMPLETE_AND_MOVE_ON
-NEXT_CONTINUITY_ACTION=KEEP_MARKET_CHECK_RUNTIME_COMPLETE_NO_UNTIL_PABLO_CHOOSES_DEC_W4_070
+NEXT_PRODUCT_MINIBATTLE=HUMAN_DECISION_REQUIRED_BEYOND_BOUNDED_MARKET_CHECK
+NEXT_CANDIDATE_1=BOUNDED_OPERATOR_UX_FRICTION_CLEANUP
+NEXT_CANDIDATE_2=INDEPENDENT_RESYNCHRONIZATION_BEYOND_RING2
+NEXT_CANDIDATE_3=NONE_WITHOUT_SEPARATE_AUTHORIZATION
+NEXT_CONTINUITY_ACTION=KEEP_BOUNDED_MARKET_CHECK_COMPLETE_DO_NOT_GENERALIZE
 RING3_IMPLEMENTATION_AUTHORIZED=NO
 COMMIT_POLICY=NO_COMMIT_WITHOUT_EXACT_STAGING_VALIDATION_AND_EXPLICIT_HUMAN_AUTHORIZATION
 PUSH_POLICY=NO_PUSH_WITHOUT_EXPLICIT_HUMAN_AUTHORIZATION
@@ -194,9 +195,9 @@ PUSH_POLICY=NO_PUSH_WITHOUT_EXPLICIT_HUMAN_AUTHORIZATION
 3. Expect a clean worktree unless Git shows otherwise. MD1 is accepted and closed; do not reopen MD1 as an open delivery.
 4. Treat Ring0 `1e8315d`, Ring1 `16b28d1`, Ring1/Ring2 `03a589d`, North Star `d23d292`, temp hygiene `e199d8b`, MD1 UX `6bb3bfc`, continuity contracts `9e301acf`, post-MD1 continuity `edc3b86`, Market Check runtime `5a6714d`, and BUILD/INTEGRATE coverage `3063dad` as ancestors.
 5. Keep English/C1 coaching active; request missing evidence or mark UNKNOWN; never guess.
-6. Do not implement Ring3+, RADAR, MARKET_MONITORING, or independent resynchronization without separate authorization. Do not expand Market Check into monitoring or claim MARKET_CHECK_RUNTIME_COMPLETE. Capture form is not automatically authorized. Wait for Pablo to choose DEC-W4-070 A/B/C.
+6. Do not implement Ring3+, RADAR, MARKET_MONITORING, or independent resynchronization without separate authorization. Bounded Market Check runtime complete (DEC-W4-071) is not Wings4 complete. Do not add a capture form or live web search.
 7. Do not inspect AI.History/.
 8. Do not mutate SkillsMachine or any child project.
 9. Do not push without explicit authorization.
 10. For same-workspace delta continuity after bootstrap, use SESSION_CONTINUE_ENTRYPOINT; do not treat BATON as SESSION_CONTINUE.
-LAST_REFRESHED_AT: 2026-08-16T01:39:00-04:00
+LAST_REFRESHED_AT: 2026-08-16T01:47:00-04:00

@@ -63,7 +63,7 @@
     "not": ["MARKET_MONITORING", "RADAR", "RING3", "LIVE_WEB_SCAN", "CHILD_REPOSITORY_READ"],
     "evidence_policy": "WINGS_HELD_OR_FIXTURE_ONLY",
     "unknown_policy": "DO_NOT_FABRICATE",
-    "runtime_complete": false,
+    "runtime_complete": true,
     "evidence_levels": ["WINGS_HELD", "HUMAN_PROVIDED", "EXTERNAL_CHECKED", "UNKNOWN"],
     "human_provided_policy": {
       "free_text_market_shopping": false,

@@ -982,6 +982,31 @@ Keep `MARKET_CHECK_RUNTIME_COMPLETE=NO` and move to the next Wings4 product mini
 
 Current status remains `MARKET_CHECK_RUNTIME_COMPLETE=NO`. If Option A is later selected, a separate coordinated mutation is required.
 
+Selection recorded in DEC-W4-071. Historical packet body preserved.
+
 Spec: `PORTFOLIO.ARCHITECTURE/WINGS4.MARKET_CHECK.RUNTIME.SPEC.md`
 Prototype: `PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/`
 Audit: `W4_MARKET_CHECK_COMPLETION_READINESS_AUDIT_007`
+
+## DEC-W4-071 — Bounded Market Check runtime completion accepted
+
+Status: APPROVED_HUMAN_DIRECTION
+Date: 2026-08-16
+Scope: BOUNDED_RING0_MARKET_CHECK_RUNTIME_DEMO_ONLY; authorization `W4_MARKET_CHECK_BOUNDED_COMPLETE_ACCEPTANCE_009`
+Human decision: Pablo selects DEC-W4-070 Option A: BOUNDED_COMPLETE_ACCEPTED
+
+Decision:
+
+- Fixture-held `HUMAN_PROVIDED` and `EXTERNAL_CHECKED` production examples are accepted as sufficient for this bounded Ring0 Market Check runtime/demo slice.
+- Set `MARKET_CHECK_RUNTIME_COMPLETE=YES` for that bounded slice only.
+- This does not authorize a capture form.
+- This does not authorize live web search, MARKET_MONITORING, RADAR, Ring3, or child-project mutation.
+- This does not generalize to future production systems or operator-captured production intake.
+- Future production evidence rules remain separate.
+- Sample `HUMAN_PROVIDED` notes still cannot become production. Incomplete intake remains PENDING/UNKNOWN. `EXTERNAL_CHECKED` live-scan methods remain invalid.
+- MD1 is not reopened.
+
+Required coordinated mutation (authorized here): fixture `runtime_complete=true`; logical tests that previously asserted false; `app.js` fixture validator; spec/BATON/backlog/acceptance/README status. Product Market Check run behavior is unchanged.
+
+Spec: `PORTFOLIO.ARCHITECTURE/WINGS4.MARKET_CHECK.RUNTIME.SPEC.md`
+Prototype: `PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/`
