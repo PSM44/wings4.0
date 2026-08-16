@@ -1,7 +1,7 @@
 # Wings4 Market Check — Bounded On-Demand Runtime Spec
 
 Status: ACTIVE_BOUNDED_SLICE
-Authority: DEC-W4-061, DEC-W4-063, DEC-W4-066, DEC-W4-067, DEC-W4-068, DEC-W4-069, DEC-W4-070, DEC-W4-071, Q-098, Q-099, Q-101, PR-PORT-006
+Authority: DEC-W4-061, DEC-W4-063, DEC-W4-066, DEC-W4-067, DEC-W4-068, DEC-W4-069, DEC-W4-070, DEC-W4-071, DEC-W4-072, Q-098, Q-099, Q-101, PR-PORT-006
 Prototype: `PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/`
 Engine: `PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/market_check.engine.js`
 
@@ -151,6 +151,33 @@ Bounded completion accepted (DEC-W4-071; Option A BOUNDED_COMPLETE_ACCEPTED):
 
 Pablo accepted fixture-held HUMAN_PROVIDED and EXTERNAL_CHECKED production examples as sufficient for this bounded Ring0 Market Check runtime/demo. Numbered criteria 1–7 are met for that slice.
 
+Recorded live UI after complete flag (DEC-W4-072; HEAD `ad53a94`; `W4_MARKET_CHECK_BOUNDED_COMPLETE_LIVE_UI_VALIDATION_010`):
+
+- STATUS=PASS
+- LOGICAL_TESTS=PASS; CASES=31
+- UI_VALIDATION_METHOD=CURSOR_BROWSER_MCP
+- SERVER_URL=`http://127.0.0.1:8787/`
+- BROWSER_STORAGE_CLEARED=YES
+- MARKET_CHECK_AUTO_RUN=NO
+- MARKET_CHECK_CALLABLE_ON_DEMAND=YES
+- F-SM-001 USE_EXISTING validated
+- F-MC-001 BUILD validated
+- F-MC-002 INTEGRATE validated
+- F-SM-002 UNKNOWN validated
+- HUMAN_PROVIDED sample/pending/valid display validated
+- EXTERNAL_CHECKED pending/valid and no-live-scan display validated
+- WINGS_HELD does not show Valid manual intake
+- Alternatives before recommendation; authority and scope limits visible
+- NOT_MARKET_MONITORING / NOT_RADAR / NOT_RING3 visible
+- No capture form; no live web; no child-project mutation
+- Product behavior unchanged
+
+UI badge limitation:
+
+- No dedicated `MARKET_CHECK_RUNTIME_COMPLETE=YES` badge is visible in the UI.
+- Status is coherent because the fixture loads, Market Check is ready, and nothing displays incomplete.
+- This task does not add that badge.
+
 Still true and unchanged:
 
 - Sample HUMAN_PROVIDED notes cannot become production. Incomplete intake stays PENDING/UNKNOWN.
@@ -158,6 +185,7 @@ Still true and unchanged:
 - A capture form is not authorized.
 - Live web search, MARKET_MONITORING, RADAR, Ring3, and child-project mutation remain out of scope.
 - Future operator-captured production intake remains a separate rule.
+- Bounded completion remains Ring0 demo only. It must not be generalized into Wings4 product completion, operator production intake, market monitoring, RADAR, or Ring3 readiness.
 
 ## Result record (Wings4-local)
 

@@ -46,6 +46,8 @@
 | W4_MARKET_CHECK_COMPLETION_READINESS_AUDIT_007 | Read-only completion-readiness audit | P0 | COMPLETED_EVIDENCE_RECORDED | Criteria 1–7 largely evidenced; remaining issue is human decision, not unknown defect; COMPLETE=NO; HEAD `f59f06a`. |
 | W4_MARKET_CHECK_COMPLETION_DECISION_PACKET_008 | Record-only completion decision gate | P0 | COMPLETED_HUMAN_DECISION_PENDING_SUPERSEDED | DEC-W4-070 options A/B/C recorded; Pablo later selected A under DEC-W4-071. |
 | W4_MARKET_CHECK_BOUNDED_COMPLETE_ACCEPTANCE_009 | Accept bounded Market Check runtime complete | P0 | COMPLETED_BOUNDED_COMPLETE | DEC-W4-071 Option A; fixture-held HP/EC examples accepted for Ring0 runtime/demo; COMPLETE=YES bounded; no capture form/live web/monitoring/RADAR/Ring3. |
+| W4_MARKET_CHECK_BOUNDED_COMPLETE_LIVE_UI_VALIDATION_010 | Live UI validation after COMPLETE=YES | P0 | COMPLETED_EVIDENCE_RECORDED | PASS at HEAD `ad53a94`; logical PASS CASES=31; Cursor browser MCP; `http://127.0.0.1:8787/`; no auto-run; F-SM-001 USE_EXISTING, F-MC-001 BUILD, F-MC-002 INTEGRATE, F-SM-002 UNKNOWN; no capture form/live web; COMPLETE badge not visible. |
+| W4_MARKET_CHECK_BOUNDED_COMPLETE_LIVE_UI_RECORD_011 | Record bounded complete live UI PASS | P0 | COMPLETED_EVIDENCE_RECORDED | DEC-W4-072; record-only; product behavior unchanged; UI badge limitation recorded; next product minibattle remains a human decision. |
 
 ## Ring0–Ring2 regression / eval inventory (compact)
 
@@ -75,6 +77,7 @@ Evidence-backed cases for reuse. Static code presence alone never establishes us
 | EV-MC-010 | Intake badge scoped | F-MC-001 / F-MC-002 live UI | WINGS_HELD does not show Valid manual intake; HUMAN_PROVIDED/EXTERNAL_CHECKED remain labeled | logical test MC-30; live UI | LOGICAL + BROWSER | Fixture-held only |
 | EV-MC-011 | Completion decision gate | Audit HEAD f59f06a | COMPLETE remains NO until Pablo selects DEC-W4-070 A/B/C | DEC-W4-070; readiness audit 007 | RECORD_ONLY | Superseded by DEC-W4-071 bounded complete |
 | EV-MC-012 | Bounded runtime complete | DEC-W4-071 Option A | MARKET_CHECK_RUNTIME_COMPLETE=YES for Ring0 runtime/demo only | DEC-W4-071; fixture runtime_complete; logical MC-13/MC-31 | LOGICAL | Not Wings4 complete; no capture form; no live web |
+| EV-MC-013 | Post-complete live UI | HEAD `ad53a94` after DEC-W4-071 | Complete-status coherent; no dedicated COMPLETE badge; winners/UNKNOWN/intake display unchanged | W4_MARKET_CHECK_BOUNDED_COMPLETE_LIVE_UI_VALIDATION_010; DEC-W4-072 | LOGICAL + BROWSER | Not Wings4 complete; no UI badge added |
 
 Scope:
 - Wings4-local product Ring0+Ring1+Ring2 cumulative baseline committed (`03a589d`).

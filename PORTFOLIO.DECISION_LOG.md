@@ -1010,3 +1010,58 @@ Required coordinated mutation (authorized here): fixture `runtime_complete=true`
 
 Spec: `PORTFOLIO.ARCHITECTURE/WINGS4.MARKET_CHECK.RUNTIME.SPEC.md`
 Prototype: `PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/`
+
+## DEC-W4-072 — Bounded Market Check complete live UI validation recorded
+
+Status: EVIDENCE_RECORDED
+Date: 2026-08-16
+Scope: RECORD_ONLY; authorization `W4_MARKET_CHECK_BOUNDED_COMPLETE_LIVE_UI_RECORD_011`
+Runtime HEAD: `ad53a94e32a282f537ced8f7ba9754a4003659dc`
+Source validation: `W4_MARKET_CHECK_BOUNDED_COMPLETE_LIVE_UI_VALIDATION_010`
+
+Recorded evidence:
+
+- TASK_ID=W4_MARKET_CHECK_BOUNDED_COMPLETE_LIVE_UI_VALIDATION_010
+- STATUS=PASS
+- LOGICAL_TESTS=PASS; CASES=31
+- UI_VALIDATION_METHOD=CURSOR_BROWSER_MCP
+- SERVER_URL=http://127.0.0.1:8787/
+- BROWSER_STORAGE_CLEARED=YES
+- MARKET_CHECK_AUTO_RUN=NO
+- MARKET_CHECK_CALLABLE_ON_DEMAND=YES
+- F-SM-001_USE_EXISTING_VALIDATED=YES
+- F-MC-001_BUILD_VALIDATED=YES
+- F-MC-002_INTEGRATE_VALIDATED=YES
+- F-SM-002_UNKNOWN_VALIDATED=YES
+- HUMAN_PROVIDED_DISPLAY_VALIDATED=YES
+- EXTERNAL_CHECKED_DISPLAY_VALIDATED=YES
+- WINGS_HELD_MANUAL_BADGE_ABSENT=YES
+- ALTERNATIVES_BEFORE_RECOMMENDATION=YES
+- AUTHORITY_VISIBLE=YES
+- SCOPE_LIMITS_VISIBLE=YES
+- CAPTURE_FORM_PRESENT=NO
+- LIVE_WEB_TRIGGERED=NO
+- CHILD_PROJECT_MUTATION=NO
+- NOT_MARKET_MONITORING=YES
+- NOT_RADAR=YES
+- NOT_RING3=YES
+- MARKET_CHECK_RUNTIME_COMPLETE=YES (BOUNDED_RING0_RUNTIME_DEMO; DEC-W4-071)
+- MARKET_CHECK_RUNTIME_COMPLETE_DISPLAY=NOT_VISIBLE
+- MD1_REOPENED=NO
+- AI_HISTORY_INSPECTED=NO
+- PRODUCT_BEHAVIOR_CHANGED=NO
+
+This record does not rewrite DEC-W4-071. Product Market Check run behavior is unchanged. The live UI has no dedicated `MARKET_CHECK_RUNTIME_COMPLETE=YES` badge. Status is coherent because the fixture loads, Market Check is ready, and nothing displays incomplete.
+
+Known limitations:
+
+- No dedicated `MARKET_CHECK_RUNTIME_COMPLETE=YES` badge is visible in the UI.
+- Bounded completion remains Ring0 demo only.
+- This must not be generalized into Wings4 product completion, operator production intake, market monitoring, RADAR, or Ring3 readiness.
+- Evidence remains fixture/Wings-held only.
+- This is bounded live UI validation, not live market intelligence.
+
+This decision does not authorize a UI badge, capture form, live web search, MARKET_MONITORING, RADAR, Ring3, child-project mutation, MD1 reopening, or force push. Next product minibattle remains a human decision.
+
+Spec: `PORTFOLIO.ARCHITECTURE/WINGS4.MARKET_CHECK.RUNTIME.SPEC.md`
+Prototype: `PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/`
