@@ -107,6 +107,9 @@ Interactive claims must be classified separately. Bounded Market Check slice is 
 | GAP_03_FACT_FALLBACK | ADDRESSED_POST_MD1 (DEC-W4-074); F-SM-002/003/004 explicit fact/inference; no excerpt-as-Fact |
 | GAP_03_CLASS_HELP | ADDRESSED_POST_MD1 (DEC-W4-074); OMISSION/OPPORTUNITY/DISCREPANCY help chips added |
 | GAP_03_WHOAMI_AND_CLASS_CODES | DEFERRED (DEC-W4-055); codes not remapped; WHOAMI/HUMAN/ORCHESTRATOR kept literal |
+| GAP_04_TRANSFER_HELP | ADDRESSED_POST_MD1 (DEC-W4-075); Act-panel note: Wings prepares the package and does not send it; human gives it to the destination project authority; return evidence pasted in Verification |
+| GAP_04_COPY_LIFECYCLE | UNCHANGED; COPY does not set PACKAGE_EXPORTED or IN_ACTION |
+| GAP_04_MANUAL_HANDOFF | REMAINS; no auto-delivery, no temp-path write, no live integration |
 | MARKET_MONITORING_IMPLEMENTED | NO |
 | RADAR_IMPLEMENTED | NO |
 | RING3_IMPLEMENTED | NO |

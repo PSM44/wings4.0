@@ -1101,3 +1101,25 @@ Decision:
 - No capture form, live web search, MARKET_MONITORING, RADAR, Ring3, independent resynchronization, or child-project mutation.
 
 Prototype: `PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/`
+
+## DEC-W4-075 — Bounded GAP_04 manual package-transfer help
+
+Status: APPROVED_HUMAN_DIRECTION
+Date: 2026-08-16
+Scope: BOUNDED_GAP_04_TRANSFER_HELP_ONLY; authorization `W4_GAP_04_BOUNDED_TRANSFER_HELP_018`
+Human decision: W4_GAP_04_MANUAL_PACKAGE_TRANSFER_DECISION_AUDIT_017 recommended option A
+
+Decision:
+
+- Address the operator-help part of GAP_04: the Act panel must state that Wings prepares the intervention package but does not send it. The human must copy or download the package and give it to the destination project authority. Return evidence is pasted in Verification.
+- Replace header wording that said “send a controlled request” so it does not imply automatic delivery.
+- Keep destination role label as Project authority.
+- Do not change COPY PACKAGE lifecycle. COPY must not set PACKAGE_EXPORTED or IN_ACTION.
+- Do not change DOWNLOAD INTERVENTION PACKAGE identity, canonical text, or export/IN_ACTION behavior.
+- Do not mention Temp.SkillMachine, a Cursor session, or any required folder procedure as the transfer method.
+- This is an additive post-MD1 operator copy slice. It does not reopen MD1. Do not rewrite the historical GAP_04 list in DEC-W4-062.
+- Manual package transfer remains the approved v0.1 model. This slice does not authorize auto-delivery, temp-path write, live product-to-product integration, or child-project mutation.
+- Market Check bounded complete remains YES. Market Check decision logic, questions, winners, intake badges, recommendations, alternatives, and catalog are unchanged.
+- No capture form, live web search, MARKET_MONITORING, RADAR, Ring3, independent resynchronization, or child-project mutation.
+
+Prototype: `PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/`

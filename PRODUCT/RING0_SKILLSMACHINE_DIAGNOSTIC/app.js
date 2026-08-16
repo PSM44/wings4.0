@@ -86,7 +86,7 @@
     OMISSION: "Omission means something expected is missing from the current product surface.",
     OPPORTUNITY: "Opportunity means a beneficial change is available. It is not automatically a required action.",
     DISCREPANCY: "Discrepancy means two claims or signals do not match; one may overstate readiness or proof.",
-    "governed intervention": "A governed intervention is a controlled request to a destination project authority. Wings does not rewrite that project.",
+    "governed intervention": "A governed intervention is a controlled request to a destination project authority. Wings prepares the package; it does not send it or rewrite that project.",
     verification: "Verification checks returned evidence against the approved package. It is not yet an independent re-check of the destination repository.",
     W4IP: "W4IP is the Wings Intervention Package ID (W4IP-YYYYMMDD-NNNN). Returns must reuse the same ID.",
     "Market Check": "Market Check is an on-demand comparison of Wings-held options before building. Evidence intake is manual. It is not monitoring, not RADAR, and not an independent project re-check."
@@ -304,9 +304,9 @@
     if (status === "POSTPONED") return "Review later and record ACCEPT, REJECT or MODIFY.";
     if (status === "REOPENED") return "Confirm or record the next human decision action.";
     if (routeStatus === "PACKAGE_EXPORTED" || status === "IN_ACTION") {
-      return "Await return evidence from the destination project, then verify it here.";
+      return "Give the package to the destination project authority if you have not already, then paste the return evidence in Verification.";
     }
-    if (a === "ACCEPT" || a === "MODIFY") return "Copy or download the governed intervention package for the destination project.";
+    if (a === "ACCEPT" || a === "MODIFY") return "Copy or download the intervention package, then give it to the destination project authority. Wings does not send it.";
     if (a === "REJECT") return "Confirm rejection is final or reopen if circumstances change.";
     return "Record a human decision.";
   }
@@ -1529,6 +1529,7 @@
       <div class="detail-block" id="route-panel" data-stage="act">
         ${stageLabel("3", "Act")}
         <h3>Intervention ${helpControl("governed intervention")} ${helpControl("W4IP")}</h3>
+        <p class="limitation-note" id="package-transfer-note" role="note"><strong>Transfer:</strong> Wings prepares this package. It does not send it. Copy or download the text, then give it to the destination project authority. Paste the return evidence in Verification.</p>
         <div class="operator-summary" id="intervention-operator-summary">
           <p class="meta-line"><strong>Requested action</strong></p>
           <p>${escapeHtml(summary.requested_action)}</p>
