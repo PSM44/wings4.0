@@ -1266,3 +1266,27 @@ Decision:
 - Next candidate is design validation, not implementation.
 
 Design: `PORTFOLIO.ARCHITECTURE/WINGS4.PUSH_FIRST_BRIEFING.DESIGN.md`
+
+## DEC-W4-079 — Bounded briefing-runtime planning packet recorded
+
+Status: PLANNING_RECORDED
+Date: 2026-08-17
+Scope: PLANNING_ONLY; authorization `20260817.233000_W4_RECORD_BRIEFING_RUNTIME_PLANNING_PACKET_ONLY_033`
+Authority: DEC-W4-077 Option B; DEC-W4-078 remains DESIGN_RECORDED and is not runtime authorization
+Runtime HEAD at recording task start: `8558f9f4bc8bbbadd44ab28f7a46d028aee5bf9b`
+
+Decision:
+
+- Record the bounded briefing-runtime planning packet in `PORTFOLIO.ARCHITECTURE/WINGS4.P4.PUSH_FIRST_BRIEFING.RUNTIME.PLANNING.md`.
+- PACKET_STATUS=PLANNING_ONLY. NO_IMPLEMENTATION=YES. NO_RUNTIME_AUTHORIZATION=YES.
+- DEC-W4-078 remains design-only and is not converted into runtime authorization.
+- Briefing runtime remains NOT_AUTHORIZED / NOT_IMPLEMENTED.
+- Future implementation requires a separate explicit human authorization.
+- Recommended first future slice, if later authorized: ON_DEMAND_TEXT_ONLY / SESSION_OUTPUT_ONLY. That recommendation is not implementation authorization.
+- This decision does not authorize briefing runtime, UI, runtime tests, capture form, auto-delivery, temp-path write, COPY lifecycle change, child-repository read, child-project mutation, Ring3, RADAR, MARKET_MONITORING, live web, MD1 reopen, or a Wings4-complete claim.
+- Market Check bounded runtime remains YES for the Ring0 demo only and must not be generalized.
+- GAP_01–GAP_04 remain addressed. GAP_05 remains `ACCEPTED_LIMITATION_FOR_RING0`. MD1 remains closed.
+- Staging, commit, and push are not authorized by this decision.
+
+Planning: `PORTFOLIO.ARCHITECTURE/WINGS4.P4.PUSH_FIRST_BRIEFING.RUNTIME.PLANNING.md`
+Design: `PORTFOLIO.ARCHITECTURE/WINGS4.PUSH_FIRST_BRIEFING.DESIGN.md`

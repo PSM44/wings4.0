@@ -64,6 +64,10 @@
 | W4_DEC_077_OPTION_B_RECORD_COMMIT_AND_PUSH_026 | Record DEC-W4-077 Option B; commit and push | P0 | COMPLETED_PUSHED | DEC-W4-077 Option B: AUTHORIZE_BOUNDED_PUSH_FIRST_BRIEFING_DESIGN_ONLY; runtime unauthorized; not monitoring/RADAR/live web/Ring3; Wings-held state only; no child read; MD1 closed; GAP_05 accepted limitation. |
 | W4_PUSH_FIRST_BRIEFING_DESIGN_ONLY_027 | Bounded push-first briefing design-only | P0 | COMPLETED_DESIGN_RECORDED | DEC-W4-078; design `WINGS4.PUSH_FIRST_BRIEFING.DESIGN.md`; eight-section schema; Wings-held only; no runtime; next candidate is design validation. |
 | W4_PUSH_FIRST_BRIEFING_DESIGN_COMMIT_AND_ORCHESTRATOR_CONTINUE_028 | Commit design; emit ORCHESTRATOR continuation | P0 | COMPLETED_PUSHED | Commit/push DEC-W4-078 design; briefing runtime still unauthorized; continuation package in T.Wings4.0; next is design validation or canon refresh, not runtime. |
+| W4_VERIFY_AND_REFRESH_ORCHESTRATOR_CONTINUITY_029 | Refresh in-repo ORCHESTRATOR START_HERE | P0 | COMPLETED_PASS_WITH_GAPS | Modified only `SESSIONS/ORCHESTRATOR/03.SESSION_CONTINUE/00.START_HERE.ORCHESTRATOR.txt`; no commit/push in that task. |
+| W4_COMMIT_PUSH_ORCHESTRATOR_START_HERE_REFRESH_030 | Commit and push START_HERE refresh | P0 | COMPLETED_PUSHED | Staged, committed, and pushed only START_HERE refresh; COMMIT `8558f9f4bc8bbbadd44ab28f7a46d028aee5bf9b`. |
+| W4_PUSH_FIRST_BRIEFING_DESIGN_READ_ONLY_VALIDATION_031 | Read-only push-first briefing design validation | P0 | COMPLETED_PASS_WITH_GAPS | Design coherent and design-only; implementation authorization not found; runtime implementation not found; no mutation. |
+| W4_RECORD_BRIEFING_RUNTIME_PLANNING_PACKET_ONLY_033 | Record briefing-runtime planning packet | P0 | LOCAL_MUTATION_ONLY | DEC-W4-079; planning file recorded; runtime remains unauthorized/not implemented; no stage/commit/push. |
 
 ## Ring0–Ring2 regression / eval inventory (compact)
 

@@ -1,14 +1,16 @@
 PACKAGE_TYPE=WINGS4_ORCHESTRATOR_SESSION_CONTINUE
 PACKAGE_FORMAT=SINGLE_FILE_MINIMAL
-PACKAGE_STATUS=READY
+PACKAGE_STATUS=LOCAL_UNCOMMITTED
 ENTRYPOINT=THIS_FILE
 SESSION_CONTINUE_IS_OUTPUT=YES
 SESSION_CONTINUE_IS_CANON=NO
+LOCAL_UNCOMMITTED_MUTATION=YES
+LOCAL_UNCOMMITTED_TASK=20260817.233000_W4_RECORD_BRIEFING_RUNTIME_PLANNING_PACKET_ONLY_033
 PURPOSE=SAME_AI_PROJECT_WORKSPACE_CONTINUATION
 BATON_IS_NOT_THIS_PACKAGE=YES
 EXPECTED_CONTEXT_INSTANCES_NEXT_SESSION=1
 
-PACKAGE_SUFFICIENCY_FOR_SESSION_START=PASS
+PACKAGE_SUFFICIENCY_FOR_SESSION_START=PASS_LOCAL_UNCOMMITTED
 ADDITIONAL_PROMPT_REQUIRED_FOR_SESSION_START=NO
 EXTERNAL_FILE_LOOKUP_REQUIRED_FOR_SESSION_START=NO
 ADDITIONAL_EVIDENCE_COLLECTION_DURING_SESSION=ALLOWED_WHEN_NEEDED
@@ -20,7 +22,7 @@ AI_HISTORY_POLICY=DO_NOT_INSPECT_AI_HISTORY
 TARGET_MAX_ACTIVATION_ITERATIONS=3
 ITERATION_1=ACTIVATE_AND_RUNTIME_GATE
 ITERATION_2=CONSUME_OPTIONAL_CONSOLIDATED_EVIDENCE_IF_NEEDED
-ITERATION_3=DECIDE_AND_START_NEXT_PRODUCT_MINIBATTLE
+ITERATION_3=REVIEW_LOCAL_MUTATION_THEN_DECIDE_STAGE_COMMIT_PUSH
 
 PRIMARY_INTERACTION_LANGUAGE=ENGLISH
 CAMBRIDGE_C1_COACHING=ACTIVE
@@ -49,14 +51,15 @@ TEMP_HYGIENE_COMMIT=e199d8b8296c290d018b4b2b282c9618ceb121f4
 MD1_UX_COMMIT=6bb3bfcede2fbe0417191bdcf76115fcf1eab483
 CONTINUITY_CANON_COMMIT=9e301acfd3d2c633777650d3518d58ed19690826
 POST_MD1_CONTINUITY_COMMIT=edc3b86f752f7c464c15c8873843ddad79b127e9
-HEAD_AT_GENERATION=8bf885b3e1e5e20de0d76d83d64ac1b0d7b0dd3e
+HEAD_AT_GENERATION=8558f9f4bc8bbbadd44ab28f7a46d028aee5bf9b
 CURRENT_HEAD_AT_RESUME=RESOLVE_FROM_GIT
-HEAD_AT_GENERATION_SEMANTICS=HISTORICAL_EVIDENCE_ONLY
+HEAD_AT_GENERATION_SEMANTICS=HISTORICAL_EVIDENCE_ONLY; TASK_START_BASELINE_FOR_LOCAL_UNCOMMITTED_033
 CURRENT_HEAD_SEMANTICS=RUNTIME_GIT_IS_SOURCE_OF_TRUTH
 REMOTE_COUNT_AT_GENERATION=1
 PUSH=NO
 COMMIT=NO
 STAGING=NO
+LOCAL_UNCOMMITTED=YES
 MANAGEMENT_READY=YES
 MANAGEMENT_READY_SCOPE=BOUNDED_MD1
 MANAGEMENT_DELIVERY_1=ACCEPTED_BY_GERENCIA
@@ -86,10 +89,10 @@ ITERATION_1=ACTIVATE_AND_RUNTIME_GATE. This section is sufficient for Iteration 
 
 1. Assume ROLE=ORCHESTRATOR at C:\01. GitHub\Wings4.0.
 2. Validate BRANCH=main via the script below.
-3. Resolve CURRENT HEAD from Git. Generation baseline HEAD `8bf885b3e1e5e20de0d76d83d64ac1b0d7b0dd3e` (`Record push-first briefing design`) is historical evidence only. Runtime Git is the source of truth for the current HEAD.
+3. Resolve CURRENT HEAD from Git. Task-start committed baseline HEAD `8558f9f4bc8bbbadd44ab28f7a46d028aee5bf9b` (`Refresh orchestrator session continue`) is historical evidence only and is the baseline for local-uncommitted task 033. Runtime Git is the source of truth for the current HEAD. This package is LOCAL_UNCOMMITTED until a separate staging/commit/push authorization exists.
 4. Expect index clean. Do not expect dirty MD1 UX product files. PRODUCT_UX_RESIDUAL=0. Do not reopen PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/ unless a real integrity failure proves commit `6bb3bfc` invalid.
-5. Expect a clean worktree unless Git shows otherwise. MD1 is accepted by gerencia and closed.
-6. Confirm ancestors include Ring0 `1e8315d`, Ring1 `16b28d1`, Ring1/Ring2 `03a589d`, North Star `d23d292`, temp hygiene `e199d8b`, MD1 UX `6bb3bfc`, continuity contracts `9e301acf`, post-MD1 continuity `edc3b86`, DEC-W4-077 Option B `0e47b32`, and DEC-W4-078 design commit `8bf885b`.
+5. After task 033, expect a local-uncommitted exact write set unless Git shows a later authorized commit. MD1 is accepted by gerencia and closed. Do not treat this SESSION_CONTINUE file as a final committed session-start package while LOCAL_UNCOMMITTED=YES.
+6. Confirm ancestors include Ring0 `1e8315d`, Ring1 `16b28d1`, Ring1/Ring2 `03a589d`, North Star `d23d292`, temp hygiene `e199d8b`, MD1 UX `6bb3bfc`, continuity contracts `9e301acf`, post-MD1 continuity `edc3b86`, DEC-W4-077 Option B `0e47b32`, DEC-W4-078 design commit `8bf885b`, and START_HERE refresh `8558f9f`.
 7. Do not inspect AI.History/.
 8. Do not mutate SkillsMachine, Brainy, Wings3 or any child project. Do not read `C:\01. GitHub\Skills`.
 9. Keep PRIMARY_INTERACTION_LANGUAGE=ENGLISH with CAMBRIDGE_C1_COACHING as Pablo's personal collaboration preference only, not generic Wings4 product doctrine.
@@ -114,7 +117,8 @@ $ExpectedAncestors = @(
   '9e301acfd3d2c633777650d3518d58ed19690826',
   'edc3b86f752f7c464c15c8873843ddad79b127e9',
   '0e47b32e10c45465ba1f1653c7a9f477d608bd9e',
-  '8bf885b3e1e5e20de0d76d83d64ac1b0d7b0dd3e'
+  '8bf885b3e1e5e20de0d76d83d64ac1b0d7b0dd3e',
+  '8558f9f4bc8bbbadd44ab28f7a46d028aee5bf9b'
 )
 $AncestorFail = New-Object System.Collections.Generic.List[string]
 foreach ($c in $ExpectedAncestors) {
@@ -160,9 +164,13 @@ $Lines | ForEach-Object { $_ }
 - PUSH_FIRST_PORTFOLIO_BRIEFING_IMPLEMENTED=NO
 - PUSH_FIRST_DAILY_BRIEF_IMPLEMENTED=NO
 - BRIEFING_RUNTIME_IMPLEMENTED=NO
+- BRIEFING_RUNTIME_AUTHORIZED=NO
 - DEC_W4_077=OPTION_B_AUTHORIZE_BOUNDED_PUSH_FIRST_BRIEFING_DESIGN_ONLY
 - DEC_W4_078=DESIGN_RECORDED_NOT_RUNTIME
+- DEC_W4_079=PLANNING_RECORDED_NOT_RUNTIME
 - DESIGN_PUSH_FIRST_BRIEFING=PORTFOLIO.ARCHITECTURE/WINGS4.PUSH_FIRST_BRIEFING.DESIGN.md
+- PLANNING_PUSH_FIRST_BRIEFING_RUNTIME=PORTFOLIO.ARCHITECTURE/WINGS4.P4.PUSH_FIRST_BRIEFING.RUNTIME.PLANNING.md
+- PLANNING_PACKET_LOCAL_UNCOMMITTED=YES
 
 ## 04 Management Delivery #1 status
 
@@ -228,22 +236,23 @@ EXPECTED_CONTEXT_INSTANCES_NEXT_SESSION=1
 
 ## 06 Exact next action
 
-NEXT_PRODUCT_MINIBATTLE=HUMAN_DECISION_REQUIRED
-NEXT_CONTINUITY_ACTION=DECIDE_AMONG_BOUNDED_OPTIONS_A_B_C
-SCOPE=MD1 is accepted and closed. DEC-W4-077 Option B and DEC-W4-078 record push-first briefing design-only. Do not implement briefing runtime. Do not claim Wings4 complete. Do not treat DEC-W4-078 as runtime authorization.
+NEXT_PRODUCT_MINIBATTLE=HUMAN_DECISION_REQUIRED_FUTURE_IMPLEMENTATION_SLICE
+NEXT_CONTINUITY_ACTION=REVIEW_LOCAL_UNCOMMITTED_WRITE_SET_THEN_DECIDE_STAGE_COMMIT_PUSH
+SCOPE=MD1 is accepted and closed. DEC-W4-077 Option B and DEC-W4-078 record push-first briefing design-only. DEC-W4-079 records the briefing-runtime planning packet only. Runtime remains NOT_AUTHORIZED / NOT_IMPLEMENTED. Do not implement briefing runtime. Do not claim Wings4 complete. Do not treat DEC-W4-078 or DEC-W4-079 as runtime authorization. This SESSION_CONTINUE package is LOCAL_UNCOMMITTED.
 
 ITERATION_2=CONSUME_OPTIONAL_CONSOLIDATED_EVIDENCE_IF_NEEDED
 OPTIONAL_EVIDENCE=C:\Users\aazcl\Downloads\T.Wings4.0\WINGS4_NEXT_ORCHESTRATOR_CONSOLIDATED.txt
 ITERATION_2_REQUIRED_FOR_SESSION_START=NO
 
-ITERATION_3=DECIDE_AND_START_NEXT_BOUNDED_SLICE
-Do not implement any candidate in the activation window. Present the compact option set and obtain an explicit human decision before starting work.
+ITERATION_3=REVIEW_LOCAL_MUTATION_THEN_DECIDE_STAGE_COMMIT_PUSH
+Do not implement briefing runtime in the activation window. Review the exact local write set. Then obtain an explicit human decision whether to authorize staging/commit/push of that exact set. A later separate decision is required before any implementation slice. Recommended first future slice, if later authorized: ON_DEMAND_TEXT_ONLY / SESSION_OUTPUT_ONLY.
 
-NEXT_OPTION_A=READ_ONLY_PUSH_FIRST_BRIEFING_DESIGN_VALIDATION
-NEXT_OPTION_B=BOUNDED_BRIEFING_RUNTIME_PLANNING_PACKET_WITHOUT_IMPLEMENTATION
-NEXT_OPTION_C=ANOTHER_SEPARATELY_AUTHORIZED_DEFERRED_SLICE
+NEXT_OPTION_A=AUTHORIZE_EXACT_STAGING_COMMIT_PUSH_OF_PLANNING_PACKET_WRITE_SET
+NEXT_OPTION_B=KEEP_LOCAL_UNCOMMITTED_AND_DEFER_COMMIT
+NEXT_OPTION_C=AUTHORIZE_A_SEPARATE_FUTURE_IMPLEMENTATION_SLICE_ONLY_AFTER_NAMED_DECISION
 
 Deferred slices (not auto-selected; require separate authorization):
+- briefing runtime implementation (planning recorded; runtime unauthorized)
 - WHOAMI/finding_class terminology overlay (DEC-W4-055)
 - COPY-as-export versus clipboard-only lifecycle (DEC-W4-075)
 - second-entity diagnostic (DEC-W4-077 Option A, not selected)
@@ -252,7 +261,7 @@ Deferred slices (not auto-selected; require separate authorization):
 DO_NOT_IMPLEMENT_IN_THIS_RESUME=briefing runtime; Ring3; RADAR; MARKET_MONITORING; live web; capture form; auto-delivery; child read; child mutation; COPY lifecycle change; Market Check generalization beyond Ring0 demo; push; MD1 reopen.
 
 Missing capabilities (separate; not auto-selected; not MD1 blockers):
-- briefing runtime (design recorded; runtime unauthorized)
+- briefing runtime (design recorded; planning recorded; runtime unauthorized)
 - fresh independent project evidence / independent resynchronization
 - multi-project combined analysis
 - Ring3 / RADAR / MARKET_MONITORING / live web
@@ -264,6 +273,8 @@ SKILLSMACHINE_MUTATION=PROHIBITED
 AI_HISTORY_INSPECTION=PROHIBITED
 CHILD_REPOSITORY_READ=PROHIBITED
 BRIEFING_RUNTIME_IMPLEMENTATION_AUTHORIZED=NO
+DEC_W4_078_IS_NOT_RUNTIME_AUTHORIZATION=YES
+DEC_W4_079_IS_NOT_RUNTIME_AUTHORIZATION=YES
 RING3_PLUS_IMPLEMENTATION_AUTHORIZED=NO
 MARKET_MONITORING_AUTHORIZED=NO
 RADAR_IMPLEMENTATION_AUTHORIZED=NO
@@ -279,14 +290,13 @@ PUSH_POLICY=NO_PUSH_WITHOUT_EXPLICIT_HUMAN_AUTHORIZATION
 COMMIT_POLICY=NO_COMMIT_WITHOUT_EXPLICIT_HUMAN_AUTHORIZATION_AND_EXACT_STAGING
 WINGS4_COMPLETE_CLAIM=PROHIBITED
 PRODUCTION_COMPLETE_FOR_ALL_FUTURE_CAPABILITIES_CLAIM=PROHIBITED
-DEC_W4_078_IS_NOT_RUNTIME_AUTHORIZATION=YES
 
 ## 08 Singular next action
 
-Return to Wings4 ORCHESTRATOR, run Iteration 1 runtime gate from this file, optionally consume the consolidated temp evidence in Iteration 2, then in Iteration 3 obtain an explicit human decision among:
+Return to Wings4 ORCHESTRATOR, run Iteration 1 runtime gate from this file, optionally consume the consolidated temp evidence in Iteration 2, then in Iteration 3 review the local-uncommitted exact write set and obtain an explicit human decision among:
 
-A. read-only push-first briefing design validation;
-B. bounded briefing-runtime planning packet without implementation;
-C. another separately authorized deferred slice.
+A. authorize exact staging/commit/push of the planning-packet write set;
+B. keep local-uncommitted and defer commit;
+C. later, only after a separate named decision, consider a future implementation slice (recommended first: ON_DEMAND_TEXT_ONLY / SESSION_OUTPUT_ONLY).
 
-No additional prompt required for session start; request later evidence only when needed. Do not implement briefing runtime from this file.
+This file is LOCAL_UNCOMMITTED. No additional prompt required for session start; request later evidence only when needed. Do not implement briefing runtime from this file. Do not treat DEC-W4-078 or DEC-W4-079 as runtime authorization.
