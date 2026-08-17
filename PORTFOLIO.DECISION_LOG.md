@@ -1243,3 +1243,26 @@ Current status: `NEXT_SLICE=BOUNDED_PUSH_FIRST_BRIEFING_DESIGN_ONLY`. Runtime im
 
 Audit: `W4_POST_MD1_GAP_CLOSURE_NEXT_SLICE_AUDIT_024`
 Prototype: `PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/`
+
+## DEC-W4-078 — Bounded push-first briefing design recorded
+
+Status: DESIGN_RECORDED
+Date: 2026-08-16
+Scope: DESIGN_ONLY; authorization `W4_PUSH_FIRST_BRIEFING_DESIGN_ONLY_027`
+Authority: DEC-W4-077 Option B
+Runtime HEAD at design: `0e47b32e10c45465ba1f1653c7a9f477d608bd9e`
+
+Decision:
+
+- Record the bounded push-first briefing design in `PORTFOLIO.ARCHITECTURE/WINGS4.PUSH_FIRST_BRIEFING.DESIGN.md`.
+- The briefing must answer “What changed, what matters, what needs a human decision next?” from Wings-held state only.
+- First schema sections are exactly: PROJECT_STATE, SINCE_LAST_DECISION, MATERIAL_CHANGES, OPEN_DECISIONS, RISKS_AND_BOUNDARIES, RECOMMENDED_NEXT_ACTION, HUMAN_DECISION_OPTIONS, EVIDENCE_LIMITS.
+- Triggers are session-start presentation, on-demand request, or refresh after a recorded Wings4 decision. No polling, child-repo watch, RADAR, or MARKET_MONITORING.
+- This is not MARKET_MONITORING, not RADAR, not live web, and not Ring3.
+- This does not authorize briefing runtime, UI, product mutation, capture form, auto-delivery, temp-path write, COPY lifecycle change, child-repository read, or child-project mutation.
+- Market Check bounded runtime remains YES for the Ring0 demo only and must not be generalized.
+- GAP_01–GAP_04 remain addressed. GAP_05 remains `ACCEPTED_LIMITATION_FOR_RING0`. MD1 remains closed. Historical DEC-W4-062 gap list is not rewritten.
+- SESSION_CONTINUE/canon refresh, WHOAMI/`finding_class` overlay, COPY-as-export, and second-entity diagnostic remain separate later decisions.
+- Next candidate is design validation, not implementation.
+
+Design: `PORTFOLIO.ARCHITECTURE/WINGS4.PUSH_FIRST_BRIEFING.DESIGN.md`
