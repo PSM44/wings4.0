@@ -1123,3 +1123,59 @@ Decision:
 - No capture form, live web search, MARKET_MONITORING, RADAR, Ring3, independent resynchronization, or child-project mutation.
 
 Prototype: `PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/`
+
+## DEC-W4-076 — GAP_05 evidence-source decision gate
+
+Status: APPROVED_HUMAN_DIRECTION
+Date: 2026-08-16
+Scope: RECORD_ONLY_DECISION_PACKET; authorization `W4_GAP_05_EVIDENCE_SOURCE_DECISION_PACKET_022`; selection `W4_GAP_05_OPTION_A_RECORD_COMMIT_AND_PUSH_023`
+Runtime HEAD at packet: `54704c7ecf3bb693a392ca993d5cfcd8fcc0f6d9`
+Human decision: Pablo selects DEC-W4-076 Option A: ACCEPT_FIXTURE_HELD_AS_DURABLE_MD1_LIMIT
+
+Historical packet body preserved below. This update records the selection. It does not rewrite the historical GAP_05 list in DEC-W4-062. It does not authorize live child-repository read. It does not mutate product code, UI, fixture, tests, README, or acceptance.
+
+Contradiction extracted (`W4_POST_GAP04_NEXT_SCOPE_SELECTION_AUDIT_021`):
+
+- GAP_05 means the bounded Ring0 demo diagnoses SkillsMachine from fixture or Wings-held evidence. It does not open, read, or watch the live child repository `C:\01. GitHub\Skills`. DEC-W4-062 recorded this as an accepted non-blocking MD1 limitation: `FIXTURE_OR_WINGS_HELD_EVIDENCE_NOT_LIVE_CHILD_REPOSITORY_READ`.
+- Live child-repository read is currently forbidden. DEC-W4-049 authorized Ring0 only with Wings4-held evidence or clearly marked noncanonical representatives and does not permit Wings4 to read or mutate `C:\01. GitHub\Skills` during Ring0 prototype construction. The Ring0 footer states: evidence is Wings-held; Wings does not read or write that path. The fixture note states: no direct read of that path; records are grounded in Wings4-held evidence or explicitly marked representative.
+- The legal evidence model inside the bounded Ring0 demo is therefore fixture JSON plus Wings4-local pointers (`CANONICAL_DERIVED` or representative). Market Check in this slice is also fixture/Wings-held only. Ring2 verifies returned evidence; it is not a live child-state read and not independent resynchronization.
+- BATON still names `NEXT_CANDIDATE_1=GAP_05_FIXTURE_OR_WINGS_HELD_EVIDENCE_NOT_LIVE_CHILD_REPOSITORY_READ` after GAP_04 help closed. Closing GAP_05 by implementing a live git read would contradict DEC-W4-049. No human authorization exists to live-read the child repository.
+
+Pablo decided among exactly these options:
+
+### Option A — ACCEPT_FIXTURE_HELD_AS_DURABLE_MD1_LIMIT
+
+Keep GAP_05 as an accepted fixture/Wings-held limitation for bounded MD1. No child read. No implementation.
+
+- Risk: later readers may treat the Ring0 demo as live child-repository intelligence.
+- Required next mutation if selected: record-only status that GAP_05 remains an accepted limitation. Authorized by `W4_GAP_05_OPTION_A_RECORD_COMMIT_AND_PUSH_023`.
+
+### Option B — AUTHORIZE_LATER_BOUNDED_METADATA_DESIGN_ONLY
+
+Do not read the child repo now. A later design may define a Wings-held metadata refresh model that is still not live git read, not mutation, not Ring3, and not monitoring.
+
+- Risk: “metadata refresh” can be misread as live child access or Ring3. The later design must stay Wings-held and non-mutating.
+- Required next mutation if selected: a separate design authorization. Selecting B does not authorize reading `C:\01. GitHub\Skills`.
+
+### Option C — DEFER_GAP_05_AND_CHOOSE_ANOTHER_SLICE
+
+Leave GAP_05 open. Next slice is not GAP_05 implementation.
+
+- Risk: the last MD1 non-blocking gap stays unresolved while other product work proceeds.
+- Required next mutation if selected: none for GAP_05. A separate product minibattle must be chosen.
+
+Decision:
+
+- Pablo selected Option A: ACCEPT_FIXTURE_HELD_AS_DURABLE_MD1_LIMIT.
+- GAP_05 is accepted as a bounded Ring0 fixture/Wings-held evidence-source limitation.
+- Live child-repository read remains unauthorized.
+- `C:\01. GitHub\Skills` was not read.
+- GAP_05 is not a product implementation task in this slice.
+- Market Check bounded runtime remains YES for the bounded Ring0 demo only.
+- MD1 remains closed.
+- This does not authorize Ring3, RADAR, MARKET_MONITORING, live web search, capture form, auto-delivery, temp-path write, COPY lifecycle change, or child-project mutation.
+
+Current status: `GAP_05=ACCEPTED_LIMITATION_FOR_RING0`. Live child-repository read remains unauthorized.
+
+Audit: `W4_POST_GAP04_NEXT_SCOPE_SELECTION_AUDIT_021`
+Prototype: `PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/`

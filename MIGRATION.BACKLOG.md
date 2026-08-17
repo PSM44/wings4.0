@@ -56,6 +56,9 @@
 | W4_GAP_04_BOUNDED_TRANSFER_HELP_018 | Bounded GAP_04 transfer help | P0 | COMPLETED_BOUNDED_COPY | DEC-W4-075; committed `480443a`; validated in 018; committed in 019; Act-panel note that Wings prepares and does not send the package; COPY does not mark export; DOWNLOAD unchanged; GAP_05 remains. |
 | W4_GAP_04_TRANSFER_HELP_LOCAL_COMMIT_019 | Local commit of GAP_04 transfer help | P0 | COMPLETED | Commit `480443a`; seven authorized files; product behavior unchanged from 018; no push in 019. |
 | W4_GAP_04_RECORD_REFRESH_AND_PUSH_020 | Record GAP_04 help committed; push two-commit state | P0 | COMPLETED_PUSHED | Record-only BATON/backlog; GAP_04 help committed at `480443a`; COPY/DOWNLOAD unchanged; GAP_05 unauthorized; no auto-delivery, temp-path write, child mutation, Ring3/RADAR/monitoring/live web. |
+| W4_POST_GAP04_NEXT_SCOPE_SELECTION_AUDIT_021 | Read-only post-GAP04 next-scope audit | P0 | COMPLETED_EVIDENCE_RECORDED | Recommended B: GAP_05 evidence-source decision packet; no child read; no mutation. |
+| W4_GAP_05_EVIDENCE_SOURCE_DECISION_PACKET_022 | Record-only GAP_05 evidence-source decision gate | P0 | COMPLETED_HUMAN_DECISION_PENDING_SUPERSEDED | DEC-W4-076 options A/B/C recorded; Pablo later selected A under W4_GAP_05_OPTION_A_RECORD_COMMIT_AND_PUSH_023. |
+| W4_GAP_05_OPTION_A_RECORD_COMMIT_AND_PUSH_023 | Record GAP_05 Option A; commit and push | P0 | COMPLETED_PUSHED | DEC-W4-076 Option A: ACCEPT_FIXTURE_HELD_AS_DURABLE_MD1_LIMIT; GAP_05=ACCEPTED_LIMITATION_FOR_RING0; live child read unauthorized; Skills not read; no product mutation; MD1 closed. |
 
 ## Ring0–Ring2 regression / eval inventory (compact)
 
@@ -87,10 +90,10 @@ Evidence-backed cases for reuse. Static code presence alone never establishes us
 | EV-MC-012 | Bounded runtime complete | DEC-W4-071 Option A | MARKET_CHECK_RUNTIME_COMPLETE=YES for Ring0 runtime/demo only | DEC-W4-071; fixture runtime_complete; logical MC-13/MC-31 | LOGICAL | Not Wings4 complete; no capture form; no live web |
 | EV-MC-013 | Post-complete live UI | HEAD `ad53a94` after DEC-W4-071 | Complete-status coherent; no dedicated COMPLETE badge; winners/UNKNOWN/intake display unchanged | W4_MARKET_CHECK_BOUNDED_COMPLETE_LIVE_UI_VALIDATION_010; DEC-W4-072 | LOGICAL + BROWSER | Not Wings4 complete; no UI badge added |
 | EV-UX-001 | Stage markers are status | Selected finding workflow strip | Not navigation; labelled “not navigation”; not clickable | DEC-W4-073; app.js workflowNav; styles.css | BROWSER | Additive post-MD1; does not rewrite DEC-W4-062 |
-| EV-UX-002 | Path/Limit visible | Page load and selected finding | Path and Limit visible without opening About | DEC-W4-073; index.html orient-strip; workflow-limit | BROWSER | GAP_05 remains; GAP_04 transfer help addressed DEC-W4-075; WHOAMI/class-code jargon deferred |
+| EV-UX-002 | Path/Limit visible | Page load and selected finding | Path and Limit visible without opening About | DEC-W4-073; index.html orient-strip; workflow-limit | BROWSER | GAP_05 ACCEPTED_LIMITATION_FOR_RING0 DEC-W4-076 Option A; GAP_04 transfer help addressed DEC-W4-075; WHOAMI/class-code jargon deferred |
 | EV-UX-003 | Fact is not an evidence excerpt | F-SM-002 / F-SM-003 / F-SM-004 selected | Explicit operator Fact/Inference; excerpt remains under Evidence | DEC-W4-074; fixture fact/inference; app.js findingFactText | BROWSER | Remaining WHOAMI/class-code jargon deferred under DEC-W4-055 |
 | EV-UX-004 | Class help chips | OMISSION / OPPORTUNITY / DISCREPANCY findings | Help available; codes not remapped | DEC-W4-074; app.js HELP_COPY | BROWSER | DUPLICATION/INTERFERENCE help preserved |
-| EV-UX-005 | Package transfer is human-mediated | ACCEPT/MODIFY Act panel | Transfer note visible without About or Raw package text; Wings does not send; COPY does not mark export | DEC-W4-075; app.js package-transfer-note; index.html lede; commit `480443a` | BROWSER | Manual handoff remains; COPY lifecycle unchanged; GAP_05 remains |
+| EV-UX-005 | Package transfer is human-mediated | ACCEPT/MODIFY Act panel | Transfer note visible without About or Raw package text; Wings does not send; COPY does not mark export | DEC-W4-075; app.js package-transfer-note; index.html lede; commit `480443a` | BROWSER | Manual handoff remains; COPY lifecycle unchanged; GAP_05 ACCEPTED_LIMITATION_FOR_RING0 DEC-W4-076 Option A |
 
 Scope:
 - Wings4-local product Ring0+Ring1+Ring2 cumulative baseline committed (`03a589d`).
