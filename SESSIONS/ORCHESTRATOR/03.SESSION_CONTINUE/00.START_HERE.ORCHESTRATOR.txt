@@ -15,6 +15,7 @@ ADDITIONAL_EVIDENCE_COLLECTION_DURING_SESSION=ALLOWED_WHEN_NEEDED
 MISSING_EVIDENCE_POLICY=REQUEST_OR_MARK_UNKNOWN
 DO_NOT_CLAIM_EXTERNAL_EVIDENCE_WILL_NEVER_BE_REQUIRED=YES
 PROJECT_CONTEXT_ISOLATION=MANDATORY
+AI_HISTORY_POLICY=DO_NOT_INSPECT_AI_HISTORY
 
 TARGET_MAX_ACTIVATION_ITERATIONS=3
 ITERATION_1=ACTIVATE_AND_RUNTIME_GATE
@@ -23,6 +24,11 @@ ITERATION_3=DECIDE_AND_START_NEXT_PRODUCT_MINIBATTLE
 
 PRIMARY_INTERACTION_LANGUAGE=ENGLISH
 CAMBRIDGE_C1_COACHING=ACTIVE
+CAMBRIDGE_C1_CONTINUITY=YES
+CAMBRIDGE_C1_SCOPE=PABLO_PERSONAL_COLLABORATION_PREFERENCE_ONLY
+CAMBRIDGE_C1_GENERIC_WINGS4_PRODUCT_DOCTRINE=NO
+C1_PROFILE_USER_SPECIFIC=YES
+C1_PROFILE_GENERIC_PRODUCT_RULE=NO
 ENGLISH_CORRECTION_MODE=CONTINUOUS_NON_BLOCKING
 PERIODIC_LANGUAGE_WEAKNESS_REVIEW=YES
 SPANISH_ONLY_ON_HUMAN_REQUEST=YES
@@ -30,8 +36,10 @@ LANGUAGE_CANON=HUMAN/HUMAN.WINGS4.md
 
 DESTINATARIO=ORCHESTRATOR
 PROJECT_ID=Wings4.0
-PROJECT_ROOT=C:\01. GitHub\Wings4.0
+ROLE_NEXT=ORCHESTRATOR
 ROLE_TO_ASSUME=ORCHESTRATOR
+ROOT=C:\01. GitHub\Wings4.0
+PROJECT_ROOT=C:\01. GitHub\Wings4.0
 EXPECTED_BRANCH=main
 RING0_BASELINE_COMMIT=1e8315d3836c941ba8cc6ef4a1b7c6981bb0c33c
 RING1_COMMIT=16b28d19c6342271b4e5e417a84649a69a14443e
@@ -41,11 +49,11 @@ TEMP_HYGIENE_COMMIT=e199d8b8296c290d018b4b2b282c9618ceb121f4
 MD1_UX_COMMIT=6bb3bfcede2fbe0417191bdcf76115fcf1eab483
 CONTINUITY_CANON_COMMIT=9e301acfd3d2c633777650d3518d58ed19690826
 POST_MD1_CONTINUITY_COMMIT=edc3b86f752f7c464c15c8873843ddad79b127e9
-HEAD_AT_GENERATION=edc3b86f752f7c464c15c8873843ddad79b127e9
+HEAD_AT_GENERATION=8bf885b3e1e5e20de0d76d83d64ac1b0d7b0dd3e
 CURRENT_HEAD_AT_RESUME=RESOLVE_FROM_GIT
 HEAD_AT_GENERATION_SEMANTICS=HISTORICAL_EVIDENCE_ONLY
 CURRENT_HEAD_SEMANTICS=RUNTIME_GIT_IS_SOURCE_OF_TRUTH
-REMOTE_COUNT_AT_GENERATION=0
+REMOTE_COUNT_AT_GENERATION=1
 PUSH=NO
 COMMIT=NO
 STAGING=NO
@@ -54,7 +62,7 @@ MANAGEMENT_READY_SCOPE=BOUNDED_MD1
 MANAGEMENT_DELIVERY_1=ACCEPTED_BY_GERENCIA
 MANAGEMENT_DELIVERY_1_STATUS=CLOSED
 
-INSTRUCTION_TO_NEW_SESSION=Read this file as the complete current continuation package and start without requesting another prompt or additional files for session start. Later in the session, request bounded additional evidence when needed; never guess missing evidence. Optional consolidated evidence may exist at C:\Users\aazcl\Downloads\T.Wings4.0\WINGS4_NEXT_ORCHESTRATOR_CONSOLIDATED.txt; it is not required for session start. Conduct substantive conversation in English with continuous non-blocking Cambridge C1 coaching.
+INSTRUCTION_TO_NEW_SESSION=Read this file as the complete current continuation package and start without requesting another prompt or additional files for session start. Later in the session, request bounded additional evidence when needed; never guess missing evidence. Optional consolidated evidence may exist at C:\Users\aazcl\Downloads\T.Wings4.0\WINGS4_NEXT_ORCHESTRATOR_CONSOLIDATED.txt; it is not required for session start. Conduct substantive conversation in English with continuous non-blocking Cambridge C1 coaching as Pablo's personal collaboration preference only, not as generic Wings4 product doctrine. Do not inspect AI.History/.
 FIRST_RUNTIME_GATE=Run the durable PowerShell runtime gate below from any directory before opening new work. Do not treat HEAD_AT_GENERATION as permanently current. Never call .ToUpper() on a Boolean; use ($expr).ToString().ToUpperInvariant().
 
 ## 00 Additional evidence protocol
@@ -64,7 +72,7 @@ FIRST_RUNTIME_GATE=Run the durable PowerShell runtime gate below from any direct
 3. If one small file is enough, request that file directly.
 4. If multiple/large/distributed files are needed, provide a PowerShell consolidation script that runs from any directory, uses absolute paths, collects only required evidence, excludes AI.History/, avoids unnecessary content, consolidates to minimum reliable output, and prints heartbeat when long.
 5. Upload-ready output only to C:\Users\aazcl\Downloads\T.Wings4.0: purge before write; flat only; no subfolders; minimum files/size; no node_modules, package-manager files, scripts, logs, or intermediate artifacts left behind.
-6. Missing evidence remains UNKNOWN until obtained. Evidence collection does not authorize child-project mutation, broad dumps, unrestricted collection, or AI.History inspection.
+6. Missing evidence remains UNKNOWN until obtained. Evidence collection does not authorize child-project mutation, child-repository read, briefing runtime, live web, RADAR, MARKET_MONITORING, capture form, broad dumps, unrestricted collection, or AI.History inspection.
 7. Session start does not require extra files. That does not mean external evidence will never be required later.
 8. Optional Iteration 2 file: C:\Users\aazcl\Downloads\T.Wings4.0\WINGS4_NEXT_ORCHESTRATOR_CONSOLIDATED.txt. Consume only if useful; do not block session start if absent.
 
@@ -78,13 +86,13 @@ ITERATION_1=ACTIVATE_AND_RUNTIME_GATE. This section is sufficient for Iteration 
 
 1. Assume ROLE=ORCHESTRATOR at C:\01. GitHub\Wings4.0.
 2. Validate BRANCH=main via the script below.
-3. Resolve CURRENT HEAD from Git (generation evidence only: edc3b86 PostMD1ContinuityRefresh; the MD1 gerencia-acceptance close commit may already be HEAD).
+3. Resolve CURRENT HEAD from Git. Generation baseline HEAD `8bf885b3e1e5e20de0d76d83d64ac1b0d7b0dd3e` (`Record push-first briefing design`) is historical evidence only. Runtime Git is the source of truth for the current HEAD.
 4. Expect index clean. Do not expect dirty MD1 UX product files. PRODUCT_UX_RESIDUAL=0. Do not reopen PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/ unless a real integrity failure proves commit `6bb3bfc` invalid.
 5. Expect a clean worktree unless Git shows otherwise. MD1 is accepted by gerencia and closed.
-6. Confirm ancestors include Ring0 `1e8315d`, Ring1 `16b28d1`, Ring1/Ring2 `03a589d`, North Star `d23d292`, temp hygiene `e199d8b`, MD1 UX `6bb3bfc`, continuity contracts `9e301acf`, post-MD1 continuity `edc3b86`.
+6. Confirm ancestors include Ring0 `1e8315d`, Ring1 `16b28d1`, Ring1/Ring2 `03a589d`, North Star `d23d292`, temp hygiene `e199d8b`, MD1 UX `6bb3bfc`, continuity contracts `9e301acf`, post-MD1 continuity `edc3b86`, DEC-W4-077 Option B `0e47b32`, and DEC-W4-078 design commit `8bf885b`.
 7. Do not inspect AI.History/.
-8. Do not mutate SkillsMachine, Brainy, Wings3 or any child project.
-9. Keep PRIMARY_INTERACTION_LANGUAGE=ENGLISH with CAMBRIDGE_C1_COACHING=ACTIVE.
+8. Do not mutate SkillsMachine, Brainy, Wings3 or any child project. Do not read `C:\01. GitHub\Skills`.
+9. Keep PRIMARY_INTERACTION_LANGUAGE=ENGLISH with CAMBRIDGE_C1_COACHING as Pablo's personal collaboration preference only, not generic Wings4 product doctrine.
 
 ### RUNTIME_GATE_POWERSHELL (copy/run verbatim; absolute paths; any cwd)
 
@@ -104,7 +112,9 @@ $ExpectedAncestors = @(
   'e199d8b8296c290d018b4b2b282c9618ceb121f4',
   '6bb3bfcede2fbe0417191bdcf76115fcf1eab483',
   '9e301acfd3d2c633777650d3518d58ed19690826',
-  'edc3b86f752f7c464c15c8873843ddad79b127e9'
+  'edc3b86f752f7c464c15c8873843ddad79b127e9',
+  '0e47b32e10c45465ba1f1653c7a9f477d608bd9e',
+  '8bf885b3e1e5e20de0d76d83d64ac1b0d7b0dd3e'
 )
 $AncestorFail = New-Object System.Collections.Generic.List[string]
 foreach ($c in $ExpectedAncestors) {
@@ -136,13 +146,23 @@ $Lines | ForEach-Object { $_ }
 - TEMP canonical = C:\Users\aazcl\Downloads\T.Wings4.0 (committed hygiene e199d8b).
 - Retired temp = C:\Users\aazcl\Downloads\GlobalTempWings4 (not active staging).
 - INDEPENDENT_RESYNCHRONIZATION_IMPLEMENTED=NO
-- MARKET_CHECK_RUNTIME_IMPLEMENTED=NO
+- MARKET_CHECK_RUNTIME_IMPLEMENTED=BOUNDED_ON_DEMAND_SLICE
+- MARKET_CHECK_RUNTIME_COMPLETE=YES_BOUNDED_RING0_RUNTIME_DEMO_ONLY
+- MARKET_CHECK_GENERALIZATION_BEYOND_RING0_DEMO=NO
 - MARKET_MONITORING_IMPLEMENTED=NO
 - RING3_IMPLEMENTED=NO
 - RADAR_IMPLEMENTED=NO
+- LIVE_WEB_MONITORING=NO
+- CAPTURE_FORM_IMPLEMENTED=NO
+- AUTO_DELIVERY_IMPLEMENTED=NO
+- CHILD_REPOSITORY_READ=NO
 - MULTI_PROJECT_COMBINED_ANALYSIS_IMPLEMENTED=NO
 - PUSH_FIRST_PORTFOLIO_BRIEFING_IMPLEMENTED=NO
 - PUSH_FIRST_DAILY_BRIEF_IMPLEMENTED=NO
+- BRIEFING_RUNTIME_IMPLEMENTED=NO
+- DEC_W4_077=OPTION_B_AUTHORIZE_BOUNDED_PUSH_FIRST_BRIEFING_DESIGN_ONLY
+- DEC_W4_078=DESIGN_RECORDED_NOT_RUNTIME
+- DESIGN_PUSH_FIRST_BRIEFING=PORTFOLIO.ARCHITECTURE/WINGS4.PUSH_FIRST_BRIEFING.DESIGN.md
 
 ## 04 Management Delivery #1 status
 
@@ -168,7 +188,7 @@ CONTRACT_GAP_001=FIXED
 VR_PUSH_001=PASS_HUMAN_VALIDATED
 PUSH=NO
 
-MANAGEMENT_READY does not mean Wings4 is feature-complete or production-complete across future capabilities.
+MANAGEMENT_READY does not mean Wings4 is feature-complete or production-complete across future capabilities. Bounded Market Check runtime complete (DEC-W4-071) applies only to the Ring0 demo and is not Wings4 complete.
 
 Historical Ring2 human functional evidence (do not rewrite):
 - Package W4IP-20260812-0001
@@ -177,14 +197,21 @@ Historical Ring2 human functional evidence (do not rewrite):
 - UNAUTHORIZED_PUSH function = PASS
 - VALID_RETURN = PASS
 
-Accepted non-blocking MD1 limitations (not blockers; remain visible):
-- GAP_01=STAGE_INDICATORS_LOOK_CLICKABLE_BUT_ARE_NOT_NAVIGATION=OPEN_NON_BLOCKING
-- GAP_02=ABOUT_ORIENTATION_PARTLY_COLLAPSED_OR_HIDDEN=OPEN_NON_BLOCKING
-- GAP_03=RESIDUAL_JARGON_AND_FACT_FALLBACK_IN_SOME_FINDINGS=OPEN_NON_BLOCKING
-- GAP_04=MANUAL_INTERVENTION_PACKAGE_TRANSFER=OPEN_NON_BLOCKING
-- GAP_05=FIXTURE_OR_WINGS_HELD_EVIDENCE_NOT_LIVE_CHILD_REPOSITORY_READ=OPEN_NON_BLOCKING
+Historical DEC-W4-062 accepted non-blocking MD1 limitation list (do not rewrite that decision):
+- GAP_01=STAGE_INDICATORS_LOOK_CLICKABLE_BUT_ARE_NOT_NAVIGATION
+- GAP_02=ABOUT_ORIENTATION_PARTLY_COLLAPSED_OR_HIDDEN
+- GAP_03=RESIDUAL_JARGON_AND_FACT_FALLBACK_IN_SOME_FINDINGS
+- GAP_04=MANUAL_INTERVENTION_PACKAGE_TRANSFER
+- GAP_05=FIXTURE_OR_WINGS_HELD_EVIDENCE_NOT_LIVE_CHILD_REPOSITORY_READ
 
-Do not reopen the accepted/closed MD1 delivery. Do not rewrite historical automated PASS evidence. Do not convert future-capability absence into an MD1 blocker.
+Current post-MD1 handling (additive; MD1 remains CLOSED):
+- GAP_01=ADDRESSED_POST_MD1_DEC_W4_073
+- GAP_02=ADDRESSED_POST_MD1_DEC_W4_073
+- GAP_03=FACT_FALLBACK_AND_CLASS_HELP_ADDRESSED_DEC_W4_074; WHOAMI_AND_CLASS_CODES_DEFERRED_DEC_W4_055
+- GAP_04=TRANSFER_HELP_ADDRESSED_DEC_W4_075; MANUAL_HANDOFF_REMAINS; COPY_LIFECYCLE_UNCHANGED
+- GAP_05=ACCEPTED_LIMITATION_FOR_RING0; OPTION_A_DEC_W4_076; LIVE_CHILD_READ_UNAUTHORIZED
+
+Do not reopen the accepted/closed MD1 delivery. Do not rewrite historical automated PASS evidence. Do not convert future-capability absence into an MD1 blocker. Fixture/Wings-held Ring0 evidence is not live child-repository intelligence.
 
 ## 05 Continuity architecture
 
@@ -202,59 +229,64 @@ EXPECTED_CONTEXT_INSTANCES_NEXT_SESSION=1
 ## 06 Exact next action
 
 NEXT_PRODUCT_MINIBATTLE=HUMAN_DECISION_REQUIRED
-NEXT_CONTINUITY_ACTION=DECIDE_NEXT_PRODUCT_MINIBATTLE_THEN_START_ONLY_IF_AUTHORIZED
-SCOPE=MD1 is accepted and closed for bounded management use. Do not invent or auto-start the next product capability. Do not claim Wings4 complete.
+NEXT_CONTINUITY_ACTION=DECIDE_AMONG_BOUNDED_OPTIONS_A_B_C
+SCOPE=MD1 is accepted and closed. DEC-W4-077 Option B and DEC-W4-078 record push-first briefing design-only. Do not implement briefing runtime. Do not claim Wings4 complete. Do not treat DEC-W4-078 as runtime authorization.
 
 ITERATION_2=CONSUME_OPTIONAL_CONSOLIDATED_EVIDENCE_IF_NEEDED
 OPTIONAL_EVIDENCE=C:\Users\aazcl\Downloads\T.Wings4.0\WINGS4_NEXT_ORCHESTRATOR_CONSOLIDATED.txt
 ITERATION_2_REQUIRED_FOR_SESSION_START=NO
 
-ITERATION_3=DECIDE_AND_START_NEXT_PRODUCT_MINIBATTLE
-Do not implement any candidate in the activation window. Present the compact candidate set and obtain an explicit human decision before starting work.
+ITERATION_3=DECIDE_AND_START_NEXT_BOUNDED_SLICE
+Do not implement any candidate in the activation window. Present the compact option set and obtain an explicit human decision before starting work.
 
-NEXT_CANDIDATE_1=BOUNDED_OPERATOR_UX_FRICTION_CLEANUP
-CANDIDATE_1_VALUE=LOW_TO_MEDIUM
-CANDIDATE_1_EFFORT=LOW
-CANDIDATE_1_RISK=LOW
+NEXT_OPTION_A=READ_ONLY_PUSH_FIRST_BRIEFING_DESIGN_VALIDATION
+NEXT_OPTION_B=BOUNDED_BRIEFING_RUNTIME_PLANNING_PACKET_WITHOUT_IMPLEMENTATION
+NEXT_OPTION_C=ANOTHER_SEPARATELY_AUTHORIZED_DEFERRED_SLICE
 
-NEXT_CANDIDATE_2=MARKET_CHECK_RUNTIME_BOUNDED_PRODUCTIZATION
-CANDIDATE_2_VALUE=HIGH
-CANDIDATE_2_EFFORT=HIGH
-CANDIDATE_2_RISK=MEDIUM
-CANDIDATE_2_STATUS=DIRECTION_CANONIZED_RUNTIME_NOT_AUTHORIZED
+Deferred slices (not auto-selected; require separate authorization):
+- WHOAMI/finding_class terminology overlay (DEC-W4-055)
+- COPY-as-export versus clipboard-only lifecycle (DEC-W4-075)
+- second-entity diagnostic (DEC-W4-077 Option A, not selected)
+- independent resynchronization beyond Ring2
 
-NEXT_CANDIDATE_3=INDEPENDENT_RESYNCHRONIZATION_BEYOND_RING2
-CANDIDATE_3_VALUE=HIGH
-CANDIDATE_3_EFFORT=HIGH
-CANDIDATE_3_RISK=HIGHER
-CANDIDATE_3_STATUS=NOT_AUTHORIZED
-
-DO_NOT_IMPLEMENT_IN_THIS_RESUME=Ring3; RADAR; MARKET_MONITORING; MARKET_CHECK runtime; independent resynchronization; child mutation; push; MD1 reopen.
+DO_NOT_IMPLEMENT_IN_THIS_RESUME=briefing runtime; Ring3; RADAR; MARKET_MONITORING; live web; capture form; auto-delivery; child read; child mutation; COPY lifecycle change; Market Check generalization beyond Ring0 demo; push; MD1 reopen.
 
 Missing capabilities (separate; not auto-selected; not MD1 blockers):
+- briefing runtime (design recorded; runtime unauthorized)
 - fresh independent project evidence / independent resynchronization
-- on-demand MARKET_CHECK runtime
 - multi-project combined analysis
-- push-first portfolio briefing
-- Ring3 / RADAR / MARKET_MONITORING
+- Ring3 / RADAR / MARKET_MONITORING / live web
 
 ## 07 Prohibitions
 
 CHILD_PROJECT_MUTATION=PROHIBITED
 SKILLSMACHINE_MUTATION=PROHIBITED
 AI_HISTORY_INSPECTION=PROHIBITED
+CHILD_REPOSITORY_READ=PROHIBITED
+BRIEFING_RUNTIME_IMPLEMENTATION_AUTHORIZED=NO
 RING3_PLUS_IMPLEMENTATION_AUTHORIZED=NO
 MARKET_MONITORING_AUTHORIZED=NO
 RADAR_IMPLEMENTATION_AUTHORIZED=NO
+LIVE_WEB_MONITORING_AUTHORIZED=NO
+CAPTURE_FORM_AUTHORIZED=NO
+AUTO_DELIVERY_AUTHORIZED=NO
+COPY_LIFECYCLE_CHANGE_AUTHORIZED=NO
 INDEPENDENT_RESYNCHRONIZATION_AUTHORIZED=NO
-MARKET_CHECK_RUNTIME_AUTHORIZED=NO
+MARKET_CHECK_GENERALIZATION_BEYOND_RING0_DEMO=PROHIBITED
 PRODUCT_UX_REOPEN=NO
 MD1_REOPEN=NO
 PUSH_POLICY=NO_PUSH_WITHOUT_EXPLICIT_HUMAN_AUTHORIZATION
 COMMIT_POLICY=NO_COMMIT_WITHOUT_EXPLICIT_HUMAN_AUTHORIZATION_AND_EXACT_STAGING
 WINGS4_COMPLETE_CLAIM=PROHIBITED
 PRODUCTION_COMPLETE_FOR_ALL_FUTURE_CAPABILITIES_CLAIM=PROHIBITED
+DEC_W4_078_IS_NOT_RUNTIME_AUTHORIZATION=YES
 
 ## 08 Singular next action
 
-Return to Wings4 ORCHESTRATOR, run Iteration 1 runtime gate from this file, optionally consume the consolidated temp evidence in Iteration 2, then in Iteration 3 obtain an explicit human decision among the three next-product candidates before starting any minibattle. No additional prompt required for session start; request later evidence only when needed.
+Return to Wings4 ORCHESTRATOR, run Iteration 1 runtime gate from this file, optionally consume the consolidated temp evidence in Iteration 2, then in Iteration 3 obtain an explicit human decision among:
+
+A. read-only push-first briefing design validation;
+B. bounded briefing-runtime planning packet without implementation;
+C. another separately authorized deferred slice.
+
+No additional prompt required for session start; request later evidence only when needed. Do not implement briefing runtime from this file.
