@@ -1179,3 +1179,67 @@ Current status: `GAP_05=ACCEPTED_LIMITATION_FOR_RING0`. Live child-repository re
 
 Audit: `W4_POST_GAP04_NEXT_SCOPE_SELECTION_AUDIT_021`
 Prototype: `PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/`
+
+## DEC-W4-077 — First post-MD1 product increment decision gate
+
+Status: APPROVED_HUMAN_DIRECTION
+Date: 2026-08-16
+Scope: RECORD_ONLY_DECISION_PACKET; authorization `W4_POST_MD1_NEXT_PRODUCT_SLICE_DECISION_PACKET_025`; selection `W4_DEC_077_OPTION_B_RECORD_COMMIT_AND_PUSH_026`
+Runtime HEAD at packet: `facf8aee4b485a6c2fb2877ecdd4104decc22bf7`
+Human decision: Pablo selects DEC-W4-077 Option B: AUTHORIZE_BOUNDED_PUSH_FIRST_BRIEFING_DESIGN_ONLY
+
+Historical packet body preserved below. This update records the selection. It does not rewrite the historical GAP_01–GAP_05 list in DEC-W4-062. It does not authorize briefing runtime, MARKET_MONITORING, RADAR, live web, Ring3, child-repository read, or product mutation.
+
+This packet does not choose for Pablo. It does not implement a product slice. It does not mutate product code, UI, fixture, tests, README, or acceptance. It does not authorize a capture form, live web search, MARKET_MONITORING, RADAR, Ring3, auto-delivery, temp-path write, COPY lifecycle change, child-repository read, child-project mutation, or MD1 reopening.
+
+Context confirmed (`W4_POST_MD1_GAP_CLOSURE_NEXT_SLICE_AUDIT_024`):
+
+- GAP_01 and GAP_02 are addressed additively by DEC-W4-073 (stage markers are status, not navigation; Path and Limit remain visible without opening About).
+- GAP_03 is addressed for fact fallback and class help by DEC-W4-074. Remaining WHOAMI/HUMAN/ORCHESTRATOR and `finding_class` overlay stays deferred under DEC-W4-055 and is a separate terminology decision, not this packet’s implementation.
+- GAP_04 is addressed for manual transfer help by DEC-W4-075. COPY-as-export versus clipboard-only remains a separate workflow decision. COPY lifecycle is unchanged.
+- GAP_05 is accepted as a bounded Ring0 fixture/Wings-held evidence-source limitation by DEC-W4-076 Option A (`ACCEPTED_LIMITATION_FOR_RING0`). GAP_05 must not be reopened as implementation. Live child-repository read remains unauthorized.
+- MD1 remains closed. Historical GAP_01–GAP_05 list in DEC-W4-062 is not rewritten.
+- Market Check bounded runtime remains YES for the bounded Ring0 runtime/demo only and must not be generalized into full Wings4 completion.
+- `C:\01. GitHub\Skills` was not read.
+
+Pablo decided among exactly these options:
+
+### Option A — AUTHORIZE_BOUNDED_SECOND_ENTITY_DIAGNOSTIC_DESIGN_ONLY
+
+Design-only extension of Ring0 diagnosis to another Wings-held portfolio entity. No live child-repository read. No second-product implementation in this packet.
+
+- Risk: “second entity” can be misread as live child-repository access, a second product surface, or Ring4 combined analysis.
+- Required next mutation if selected: a separate design authorization. Selecting A does not authorize reading `C:\01. GitHub\Skills` or mutating any child project.
+
+### Option B — AUTHORIZE_BOUNDED_PUSH_FIRST_BRIEFING_DESIGN_ONLY
+
+Design-only bounded “what changed / what needs a decision” briefing. Not MARKET_MONITORING, not RADAR, not live web.
+
+- Risk: “what changed” can be misread as continuous monitoring, RADAR, or live web scanning.
+- Required next mutation if selected: record-only status that the next slice is bounded push-first briefing design-only. Authorized by `W4_DEC_077_OPTION_B_RECORD_COMMIT_AND_PUSH_026`. Runtime implementation is not authorized by this selection.
+
+### Option C — DEFER_NEW_INCREMENT_AND_REFRESH_CANON_CONTINUITY
+
+No new product increment. Later authorized work may align README/spec/SESSION_CONTINUE with GAP_05 accepted limitation and current HEAD. Not a jargon rewrite.
+
+- Risk: canon lag (README/spec/SESSION_CONTINUE still describing GAP_01–GAP_05 as open) continues until a later authorized refresh.
+- Required next mutation if selected: a separate continuity/canon alignment authorization. Selecting C does not authorize a terminology rewrite, COPY lifecycle change, or product implementation.
+
+Decision:
+
+- Pablo selected Option B: AUTHORIZE_BOUNDED_PUSH_FIRST_BRIEFING_DESIGN_ONLY.
+- Next slice is bounded push-first briefing design-only.
+- This does not authorize briefing runtime implementation.
+- This is not MARKET_MONITORING, not RADAR, not live web, and not Ring3.
+- The briefing must summarize Wings-held state and decisions only.
+- It must not read or mutate child repositories.
+- MD1 remains closed.
+- GAP_01–GAP_04 remain addressed (DEC-W4-073, DEC-W4-074, DEC-W4-075).
+- GAP_05 remains `ACCEPTED_LIMITATION_FOR_RING0` (DEC-W4-076 Option A).
+- WHOAMI/`finding_class` overlay, COPY-as-export lifecycle, SESSION_CONTINUE/canon refresh, and second-entity diagnostic remain separate later decisions.
+- This does not authorize a capture form, auto-delivery, temp-path write, or COPY lifecycle change.
+
+Current status: `NEXT_SLICE=BOUNDED_PUSH_FIRST_BRIEFING_DESIGN_ONLY`. Runtime implementation remains unauthorized.
+
+Audit: `W4_POST_MD1_GAP_CLOSURE_NEXT_SLICE_AUDIT_024`
+Prototype: `PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/`

@@ -71,7 +71,7 @@ RUNTIME_GATE_PROHIBITED_PATTERN=Boolean.ToUpper_without_ToString
 
 ## Current objective
 
-Management Delivery #1 remains accepted and closed for bounded MD1 scope. Bounded on-demand Market Check runtime is committed (`5a6714d`) and human-live validated, including F-MC-001 BUILD and F-MC-002 INTEGRATE (`3063dad`, DEC-W4-067). A manual evidence-intake contract is defined (DEC-W4-068); intake badges are scoped so WINGS_HELD is not labeled Valid manual intake (DEC-W4-069). Pablo selected DEC-W4-070 Option A (DEC-W4-071). MARKET_CHECK_RUNTIME_COMPLETE=YES for the bounded Ring0 runtime/demo only. Post-complete live UI validation PASS is recorded at HEAD `ad53a94` (DEC-W4-072). No dedicated COMPLETE badge is visible; status is coherent because the fixture loads and Market Check is ready. Additive GAP_01/GAP_02 operator UX cleanup is recorded (DEC-W4-073) and does not reopen MD1. Bounded GAP_03 fact-fallback and class-help microcopy is recorded (DEC-W4-074); remaining WHOAMI/class-code jargon stays deferred under DEC-W4-055. Bounded GAP_04 transfer help is recorded (DEC-W4-075) and committed locally at `480443a` (validated in W4_GAP_04_BOUNDED_TRANSFER_HELP_018; committed in W4_GAP_04_TRANSFER_HELP_LOCAL_COMMIT_019): Wings prepares the package and does not send it; COPY lifecycle is unchanged; the handoff remains manual. Pablo selected DEC-W4-076 Option A: GAP_05 is an accepted bounded Ring0 fixture/Wings-held evidence-source limitation (`ACCEPTED_LIMITATION_FOR_RING0`). Live child-repository read remains unauthorized. `C:\01. GitHub\Skills` was not read. GAP_05 is not a product implementation task in this slice. Capture form, live web, monitoring, RADAR, and Ring3 remain unauthorized.
+Management Delivery #1 remains accepted and closed for bounded MD1 scope. Bounded on-demand Market Check runtime is committed (`5a6714d`) and human-live validated, including F-MC-001 BUILD and F-MC-002 INTEGRATE (`3063dad`, DEC-W4-067). A manual evidence-intake contract is defined (DEC-W4-068); intake badges are scoped so WINGS_HELD is not labeled Valid manual intake (DEC-W4-069). Pablo selected DEC-W4-070 Option A (DEC-W4-071). MARKET_CHECK_RUNTIME_COMPLETE=YES for the bounded Ring0 runtime/demo only. Post-complete live UI validation PASS is recorded at HEAD `ad53a94` (DEC-W4-072). No dedicated COMPLETE badge is visible; status is coherent because the fixture loads and Market Check is ready. Additive GAP_01/GAP_02 operator UX cleanup is recorded (DEC-W4-073) and does not reopen MD1. Bounded GAP_03 fact-fallback and class-help microcopy is recorded (DEC-W4-074); remaining WHOAMI/class-code jargon stays deferred under DEC-W4-055. Bounded GAP_04 transfer help is recorded (DEC-W4-075) and committed locally at `480443a` (validated in W4_GAP_04_BOUNDED_TRANSFER_HELP_018; committed in W4_GAP_04_TRANSFER_HELP_LOCAL_COMMIT_019): Wings prepares the package and does not send it; COPY lifecycle is unchanged; the handoff remains manual. Pablo selected DEC-W4-076 Option A: GAP_05 is an accepted bounded Ring0 fixture/Wings-held evidence-source limitation (`ACCEPTED_LIMITATION_FOR_RING0`). Live child-repository read remains unauthorized. `C:\01. GitHub\Skills` was not read. GAP_05 is not a product implementation task. Pablo selected DEC-W4-077 Option B: next slice is bounded push-first briefing design-only. This does not authorize briefing runtime. The briefing must summarize Wings-held state and decisions only; it is not MARKET_MONITORING, not RADAR, not live web, and not Ring3. It must not read or mutate child repositories. WHOAMI/`finding_class` terminology, COPY-as-export lifecycle, SESSION_CONTINUE/canon refresh, and second-entity diagnostic remain separate later decisions. Capture form, live web, monitoring, RADAR, and Ring3 remain unauthorized.
 
 ## Current confirmed state
 
@@ -95,6 +95,8 @@ Management Delivery #1 remains accepted and closed for bounded MD1 scope. Bounde
 - GAP_04_TRANSFER_HELP_COMMITTED_TASK=W4_GAP_04_TRANSFER_HELP_LOCAL_COMMIT_019
 - GAP_05_EVIDENCE_SOURCE_PACKET=ACCEPTED_LIMITATION_OPTION_A_DEC_W4_076
 - GAP_05_EVIDENCE_SOURCE_PACKET_UNCOMMITTED=NO
+- POST_MD1_NEXT_SLICE_PACKET=OPTION_B_PUSH_FIRST_BRIEFING_DESIGN_ONLY_DEC_W4_077
+- POST_MD1_NEXT_SLICE_PACKET_UNCOMMITTED=NO
 - EV_R2_001_TO_010=PASS_10_OF_10
 - HUMAN_MD1_ACCEPTANCE=PASS_8_OF_8
 - UX_MD1_001_TO_008=PASS_8_OF_8
@@ -188,17 +190,18 @@ DECISION_UX_FRICTION=PORTFOLIO.DECISION_LOG.md#dec-w4-073
 DECISION_GAP_03_MICROCOPY=PORTFOLIO.DECISION_LOG.md#dec-w4-074
 DECISION_GAP_04_TRANSFER_HELP=PORTFOLIO.DECISION_LOG.md#dec-w4-075
 DECISION_GAP_05_EVIDENCE_SOURCE=PORTFOLIO.DECISION_LOG.md#dec-w4-076
+DECISION_POST_MD1_NEXT_SLICE=PORTFOLIO.DECISION_LOG.md#dec-w4-077
 HUMAN_CANON=HUMAN/HUMAN.WINGS4.md
 
 ## Next action
 
-CURRENT_MINIBATTLE=W4_GAP_05_OPTION_A_RECORD_COMMIT_AND_PUSH_023
+CURRENT_MINIBATTLE=W4_DEC_077_OPTION_B_RECORD_COMMIT_AND_PUSH_026
 NEXT_ROLE=ORCHESTRATOR
 NEXT_ROOT=C:\01. GitHub\Wings4.0
-NEXT_PRODUCT_MINIBATTLE=HUMAN_DECISION_REQUIRED_NEXT_NON_GAP05_SLICE
-NEXT_CANDIDATE_1=DEFERRED_WHOAMI_CLASS_CODE_TERMINOLOGY_DEC_W4_055
-NEXT_CANDIDATE_2=FINDING_CLASS_ENGLISH_LABELS_OR_COPY_EXPORT_LIFECYCLE
-NEXT_CANDIDATE_3=INDEPENDENT_RESYNCHRONIZATION_BEYOND_RING2
+NEXT_PRODUCT_MINIBATTLE=BOUNDED_PUSH_FIRST_BRIEFING_DESIGN_ONLY
+NEXT_CANDIDATE_1=BOUNDED_PUSH_FIRST_BRIEFING_DESIGN_ONLY
+NEXT_CANDIDATE_2=DEFERRED_WHOAMI_FINDING_CLASS_OR_COPY_EXPORT
+NEXT_CANDIDATE_3=DEFERRED_SESSION_CONTINUE_CANON_REFRESH_OR_SECOND_ENTITY_DIAGNOSTIC
 NEXT_CONTINUITY_ACTION=KEEP_BOUNDED_MARKET_CHECK_COMPLETE_DO_NOT_GENERALIZE
 RING3_IMPLEMENTATION_AUTHORIZED=NO
 COMMIT_POLICY=NO_COMMIT_WITHOUT_EXACT_STAGING_VALIDATION_AND_EXPLICIT_HUMAN_AUTHORIZATION
@@ -208,12 +211,12 @@ PUSH_POLICY=NO_PUSH_WITHOUT_EXPLICIT_HUMAN_AUTHORIZATION
 
 1. Resolve root, branch, HEAD, worktree and index from Git. Serialize Booleans only via ($expr).ToString().ToUpperInvariant().
 2. Do not reopen MD1 as an open delivery. PRODUCT_UX_RESIDUAL=0 for MD1. Additive Market Check files may exist in PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/; they do not reopen MD1.
-3. Expect a clean worktree after the authorized GAP_05 Option A record commit and push. GAP_05 is ACCEPTED_LIMITATION_FOR_RING0 (DEC-W4-076 Option A). GAP_04 transfer help is committed at `480443a`. MD1 is accepted and closed; do not reopen MD1 as an open delivery.
+3. Expect a clean worktree after the authorized DEC-W4-077 Option B record commit and push. Next slice is bounded push-first briefing design-only; runtime is not authorized. GAP_05 is ACCEPTED_LIMITATION_FOR_RING0 (DEC-W4-076 Option A). GAP_04 transfer help is committed at `480443a`. MD1 is accepted and closed; do not reopen MD1 as an open delivery. Do not start MD1 gap cleanup.
 4. Treat Ring0 `1e8315d`, Ring1 `16b28d1`, Ring1/Ring2 `03a589d`, North Star `d23d292`, temp hygiene `e199d8b`, MD1 UX `6bb3bfc`, continuity contracts `9e301acf`, post-MD1 continuity `edc3b86`, Market Check runtime `5a6714d`, and BUILD/INTEGRATE coverage `3063dad` as ancestors.
 5. Keep English/C1 coaching active; request missing evidence or mark UNKNOWN; never guess.
-6. Do not implement Ring3+, RADAR, MARKET_MONITORING, or independent resynchronization without separate authorization. Bounded Market Check runtime complete (DEC-W4-071) is not Wings4 complete. Post-complete live UI PASS is recorded (DEC-W4-072); no dedicated COMPLETE badge. GAP_01/GAP_02 additive UX cleanup is recorded (DEC-W4-073) and does not reopen MD1. GAP_03 fact-fallback and class-help microcopy is recorded (DEC-W4-074); remaining WHOAMI/class-code jargon stays deferred under DEC-W4-055. GAP_04 transfer help is recorded (DEC-W4-075) and committed at `480443a` (validated 018, committed 019); COPY lifecycle is unchanged; DOWNLOAD behavior is unchanged; manual handoff remains. GAP_05 is ACCEPTED_LIMITATION_FOR_RING0 (DEC-W4-076 Option A); live child-repository read remains unauthorized; do not implement GAP_05 as a product task. Do not add a capture form, COMPLETE UI badge, auto-delivery, temp-path write, or live web search.
+6. Do not implement Ring3+, RADAR, MARKET_MONITORING, or independent resynchronization without separate authorization. Bounded Market Check runtime complete (DEC-W4-071) is not Wings4 complete. Post-complete live UI PASS is recorded (DEC-W4-072); no dedicated COMPLETE badge. GAP_01/GAP_02 additive UX cleanup is recorded (DEC-W4-073) and does not reopen MD1. GAP_03 fact-fallback and class-help microcopy is recorded (DEC-W4-074); remaining WHOAMI/class-code jargon stays deferred under DEC-W4-055. GAP_04 transfer help is recorded (DEC-W4-075) and committed at `480443a` (validated 018, committed 019); COPY lifecycle is unchanged; DOWNLOAD behavior is unchanged; manual handoff remains. GAP_05 is ACCEPTED_LIMITATION_FOR_RING0 (DEC-W4-076 Option A); live child-repository read remains unauthorized; do not implement GAP_05 as a product task. DEC-W4-077 Option B authorizes bounded push-first briefing design-only; it does not authorize briefing runtime, MARKET_MONITORING, RADAR, live web, second-entity implementation, jargon rewrite, or COPY lifecycle change. Deferred separately: WHOAMI/`finding_class` terminology; COPY-as-export lifecycle; SESSION_CONTINUE/canon refresh; second-entity diagnostic. Do not add a capture form, COMPLETE UI badge, auto-delivery, temp-path write, or live web search.
 7. Do not inspect AI.History/.
 8. Do not mutate SkillsMachine or any child project.
 9. Do not push without explicit authorization.
 10. For same-workspace delta continuity after bootstrap, use SESSION_CONTINUE_ENTRYPOINT; do not treat BATON as SESSION_CONTINUE.
-LAST_REFRESHED_AT: 2026-08-16T21:29:00-04:00
+LAST_REFRESHED_AT: 2026-08-16T21:47:00-04:00

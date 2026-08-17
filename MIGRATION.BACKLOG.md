@@ -59,6 +59,9 @@
 | W4_POST_GAP04_NEXT_SCOPE_SELECTION_AUDIT_021 | Read-only post-GAP04 next-scope audit | P0 | COMPLETED_EVIDENCE_RECORDED | Recommended B: GAP_05 evidence-source decision packet; no child read; no mutation. |
 | W4_GAP_05_EVIDENCE_SOURCE_DECISION_PACKET_022 | Record-only GAP_05 evidence-source decision gate | P0 | COMPLETED_HUMAN_DECISION_PENDING_SUPERSEDED | DEC-W4-076 options A/B/C recorded; Pablo later selected A under W4_GAP_05_OPTION_A_RECORD_COMMIT_AND_PUSH_023. |
 | W4_GAP_05_OPTION_A_RECORD_COMMIT_AND_PUSH_023 | Record GAP_05 Option A; commit and push | P0 | COMPLETED_PUSHED | DEC-W4-076 Option A: ACCEPT_FIXTURE_HELD_AS_DURABLE_MD1_LIMIT; GAP_05=ACCEPTED_LIMITATION_FOR_RING0; live child read unauthorized; Skills not read; no product mutation; MD1 closed. |
+| W4_POST_MD1_GAP_CLOSURE_NEXT_SLICE_AUDIT_024 | Read-only post-MD1 gap-closure next-slice audit | P0 | COMPLETED_EVIDENCE_RECORDED | Recommended B: post-MD1 product-slice decision packet; GAP_01–GAP_04 addressed; GAP_05 accepted limitation; no mutation. |
+| W4_POST_MD1_NEXT_PRODUCT_SLICE_DECISION_PACKET_025 | Record-only first post-MD1 product increment gate | P0 | COMPLETED_HUMAN_DECISION_PENDING_SUPERSEDED | DEC-W4-077 options A/B/C recorded; Pablo later selected B under W4_DEC_077_OPTION_B_RECORD_COMMIT_AND_PUSH_026. |
+| W4_DEC_077_OPTION_B_RECORD_COMMIT_AND_PUSH_026 | Record DEC-W4-077 Option B; commit and push | P0 | COMPLETED_PUSHED | DEC-W4-077 Option B: AUTHORIZE_BOUNDED_PUSH_FIRST_BRIEFING_DESIGN_ONLY; runtime unauthorized; not monitoring/RADAR/live web/Ring3; Wings-held state only; no child read; MD1 closed; GAP_05 accepted limitation. |
 
 ## Ring0–Ring2 regression / eval inventory (compact)
 
