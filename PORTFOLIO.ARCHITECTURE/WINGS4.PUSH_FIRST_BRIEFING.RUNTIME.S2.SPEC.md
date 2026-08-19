@@ -138,9 +138,9 @@ Missing evidence `UNKNOWN` includes:
 3. Required evidence
 4. A bounded next action where applicable
 
-Empty `MATERIAL_CHANGES`: `No Wings-held material change recorded`
+Empty `MATERIAL_CHANGES` sentence `No Wings-held material change recorded` is emitted only after a verified operative-decision anchor and a successful empty Git range over governed paths. An unknown, malformed, nonexistent, or non-ancestor anchor must emit structured `UNKNOWN`, not the empty sentence.
 
-S2 `PROJECT_STATE.briefing_runtime` / limits value:
+S2 durable slice-identity value (header and evidence limits; not a substitute for parsed current state):
 
 `BRIEFING_RUNTIME=IMPLEMENTED_ON_DEMAND_TEXT_SESSION_OUTPUT_ONLY`
 
@@ -185,7 +185,7 @@ A different but ancestral hash is valid. Only a confirmed non-ancestor produces 
 
 Semantic continuity lag is a separate content-level condition. HEAD divergence is Git-lineage-level. Valid ancestry does not prove semantic freshness and does not imply semantic staleness. Semantic status requires separate governed evidence. Semantic continuity lag is assessed independently from HEAD divergence; a valid historical ancestor is not stale solely because runtime HEAD is newer. It is not inferred from hash inequality and is not a HEAD-stale warning. S2.1 does not add a new warning code.
 
-Human options: at least two. None execute product or child mutation.
+Human options: at least two, generated from current findings. None execute product or child mutation. Options must not preserve obsolete fixed OPTION_A/B/C wording. When contradictions or derivation failures exist, include a reject/request-correction option. Generated options must not authorize S3 or S4.
 
 ## 6. Failure table
 
@@ -203,7 +203,10 @@ Human options: at least two. None execute product or child mutation.
 | Confirmed non-ancestor BATON or START_HERE generation commit | Continue with existing `STALE_BATON_HEAD` / `STALE_SESSION_CONTINUE` |
 | Missing, malformed, non-commit, or unverifiable generation HEAD | Structured `UNKNOWN`; no base `STALE_*` |
 | Valid ancestral generation HEAD differing from runtime HEAD | No base stale warning |
-| No evidenced material changes | Emit canonical empty-state wording |
+| No evidenced material changes after a verified anchor and successful empty Git range | Emit canonical empty-state wording |
+| Decision anchor missing, malformed, nonexistent, non-ancestor, or unverifiable | Structured `UNKNOWN` for material changes; do not emit the empty sentence |
+| START_HERE and BATON `NEXT_PRODUCT_ACTION` conflict | Structured `UNKNOWN` with both source pointers; do not silently choose a winner |
+| No explicit `OPEN_DECISION_*` contract | Honest empty/`UNKNOWN` with why and required evidence; do not infer a catalog from prose |
 
 No network retries, repair routines, background retries, or dependency recovery.
 
@@ -236,13 +239,13 @@ Enforced in code:
 | BR-02 | Contract | Output contains exactly eight canonical sections in canonical order |
 | BR-03 | Contract | Every evidence claim contains a governed source pointer |
 | BR-04 | Negative | Missing source becomes structured `UNKNOWN` |
-| BR-05 | Empty | No evidenced changes produces canonical empty-state wording |
+| BR-05 | Empty | Canonical empty-state wording only after a verified anchor and a successful empty Git range; post-anchor relevant commits must be listed; unknown anchor must produce `UNKNOWN`, not the empty FACT |
 | BR-06 | Boundary | Skills, AI.History, and child paths are rejected/not read |
 | BR-07 | Boundary | No network/live-web symbols or calls exist |
 | BR-08 | Boundary | Required non-monitoring, non-RADAR, non-live-web, and no-child-read wording is present |
 | BR-09 | Stale | Confirmed non-ancestor BATON generation commit produces `STALE_BATON_HEAD` |
 | BR-10 | Stale | Confirmed non-ancestor START_HERE generation commit produces `STALE_SESSION_CONTINUE` |
-| BR-11 | Human | At least two options are shown and none executes mutation |
+| BR-11 | Human | At least two safe, non-mutating, findings-derived options are shown; obsolete literal OPTION_A/OPTION_B content is not required |
 | BR-12 | Semantics | FACT, INFERENCE, RECOMMENDATION, and UNKNOWN remain distinct |
 | BR-13 | Overclaim | GAP_05 remains bounded; no Wings4-complete claim |
 | BR-14 | Isolation | Runtime produces no persisted briefing or worktree mutation |
@@ -259,3 +262,103 @@ S3 and S4 remain unimplemented and unauthorized.
 This slice does not make Wings4 complete or production-complete.
 Cambridge C1 remains Pablo-specific collaboration context, not briefing product doctrine.
 Semantic continuity lag is assessed independently from HEAD divergence. Valid ancestry does not prove semantic freshness and does not imply semantic staleness. Semantic status requires separate governed evidence. Semantic continuity lag is not a HEAD-stale warning.
+
+## 11. S2.3 current-state derivation
+
+Operational current-state claims are derived from governed Wings-held evidence. Frozen assembly catalogs and silent defaults for current state are prohibited.
+
+### 11.1 Source precedence
+
+1. Runtime Git state from this repository only.
+2. Explicit `KEY=VALUE` state in START_HERE and BATON.
+3. Structured decision-log heading, Status, and commit fields.
+4. S2 specification constants only for durable slice identity and boundaries.
+5. Structured `UNKNOWN` when governed evidence is missing, malformed, contradictory, or unverifiable.
+
+Do not use free-form AI interpretation of prose as a state machine. Conflicting explicit sources produce `UNKNOWN` with both source pointers. Do not silently select a winner.
+
+### 11.2 Explicit-state parsing
+
+Parse `KEY=VALUE` lines from START_HERE and BATON. First `;` segment is the value. Known equivalent encodings may be canonicalized only by documented rules (for example GAP_05 values that contain `ACCEPTED_LIMITATION_FOR_RING0` or the equivalent fixture-held token collapse to `ACCEPTED_LIMITATION_FOR_RING0`). Unrecognized or conflicting values remain `UNKNOWN`.
+
+`PROJECT_STATE` operational fields:
+
+- `root` from the validated repository root
+- `branch` and `HEAD` from Git
+- `md1_status` from explicit `MANAGEMENT_DELIVERY_1_STATUS` (no `CLOSED` default)
+- `gap_05` from explicit `GAP_05`
+- `briefing_runtime` from consistent explicit S2/continuity keys, mapped to the durable S2 level when the value is an authorized S2 implementation token
+- S3/S4 authorization and implementation from explicit `S3_*` / `S4_*` keys
+
+Durable S2 identity constants must not masquerade as parsed current state.
+
+### 11.3 Operative-decision selection
+
+Parse `## DEC-W4-N —` headings deterministically. Select the highest operative numeric DEC-W4 entry. Exclude an entry only when it is explicitly marked historical/non-operative (`Status: HISTORICAL_NON_OPERATIVE` or `ENTRY_HISTORICAL_NON_OPERATIVE=YES`). `HISTORICAL_NON_OPERATIVE_NOTE` is not an exclusion flag.
+
+An entry with missing or conflicting Status lines is heading/status drift and is not operative. Fail closed with structured `UNKNOWN`.
+
+### 11.4 Anchor validation
+
+Parse Implementation commit, Correction commit, and Runtime HEAD forty-hex fields. Accept only a unique valid 40-hex commit object that is an ancestor of runtime HEAD (or equals HEAD). Missing, malformed, nonexistent, non-commit, non-ancestor, ambiguous, or unverifiable anchors produce structured `UNKNOWN`. Never emit the empty MATERIAL_CHANGES sentence when the anchor is `UNKNOWN`.
+
+### 11.5 Material-change Git range and path scope
+
+Inspect `anchor..HEAD` with this-repository Git only:
+
+```
+git log --reverse --pretty=format:%H%x09%s --name-only <anchor>..<HEAD> -- <governed-paths>
+```
+
+Do not use the network, another repository, RADAR, AI.History, or a child path.
+
+Path scope:
+
+- governed allowlist files
+- `PRODUCT/PUSH_FIRST_BRIEFING_RUNTIME/**`
+- `PORTFOLIO.ARCHITECTURE/WINGS4.PUSH_FIRST_BRIEFING.RUNTIME.S2.SPEC.md`
+
+Continuity-only and tests-only commits are included when they fall within this Wings-held scope.
+
+Ordering is deterministic oldest-to-newest. Each listed commit includes hash, subject, and governed path evidence.
+
+`MAX_MATERIAL_COMMITS=10`. If truncated, state the displayed count and emit structured `UNKNOWN` for the omitted remainder.
+
+Emit `No Wings-held material change recorded` only when:
+
+1. the anchor is valid;
+2. Git history inspection succeeds; and
+3. zero relevant commits exist after the anchor.
+
+### 11.6 Open-decision classifications
+
+Do not emit a frozen open-decision catalog.
+
+Parse explicit `OPEN_DECISION_*` keys when present. Classify:
+
+`OPEN`, `DEFERRED`, `NOT_SELECTED`, `COMPLETED`, `SUPERSEDED`, `UNAUTHORIZED`, `UNKNOWN`.
+
+If a key value is a `DEC-W4-*` identifier, classify from that entry’s structured Status.
+
+`COMPLETED`, `SUPERSEDED`, and `NOT_SELECTED` must not be presented as currently open. S3/S4 unauthorized state is a boundary, not automatically an open decision. DEC-W4-055 and DEC-W4-075 must not be labeled open merely because residual subjects remain deferred. `SESSION_CONTINUE_CANON_REFRESH` must not appear as `DEFERRED` after the completed continuity-sync commit.
+
+If no explicit current open-decision contract exists, emit an honest empty/`UNKNOWN` result with why and required evidence. Do not infer a catalog from narrative prose.
+
+### 11.7 Next-action conflict handling
+
+Parse `NEXT_PRODUCT_ACTION` from START_HERE and BATON.
+
+- Both present and consistent: emit that governed action.
+- One absent: use the other and disclose the available source.
+- Conflict: `UNKNOWN` with both source pointers.
+- Neither parseable: `UNKNOWN`.
+
+Do not hardcode “keep S3/S4 unauthorized” as the current next action. S3/S4 remain unauthorized unless explicit governed evidence says otherwise.
+
+### 11.8 Fail-closed UNKNOWN and claim-level provenance
+
+Structured `UNKNOWN` is required when governed evidence is missing, malformed, contradictory, or unverifiable. Every current-state claim must cite evidence actually parsed for that claim. Unused allowlist inputs may remain allowed, but they must not be represented as supporting a claim unless their content was used.
+
+### 11.9 Dynamic human options
+
+Generate at least two mutually intelligible, non-mutating options tied to the current briefing. Include an option to reject/request correction when contradictions or derivation failures exist. Do not preserve fixed OPTION_A/B/C wording. Selecting an option must not execute mutation. Do not authorize S3 or S4 through generated options.

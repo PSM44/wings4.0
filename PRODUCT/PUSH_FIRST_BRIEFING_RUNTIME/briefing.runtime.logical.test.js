@@ -28,7 +28,30 @@ function ok(id, cond, detail) {
 
 var HEAD_A = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
 var HEAD_B = "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb";
+var HEAD_C = "cccccccccccccccccccccccccccccccccccccccc";
+var ANCHOR_081 = "6db8963ecfa9d1ad2c8c9c511fbbd34b9df09641";
+var COMMIT_SYNC = "b0380d756d1ffa676e8649e5f7df79e540886be4";
+var COMMIT_S22 = "87ddb8ac8da7f59889fac54c203ed09a8517dc47";
 var ROOT = runtime.EXPECTED_ROOT;
+
+function decisionEntry(id, title, status, extra) {
+  return "## " + id + " — " + title + "\n\nStatus: " + status + "\n" + (extra || "") + "\n";
+}
+
+function continuityFiles(extraStart, extraBaton) {
+  var shared =
+    "MANAGEMENT_DELIVERY_1_STATUS=CLOSED\n" +
+    "NEXT_PRODUCT_ACTION=RUN_S2_ON_DEMAND_BRIEFING_FOR_HUMAN_REVIEW\n" +
+    "S3_AUTHORIZED=NO\nS3_IMPLEMENTED=NO\nS4_AUTHORIZED=NO\nS4_IMPLEMENTED=NO\n" +
+    "GAP_05=ACCEPTED_LIMITATION_FOR_RING0\n" +
+    "BRIEFING_RUNTIME_IMPLEMENTATION_LEVEL=ON_DEMAND_TEXT_SESSION_OUTPUT_ONLY\n";
+  return {
+    "SESSIONS/ORCHESTRATOR/03.SESSION_CONTINUE/00.START_HERE.ORCHESTRATOR.txt":
+      "HEAD_AT_GENERATION=" + HEAD_A + "\n" + shared + (extraStart || ""),
+    "00_STATE/BATON.WINGS4.ACTIVE.md":
+      "HEAD_AT_GENERATION: " + HEAD_A + "\n" + shared + (extraBaton || "")
+  };
+}
 
 var BASE_FILES = {
   "HUMAN/HUMAN.WINGS4.md": "# HUMAN\nPablo is the final authority.\n",
@@ -88,7 +111,7 @@ function makeDeps(overrides) {
       if (args[0] === "status") return git.porcelain || "";
       if (args[0] === "cat-file" && args[1] === "-t") {
         var kind = git.objects && git.objects[args[2]];
-        if (kind === "commit") return "commit\n";
+        if (kind === "commit" || args[2] === git.head) return "commit\n";
         var missingObj = new Error("not a git object");
         missingObj.status = 128;
         throw missingObj;
@@ -103,6 +126,22 @@ function makeDeps(overrides) {
         var notAnc = new Error("not-ancestor");
         notAnc.status = 1;
         throw notAnc;
+      }
+      if (args[0] === "log") {
+        if (git.logFail) {
+          var lf = new Error("git-log-failed");
+          lf.status = git.logFail;
+          throw lf;
+        }
+        if (git.logStdout != null) return git.logStdout;
+        if (git.logCommits && git.logCommits.length) {
+          return git.logCommits
+            .map(function (c) {
+              return c.hash + "\t" + c.subject + "\n" + (c.paths || []).join("\n");
+            })
+            .join("\n\n") + "\n";
+        }
+        return "";
       }
       throw new Error("unexpected-git:" + args.join(" "));
     },
@@ -196,9 +235,30 @@ ok(
     rMissing.markdown.indexOf("why:") !== -1
 );
 
-// BR-05
-var rEmpty = run();
-ok("BR-05", rEmpty.markdown.indexOf(runtime.EMPTY_MATERIAL_CHANGES) !== -1);
+// BR-05 — empty material wording only after verified anchor + empty Git range
+var rEmpty = run({
+  files: Object.assign(
+    {
+      "PORTFOLIO.DECISION_LOG.md": decisionEntry(
+        "DEC-W4-081",
+        "S2.1 stale-HEAD ancestry-semantics correction",
+        "CORRECTED",
+        "Correction commit: `" + HEAD_A + "`"
+      )
+    },
+    continuityFiles()
+  ),
+  git: { head: HEAD_A, objects: (function () { var o = {}; o[HEAD_A] = "commit"; return o; })(), logCommits: [] }
+});
+ok(
+  "BR-05",
+  rEmpty.markdown.indexOf(runtime.EMPTY_MATERIAL_CHANGES) !== -1 &&
+    rEmpty.model.materialUnknown !== true
+);
+ok(
+  "BR-05-unknown-anchor-not-empty",
+  r1.markdown.indexOf(runtime.EMPTY_MATERIAL_CHANGES) === -1
+);
 
 // BR-06
 ok("BR-06-skills", runtime.looksForbidden("C:\\01. GitHub\\Skills\\HUMAN.md") === true);
@@ -428,13 +488,21 @@ ok(
 ok("S2-2-EIGHT-SECTIONS", runtime.CANONICAL_SECTIONS.length === 8 && sectionOrder(r1.markdown).every(function (n) { return n >= 0; }));
 
 // BR-11
+var optionLines = r1.markdown.split("\n").filter(function (line) {
+  return /^- OPTION_[A-Z0-9_]+:/.test(line);
+});
 ok(
   "BR-11",
-  r1.markdown.indexOf("OPTION_A:") !== -1 &&
-    r1.markdown.indexOf("OPTION_B:") !== -1 &&
+  optionLines.length >= 2 &&
+    r1.markdown.indexOf("OPTION_A:") === -1 &&
+    r1.markdown.indexOf("OPTION_B:") === -1 &&
     /executes_mutation: NO/.test(r1.markdown) &&
+    r1.model.options.length >= 2 &&
     r1.model.options.every(function (o) {
       return o.executes_mutation === false;
+    }) &&
+    r1.model.options.some(function (o) {
+      return /reject/i.test(o.text) || o.id.indexOf("REJECT") !== -1;
     })
 );
 
@@ -527,6 +595,326 @@ ok(
 );
 
 eq("BR-count-sections", runtime.CANONICAL_SECTIONS.length, 8);
+
+function objectsFor() {
+  var o = {};
+  Array.prototype.slice.call(arguments).forEach(function (h) {
+    o[h] = "commit";
+  });
+  return o;
+}
+
+function ancestorsFor() {
+  var a = {};
+  Array.prototype.slice.call(arguments).forEach(function (h) {
+    a[h] = true;
+  });
+  return a;
+}
+
+function runDerived(fileOverrides, gitOverrides) {
+  return run({
+    files: Object.assign({}, continuityFiles(), fileOverrides || {}),
+    git: Object.assign(
+      {
+        head: COMMIT_S22,
+        objects: objectsFor(HEAD_A, ANCHOR_081, COMMIT_SYNC, COMMIT_S22),
+        ancestors: ancestorsFor(HEAD_A, ANCHOR_081, COMMIT_SYNC),
+        logCommits: []
+      },
+      gitOverrides || {}
+    )
+  });
+}
+
+var currentRepo = runDerived(
+  {
+    "PORTFOLIO.DECISION_LOG.md":
+      decisionEntry("DEC-W4-080", "Bounded S2 briefing runtime authorized and implemented", "IMPLEMENTED_ON_DEMAND_TEXT_SESSION_OUTPUT_ONLY", "Implementation commit: `eb5758448932a3376788f15128177087866cb41f`") +
+      decisionEntry("DEC-W4-081", "S2.1 stale-HEAD ancestry-semantics correction", "CORRECTED", "Correction commit: `" + ANCHOR_081 + "`")
+  },
+  {
+    logCommits: [
+      {
+        hash: COMMIT_SYNC,
+        subject: "20260819.Wings4.Synchronize S2 canon and continuity after implementation",
+        paths: [
+          "PORTFOLIO.DECISION_LOG.md",
+          "00_STATE/BATON.WINGS4.ACTIVE.md",
+          "SESSIONS/ORCHESTRATOR/03.SESSION_CONTINUE/00.START_HERE.ORCHESTRATOR.txt",
+          "MIGRATION.BACKLOG.md"
+        ]
+      },
+      {
+        hash: COMMIT_S22,
+        subject: "20260819.Wings4.Correct S2 semantic-lag wording",
+        paths: [
+          "PRODUCT/PUSH_FIRST_BRIEFING_RUNTIME/briefing.runtime.js",
+          "PRODUCT/PUSH_FIRST_BRIEFING_RUNTIME/briefing.runtime.logical.test.js",
+          "PORTFOLIO.ARCHITECTURE/WINGS4.PUSH_FIRST_BRIEFING.RUNTIME.S2.SPEC.md"
+        ]
+      }
+    ]
+  }
+);
+
+ok(
+  "S2-3-CURRENT-REPO-MATERIAL",
+  currentRepo.markdown.indexOf(COMMIT_SYNC) !== -1 &&
+    currentRepo.markdown.indexOf(COMMIT_S22) !== -1 &&
+    currentRepo.markdown.indexOf(runtime.EMPTY_MATERIAL_CHANGES) === -1
+);
+ok(
+  "S2-3-NO-SESSION-CONTINUE-DEFERRED",
+  currentRepo.markdown.indexOf("SESSION_CONTINUE_CANON_REFRESH") === -1 &&
+    r1.markdown.indexOf("SESSION_CONTINUE_CANON_REFRESH") === -1
+);
+ok(
+  "S2-3-NO-FALSE-EMPTY-MATERIAL",
+  currentRepo.markdown.indexOf(runtime.EMPTY_MATERIAL_CHANGES) === -1
+);
+ok(
+  "S2-3-CONSISTENT-NEXT-ACTION",
+  currentRepo.markdown.indexOf("NEXT_PRODUCT_ACTION=`RUN_S2_ON_DEMAND_BRIEFING_FOR_HUMAN_REVIEW`") !== -1
+);
+ok(
+  "S2-3-NO-FABRICATED-OPEN-055-075",
+  currentRepo.markdown.indexOf("`DEC-W4-055`") === -1 &&
+    currentRepo.markdown.indexOf("`DEC-W4-075`") === -1 &&
+    currentRepo.markdown.indexOf("S3_AFTER_RECORDED_HUMAN_DECISION") === -1 &&
+    currentRepo.markdown.indexOf("S4_RING0_PANEL") === -1
+);
+
+var completedFiles = continuityFiles(
+  "OPEN_DECISION_SESSION_CONTINUE_CANON_REFRESH=COMPLETED\nOPEN_DECISION_STILL_OPEN=OPEN\nOPEN_DECISION_SUPERSEDED_ITEM=SUPERSEDED\nOPEN_DECISION_NOT_SELECTED_ITEM=NOT_SELECTED\nOPEN_DECISION_S3_BOUNDARY=UNAUTHORIZED\n"
+);
+completedFiles["PORTFOLIO.DECISION_LOG.md"] = decisionEntry(
+  "DEC-W4-081",
+  "S2.1",
+  "CORRECTED",
+  "Correction commit: `" + ANCHOR_081 + "`"
+);
+var rClassed = run({
+  files: completedFiles,
+  git: {
+    head: COMMIT_S22,
+    objects: objectsFor(HEAD_A, ANCHOR_081, COMMIT_S22),
+    ancestors: ancestorsFor(HEAD_A, ANCHOR_081),
+    logCommits: []
+  }
+});
+var classedOpenIds = rClassed.model.open.map(function (o) { return o.id + "=" + o.status; }).join(",");
+ok(
+  "S2-3-COMPLETED-OMITTED",
+  classedOpenIds.indexOf("OPEN_DECISION_SESSION_CONTINUE_CANON_REFRESH") === -1 &&
+    rClassed.markdown.indexOf("`OPEN_DECISION_SESSION_CONTINUE_CANON_REFRESH` status=`DEFERRED`") === -1
+);
+ok(
+  "S2-3-SUPERSEDED-OMITTED",
+  classedOpenIds.indexOf("OPEN_DECISION_SUPERSEDED_ITEM") === -1
+);
+ok(
+  "S2-3-NOT-SELECTED-NOT-OPEN",
+  classedOpenIds.indexOf("OPEN_DECISION_NOT_SELECTED_ITEM") === -1
+);
+ok(
+  "S2-3-UNAUTHORIZED-BOUNDARY-NOT-OPEN",
+  classedOpenIds.indexOf("OPEN_DECISION_S3_BOUNDARY") === -1 &&
+    classedOpenIds.indexOf("OPEN_DECISION_STILL_OPEN=OPEN") !== -1
+);
+
+var conflictFiles = continuityFiles();
+conflictFiles["00_STATE/BATON.WINGS4.ACTIVE.md"] = conflictFiles["00_STATE/BATON.WINGS4.ACTIVE.md"].replace(
+  "NEXT_PRODUCT_ACTION=RUN_S2_ON_DEMAND_BRIEFING_FOR_HUMAN_REVIEW",
+  "NEXT_PRODUCT_ACTION=DO_SOMETHING_ELSE"
+);
+conflictFiles["PORTFOLIO.DECISION_LOG.md"] = decisionEntry("DEC-W4-081", "S2.1", "CORRECTED", "Correction commit: `" + ANCHOR_081 + "`");
+var rConflict = run({
+  files: conflictFiles,
+  git: {
+    head: HEAD_A,
+    objects: objectsFor(HEAD_A, ANCHOR_081),
+    logCommits: []
+  }
+});
+ok(
+  "S2-3-NEXT-ACTION-CONFLICT-UNKNOWN",
+  rConflict.markdown.indexOf("UNKNOWN: NEXT_PRODUCT_ACTION") !== -1 &&
+    rConflict.markdown.indexOf("DO_SOMETHING_ELSE") !== -1 &&
+    rConflict.markdown.indexOf("RUN_S2_ON_DEMAND_BRIEFING_FOR_HUMAN_REVIEW") !== -1 &&
+    rConflict.markdown.indexOf("00_STATE/BATON.WINGS4.ACTIVE.md") !== -1 &&
+    rConflict.markdown.indexOf("00.START_HERE.ORCHESTRATOR.txt") !== -1
+);
+
+ok(
+  "S2-3-NEXT-ACTION-MISSING-UNKNOWN",
+  r1.markdown.indexOf("UNKNOWN: NEXT_PRODUCT_ACTION") !== -1
+);
+
+ok(
+  "S2-3-VALID-EMPTY-RANGE",
+  rEmpty.markdown.indexOf(runtime.EMPTY_MATERIAL_CHANGES) !== -1 &&
+    rEmpty.model.changes.length === 0 &&
+    rEmpty.model.materialUnknown !== true
+);
+
+ok(
+  "S2-3-MISSING-ANCHOR-UNKNOWN",
+  r1.markdown.indexOf(runtime.EMPTY_MATERIAL_CHANGES) === -1 &&
+    (r1.markdown.indexOf("UNKNOWN: last_decision_id") !== -1 || r1.markdown.indexOf("UNKNOWN: last_decision_anchor") !== -1 || r1.markdown.indexOf("UNKNOWN: material_changes") !== -1)
+);
+
+var rMalformedAnchor = runDerived({
+  "PORTFOLIO.DECISION_LOG.md": decisionEntry("DEC-W4-081", "S2.1", "CORRECTED", "Correction commit: `not-a-valid-commit-hash`")
+});
+ok(
+  "S2-3-MALFORMED-ANCHOR-UNKNOWN",
+  rMalformedAnchor.markdown.indexOf(runtime.EMPTY_MATERIAL_CHANGES) === -1 &&
+    rMalformedAnchor.markdown.indexOf("UNKNOWN: last_decision_anchor") !== -1
+);
+
+var rMissingObj = runDerived({
+  "PORTFOLIO.DECISION_LOG.md": decisionEntry("DEC-W4-081", "S2.1", "CORRECTED", "Correction commit: `" + HEAD_C + "`")
+}, {
+  objects: objectsFor(HEAD_A, ANCHOR_081, COMMIT_S22),
+  ancestors: ancestorsFor(HEAD_A, ANCHOR_081)
+});
+ok(
+  "S2-3-NONEXISTENT-COMMIT-UNKNOWN",
+  rMissingObj.markdown.indexOf(runtime.EMPTY_MATERIAL_CHANGES) === -1 &&
+    rMissingObj.markdown.indexOf("UNKNOWN: last_decision_anchor") !== -1
+);
+
+var rNonAnc = runDerived({
+  "PORTFOLIO.DECISION_LOG.md": decisionEntry("DEC-W4-081", "S2.1", "CORRECTED", "Correction commit: `" + HEAD_C + "`")
+}, {
+  objects: objectsFor(HEAD_A, HEAD_C, COMMIT_S22),
+  ancestors: ancestorsFor(HEAD_A)
+});
+ok(
+  "S2-3-NON-ANCESTOR-ANCHOR-UNKNOWN",
+  rNonAnc.markdown.indexOf(runtime.EMPTY_MATERIAL_CHANGES) === -1 &&
+    rNonAnc.markdown.indexOf("UNKNOWN: last_decision_anchor") !== -1 &&
+    rNonAnc.markdown.indexOf("NON_ANCESTOR") !== -1
+);
+
+var manyCommits = [];
+var i;
+for (i = 0; i < 12; i += 1) {
+  manyCommits.push({
+    hash: ("c" + ("000000000000000000000000000000000000000" + i).slice(-39)),
+    subject: "commit-" + i,
+    paths: ["PRODUCT/PUSH_FIRST_BRIEFING_RUNTIME/briefing.runtime.js"]
+  });
+}
+var rTrunc = runDerived({
+  "PORTFOLIO.DECISION_LOG.md": decisionEntry("DEC-W4-081", "S2.1", "CORRECTED", "Correction commit: `" + ANCHOR_081 + "`")
+}, { logCommits: manyCommits });
+var shown = rTrunc.model.changes.filter(function (c) {
+  return c.text.indexOf("material_commit") !== -1;
+});
+ok(
+  "S2-3-MATERIAL-TRUNCATION",
+  shown.length === runtime.MAX_MATERIAL_COMMITS &&
+    rTrunc.markdown.indexOf("Displayed 10 of 12") !== -1 &&
+    rTrunc.markdown.indexOf("UNKNOWN: material_changes_truncated") !== -1
+);
+
+var rCont = runDerived({
+  "PORTFOLIO.DECISION_LOG.md": decisionEntry("DEC-W4-081", "S2.1", "CORRECTED", "Correction commit: `" + ANCHOR_081 + "`")
+}, {
+  logCommits: [
+    {
+      hash: COMMIT_SYNC,
+      subject: "continuity-only",
+      paths: ["00_STATE/BATON.WINGS4.ACTIVE.md"]
+    }
+  ]
+});
+ok(
+  "S2-3-CONTINUITY-ONLY-INCLUDED",
+  rCont.markdown.indexOf(COMMIT_SYNC) !== -1 &&
+    rCont.markdown.indexOf("00_STATE/BATON.WINGS4.ACTIVE.md") !== -1
+);
+
+var rTestsOnly = runDerived({
+  "PORTFOLIO.DECISION_LOG.md": decisionEntry("DEC-W4-081", "S2.1", "CORRECTED", "Correction commit: `" + ANCHOR_081 + "`")
+}, {
+  logCommits: [
+    {
+      hash: COMMIT_S22,
+      subject: "runtime-tests-only",
+      paths: ["PRODUCT/PUSH_FIRST_BRIEFING_RUNTIME/briefing.runtime.logical.test.js"]
+    }
+  ]
+});
+ok(
+  "S2-3-RUNTIME-TESTS-ONLY-INCLUDED",
+  rTestsOnly.markdown.indexOf(COMMIT_S22) !== -1 &&
+    rTestsOnly.markdown.indexOf("briefing.runtime.logical.test.js") !== -1
+);
+
+var rDrift = runDerived({
+  "PORTFOLIO.DECISION_LOG.md":
+    "## DEC-W4-090 — Drifted heading\n\nStatus: APPROVED\nStatus: REJECTED\nCorrection commit: `" + ANCHOR_081 + "`\n"
+});
+ok(
+  "S2-3-STATUS-DRIFT-FAIL-CLOSED",
+  rDrift.markdown.indexOf("UNKNOWN: last_decision_id") !== -1 &&
+    rDrift.markdown.indexOf(runtime.EMPTY_MATERIAL_CHANGES) === -1
+);
+
+ok(
+  "S2-3-FALSE-CLAIMS-ABSENT",
+  currentRepo.markdown.indexOf("SESSION_CONTINUE_CANON_REFRESH") === -1 &&
+    currentRepo.markdown.indexOf("Keep briefing runtime bounded to ON_DEMAND_TEXT_ONLY") === -1 &&
+    r1.markdown.indexOf("`DEC-W4-077-OPTION-A`") === -1
+);
+
+function sourceLines(md) {
+  return md.split("\n").filter(function (line) {
+    return /^\s+- source:/.test(line);
+  }).join("\n");
+}
+var r1Sources = sourceLines(r1.markdown);
+var currentSources = sourceLines(currentRepo.markdown);
+ok(
+  "S2-3-PROVENANCE-PARSED-ONLY",
+  r1Sources.indexOf("HUMAN/HUMAN.WINGS4.md") === -1 &&
+    r1Sources.indexOf("PORTFOLIO.PRINCIPLES.md") === -1 &&
+    r1Sources.indexOf("MIGRATION.BACKLOG.md") === -1 &&
+    r1Sources.indexOf("WINGS4.PUSH_FIRST_BRIEFING.DESIGN.md") === -1 &&
+    r1Sources.indexOf("WINGS4.P4.PUSH_FIRST_BRIEFING.RUNTIME.PLANNING.md") === -1 &&
+    currentSources.indexOf("HUMAN/HUMAN.WINGS4.md") === -1 &&
+    currentSources.indexOf("PORTFOLIO.PRINCIPLES.md") === -1
+);
+
+ok(
+  "S2-3-VALID-ANCESTOR-NON-STALE",
+  !hasStaleBaton(rAncestor.markdown) &&
+    !hasStaleSession(rAncestor.markdown)
+);
+ok(
+  "S2-3-NON-ANCESTOR-KEEPS-STALE",
+  hasStaleBaton(rDiverged.markdown) &&
+    hasStaleSession(rDiverged.markdown)
+);
+ok(
+  "S2-3-EIGHT-SECTIONS",
+  runtime.CANONICAL_SECTIONS.length === 8 &&
+    sectionOrder(currentRepo.markdown).every(function (n) { return n >= 0; })
+);
+ok(
+  "S2-3-NO-WRITE",
+  writeHits.length === 0
+);
+ok(
+  "S2-3-HUMAN-OPTIONS-SAFE",
+  currentRepo.model.options.length >= 2 &&
+    currentRepo.model.options.every(function (o) {
+      return o.executes_mutation === false && !/authorize S3/i.test(o.text);
+    })
+);
 
 var unknownArg = throwCode(function () {
   runtime.parseCliArgs(["--trigger", "ON_DEMAND_REQUEST", "--pretty"]);
