@@ -183,6 +183,25 @@ function defaultGitExec(root, gitArgs) {
   });
 }
 
+function runGit(root, args, deps) {
+  if (deps && typeof deps.gitExecStatus === "function") {
+    return deps.gitExecStatus(args);
+  }
+  try {
+    var stdout = (deps && typeof deps.gitExec === "function")
+      ? deps.gitExec(args)
+      : defaultGitExec(root, args);
+    return { exitCode: 0, stdout: String(stdout || "") };
+  } catch (e) {
+    var status = e && typeof e.status === "number" ? e.status : 128;
+    return {
+      exitCode: status,
+      stdout: String((e && e.stdout) || ""),
+      stderr: String((e && e.stderr) || e.message || e)
+    };
+  }
+}
+
 function readGitSnapshot(root, deps) {
   var gitExec = (deps && deps.gitExec) || function (args) {
     return defaultGitExec(root, args);
@@ -258,9 +277,93 @@ function readGovernedFile(root, item, deps) {
 }
 
 function parseHeadAtGeneration(text) {
-  if (!text) return null;
-  var m = String(text).match(/HEAD_AT_GENERATION\s*[:=]\s*`?([0-9a-f]{40})`?/i);
-  return m ? m[1].toLowerCase() : null;
+  if (text == null || String(text).trim() === "") {
+    return { status: "MISSING" };
+  }
+  var m = String(text).match(/HEAD_AT_GENERATION(?![A-Z_])\s*[:=]\s*`?([^\r\n`]*)`?/i);
+  if (!m) return { status: "MISSING" };
+  var raw = String(m[1] || "").trim();
+  if (!raw) return { status: "MISSING" };
+  if (!/^[0-9a-f]{40}$/i.test(raw)) {
+    return { status: "MALFORMED", raw: raw };
+  }
+  return { status: "VALID_40_HEX", hash: raw.toLowerCase() };
+}
+
+function inspectCommitObject(hash, root, deps) {
+  var result = runGit(root, ["cat-file", "-t", hash], deps);
+  if (result.exitCode !== 0) {
+    return { status: "UNKNOWN", reason: "NOT_A_COMMIT_OBJECT" };
+  }
+  var kind = String(result.stdout || "").trim();
+  if (kind === "commit") return { status: "COMMIT" };
+  return { status: "UNKNOWN", reason: "NOT_A_COMMIT_OBJECT" };
+}
+
+function inspectAncestry(generationHead, runtimeHead, root, deps) {
+  var result = runGit(root, ["merge-base", "--is-ancestor", generationHead, runtimeHead], deps);
+  if (result.exitCode === 0) return { status: "ANCESTOR" };
+  if (result.exitCode === 1) return { status: "NON_ANCESTOR" };
+  return { status: "UNKNOWN", reason: "ANCESTRY_CHECK_FAILED" };
+}
+
+function classifyGenerationHead(parsed, runtimeHead, label, rel, root, deps) {
+  if (!parsed || parsed.status === "MISSING") {
+    return {
+      class: "UNKNOWN",
+      unknown: unknownBlock(
+        label + " HEAD_AT_GENERATION",
+        "Generation HEAD field is absent",
+        "Readable HEAD_AT_GENERATION forty-hex commit in " + rel,
+        "Keep UNKNOWN; do not treat absence as HEAD divergence"
+      )
+    };
+  }
+  if (parsed.status === "MALFORMED") {
+    return {
+      class: "UNKNOWN",
+      unknown: unknownBlock(
+        label + " HEAD_AT_GENERATION",
+        "Generation HEAD value is malformed",
+        "HEAD_AT_GENERATION as a 40-character hex commit hash in " + rel,
+        "Keep UNKNOWN; do not treat a malformed value as HEAD divergence"
+      )
+    };
+  }
+  var hash = parsed.hash;
+  if (hash === runtimeHead) {
+    return { class: "CURRENT", hash: hash };
+  }
+  var obj = inspectCommitObject(hash, root, deps);
+  if (obj.status !== "COMMIT") {
+    return {
+      class: "UNKNOWN",
+      hash: hash,
+      unknown: unknownBlock(
+        label + " HEAD_AT_GENERATION",
+        "Forty-hex value is not a Git commit object in this repository",
+        "HEAD_AT_GENERATION that exists as a commit in C:\\01. GitHub\\Wings4.0",
+        "Keep UNKNOWN; do not treat a missing object as confirmed divergence"
+      )
+    };
+  }
+  var anc = inspectAncestry(hash, runtimeHead, root, deps);
+  if (anc.status === "ANCESTOR") {
+    return { class: "VALID_HISTORICAL_ANCESTOR", hash: hash };
+  }
+  if (anc.status === "NON_ANCESTOR") {
+    return { class: "DIVERGED_NON_ANCESTOR", hash: hash };
+  }
+  return {
+    class: "UNKNOWN",
+    hash: hash,
+    unknown: unknownBlock(
+      label + " HEAD_AT_GENERATION",
+      "Git ancestry check could not be completed",
+      "Successful git merge-base --is-ancestor in this repository only",
+      "Keep UNKNOWN; do not treat ancestry-check failure as confirmed divergence"
+    )
+  };
 }
 
 function parseLatestDecision(text) {
@@ -311,7 +414,7 @@ function claim(classification, text, source, confidence) {
   };
 }
 
-function assemble(git, sources) {
+function assemble(git, sources, deps) {
   var warnings = [];
   var unknowns = [];
   var changes = [];
@@ -332,35 +435,52 @@ function assemble(git, sources) {
     return byId[id] && byId[id].status === "OK" ? byId[id].text : null;
   }
 
-  var batonHead = parseHeadAtGeneration(textOf("BATON"));
-  var startHereHead = parseHeadAtGeneration(textOf("START_HERE"));
+  var root = (deps && deps.root) || git.root || EXPECTED_ROOT;
+  var batonClass = classifyGenerationHead(
+    parseHeadAtGeneration(textOf("BATON")),
+    git.head,
+    "BATON",
+    ALLOWLIST_BY_ID.BATON.rel,
+    root,
+    deps
+  );
+  var startHereClass = classifyGenerationHead(
+    parseHeadAtGeneration(textOf("START_HERE")),
+    git.head,
+    "START_HERE",
+    ALLOWLIST_BY_ID.START_HERE.rel,
+    root,
+    deps
+  );
   var latest = parseLatestDecision(textOf("DECISION_LOG"));
   var fixtureMc = textOf("FIXTURE") ? parseFixtureMarketCheck(textOf("FIXTURE")) : { present: false };
 
-  if (textOf("BATON") && batonHead && batonHead !== git.head) {
+  if (batonClass.class === "DIVERGED_NON_ANCESTOR") {
     warnings.push("STALE_BATON_HEAD");
     changes.push(
       claim(
         "FACT",
-        "Runtime git HEAD differs from BATON HEAD_AT_GENERATION. Runtime git is HEAD truth; BATON is historical bootstrap only.",
+        "BATON HEAD_AT_GENERATION is not an ancestor of runtime git HEAD (confirmed divergence). Runtime git is HEAD truth.",
         src("BATON") + "; Wings4.0 local git state (this repository only)",
         "HIGH"
       )
     );
-  } else if (byId.BATON && byId.BATON.status !== "OK") {
-    warnings.push("STALE_BATON_HEAD_UNKNOWN");
+  } else if (batonClass.unknown) {
+    unknowns.push(batonClass.unknown);
   }
 
-  if (textOf("START_HERE") && startHereHead && startHereHead !== git.head) {
+  if (startHereClass.class === "DIVERGED_NON_ANCESTOR") {
     warnings.push("STALE_SESSION_CONTINUE");
     changes.push(
       claim(
         "FACT",
-        "Runtime git HEAD differs from START_HERE HEAD_AT_GENERATION. Do not treat the generation hash as current. SESSION_CONTINUE refresh is not this slice.",
+        "START_HERE HEAD_AT_GENERATION is not an ancestor of runtime git HEAD (confirmed divergence). Runtime git is HEAD truth.",
         src("START_HERE") + "; Wings4.0 local git state (this repository only)",
         "HIGH"
       )
     );
+  } else if (startHereClass.unknown) {
+    unknowns.push(startHereClass.unknown);
   }
 
   if (fixtureMc.present && fixtureMc.runtime_complete) {
@@ -527,7 +647,9 @@ function assemble(git, sources) {
     options: options,
     warnings: warnings,
     unknowns: unknowns,
-    git: git
+    git: git,
+    batonGeneration: batonClass,
+    startHereGeneration: startHereClass
   };
 }
 
@@ -665,8 +787,8 @@ function renderMarkdown(model) {
   lines.push("- FACT: Market Check bounded complete is not Wings4 complete and is not live market intelligence.");
   lines.push("  - source: `" + ALLOWLIST_BY_ID.DECISION_LOG.rel + "`; `" + ALLOWLIST_BY_ID.FIXTURE.rel + "`");
   lines.push("  - confidence: HIGH");
-  lines.push("- FACT: SESSION_CONTINUE HEAD_AT_GENERATION may be stale versus runtime git HEAD.");
-  lines.push("  - source: `" + ALLOWLIST_BY_ID.START_HERE.rel + "`; Wings4.0 local git state (this repository only)");
+  lines.push("- FACT: HEAD_AT_GENERATION is historical evidence. Runtime git HEAD is current truth. A different ancestral hash is valid and is not a stale-HEAD warning. Semantic continuity lag is a separate later task.");
+  lines.push("  - source: `" + ALLOWLIST_BY_ID.START_HERE.rel + "`; `" + ALLOWLIST_BY_ID.BATON.rel + "`; Wings4.0 local git state (this repository only)");
   lines.push("  - confidence: HIGH");
   lines.push("- FACT: DEC-W4-078 and DEC-W4-079 are design/planning records, not runtime authorization tokens. S2 authorization is Pablo's explicit task `" + AUTHORIZATION_TASK + "`.");
   lines.push("  - source: `" + ALLOWLIST_BY_ID.DECISION_LOG.rel + "`; `" + ALLOWLIST_BY_ID.S2_SPEC.rel + "`");
@@ -712,12 +834,14 @@ function renderMarkdown(model) {
   lines.push("- This briefing is **not live web monitoring** and does **not** search the web.");
   lines.push("- This briefing does **not** read or mutate child repositories.");
   lines.push("- Evidence is Wings-held only. GAP_05 remains an accepted Ring0 limitation: fixture/Wings-held is not live child-repository intelligence.");
-  lines.push("- Bounded Market Check complete (DEC-W4-071) is not live market intelligence and is not Wings4 complete.");
+  lines.push("- HEAD_AT_GENERATION is historical evidence; runtime Git HEAD is current truth.");
+  lines.push("- A different ancestral hash is valid. Only a confirmed non-ancestor produces STALE_BATON_HEAD or STALE_SESSION_CONTINUE.");
+  lines.push("- Semantic continuity lag is not inferred from hash inequality and remains a later continuity-sync task.");
   if (model.warnings.indexOf("STALE_BATON_HEAD") !== -1) {
-    lines.push("- STALE_BATON_HEAD: BATON HEAD_AT_GENERATION differs from runtime git HEAD. Runtime git is HEAD truth.");
+    lines.push("- STALE_BATON_HEAD: BATON HEAD_AT_GENERATION is not an ancestor of runtime git HEAD.");
   }
   if (model.warnings.indexOf("STALE_SESSION_CONTINUE") !== -1) {
-    lines.push("- STALE_SESSION_CONTINUE: START_HERE HEAD_AT_GENERATION differs from runtime git HEAD.");
+    lines.push("- STALE_SESSION_CONTINUE: START_HERE HEAD_AT_GENERATION is not an ancestor of runtime git HEAD.");
   }
   if (model.warnings.indexOf("FIXTURE_HELD_NOT_LIVE") !== -1) {
     lines.push("- FIXTURE_HELD_NOT_LIVE: Market Check complete flag is Wings-held fixture state, not live market or live child intelligence.");
@@ -743,7 +867,7 @@ function runBriefing(input) {
   var sources = ALLOWLIST.map(function (item) {
     return readGovernedFile(root, item, deps);
   });
-  var model = assemble(git, sources);
+  var model = assemble(git, sources, deps);
   var markdown = renderMarkdown(model);
   return {
     markdown: markdown,
@@ -783,6 +907,9 @@ var api = {
   looksForbidden: looksForbidden,
   isInsideRoot: isInsideRoot,
   parseHeadAtGeneration: parseHeadAtGeneration,
+  classifyGenerationHead: classifyGenerationHead,
+  inspectCommitObject: inspectCommitObject,
+  inspectAncestry: inspectAncestry,
   parseLatestDecision: parseLatestDecision
 };
 

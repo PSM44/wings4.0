@@ -42,7 +42,7 @@ var BASE_FILES = {
   "PORTFOLIO.ARCHITECTURE/WINGS4.PUSH_FIRST_BRIEFING.RUNTIME.S2.SPEC.md":
     "# S2\nBRIEFING_RUNTIME=IMPLEMENTED_ON_DEMAND_TEXT_SESSION_OUTPUT_ONLY\n",
   "SESSIONS/ORCHESTRATOR/03.SESSION_CONTINUE/00.START_HERE.ORCHESTRATOR.txt":
-    "HEAD_AT_GENERATION=" + HEAD_A + "\nMANAGEMENT_DELIVERY_1_STATUS=CLOSED\n",
+    "HEAD_AT_GENERATION=" + HEAD_A + "\nMANAGEMENT_DELIVERY_1_STATUS=CLOSED\nBRIEFING_RUNTIME_IMPLEMENTED=NO\n",
   "PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/skillsmachine.fixture.json":
     JSON.stringify({ market_check: { runtime_complete: true, mode: "ON_DEMAND" } })
 };
@@ -86,6 +86,24 @@ function makeDeps(overrides) {
       if (args[0] === "rev-parse" && args[1] === "HEAD") return git.head + "\n";
       if (args[0] === "branch") return git.branch + "\n";
       if (args[0] === "status") return git.porcelain || "";
+      if (args[0] === "cat-file" && args[1] === "-t") {
+        var kind = git.objects && git.objects[args[2]];
+        if (kind === "commit") return "commit\n";
+        var missingObj = new Error("not a git object");
+        missingObj.status = 128;
+        throw missingObj;
+      }
+      if (args[0] === "merge-base" && args[1] === "--is-ancestor") {
+        if (git.ancestryFail) {
+          var fail = new Error("ancestry-check-failed");
+          fail.status = git.ancestryFail;
+          throw fail;
+        }
+        if (git.ancestors && git.ancestors[args[2]] === true) return "";
+        var notAnc = new Error("not-ancestor");
+        notAnc.status = 1;
+        throw notAnc;
+      }
       throw new Error("unexpected-git:" + args.join(" "));
     },
     realpath: function (p) {
@@ -218,12 +236,137 @@ ok(
     r1.markdown.indexOf("not RADAR") !== -1
 );
 
-// BR-09
-var rStaleBaton = run({ git: { head: HEAD_B } });
-ok("BR-09", rStaleBaton.markdown.indexOf("STALE_BATON_HEAD") !== -1);
+function hasStaleBaton(md) {
+  return md.indexOf("- STALE_BATON_HEAD:") !== -1;
+}
+function hasStaleSession(md) {
+  return md.indexOf("- STALE_SESSION_CONTINUE:") !== -1;
+}
+function hasUnknownGen(md, label) {
+  return md.indexOf("UNKNOWN: " + label + " HEAD_AT_GENERATION") !== -1;
+}
 
-// BR-10
-ok("BR-10", rStaleBaton.markdown.indexOf("STALE_SESSION_CONTINUE") !== -1);
+// BR-09 / BR-10 — confirmed non-ancestor divergence, not mere inequality
+var rDiverged = run({
+  git: {
+    head: HEAD_B,
+    objects: (function () {
+      var o = {};
+      o[HEAD_A] = "commit";
+      return o;
+    })(),
+    ancestors: (function () {
+      var a = {};
+      a[HEAD_A] = false;
+      return a;
+    })()
+  }
+});
+ok("BR-09", hasStaleBaton(rDiverged.markdown) && rDiverged.model.batonGeneration.class === "DIVERGED_NON_ANCESTOR");
+ok("BR-10", hasStaleSession(rDiverged.markdown) && rDiverged.model.startHereGeneration.class === "DIVERGED_NON_ANCESTOR");
+
+ok(
+  "EQUAL-HASH",
+  !hasStaleBaton(r1.markdown) &&
+    !hasStaleSession(r1.markdown) &&
+    r1.model.batonGeneration.class === "CURRENT" &&
+    r1.model.startHereGeneration.class === "CURRENT"
+);
+
+var rAncestor = run({
+  git: {
+    head: HEAD_B,
+    objects: (function () {
+      var o = {};
+      o[HEAD_A] = "commit";
+      return o;
+    })(),
+    ancestors: (function () {
+      var a = {};
+      a[HEAD_A] = true;
+      return a;
+    })()
+  }
+});
+ok(
+  "VALID-ANCESTOR",
+  !hasStaleBaton(rAncestor.markdown) &&
+    !hasStaleSession(rAncestor.markdown) &&
+    rAncestor.model.batonGeneration.class === "VALID_HISTORICAL_ANCESTOR" &&
+    rAncestor.model.startHereGeneration.class === "VALID_HISTORICAL_ANCESTOR"
+);
+
+var rMissingHash = run({
+  files: {
+    "00_STATE/BATON.WINGS4.ACTIVE.md": "STATUS: ACTIVE\n",
+    "SESSIONS/ORCHESTRATOR/03.SESSION_CONTINUE/00.START_HERE.ORCHESTRATOR.txt":
+      "MANAGEMENT_DELIVERY_1_STATUS=CLOSED\n"
+  }
+});
+ok(
+  "MISSING-HASH",
+  hasUnknownGen(rMissingHash.markdown, "BATON") &&
+    hasUnknownGen(rMissingHash.markdown, "START_HERE") &&
+    !hasStaleBaton(rMissingHash.markdown) &&
+    !hasStaleSession(rMissingHash.markdown)
+);
+
+var rMalformed = run({
+  files: {
+    "00_STATE/BATON.WINGS4.ACTIVE.md": "HEAD_AT_GENERATION: not-a-commit-hash\n",
+    "SESSIONS/ORCHESTRATOR/03.SESSION_CONTINUE/00.START_HERE.ORCHESTRATOR.txt":
+      "HEAD_AT_GENERATION=zz\nMANAGEMENT_DELIVERY_1_STATUS=CLOSED\n"
+  }
+});
+ok(
+  "MALFORMED-HASH",
+  hasUnknownGen(rMalformed.markdown, "BATON") &&
+    hasUnknownGen(rMalformed.markdown, "START_HERE") &&
+    !hasStaleBaton(rMalformed.markdown) &&
+    !hasStaleSession(rMalformed.markdown)
+);
+
+var rNoObject = run({
+  git: {
+    head: HEAD_B,
+    objects: {},
+    ancestors: {}
+  }
+});
+ok(
+  "NONEXISTENT-OBJECT",
+  hasUnknownGen(rNoObject.markdown, "BATON") &&
+    hasUnknownGen(rNoObject.markdown, "START_HERE") &&
+    !hasStaleBaton(rNoObject.markdown) &&
+    !hasStaleSession(rNoObject.markdown)
+);
+
+var rAncFail = run({
+  git: {
+    head: HEAD_B,
+    objects: (function () {
+      var o = {};
+      o[HEAD_A] = "commit";
+      return o;
+    })(),
+    ancestryFail: 129
+  }
+});
+ok(
+  "ANCESTRY-FAILURE",
+  hasUnknownGen(rAncFail.markdown, "BATON") &&
+    hasUnknownGen(rAncFail.markdown, "START_HERE") &&
+    !hasStaleBaton(rAncFail.markdown) &&
+    !hasStaleSession(rAncFail.markdown)
+);
+
+ok(
+  "SEMANTIC-LAG-NOT-HEAD-STALE",
+  r1.markdown.indexOf("BRIEFING_RUNTIME_IMPLEMENTED=NO") === -1 &&
+    !hasStaleBaton(rAncestor.markdown) &&
+    !hasStaleSession(rAncestor.markdown) &&
+    r1.markdown.indexOf("Semantic continuity lag is not inferred from hash inequality") !== -1
+);
 
 // BR-11
 ok(

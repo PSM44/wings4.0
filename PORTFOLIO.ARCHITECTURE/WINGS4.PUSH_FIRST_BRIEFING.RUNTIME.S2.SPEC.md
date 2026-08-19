@@ -90,7 +90,9 @@ The repository root is resolved from the runtime file location (`PRODUCT/PUSH_FI
 |---|---|---|
 | Required | This-repository Git snapshot (branch, HEAD, worktree, index) | Abort whole run |
 | Optional governed | Closed allowlist files below | Continue with structured `UNKNOWN` |
-| Stale | BATON / START_HERE `HEAD_AT_GENERATION` vs runtime HEAD | Continue with canonical stale warning |
+| Historical generation HEAD | BATON / START_HERE `HEAD_AT_GENERATION` | Classify by Git ancestry (below); do not treat hash inequality as stale |
+| Confirmed non-ancestor | Generation commit exists and is not an ancestor of runtime HEAD | Emit existing `STALE_BATON_HEAD` / `STALE_SESSION_CONTINUE` |
+| Missing, malformed, or unverifiable generation HEAD | Absent field, malformed value, non-commit object, or ancestry-check failure | Structured `UNKNOWN`; no base `STALE_*` |
 | Unsupported | Any path outside the allowlist, child roots, `AI.History/`, URLs, free-text scan targets | Reject or `UNKNOWN` / `NOT_LIVE_CHILD_STATE`; never read |
 
 Closed allowlist (repository-relative):
@@ -151,13 +153,37 @@ Required limits wording:
 - `NO_CHILD_PROJECT_MUTATION`
 - `GAP_05_ACCEPTED_LIMITATION_FOR_RING0`
 
-Stale codes, when applicable:
+Stale codes, when applicable (confirmed non-ancestor only for HEAD codes):
 
 - `STALE_BATON_HEAD`
 - `STALE_SESSION_CONTINUE`
 - `NOT_LIVE_CHILD_STATE`
 - `NOT_LIVE_MARKET`
 - `FIXTURE_HELD_NOT_LIVE`
+
+### Generation-hash semantics (S2.1)
+
+`HEAD_AT_GENERATION` is historical evidence. Runtime Git HEAD is current truth.
+
+| Condition | Classification | Base `STALE_*` |
+|---|---|---|
+| Generation HEAD equals runtime HEAD | `CURRENT` | No |
+| Generation HEAD is an older ancestor of runtime HEAD | `VALID_HISTORICAL_ANCESTOR` | No |
+| Generation HEAD exists as a commit and is not an ancestor | `DIVERGED_NON_ANCESTOR` | Yes, applicable existing code |
+| Generation field absent | Structured `UNKNOWN` | No |
+| Generation value malformed | Structured `UNKNOWN` | No |
+| Forty-hex value is not a Git commit object | Structured `UNKNOWN` | No |
+| Git ancestry check cannot be completed | Structured `UNKNOWN` | No |
+
+Ancestry validation is this-repository `git merge-base --is-ancestor <generation-head> <runtime-head>` after `git cat-file -t` confirms a commit:
+
+- Exit `0`: valid ancestor.
+- Exit `1`: confirmed non-ancestor.
+- Any other failure: structured `UNKNOWN`, not divergence.
+
+A different but ancestral hash is valid. Only a confirmed non-ancestor produces `STALE_BATON_HEAD` or `STALE_SESSION_CONTINUE`. Hash inequality alone is not stale.
+
+Semantic continuity lag (obsolete operational text in BATON / START_HERE) is a separate content-level condition. It is not inferred from hash inequality and is not a HEAD-stale warning. BATON and START_HERE synchronization remains a later task. S2.1 does not add a new warning code.
 
 Human options: at least two. None execute product or child mutation.
 
@@ -174,7 +200,9 @@ Human options: at least two. None execute product or child mutation.
 | Optional governed source missing | Continue with structured `UNKNOWN` |
 | Optional source unreadable or unparsable | Continue with structured `UNKNOWN` |
 | Child-project evidence unavailable | `UNKNOWN` / `NOT_LIVE_CHILD_STATE`; never read child root |
-| Stale BATON or START_HERE generation hash | Continue with canonical stale warning |
+| Confirmed non-ancestor BATON or START_HERE generation commit | Continue with existing `STALE_BATON_HEAD` / `STALE_SESSION_CONTINUE` |
+| Missing, malformed, non-commit, or unverifiable generation HEAD | Structured `UNKNOWN`; no base `STALE_*` |
+| Valid ancestral generation HEAD differing from runtime HEAD | No base stale warning |
 | No evidenced material changes | Emit canonical empty-state wording |
 
 No network retries, repair routines, background retries, or dependency recovery.
@@ -212,8 +240,8 @@ Enforced in code:
 | BR-06 | Boundary | Skills, AI.History, and child paths are rejected/not read |
 | BR-07 | Boundary | No network/live-web symbols or calls exist |
 | BR-08 | Boundary | Required non-monitoring, non-RADAR, non-live-web, and no-child-read wording is present |
-| BR-09 | Stale | BATON generation HEAD mismatch produces `STALE_BATON_HEAD` |
-| BR-10 | Stale | START_HERE generation HEAD mismatch produces `STALE_SESSION_CONTINUE` |
+| BR-09 | Stale | Confirmed non-ancestor BATON generation commit produces `STALE_BATON_HEAD` |
+| BR-10 | Stale | Confirmed non-ancestor START_HERE generation commit produces `STALE_SESSION_CONTINUE` |
 | BR-11 | Human | At least two options are shown and none executes mutation |
 | BR-12 | Semantics | FACT, INFERENCE, RECOMMENDATION, and UNKNOWN remain distinct |
 | BR-13 | Overclaim | GAP_05 remains bounded; no Wings4-complete claim |
@@ -230,3 +258,4 @@ Enforced in code:
 S3 and S4 remain unimplemented and unauthorized.
 This slice does not make Wings4 complete or production-complete.
 Cambridge C1 remains Pablo-specific collaboration context, not briefing product doctrine.
+BATON and START_HERE synchronization remains a later task. Semantic continuity lag is not a HEAD-stale warning.
