@@ -1239,7 +1239,7 @@ Decision:
 - WHOAMI/`finding_class` overlay, COPY-as-export lifecycle, SESSION_CONTINUE/canon refresh, and second-entity diagnostic remain separate later decisions.
 - This does not authorize a capture form, auto-delivery, temp-path write, or COPY lifecycle change.
 
-Current status: `NEXT_SLICE=BOUNDED_PUSH_FIRST_BRIEFING_DESIGN_ONLY`. Runtime implementation remains unauthorized.
+Current status at recording (HISTORICAL_NON_OPERATIVE): `NEXT_SLICE=BOUNDED_PUSH_FIRST_BRIEFING_DESIGN_ONLY`. Runtime implementation remained unauthorized until DEC-W4-080.
 
 Audit: `W4_POST_MD1_GAP_CLOSURE_NEXT_SLICE_AUDIT_024`
 Prototype: `PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/`
@@ -1288,5 +1288,71 @@ Decision:
 - GAP_01–GAP_04 remain addressed. GAP_05 remains `ACCEPTED_LIMITATION_FOR_RING0`. MD1 remains closed.
 - Staging, commit, and push are not authorized by this decision.
 
+HISTORICAL_NON_OPERATIVE_NOTE: The statements "Briefing runtime remains NOT_AUTHORIZED / NOT_IMPLEMENTED" and "Future implementation requires a separate explicit human authorization" were true at DEC-W4-079 recording. Operative S2 authorization and implementation are recorded in DEC-W4-080. Operative stale-HEAD ancestry semantics are recorded in DEC-W4-081. This decision itself remains PLANNING_RECORDED and is not a runtime authorization token.
+
 Planning: `PORTFOLIO.ARCHITECTURE/WINGS4.P4.PUSH_FIRST_BRIEFING.RUNTIME.PLANNING.md`
 Design: `PORTFOLIO.ARCHITECTURE/WINGS4.PUSH_FIRST_BRIEFING.DESIGN.md`
+
+## DEC-W4-080 — Bounded S2 briefing runtime authorized and implemented
+
+Status: IMPLEMENTED_ON_DEMAND_TEXT_SESSION_OUTPUT_ONLY
+Date: 2026-08-18
+Scope: ON_DEMAND_TEXT_ONLY / SESSION_OUTPUT_ONLY; authorization `20260818.175139_W4_EXECUTOR_IMPLEMENT_BRIEFING_RUNTIME_S2_039`
+Authority: Pablo
+Implementation commit: `eb5758448932a3376788f15128177087866cb41f`
+Runtime level: `IMPLEMENTED_ON_DEMAND_TEXT_SESSION_OUTPUT_ONLY`
+
+Decision:
+
+- Pablo authorizes and this record accepts the bounded S2 briefing-runtime implementation.
+- Exact implemented scope is `ON_DEMAND_TEXT_ONLY / SESSION_OUTPUT_ONLY`.
+- Trigger is `ON_DEMAND_REQUEST` only.
+- Output is one deterministic Markdown briefing to stdout / current session only.
+- Persistence is absent. No file, cache, log, continuation package, Temp artifact, or localStorage write.
+- No UI, no browser, no child-repository read, no live web, no RADAR, no MARKET_MONITORING, and no automatic delivery.
+- Implementation commit is `eb5758448932a3376788f15128177087866cb41f`.
+- Tests: `BR-01` through `BR-20` = PASS.
+- DEC-W4-078 remains DESIGN_RECORDED and is not treated as runtime authorization.
+- DEC-W4-079 remains PLANNING_RECORDED and is not treated as runtime authorization.
+- S3 and S4 remain unauthorized and unimplemented.
+- This decision does not authorize S3, S4, session-start presentation, after-decision refresh, Ring0 panel, persistence, UI, capture form, auto-delivery, temp-path write, COPY lifecycle change, child-repository read, child-project mutation, Ring3, RADAR, MARKET_MONITORING, live web, MD1 reopen, or a Wings4-complete claim.
+- Wings4 complete: no. Production complete: no.
+- Future briefing capabilities remain separate human decisions.
+
+Implementation: `PRODUCT/PUSH_FIRST_BRIEFING_RUNTIME/briefing.runtime.js`
+Tests: `PRODUCT/PUSH_FIRST_BRIEFING_RUNTIME/briefing.runtime.logical.test.js`
+Spec: `PORTFOLIO.ARCHITECTURE/WINGS4.PUSH_FIRST_BRIEFING.RUNTIME.S2.SPEC.md`
+Planning: `PORTFOLIO.ARCHITECTURE/WINGS4.P4.PUSH_FIRST_BRIEFING.RUNTIME.PLANNING.md`
+Design: `PORTFOLIO.ARCHITECTURE/WINGS4.PUSH_FIRST_BRIEFING.DESIGN.md`
+
+## DEC-W4-081 — S2.1 stale-HEAD ancestry-semantics correction
+
+Status: CORRECTED
+Date: 2026-08-19
+Scope: S2 CONTINUITY HEAD ANCESTRY SEMANTICS ONLY
+Authority: Pablo
+Correction commit: `6db8963ecfa9d1ad2c8c9c511fbbd34b9df09641`
+
+Decision:
+
+- Defect: equality-based stale warnings created false positives for valid historical ancestor hashes.
+- Correction: use commit-object validation plus this-repository Git ancestry. Do not treat hash inequality as stale.
+- Corrected classifications:
+  - `CURRENT` when generation HEAD equals runtime HEAD
+  - `VALID_HISTORICAL_ANCESTOR` when generation HEAD is an older ancestor of runtime HEAD
+  - `DIVERGED_NON_ANCESTOR` when the generation commit exists and is not an ancestor
+  - structured `UNKNOWN` when the hash is missing, malformed, nonexistent, or unverifiable
+- Existing `STALE_BATON_HEAD` / `STALE_SESSION_CONTINUE` warnings apply only to confirmed non-ancestor divergence.
+- Valid historical ancestor hashes are not stale.
+- Missing, malformed, nonexistent, or unverifiable hashes produce structured `UNKNOWN`, not `STALE_*`.
+- Semantic continuity lag is separate from HEAD divergence. Obsolete operational text is not inferred from hash inequality.
+- No new warning codes.
+- Correction commit is `6db8963ecfa9d1ad2c8c9c511fbbd34b9df09641`.
+- `BR-01` through `BR-20` remain PASS. Internal assertions: `37`.
+- S2 remains `IMPLEMENTED_ON_DEMAND_TEXT_SESSION_OUTPUT_ONLY`. Persistence remains absent.
+- S3 and S4 remain unauthorized and unimplemented.
+- This correction does not authorize S3, S4, persistence, UI, child-repository read, live web, RADAR, MARKET_MONITORING, or a Wings4-complete claim.
+
+Spec: `PORTFOLIO.ARCHITECTURE/WINGS4.PUSH_FIRST_BRIEFING.RUNTIME.S2.SPEC.md`
+Implementation: `PRODUCT/PUSH_FIRST_BRIEFING_RUNTIME/briefing.runtime.js`
+Tests: `PRODUCT/PUSH_FIRST_BRIEFING_RUNTIME/briefing.runtime.logical.test.js`
