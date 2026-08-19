@@ -183,7 +183,7 @@ Ancestry validation is this-repository `git merge-base --is-ancestor <generation
 
 A different but ancestral hash is valid. Only a confirmed non-ancestor produces `STALE_BATON_HEAD` or `STALE_SESSION_CONTINUE`. Hash inequality alone is not stale.
 
-Semantic continuity lag (obsolete operational text in BATON / START_HERE) is a separate content-level condition. It is not inferred from hash inequality and is not a HEAD-stale warning. BATON and START_HERE synchronization remains a later task. S2.1 does not add a new warning code.
+Semantic continuity lag is a separate content-level condition. HEAD divergence is Git-lineage-level. Valid ancestry does not prove semantic freshness and does not imply semantic staleness. Semantic status requires separate governed evidence. Semantic continuity lag is assessed independently from HEAD divergence; a valid historical ancestor is not stale solely because runtime HEAD is newer. It is not inferred from hash inequality and is not a HEAD-stale warning. S2.1 does not add a new warning code.
 
 Human options: at least two. None execute product or child mutation.
 
@@ -258,4 +258,4 @@ Enforced in code:
 S3 and S4 remain unimplemented and unauthorized.
 This slice does not make Wings4 complete or production-complete.
 Cambridge C1 remains Pablo-specific collaboration context, not briefing product doctrine.
-BATON and START_HERE synchronization remains a later task. Semantic continuity lag is not a HEAD-stale warning.
+Semantic continuity lag is assessed independently from HEAD divergence. Valid ancestry does not prove semantic freshness and does not imply semantic staleness. Semantic status requires separate governed evidence. Semantic continuity lag is not a HEAD-stale warning.

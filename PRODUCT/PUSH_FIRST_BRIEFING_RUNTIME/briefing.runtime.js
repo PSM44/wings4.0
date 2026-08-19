@@ -9,6 +9,8 @@ var SUPPORTED_TRIGGER = "ON_DEMAND_REQUEST";
 var BRIEFING_RUNTIME_LEVEL = "IMPLEMENTED_ON_DEMAND_TEXT_SESSION_OUTPUT_ONLY";
 var EMPTY_MATERIAL_CHANGES = "No Wings-held material change recorded";
 var AUTHORIZATION_TASK = "20260818.175139_W4_EXECUTOR_IMPLEMENT_BRIEFING_RUNTIME_S2_039";
+var SEMANTIC_LAG_RULE =
+  "Semantic continuity lag is assessed independently from HEAD divergence; a valid historical ancestor is not stale solely because runtime HEAD is newer.";
 
 var CANONICAL_SECTIONS = [
   "PROJECT_STATE",
@@ -787,7 +789,7 @@ function renderMarkdown(model) {
   lines.push("- FACT: Market Check bounded complete is not Wings4 complete and is not live market intelligence.");
   lines.push("  - source: `" + ALLOWLIST_BY_ID.DECISION_LOG.rel + "`; `" + ALLOWLIST_BY_ID.FIXTURE.rel + "`");
   lines.push("  - confidence: HIGH");
-  lines.push("- FACT: HEAD_AT_GENERATION is historical evidence. Runtime git HEAD is current truth. A different ancestral hash is valid and is not a stale-HEAD warning. Semantic continuity lag is a separate later task.");
+  lines.push("- FACT: HEAD_AT_GENERATION is historical evidence. Runtime git HEAD is current truth. A different ancestral hash is valid and is not a stale-HEAD warning. " + SEMANTIC_LAG_RULE + " Semantic continuity lag is not inferred from hash inequality.");
   lines.push("  - source: `" + ALLOWLIST_BY_ID.START_HERE.rel + "`; `" + ALLOWLIST_BY_ID.BATON.rel + "`; Wings4.0 local git state (this repository only)");
   lines.push("  - confidence: HIGH");
   lines.push("- FACT: DEC-W4-078 and DEC-W4-079 are design/planning records, not runtime authorization tokens. S2 authorization is Pablo's explicit task `" + AUTHORIZATION_TASK + "`.");
@@ -836,7 +838,8 @@ function renderMarkdown(model) {
   lines.push("- Evidence is Wings-held only. GAP_05 remains an accepted Ring0 limitation: fixture/Wings-held is not live child-repository intelligence.");
   lines.push("- HEAD_AT_GENERATION is historical evidence; runtime Git HEAD is current truth.");
   lines.push("- A different ancestral hash is valid. Only a confirmed non-ancestor produces STALE_BATON_HEAD or STALE_SESSION_CONTINUE.");
-  lines.push("- Semantic continuity lag is not inferred from hash inequality and remains a later continuity-sync task.");
+  lines.push("- " + SEMANTIC_LAG_RULE);
+  lines.push("- Semantic continuity lag is not inferred from hash inequality.");
   if (model.warnings.indexOf("STALE_BATON_HEAD") !== -1) {
     lines.push("- STALE_BATON_HEAD: BATON HEAD_AT_GENERATION is not an ancestor of runtime git HEAD.");
   }
@@ -897,6 +900,7 @@ var api = {
   SUPPORTED_TRIGGER: SUPPORTED_TRIGGER,
   BRIEFING_RUNTIME_LEVEL: BRIEFING_RUNTIME_LEVEL,
   EMPTY_MATERIAL_CHANGES: EMPTY_MATERIAL_CHANGES,
+  SEMANTIC_LAG_RULE: SEMANTIC_LAG_RULE,
   CANONICAL_SECTIONS: CANONICAL_SECTIONS,
   ALLOWLIST: ALLOWLIST,
   FORBIDDEN_MARKERS: FORBIDDEN_MARKERS,

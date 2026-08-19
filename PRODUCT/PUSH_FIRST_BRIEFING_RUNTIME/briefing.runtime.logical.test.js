@@ -365,8 +365,67 @@ ok(
   r1.markdown.indexOf("BRIEFING_RUNTIME_IMPLEMENTED=NO") === -1 &&
     !hasStaleBaton(rAncestor.markdown) &&
     !hasStaleSession(rAncestor.markdown) &&
-    r1.markdown.indexOf("Semantic continuity lag is not inferred from hash inequality") !== -1
+    r1.markdown.indexOf("Semantic continuity lag is not inferred from hash inequality") !== -1 &&
+    r1.markdown.indexOf(runtime.SEMANTIC_LAG_RULE) !== -1
 );
+
+function hasObsoletePendingSync(md) {
+  return (
+    md.indexOf("later continuity-sync task") !== -1 ||
+    md.indexOf("separate later task") !== -1 ||
+    md.indexOf("synchronization remains a later task") !== -1 ||
+    md.indexOf("continuity sync pending") !== -1 ||
+    md.indexOf("remains a later task") !== -1
+  );
+}
+
+function hasPermanentCompletionClaim(md) {
+  return (
+    md.indexOf("permanently complete") !== -1 ||
+    md.indexOf("continuity sync complete forever") !== -1 ||
+    md.indexOf("always resolved") !== -1 ||
+    md.indexOf("always semantically current") !== -1 ||
+    md.indexOf("hash ancestry proves semantic freshness") !== -1
+  );
+}
+
+ok(
+  "S2-2-NO-PENDING-SYNC",
+  !hasObsoletePendingSync(r1.markdown) &&
+    !hasObsoletePendingSync(rAncestor.markdown) &&
+    !hasObsoletePendingSync(rDiverged.markdown) &&
+    src.indexOf("later continuity-sync task") === -1 &&
+    src.indexOf("separate later task") === -1 &&
+    src.indexOf("synchronization remains a later task") === -1
+);
+ok(
+  "S2-2-DURABLE-LAG-RULE",
+  r1.markdown.indexOf("Semantic continuity lag is assessed independently from HEAD divergence") !== -1 &&
+    r1.markdown.indexOf("a valid historical ancestor is not stale solely because runtime HEAD is newer") !== -1 &&
+    rAncestor.markdown.indexOf(runtime.SEMANTIC_LAG_RULE) !== -1 &&
+    rDiverged.markdown.indexOf(runtime.SEMANTIC_LAG_RULE) !== -1
+);
+ok(
+  "S2-2-NO-PERMANENT-COMPLETION",
+  !hasPermanentCompletionClaim(r1.markdown) &&
+    !hasPermanentCompletionClaim(rAncestor.markdown) &&
+    r1.markdown.indexOf("WINGS4_COMPLETE=NO") !== -1
+);
+ok(
+  "S2-2-ANCESTOR-NO-BASE-STALE",
+  !hasStaleBaton(rAncestor.markdown) &&
+    !hasStaleSession(rAncestor.markdown) &&
+    rAncestor.model.batonGeneration.class === "VALID_HISTORICAL_ANCESTOR" &&
+    rAncestor.model.startHereGeneration.class === "VALID_HISTORICAL_ANCESTOR"
+);
+ok(
+  "S2-2-NON-ANCESTOR-KEEPS-STALE",
+  hasStaleBaton(rDiverged.markdown) &&
+    hasStaleSession(rDiverged.markdown) &&
+    rDiverged.model.batonGeneration.class === "DIVERGED_NON_ANCESTOR" &&
+    rDiverged.model.startHereGeneration.class === "DIVERGED_NON_ANCESTOR"
+);
+ok("S2-2-EIGHT-SECTIONS", runtime.CANONICAL_SECTIONS.length === 8 && sectionOrder(r1.markdown).every(function (n) { return n >= 0; }));
 
 // BR-11
 ok(
@@ -406,6 +465,7 @@ var writeHits = [];
   }
 );
 ok("BR-14", writeHits.length === 0 && src.indexOf("localStorage") === -1, writeHits.join(","));
+ok("S2-2-NO-WRITE", writeHits.length === 0);
 
 // BR-15
 ok(
