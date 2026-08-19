@@ -1356,3 +1356,37 @@ Decision:
 Spec: `PORTFOLIO.ARCHITECTURE/WINGS4.PUSH_FIRST_BRIEFING.RUNTIME.S2.SPEC.md`
 Implementation: `PRODUCT/PUSH_FIRST_BRIEFING_RUNTIME/briefing.runtime.js`
 Tests: `PRODUCT/PUSH_FIRST_BRIEFING_RUNTIME/briefing.runtime.logical.test.js`
+
+## DEC-W4-082 — S2.3 current-state derivation correction recorded
+
+Status: IMPLEMENTED_CORRECTED
+Date: 2026-08-20
+Scope: S2 CURRENT-STATE DERIVATION CORRECTION RECORD ONLY
+Authority: Pablo
+Technical implementation commit: `f1efb2a78a2429c5ab10328a77a9f66bd88cd831`
+Implementation commit: `f1efb2a78a2429c5ab10328a77a9f66bd88cd831`
+
+Decision:
+
+- Record the completed S2.3 current-state derivation correction. This decision does not declare Pablo’s human acceptance of the briefing.
+- Technical implementation commit is `f1efb2a78a2429c5ab10328a77a9f66bd88cd831`.
+- S2.3 replaced frozen operational claims with governed derivation from this-repository Git, explicit START_HERE/BATON KEY=VALUE state, structured decision-log fields, and fail-closed UNKNOWN.
+- Material changes derive from this-repository Git after a validated operative-decision anchor.
+- Open decisions fail closed to UNKNOWN when no explicit OPEN_DECISION_* contract exists.
+- NEXT_PRODUCT_ACTION derives from consistent BATON/START_HERE state.
+- Human options derive from current findings and execute no mutation.
+- Prior S2 chain remains: S2 implementation `eb5758448932a3376788f15128177087866cb41f`; S2.1 ancestry correction `6db8963ecfa9d1ad2c8c9c511fbbd34b9df09641`; S2/S2.1 canon sync `b0380d756d1ffa676e8649e5f7df79e540886be4`; S2.2 semantic-wording correction `87ddb8ac8da7f59889fac54c203ed09a8517dc47`.
+- S2 remains `ON_DEMAND_TEXT_ONLY / SESSION_OUTPUT_ONLY`. Trigger remains `ON_DEMAND_REQUEST` only. Persistence remains absent.
+- S2 technical validation passed (`BR-01` through `BR-20` PASS; internal assertions `72`).
+- Human acceptance remains pending renewed review.
+- Continuity next product action after this technical record is `HUMAN_REVIEW_S2_3_AND_DECIDE_OPEN_DECISION_GOVERNANCE`. This decision does not select a next-session option.
+- OPEN_DECISION_* state contract remains absent. This decision does not create OPEN_DECISION_* keys.
+- S3 and S4 remain unauthorized and unimplemented.
+- Wings4 complete: no. Production complete: no.
+- This decision does not authorize a new product capability, S3, S4, UI, persistence, monitoring, RADAR, live web, child-repository read, child mutation, COPY lifecycle change, capture, or auto-delivery.
+
+Spec: `PORTFOLIO.ARCHITECTURE/WINGS4.PUSH_FIRST_BRIEFING.RUNTIME.S2.SPEC.md`
+Implementation: `PRODUCT/PUSH_FIRST_BRIEFING_RUNTIME/briefing.runtime.js`
+Tests: `PRODUCT/PUSH_FIRST_BRIEFING_RUNTIME/briefing.runtime.logical.test.js`
+Planning: `PORTFOLIO.ARCHITECTURE/WINGS4.P4.PUSH_FIRST_BRIEFING.RUNTIME.PLANNING.md`
+Design: `PORTFOLIO.ARCHITECTURE/WINGS4.PUSH_FIRST_BRIEFING.DESIGN.md`

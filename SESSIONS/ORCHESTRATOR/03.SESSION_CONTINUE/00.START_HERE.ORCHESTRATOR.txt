@@ -4,6 +4,8 @@ PACKAGE_STATUS=READY
 ENTRYPOINT=THIS_FILE
 SESSION_CONTINUE_IS_OUTPUT=YES
 SESSION_CONTINUE_IS_CANON=NO
+ROLE_ACTIVE=ORCHESTRATOR
+HUMAN_AUTHORITY=Pablo
 PLANNING_PACKET_TASK=20260817.233000_W4_RECORD_BRIEFING_RUNTIME_PLANNING_PACKET_ONLY_033
 PLANNING_PACKET_COMMITTED_PUSHED=YES
 PURPOSE=SAME_AI_PROJECT_WORKSPACE_CONTINUATION
@@ -18,16 +20,22 @@ MISSING_EVIDENCE_POLICY=REQUEST_OR_MARK_UNKNOWN
 DO_NOT_CLAIM_EXTERNAL_EVIDENCE_WILL_NEVER_BE_REQUIRED=YES
 PROJECT_CONTEXT_ISOLATION=MANDATORY
 AI_HISTORY_POLICY=DO_NOT_INSPECT_AI_HISTORY
+NO_CROSS_PROJECT_CONTAMINATION=YES
+NO_SKILLSMACHINE_SCOPE=YES
+NO_CHILD_REPOSITORY_OR_AI_HISTORY_EVIDENCE=YES
+NO_LIVE_WEB_EVIDENCE=YES
 
 TARGET_MAX_ACTIVATION_ITERATIONS=3
 ITERATION_1=ACTIVATE_AND_RUNTIME_GATE
 ITERATION_2=CONSUME_OPTIONAL_CONSOLIDATED_EVIDENCE_IF_NEEDED
-ITERATION_3=RUN_S2_ON_DEMAND_BRIEFING_FOR_HUMAN_REVIEW
+ITERATION_3=HUMAN_REVIEW_S2_3_AND_DECIDE_OPEN_DECISION_GOVERNANCE
 
 PRIMARY_INTERACTION_LANGUAGE=ENGLISH
 CAMBRIDGE_C1_COACHING=ACTIVE
 CAMBRIDGE_C1_CONTINUITY=YES
-CAMBRIDGE_C1_SCOPE=PABLO_PERSONAL_COLLABORATION_PREFERENCE_ONLY
+CAMBRIDGE_C1_SCOPE=PABLO_SPECIFIC_COLLABORATION_PREFERENCE_ONLY
+CAMBRIDGE_C1_IS_WINGS4_PRODUCT_DOCTRINE=NO
+CAMBRIDGE_C1_IS_TRANSVERSAL_WORKFLOW=NO
 CAMBRIDGE_C1_GENERIC_WINGS4_PRODUCT_DOCTRINE=NO
 C1_PROFILE_USER_SPECIFIC=YES
 C1_PROFILE_GENERIC_PRODUCT_RULE=NO
@@ -54,9 +62,12 @@ POST_MD1_CONTINUITY_COMMIT=edc3b86f752f7c464c15c8873843ddad79b127e9
 PLANNING_PACKET_COMMIT=f8d8d2f3a973409e6028ca9fb3fe55bc95cf1f14
 S2_IMPLEMENTATION_COMMIT=eb5758448932a3376788f15128177087866cb41f
 S2_1_CORRECTION_COMMIT=6db8963ecfa9d1ad2c8c9c511fbbd34b9df09641
-HEAD_AT_GENERATION=6db8963ecfa9d1ad2c8c9c511fbbd34b9df09641
+S2_S2_1_CANON_SYNC_COMMIT=b0380d756d1ffa676e8649e5f7df79e540886be4
+S2_2_SEMANTIC_WORDING_COMMIT=87ddb8ac8da7f59889fac54c203ed09a8517dc47
+S2_3_STATE_DERIVATION_COMMIT=f1efb2a78a2429c5ab10328a77a9f66bd88cd831
+HEAD_AT_GENERATION=f1efb2a78a2429c5ab10328a77a9f66bd88cd831
 CURRENT_HEAD_AT_RESUME=RESOLVE_FROM_GIT
-HEAD_AT_GENERATION_SEMANTICS=HISTORICAL_EVIDENCE_ONLY; NOT_PERMANENTLY_CURRENT_STATE
+HEAD_AT_GENERATION_SEMANTICS=HISTORICAL_EVIDENCE_ONLY
 CURRENT_HEAD_SEMANTICS=RUNTIME_GIT_IS_SOURCE_OF_TRUTH
 REMOTE_COUNT_AT_GENERATION=1
 PLANNING_PACKET_COMMITTED=YES
@@ -66,7 +77,7 @@ MANAGEMENT_READY_SCOPE=BOUNDED_MD1
 MANAGEMENT_DELIVERY_1=ACCEPTED_BY_GERENCIA
 MANAGEMENT_DELIVERY_1_STATUS=CLOSED
 
-INSTRUCTION_TO_NEW_SESSION=Read this file as the complete current continuation package and start without requesting another prompt or additional files for session start. Later in the session, request bounded additional evidence when needed; never guess missing evidence. Optional consolidated evidence may exist at C:\Users\aazcl\Downloads\T.Wings4.0\WINGS4_NEXT_ORCHESTRATOR_CONSOLIDATED.txt; it is not required for session start. Conduct substantive conversation in English with continuous non-blocking Cambridge C1 coaching as Pablo's personal collaboration preference only, not as generic Wings4 product doctrine. Do not inspect AI.History/.
+INSTRUCTION_TO_NEW_SESSION=Read this file as the complete current continuation package and start without requesting another prompt or additional files for session start. Later in the session, request bounded additional evidence when needed; never guess missing evidence. Optional consolidated evidence may exist at C:\Users\aazcl\Downloads\T.Wings4.0\WINGS4_NEXT_ORCHESTRATOR_CONSOLIDATED.txt; it is not required for session start. Conduct substantive conversation in English with continuous non-blocking Cambridge C1 coaching as Pablo's personal collaboration preference only, not as Wings4 product doctrine and not as a transversal workflow. Do not inspect AI.History/.
 FIRST_RUNTIME_GATE=Run the durable PowerShell runtime gate below from any directory before opening new work. Do not treat HEAD_AT_GENERATION as permanently current. Never call .ToUpper() on a Boolean; use ($expr).ToString().ToUpperInvariant().
 
 ## 00 Additional evidence protocol
@@ -90,10 +101,10 @@ ITERATION_1=ACTIVATE_AND_RUNTIME_GATE. This section is sufficient for Iteration 
 
 1. Assume ROLE=ORCHESTRATOR at C:\01. GitHub\Wings4.0.
 2. Validate BRANCH=main via the script below.
-3. Resolve CURRENT HEAD from Git. HEAD_AT_GENERATION `6db8963ecfa9d1ad2c8c9c511fbbd34b9df09641` (S2.1 correction commit) is historical package evidence only, not permanently current state. After this canon/continuity sync commits, that hash is a valid historical ancestor and must not be labeled stale merely because a later commit exists. Runtime Git is the source of truth for the current HEAD. The planning packet is committed and pushed. S2 is implemented. S2.1 ancestry semantics are in force.
+3. Resolve CURRENT HEAD from Git. HEAD_AT_GENERATION `f1efb2a78a2429c5ab10328a77a9f66bd88cd831` (S2.3 correction commit) is historical package evidence only, not permanently current state. After this canon/continuity sync commits, that hash is a valid historical ancestor and must not be labeled stale merely because a later commit exists. Runtime Git is the source of truth for the current HEAD. Confirm origin alignment and clean-tree state before opening new work. The planning packet is committed and pushed. S2/S2.1/S2.2/S2.3 are implemented or corrected as recorded. S2.3 technical status is PASS. Human acceptance is pending renewed review.
 4. Expect index clean. Do not expect dirty MD1 UX product files. PRODUCT_UX_RESIDUAL=0. Do not reopen PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/ unless a real integrity failure proves commit `6bb3bfc` invalid.
-5. Do not expect the planning-packet write set to remain uncommitted. Do not expect S2 or S2.1 to remain unimplemented. MD1 is accepted by gerencia and closed. This SESSION_CONTINUE file is the continuation entrypoint after S2 implementation `eb57584` and S2.1 correction `6db8963`. Do not treat HEAD_AT_GENERATION as permanently current.
-6. Confirm ancestors include Ring0 `1e8315d`, Ring1 `16b28d1`, Ring1/Ring2 `03a589d`, North Star `d23d292`, temp hygiene `e199d8b`, MD1 UX `6bb3bfc`, continuity contracts `9e301acf`, post-MD1 continuity `edc3b86`, DEC-W4-077 Option B `0e47b32`, DEC-W4-078 design commit `8bf885b`, START_HERE refresh `8558f9f`, planning packet `f8d8d2f`, S2 implementation `eb5758448932a3376788f15128177087866cb41f`, and S2.1 correction `6db8963ecfa9d1ad2c8c9c511fbbd34b9df09641`.
+5. Do not expect the planning-packet write set to remain uncommitted. Do not expect S2, S2.1, S2.2, or S2.3 to remain unimplemented. Do not expect S2 human acceptance to be completed. MD1 is accepted by gerencia and closed. This SESSION_CONTINUE file is the continuation entrypoint after S2.3 `f1efb2a`. Do not treat HEAD_AT_GENERATION as permanently current.
+6. Confirm ancestors include Ring0 `1e8315d`, Ring1 `16b28d1`, Ring1/Ring2 `03a589d`, North Star `d23d292`, temp hygiene `e199d8b`, MD1 UX `6bb3bfc`, continuity contracts `9e301acf`, post-MD1 continuity `edc3b86`, DEC-W4-077 Option B `0e47b32`, DEC-W4-078 design commit `8bf885b`, START_HERE refresh `8558f9f`, planning packet `f8d8d2f`, S2 implementation `eb5758448932a3376788f15128177087866cb41f`, S2.1 correction `6db8963ecfa9d1ad2c8c9c511fbbd34b9df09641`, S2/S2.1 canon sync `b0380d756d1ffa676e8649e5f7df79e540886be4`, S2.2 wording `87ddb8ac8da7f59889fac54c203ed09a8517dc47`, and S2.3 derivation `f1efb2a78a2429c5ab10328a77a9f66bd88cd831`.
 7. Do not inspect AI.History/.
 8. Do not mutate SkillsMachine, Brainy, Wings3 or any child project. Do not read `C:\01. GitHub\Skills`.
 9. Keep PRIMARY_INTERACTION_LANGUAGE=ENGLISH with CAMBRIDGE_C1_COACHING as Pablo's personal collaboration preference only, not generic Wings4 product doctrine.
@@ -122,7 +133,10 @@ $ExpectedAncestors = @(
   '8558f9f4bc8bbbadd44ab28f7a46d028aee5bf9b',
   'f8d8d2f3a973409e6028ca9fb3fe55bc95cf1f14',
   'eb5758448932a3376788f15128177087866cb41f',
-  '6db8963ecfa9d1ad2c8c9c511fbbd34b9df09641'
+  '6db8963ecfa9d1ad2c8c9c511fbbd34b9df09641',
+  'b0380d756d1ffa676e8649e5f7df79e540886be4',
+  '87ddb8ac8da7f59889fac54c203ed09a8517dc47',
+  'f1efb2a78a2429c5ab10328a77a9f66bd88cd831'
 )
 $AncestorFail = New-Object System.Collections.Generic.List[string]
 foreach ($c in $ExpectedAncestors) {
@@ -175,6 +189,20 @@ $Lines | ForEach-Object { $_ }
 - BRIEFING_PERSISTENCE=NO
 - S2_IMPLEMENTATION_COMMIT=eb5758448932a3376788f15128177087866cb41f
 - S2_1_CORRECTION_COMMIT=6db8963ecfa9d1ad2c8c9c511fbbd34b9df09641
+- S2_S2_1_CANON_SYNC_COMMIT=b0380d756d1ffa676e8649e5f7df79e540886be4
+- S2_2_SEMANTIC_WORDING_COMMIT=87ddb8ac8da7f59889fac54c203ed09a8517dc47
+- S2_3_STATE_DERIVATION_COMMIT=f1efb2a78a2429c5ab10328a77a9f66bd88cd831
+- S2_IMPLEMENTED=YES
+- S2_IMPLEMENTATION_LEVEL=ON_DEMAND_TEXT_SESSION_OUTPUT_ONLY
+- S2_1_ANCESTRY_CORRECTION=COMPLETE
+- S2_2_SEMANTIC_WORDING_CORRECTION=COMPLETE
+- S2_3_STATE_DERIVATION_CORRECTION=COMPLETE
+- S2_3_TECHNICAL_STATUS=PASS
+- S2_3_TESTS_PASS_COUNT=72
+- S2_3_BR_01_TO_BR_20=PASS
+- S2_HUMAN_ACCEPTANCE=PENDING_RENEWED_HUMAN_REVIEW
+- OPEN_DECISION_CONTRACT=ABSENT
+- OPEN_DECISIONS=UNKNOWN
 - STALE_HEAD_SEMANTICS=ANCESTRY_BASED
 - VALID_HISTORICAL_ANCESTOR_IS_STALE=NO
 - CONFIRMED_NON_ANCESTOR_IS_STALE=YES
@@ -190,6 +218,7 @@ $Lines | ForEach-Object { $_ }
 - DEC_W4_079=PLANNING_RECORDED_NOT_RUNTIME
 - DEC_W4_080=S2_AUTHORIZED_AND_IMPLEMENTED
 - DEC_W4_081=S2_1_ANCESTRY_SEMANTICS_CORRECTED
+- DEC_W4_082=S2_3_STATE_DERIVATION_CORRECTION_RECORDED
 - DESIGN_PUSH_FIRST_BRIEFING=PORTFOLIO.ARCHITECTURE/WINGS4.PUSH_FIRST_BRIEFING.DESIGN.md
 - PLANNING_PUSH_FIRST_BRIEFING_RUNTIME=PORTFOLIO.ARCHITECTURE/WINGS4.P4.PUSH_FIRST_BRIEFING.RUNTIME.PLANNING.md
 - SPEC_PUSH_FIRST_BRIEFING_RUNTIME_S2=PORTFOLIO.ARCHITECTURE/WINGS4.PUSH_FIRST_BRIEFING.RUNTIME.S2.SPEC.md
@@ -262,25 +291,40 @@ EXPECTED_CONTEXT_INSTANCES_NEXT_SESSION=1
 
 ## 06 Exact next action
 
-NEXT_PRODUCT_ACTION=RUN_S2_ON_DEMAND_BRIEFING_FOR_HUMAN_REVIEW
-NEXT_PRODUCT_MINIBATTLE=RUN_S2_ON_DEMAND_BRIEFING_FOR_HUMAN_REVIEW
-NEXT_CONTINUITY_ACTION=HUMAN_REVIEW_OF_ACTUAL_S2_BRIEFING_OUTPUT
-SCOPE=MD1 is accepted and closed. DEC-W4-077 Option B selected. DEC-W4-078 design recorded. DEC-W4-079 planning packet recorded and pushed at `f8d8d2f`. DEC-W4-080 authorizes and records S2 implementation at `eb5758448932a3376788f15128177087866cb41f`. DEC-W4-081 records the S2.1 ancestry-semantics correction at `6db8963ecfa9d1ad2c8c9c511fbbd34b9df09641`. S2 is implemented at ON_DEMAND_TEXT_SESSION_OUTPUT_ONLY. Trigger is ON_DEMAND_REQUEST only. Output is deterministic Markdown to stdout/current session only. Persistence is absent. S3/S4 remain unauthorized and unimplemented. Do not claim Wings4 complete. Do not treat DEC-W4-078 or DEC-W4-079 as runtime authorization. Running the already-authorized S2 CLI is allowed. Human review of the actual briefing output is next. Running S2 does not authorize S3/S4. Any S3/S4 implementation requires a new explicit human decision. No child-project evidence may be fetched to improve the briefing. Missing evidence remains UNKNOWN.
+NEXT_PRODUCT_ACTION=HUMAN_REVIEW_S2_3_AND_DECIDE_OPEN_DECISION_GOVERNANCE
+NEXT_PRODUCT_MINIBATTLE=HUMAN_REVIEW_S2_3_AND_DECIDE_OPEN_DECISION_GOVERNANCE
+NEXT_CONTINUITY_ACTION=HUMAN_REVIEW_S2_3_AND_DECIDE_OPEN_DECISION_GOVERNANCE
+NEXT_SESSION_OPTION_SELECTED=NO
+S2_3_TECHNICAL_STATUS=PASS
+S2_HUMAN_ACCEPTANCE=PENDING_RENEWED_HUMAN_REVIEW
+OPEN_DECISION_CONTRACT=ABSENT
+OPEN_DECISIONS=UNKNOWN
+SCOPE=MD1 is accepted and closed. DEC-W4-077 Option B selected. DEC-W4-078 design recorded. DEC-W4-079 planning packet recorded and pushed at `f8d8d2f`. DEC-W4-080 authorizes and records S2 implementation at `eb5758448932a3376788f15128177087866cb41f`. DEC-W4-081 records the S2.1 ancestry-semantics correction at `6db8963ecfa9d1ad2c8c9c511fbbd34b9df09641`. S2/S2.1 canon sync is `b0380d756d1ffa676e8649e5f7df79e540886be4`. S2.2 semantic-wording correction is `87ddb8ac8da7f59889fac54c203ed09a8517dc47`. DEC-W4-082 records S2.3 current-state derivation correction at `f1efb2a78a2429c5ab10328a77a9f66bd88cd831`. S2 is implemented at ON_DEMAND_TEXT_SESSION_OUTPUT_ONLY. S2.3 technical status is PASS. Tests PASS=72 and BR-01..BR-20 PASS. Human acceptance is PENDING_RENEWED_HUMAN_REVIEW. OPEN_DECISIONS current derived value is UNKNOWN because no explicit OPEN_DECISION_* contract exists; do not mark it empty or known. Trigger is ON_DEMAND_REQUEST only. Output is deterministic Markdown to stdout/current session only. Persistence is absent. S3/S4 remain unauthorized and unimplemented. Do not claim Wings4 complete. Do not treat DEC-W4-078 or DEC-W4-079 as runtime authorization. The obsolete next action RUN_S2_ON_DEMAND_BRIEFING_FOR_HUMAN_REVIEW was executed during task 045 and is no longer the unperformed next action. Running the already-authorized S2 CLI remains allowed. Running S2 does not authorize S3/S4. Any S3/S4 implementation requires a new explicit human decision. No child-project evidence may be fetched to improve the briefing. Missing evidence remains UNKNOWN.
 
 ITERATION_2=CONSUME_OPTIONAL_CONSOLIDATED_EVIDENCE_IF_NEEDED
 OPTIONAL_EVIDENCE=C:\Users\aazcl\Downloads\T.Wings4.0\WINGS4_NEXT_ORCHESTRATOR_CONSOLIDATED.txt
 ITERATION_2_REQUIRED_FOR_SESSION_START=NO
 
-ITERATION_3=RUN_S2_ON_DEMAND_BRIEFING_FOR_HUMAN_REVIEW
-Running the already-authorized S2 CLI is allowed:
+ITERATION_3=HUMAN_REVIEW_S2_3_AND_DECIDE_OPEN_DECISION_GOVERNANCE
+Present the following choices without auto-selecting. No option is selected by the previous EXECUTOR sync task.
+
+OPTION_A_ACCEPT_WITH_KNOWN_GAP
+Accept S2.3 as the current Wings-held briefing snapshot while preserving OPEN_DECISIONS=UNKNOWN and S3/S4=UNAUTHORIZED. This option does not mutate runtime.
+
+OPTION_B_AUTHORIZE_OPEN_DECISION_CONTRACT_DESIGN
+Authorize a bounded governance/design task to define explicit OPEN_DECISION_* semantics, lifecycle, ownership, conflict handling, and completion/supersession rules before runtime consumes them. This option must not implement S3/S4.
+
+OPTION_C_KEEP_UNKNOWN_AND_MOVE_TO_OTHER_GOVERNANCE
+Keep OPEN_DECISIONS fail-closed as UNKNOWN and address another deferred governance item.
+
+OPTION_D_RUN_READ_ONLY_ACCEPTANCE_AUDIT
+Run a final independent read-only audit of S2.3 output and temporal robustness before Pablo accepts it.
+
+The authorized S2 CLI remains available for review:
 
 node "C:\01. GitHub\Wings4.0\PRODUCT\PUSH_FIRST_BRIEFING_RUNTIME\briefing.runtime.js" --trigger ON_DEMAND_REQUEST
 
-Human review of that output is the next product action. Running S2 does not authorize S3 or S4. Do not automatically select or authorize a future development slice.
-
-NEXT_OPTION_A=ACCEPT_S2_BRIEFING_AS_WINGS_HELD_SNAPSHOT_KEEP_S3_S4_UNAUTHORIZED
-NEXT_OPTION_B=DEFER_FURTHER_BRIEFING_RUNTIME_WORK_KEEP_UNKNOWN_UNKNOWN
-NEXT_OPTION_C=REQUEST_MISSING_GOVERNED_EVIDENCE_WITHOUT_CHILD_READ_OR_LIVE_WEB
+Do not automatically select or authorize a future development slice.
 
 Deferred slices (not auto-selected; require separate authorization):
 - S3 AFTER_RECORDED_HUMAN_DECISION (unauthorized; unimplemented)
@@ -290,12 +334,13 @@ Deferred slices (not auto-selected; require separate authorization):
 - second-entity diagnostic (DEC-W4-077 Option A, not selected)
 - independent resynchronization beyond Ring2
 
-Historical design/planning context preserved: DEC-W4-078 design recorded; DEC-W4-079 planning recorded; recommended first implemented slice was ON_DEMAND_TEXT_ONLY / SESSION_OUTPUT_ONLY and is now implemented as S2 (DEC-W4-080). Equality-based stale-HEAD detection is historical and non-operative; current semantics are ancestry-based (DEC-W4-081).
+Historical design/planning context preserved: DEC-W4-078 design recorded; DEC-W4-079 planning recorded; recommended first implemented slice was ON_DEMAND_TEXT_ONLY / SESSION_OUTPUT_ONLY and is now implemented as S2 (DEC-W4-080). Equality-based stale-HEAD detection is historical and non-operative; current semantics are ancestry-based (DEC-W4-081). Frozen operational catalogs are historical and non-operative; current derivation is S2.3 (DEC-W4-082).
 
-DO_NOT_IMPLEMENT_IN_THIS_RESUME=S3; S4; Ring3; RADAR; MARKET_MONITORING; live web; capture form; auto-delivery; child read; child mutation; COPY lifecycle change; Market Check generalization beyond Ring0 demo; MD1 reopen. Running authorized S2 CLI is allowed and is not S3/S4 implementation.
+DO_NOT_IMPLEMENT_IN_THIS_RESUME=S3; S4; Ring3; RADAR; MARKET_MONITORING; live web; capture form; auto-delivery; child read; child mutation; COPY lifecycle change; Market Check generalization beyond Ring0 demo; MD1 reopen; OPEN_DECISION_* contract implementation unless Pablo selects OPTION_B. Running authorized S2 CLI is allowed and is not S3/S4 implementation.
 
 Missing capabilities (separate; not auto-selected; not MD1 blockers):
 - S3 after-decision refresh / S4 Ring0 panel (unauthorized)
+- explicit OPEN_DECISION_* governance contract (absent; current value UNKNOWN)
 - fresh independent project evidence / independent resynchronization
 - multi-project combined analysis
 - Ring3 / RADAR / MARKET_MONITORING / live web
@@ -335,8 +380,12 @@ PRODUCTION_COMPLETE=NO
 
 ## 08 Singular next action
 
-Return to Wings4 ORCHESTRATOR, run Iteration 1 runtime gate from this file, optionally consume the consolidated temp evidence in Iteration 2, then in Iteration 3 run the already-authorized S2 on-demand briefing for human review:
+Return to Wings4 ORCHESTRATOR, run Iteration 1 runtime gate from this file (verify runtime HEAD, ancestry, origin alignment, and clean-tree state), optionally consume the consolidated temp evidence in Iteration 2, then in Iteration 3 present options A/B/C/D without selecting one. Next governed action:
+
+NEXT_PRODUCT_ACTION=HUMAN_REVIEW_S2_3_AND_DECIDE_OPEN_DECISION_GOVERNANCE
+
+The authorized S2 CLI remains available for review and does not mutate product:
 
 node "C:\01. GitHub\Wings4.0\PRODUCT\PUSH_FIRST_BRIEFING_RUNTIME\briefing.runtime.js" --trigger ON_DEMAND_REQUEST
 
-Running S2 is allowed. Human review of the actual briefing output is next. Running S2 does not authorize S3 or S4. Any S3/S4 implementation requires a new explicit human decision. No child-project evidence may be fetched to improve the briefing. Missing evidence remains UNKNOWN. No additional prompt required for session start; request later evidence only when needed. Do not treat DEC-W4-078 or DEC-W4-079 as runtime authorization. Do not automatically select or authorize a future development slice.
+S2.3 technical status is PASS. Human acceptance remains pending. OPEN_DECISIONS remains UNKNOWN because no explicit contract exists. Running S2 does not authorize S3 or S4. Any S3/S4 implementation requires a new explicit human decision. No child-project evidence may be fetched to improve the briefing. Missing evidence remains UNKNOWN. No additional prompt required for session start; request later evidence only when needed. Do not treat DEC-W4-078 or DEC-W4-079 as runtime authorization. Do not automatically select or authorize a future development slice. Do not declare S2 human acceptance complete.
