@@ -1417,6 +1417,52 @@ Decision:
 - Continuity next product action after this record is `RERUN_BOUNDED_READ_ONLY_S2_ACCEPTANCE_VALIDATION`. This decision does not select a next-session option and does not declare S2 human acceptance complete.
 - This decision does not authorize commit, push, S3, S4, UI, persistence, monitoring, RADAR, live web, child-repository read, child mutation, COPY lifecycle change, capture, auto-delivery, or a Wings4-complete claim.
 
+HISTORICAL_NON_OPERATIVE_NOTE: The statements `NO_COMMIT_AUTHORIZED=YES`, `Implementation commit: NOT_RECORDED_UNCOMMITTED_WORKING_TREE`, and “S2 human acceptance remains pending renewed review” were true at DEC-W4-083 recording. Later exact-staging commit and push are `20313dd1fc48e0ed2fde4379a213ee53da42481c`. Bounded S2/S2.3 human acceptance is recorded in DEC-W4-084. This decision itself remains the OPEN_DECISION_* contract and S2.3 semantic-gap correction record.
+
+Contract: `PORTFOLIO.ARCHITECTURE/WINGS4.OPEN_DECISION.CONTRACT.md`
+Spec: `PORTFOLIO.ARCHITECTURE/WINGS4.PUSH_FIRST_BRIEFING.RUNTIME.S2.SPEC.md`
+Implementation: `PRODUCT/PUSH_FIRST_BRIEFING_RUNTIME/briefing.runtime.js`
+Tests: `PRODUCT/PUSH_FIRST_BRIEFING_RUNTIME/briefing.runtime.logical.test.js`
+
+## DEC-W4-084 — Bounded S2/S2.3 human acceptance (H1)
+
+Status: ACCEPTED
+Date: 2026-08-20
+Scope: BOUNDED_S2_ON_DEMAND_TEXT_SESSION_OUTPUT_ONLY HUMAN ACCEPTANCE ONLY
+Authority: Pablo; HUMAN_DECISION=H1; authorization `20260820.151500_W4_EXECUTOR_RECORD_S2_3_HUMAN_ACCEPTANCE_H1`
+DECISION_SUBJECT=S2_S2_3_HUMAN_ACCEPTANCE
+HUMAN_DECISION=H1
+S2_HUMAN_ACCEPTANCE=ACCEPTED
+S2_3_HUMAN_ACCEPTANCE=ACCEPTED
+ACCEPTANCE_SCOPE=BOUNDED_S2_ON_DEMAND_TEXT_SESSION_OUTPUT_ONLY
+OPTION_D_AUDIT=PASS_WITH_GAPS_THEN_CORRECTED
+FINAL_READ_ONLY_VALIDATION=PASS
+ACCEPTANCE_BASIS_COMMIT=20313dd1fc48e0ed2fde4379a213ee53da42481c
+Runtime HEAD at acceptance: `20313dd1fc48e0ed2fde4379a213ee53da42481c`
+OPEN_DECISIONS=UNKNOWN
+OPEN_DECISION_CONTRACT_CANONIZED=YES
+OPEN_DECISION_RUNTIME_CONSUMPTION_IMPLEMENTED=NO
+S3_AUTHORIZED=NO
+S3_IMPLEMENTED=NO
+S4_AUTHORIZED=NO
+S4_IMPLEMENTED=NO
+WINGS4_COMPLETE=NO
+PRODUCTION_COMPLETE=NO
+
+Decision:
+
+- Pablo selected H1: accept S2.3 and close human acceptance for the bounded S2/S2.3 scope.
+- Bounded S2/S2.3 human acceptance is complete. Acceptance scope is `ON_DEMAND_TEXT_ONLY / SESSION_OUTPUT_ONLY`.
+- This acceptance follows correction of GAP-S2.3-01 and GAP-S2.3-02 under DEC-W4-083.
+- Final technical evidence at acceptance: tests PASS=77, FAIL=0; deterministic S2 output; clean repository; origin/main aligned at commit `20313dd1fc48e0ed2fde4379a213ee53da42481c`.
+- Option D read-only audit was PASS_WITH_GAPS, then corrected; final read-only validation is PASS.
+- `OPEN_DECISIONS` remains UNKNOWN. This acceptance does not describe the set as empty or known.
+- `OPEN_DECISION_*` contract design remains canonized. Contract-driven runtime catalog consumption remains unimplemented and is not authorized by this decision.
+- S3 and S4 remain unauthorized and unimplemented. This acceptance is not S3 or S4 authorization.
+- Wings4 complete: no. Production complete: no.
+- Continuity next product action after this record is `HUMAN_DECIDE_POST_S2_NEXT_GOVERNED_ACTION`. No next-session option is selected. This decision does not authorize or auto-select a new development slice.
+- This decision does not authorize staging, commit, push, S3, S4, OPEN_DECISION_* catalog consumption, UI, persistence, monitoring, RADAR, live web, child-repository read, child mutation, COPY lifecycle change, capture, auto-delivery, or a Wings4-complete claim.
+
 Contract: `PORTFOLIO.ARCHITECTURE/WINGS4.OPEN_DECISION.CONTRACT.md`
 Spec: `PORTFOLIO.ARCHITECTURE/WINGS4.PUSH_FIRST_BRIEFING.RUNTIME.S2.SPEC.md`
 Implementation: `PRODUCT/PUSH_FIRST_BRIEFING_RUNTIME/briefing.runtime.js`
