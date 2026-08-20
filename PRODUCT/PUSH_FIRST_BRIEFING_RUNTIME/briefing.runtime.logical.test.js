@@ -916,6 +916,90 @@ ok(
     })
 );
 
+ok(
+  "S2-3-UNKNOWN-NOT-EMPTY-RATIONALE",
+  r1.markdown.indexOf("UNKNOWN: open_decisions") !== -1 &&
+    r1.markdown.indexOf(runtime.OPEN_DECISIONS_UNKNOWN_WHY) !== -1 &&
+    r1.markdown.indexOf("No currently open OPEN_DECISION_* items") === -1 &&
+    currentRepo.markdown.indexOf("No currently open OPEN_DECISION_* items") === -1 &&
+    currentRepo.model.openDecisionsState === "UNKNOWN"
+);
+
+var rMetaOnly = runDerived({
+  "SESSIONS/ORCHESTRATOR/03.SESSION_CONTINUE/00.START_HERE.ORCHESTRATOR.txt":
+    continuityFiles("OPEN_DECISION_CONTRACT=DESIGN_CANONIZED_NOT_CONSUMED\n")[
+      "SESSIONS/ORCHESTRATOR/03.SESSION_CONTINUE/00.START_HERE.ORCHESTRATOR.txt"
+    ],
+  "00_STATE/BATON.WINGS4.ACTIVE.md":
+    continuityFiles("", "OPEN_DECISION_CONTRACT=DESIGN_CANONIZED_NOT_CONSUMED\n")[
+      "00_STATE/BATON.WINGS4.ACTIVE.md"
+    ]
+});
+ok(
+  "S2-3-META-CONTRACT-KEY-NOT-CATALOG",
+  rMetaOnly.model.openDecisionsState === "UNKNOWN" &&
+    rMetaOnly.markdown.indexOf(runtime.OPEN_DECISIONS_UNKNOWN_WHY) !== -1 &&
+    rMetaOnly.markdown.indexOf("No currently open OPEN_DECISION_* items") === -1 &&
+    rMetaOnly.model.open.length === 0
+);
+
+var rValidatedEmpty = runDerived({
+  "SESSIONS/ORCHESTRATOR/03.SESSION_CONTINUE/00.START_HERE.ORCHESTRATOR.txt":
+    continuityFiles("OPEN_DECISION_DONE_ITEM=COMPLETED\nOPEN_DECISION_OLD_ITEM=SUPERSEDED\n")[
+      "SESSIONS/ORCHESTRATOR/03.SESSION_CONTINUE/00.START_HERE.ORCHESTRATOR.txt"
+    ]
+});
+ok(
+  "S2-3-VALIDATED-EMPTY-NOT-UNKNOWN",
+  rValidatedEmpty.model.openDecisionsState === "VALIDATED_EMPTY" &&
+    rValidatedEmpty.markdown.indexOf("OPEN_DECISIONS is a validated empty set") !== -1 &&
+    rValidatedEmpty.markdown.indexOf(runtime.OPEN_DECISIONS_VALIDATED_EMPTY_WHY) !== -1 &&
+    rValidatedEmpty.markdown.indexOf("UNKNOWN: open_decisions") === -1 &&
+    rValidatedEmpty.model.open.length === 0
+);
+
+var reviewFiles = continuityFiles();
+reviewFiles["SESSIONS/ORCHESTRATOR/03.SESSION_CONTINUE/00.START_HERE.ORCHESTRATOR.txt"] =
+  reviewFiles["SESSIONS/ORCHESTRATOR/03.SESSION_CONTINUE/00.START_HERE.ORCHESTRATOR.txt"].replace(
+    "NEXT_PRODUCT_ACTION=RUN_S2_ON_DEMAND_BRIEFING_FOR_HUMAN_REVIEW",
+    "NEXT_PRODUCT_ACTION=HUMAN_REVIEW_S2_3_AND_DECIDE_OPEN_DECISION_GOVERNANCE"
+  );
+reviewFiles["00_STATE/BATON.WINGS4.ACTIVE.md"] = reviewFiles["00_STATE/BATON.WINGS4.ACTIVE.md"].replace(
+  "NEXT_PRODUCT_ACTION=RUN_S2_ON_DEMAND_BRIEFING_FOR_HUMAN_REVIEW",
+  "NEXT_PRODUCT_ACTION=HUMAN_REVIEW_S2_3_AND_DECIDE_OPEN_DECISION_GOVERNANCE"
+);
+var rReview = run({
+  files: reviewFiles,
+  git: {
+    head: HEAD_A,
+    objects: objectsFor(HEAD_A),
+    ancestors: ancestorsFor(HEAD_A),
+    logCommits: []
+  }
+});
+var reviewIds = rReview.model.options.map(function (o) { return o.id; });
+ok(
+  "S2-3-HUMAN-OPTIONS-SUPPORT-OPEN-DECISION-GOVERNANCE",
+  reviewIds.indexOf("ACCEPT_DERIVED_SNAPSHOT_PRESERVE_UNKNOWN") !== -1 &&
+    reviewIds.indexOf("AUTHORIZE_BOUNDED_OPEN_DECISION_GOVERNANCE") !== -1 &&
+    reviewIds.indexOf("KEEP_UNKNOWN_AND_DEFER") !== -1 &&
+    rReview.markdown.indexOf("preserving OPEN_DECISIONS=UNKNOWN") !== -1 &&
+    rReview.markdown.indexOf("Authorize bounded OPEN_DECISION_* governance work") !== -1 &&
+    rReview.markdown.indexOf("Keep OPEN_DECISIONS=UNKNOWN and defer") !== -1 &&
+    rReview.markdown.indexOf("OPTION_A:") === -1 &&
+    rReview.model.options.every(function (o) {
+      return o.executes_mutation === false;
+    })
+);
+
+ok(
+  "S2-3-NO-CONTRACT-FILE-CONSUMPTION",
+  runtime.ALLOWLIST.every(function (item) {
+    return item.rel.indexOf("WINGS4.OPEN_DECISION.CONTRACT.md") === -1;
+  }) &&
+    src.indexOf("WINGS4.OPEN_DECISION.CONTRACT.md") === -1
+);
+
 var unknownArg = throwCode(function () {
   runtime.parseCliArgs(["--trigger", "ON_DEMAND_REQUEST", "--pretty"]);
 });

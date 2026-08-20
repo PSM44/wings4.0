@@ -6,6 +6,7 @@ Design record: `PORTFOLIO.ARCHITECTURE/WINGS4.PUSH_FIRST_BRIEFING.DESIGN.md` (DE
 Planning record: `PORTFOLIO.ARCHITECTURE/WINGS4.P4.PUSH_FIRST_BRIEFING.RUNTIME.PLANNING.md` (DEC-W4-079)
 Implementation: `PRODUCT/PUSH_FIRST_BRIEFING_RUNTIME/briefing.runtime.js`
 Tests: `PRODUCT/PUSH_FIRST_BRIEFING_RUNTIME/briefing.runtime.logical.test.js`
+Open-decision contract: `PORTFOLIO.ARCHITECTURE/WINGS4.OPEN_DECISION.CONTRACT.md` (DEC-W4-083; design canonized; runtime catalog consumption not implemented)
 
 This file records the implemented S2 contract only. It does not rewrite or supersede the design or planning packet.
 
@@ -206,7 +207,7 @@ Human options: at least two, generated from current findings. None execute produ
 | No evidenced material changes after a verified anchor and successful empty Git range | Emit canonical empty-state wording |
 | Decision anchor missing, malformed, nonexistent, non-ancestor, or unverifiable | Structured `UNKNOWN` for material changes; do not emit the empty sentence |
 | START_HERE and BATON `NEXT_PRODUCT_ACTION` conflict | Structured `UNKNOWN` with both source pointers; do not silently choose a winner |
-| No explicit `OPEN_DECISION_*` contract | Honest empty/`UNKNOWN` with why and required evidence; do not infer a catalog from prose |
+| No explicit `OPEN_DECISION_*` instance catalog | Structured `UNKNOWN` with why stating that the current open-decision state cannot be determined; do not describe the set as empty; do not infer a catalog from prose |
 
 No network retries, repair routines, background retries, or dependency recovery.
 
@@ -333,8 +334,9 @@ Emit `No Wings-held material change recorded` only when:
 ### 11.6 Open-decision classifications
 
 Do not emit a frozen open-decision catalog.
+Do not consume `PORTFOLIO.ARCHITECTURE/WINGS4.OPEN_DECISION.CONTRACT.md` as an instance catalog.
 
-Parse explicit `OPEN_DECISION_*` keys when present. Classify:
+Parse explicit non-meta `OPEN_DECISION_*` keys when present in START_HERE/BATON. `OPEN_DECISION_CONTRACT`, `OPEN_DECISION_CATALOG`, and `OPEN_DECISION_RUNTIME_CONSUMPTION` are status flags, not instance items. Classify instance values:
 
 `OPEN`, `DEFERRED`, `NOT_SELECTED`, `COMPLETED`, `SUPERSEDED`, `UNAUTHORIZED`, `UNKNOWN`.
 
@@ -342,7 +344,13 @@ If a key value is a `DEC-W4-*` identifier, classify from that entry’s structur
 
 `COMPLETED`, `SUPERSEDED`, and `NOT_SELECTED` must not be presented as currently open. S3/S4 unauthorized state is a boundary, not automatically an open decision. DEC-W4-055 and DEC-W4-075 must not be labeled open merely because residual subjects remain deferred. `SESSION_CONTINUE_CANON_REFRESH` must not appear as `DEFERRED` after the completed continuity-sync commit.
 
-If no explicit current open-decision contract exists, emit an honest empty/`UNKNOWN` result with why and required evidence. Do not infer a catalog from narrative prose.
+Distinguish set states:
+
+- `UNKNOWN` when no valid instance catalog is available, or governed instance evidence is missing, malformed, or conflicting. Rationale must state that the current open-decision state cannot be determined. Do not describe this set as empty.
+- `VALIDATED_EMPTY` only when a valid instance KEY=VALUE catalog exists and contains zero currently active items.
+- `POPULATED` when a valid instance catalog exists and contains one or more currently active items.
+
+Do not infer a catalog from narrative prose. Aligning runtime classification to the DEC-W4-083 lifecycle (`PROPOSED`/`OPEN`/`BLOCKED`/`RESOLVED`/`SUPERSEDED`/`CANCELLED`) requires a later authorized consumption slice.
 
 ### 11.7 Next-action conflict handling
 
@@ -362,3 +370,11 @@ Structured `UNKNOWN` is required when governed evidence is missing, malformed, c
 ### 11.9 Dynamic human options
 
 Generate at least two mutually intelligible, non-mutating options tied to the current briefing. Include an option to reject/request correction when contradictions or derivation failures exist. Do not preserve fixed OPTION_A/B/C wording. Selecting an option must not execute mutation. Do not authorize S3 or S4 through generated options.
+
+When `OPEN_DECISIONS` is `UNKNOWN` or the governed `NEXT_PRODUCT_ACTION` is `HUMAN_REVIEW_S2_3_AND_DECIDE_OPEN_DECISION_GOVERNANCE` or `RERUN_BOUNDED_READ_ONLY_S2_ACCEPTANCE_VALIDATION`, options must distinguish at least:
+
+1. Accept the derived snapshot while preserving `OPEN_DECISIONS=UNKNOWN`.
+2. Authorize bounded `OPEN_DECISION_*` governance work without authorizing S3/S4.
+3. Keep `UNKNOWN` and defer governance/runtime changes.
+
+The briefing may recommend the governed next action. It must not select a human option.

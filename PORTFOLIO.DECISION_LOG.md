@@ -1385,8 +1385,39 @@ Decision:
 - Wings4 complete: no. Production complete: no.
 - This decision does not authorize a new product capability, S3, S4, UI, persistence, monitoring, RADAR, live web, child-repository read, child mutation, COPY lifecycle change, capture, or auto-delivery.
 
+HISTORICAL_NON_OPERATIVE_NOTE: The statements "OPEN_DECISION_* state contract remains absent" and next action `HUMAN_REVIEW_S2_3_AND_DECIDE_OPEN_DECISION_GOVERNANCE` were true at DEC-W4-082 recording. Operative OPEN_DECISION_* contract design and S2.3 semantic-gap correction are recorded in DEC-W4-083. This decision itself remains the S2.3 derivation-correction record.
+
 Spec: `PORTFOLIO.ARCHITECTURE/WINGS4.PUSH_FIRST_BRIEFING.RUNTIME.S2.SPEC.md`
 Implementation: `PRODUCT/PUSH_FIRST_BRIEFING_RUNTIME/briefing.runtime.js`
 Tests: `PRODUCT/PUSH_FIRST_BRIEFING_RUNTIME/briefing.runtime.logical.test.js`
 Planning: `PORTFOLIO.ARCHITECTURE/WINGS4.P4.PUSH_FIRST_BRIEFING.RUNTIME.PLANNING.md`
 Design: `PORTFOLIO.ARCHITECTURE/WINGS4.PUSH_FIRST_BRIEFING.DESIGN.md`
+
+## DEC-W4-083 — OPEN_DECISION_* contract canonized and S2.3 semantic gaps corrected
+
+Status: APPROVED_DESIGN_RECORDED_S2_3_GAPS_CORRECTED
+Date: 2026-08-20
+Scope: OPEN_DECISION_* GOVERNANCE DESIGN CANON AND S2.3 SEMANTIC CORRECTION ONLY
+Authority: Pablo; authorization `20260820.141500_W4_EXECUTOR_RECORD_OPEN_DECISION_CONTRACT_AND_CORRECT_S2_3_GAPS`
+NO_COMMIT_AUTHORIZED=YES
+Implementation commit: NOT_RECORDED_UNCOMMITTED_WORKING_TREE
+
+Decision:
+
+- Record the approved `OPEN_DECISION_*` governance design in `PORTFOLIO.ARCHITECTURE/WINGS4.OPEN_DECISION.CONTRACT.md`.
+- Required fields, permitted lifecycle states, active-state rules, UNKNOWN versus validated-empty versus populated semantics, conflict precedence, and authority limits are canonized there.
+- Pablo remains human decision authority. OWNER is responsibility, not decision authority. Wings4 may classify, recommend, and present options and must not select them.
+- Correct GAP-S2.3-01: `OPEN_DECISIONS=UNKNOWN` must not use an empty-set rationale. Missing catalog evidence means the current open-decision state cannot be determined.
+- Correct GAP-S2.3-02: `HUMAN_DECISION_OPTIONS` must distinguish accepting the derived snapshot while preserving `OPEN_DECISIONS=UNKNOWN`, authorizing bounded `OPEN_DECISION_*` governance work without S3/S4, and keeping UNKNOWN while deferring governance/runtime changes. The briefing may recommend and must not select.
+- Contract-driven runtime consumption of an `OPEN_DECISION_*` catalog is not implemented and is not authorized by this decision.
+- Associated briefing-runtime tests: `BR-01` through `BR-20` PASS; internal assertions `77`.
+- S3 and S4 remain unauthorized and unimplemented.
+- S2 human acceptance remains pending renewed review.
+- `OPEN_DECISIONS` remains UNKNOWN until valid governed evidence supports another value.
+- Continuity next product action after this record is `RERUN_BOUNDED_READ_ONLY_S2_ACCEPTANCE_VALIDATION`. This decision does not select a next-session option and does not declare S2 human acceptance complete.
+- This decision does not authorize commit, push, S3, S4, UI, persistence, monitoring, RADAR, live web, child-repository read, child mutation, COPY lifecycle change, capture, auto-delivery, or a Wings4-complete claim.
+
+Contract: `PORTFOLIO.ARCHITECTURE/WINGS4.OPEN_DECISION.CONTRACT.md`
+Spec: `PORTFOLIO.ARCHITECTURE/WINGS4.PUSH_FIRST_BRIEFING.RUNTIME.S2.SPEC.md`
+Implementation: `PRODUCT/PUSH_FIRST_BRIEFING_RUNTIME/briefing.runtime.js`
+Tests: `PRODUCT/PUSH_FIRST_BRIEFING_RUNTIME/briefing.runtime.logical.test.js`

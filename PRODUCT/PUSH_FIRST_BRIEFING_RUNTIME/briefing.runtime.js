@@ -8,6 +8,15 @@ var EXPECTED_ROOT = "C:\\01. GitHub\\Wings4.0";
 var SUPPORTED_TRIGGER = "ON_DEMAND_REQUEST";
 var BRIEFING_RUNTIME_LEVEL = "IMPLEMENTED_ON_DEMAND_TEXT_SESSION_OUTPUT_ONLY";
 var EMPTY_MATERIAL_CHANGES = "No Wings-held material change recorded";
+var OPEN_DECISIONS_UNKNOWN_WHY =
+  "No explicit governed OPEN_DECISION_* contract or catalog is available; therefore the current open-decision state cannot be determined.";
+var OPEN_DECISIONS_VALIDATED_EMPTY_WHY =
+  "A governed OPEN_DECISION_* KEY=VALUE catalog is present and contains zero currently active items.";
+var OPEN_DECISION_META_KEYS = {
+  OPEN_DECISION_CONTRACT: true,
+  OPEN_DECISION_CATALOG: true,
+  OPEN_DECISION_RUNTIME_CONSUMPTION: true
+};
 var AUTHORIZATION_TASK = "20260818.175139_W4_EXECUTOR_IMPLEMENT_BRIEFING_RUNTIME_S2_039";
 var SEMANTIC_LAG_RULE =
   "Semantic continuity lag is assessed independently from HEAD divergence; a valid historical ancestor is not stale solely because runtime HEAD is newer.";
@@ -518,8 +527,10 @@ function parseOpenDecisionKeys(text) {
   var out = [];
   var m;
   while ((m = re.exec(String(text)))) {
+    var id = "OPEN_DECISION_" + m[1];
+    if (OPEN_DECISION_META_KEYS[id]) continue;
     out.push({
-      id: "OPEN_DECISION_" + m[1],
+      id: id,
       raw: String(m[2] || "").trim()
     });
   }
@@ -928,19 +939,22 @@ function assemble(git, sources, deps) {
     openById[k.id].push(cls);
   });
   var openIds = Object.keys(openById);
+  var openDecisionsState = "UNKNOWN";
+  var openConflictIds = [];
   if (!openIds.length) {
     unknowns.push(
       unknownBlock(
         "open_decisions",
-        "No explicit OPEN_DECISION_* KEY=VALUE contract in START_HERE or BATON",
-        "OPEN_DECISION_* keys in START_HERE and/or BATON",
-        "Keep UNKNOWN; do not infer a catalog from narrative prose"
+        OPEN_DECISIONS_UNKNOWN_WHY,
+        "A valid governed OPEN_DECISION_* instance catalog, or explicit non-meta OPEN_DECISION_* KEY=VALUE items",
+        "Keep UNKNOWN; do not infer a catalog from narrative prose; do not describe the set as empty"
       )
     );
   } else {
     openIds.forEach(function (id) {
       var classes = openById[id].filter(function (v, i, arr) { return arr.indexOf(v) === i; });
       if (classes.length !== 1) {
+        openConflictIds.push(id);
         unknowns.push(
           unknownBlock(
             id,
@@ -961,6 +975,22 @@ function assemble(git, sources, deps) {
         not_this_slice: true
       });
     });
+    if (openConflictIds.length) {
+      open = [];
+      openDecisionsState = "UNKNOWN";
+      unknowns.push(
+        unknownBlock(
+          "open_decisions",
+          "Conflicting governed OPEN_DECISION_* records: " + openConflictIds.join(", "),
+          "Consistent OPEN_DECISION_* instance records",
+          "Keep UNKNOWN; do not silently choose a winner"
+        )
+      );
+    } else if (open.length) {
+      openDecisionsState = "POPULATED";
+    } else {
+      openDecisionsState = "VALIDATED_EMPTY";
+    }
   }
 
   var projectState = {
@@ -1048,13 +1078,42 @@ function assemble(git, sources, deps) {
   }
 
   var derivationGap = unknowns.length > 0 || materialUnknown || projectState.md1_status === "UNKNOWN" || projectState.gap_05 === "UNKNOWN";
-  var options = [
-    {
+  var nextActionValue = nextAction.status === "OK" || nextAction.status === "CONSISTENT" ? nextAction.value : "";
+  var needsOpenDecisionGovernanceOptions =
+    openDecisionsState === "UNKNOWN" ||
+    nextActionValue === "HUMAN_REVIEW_S2_3_AND_DECIDE_OPEN_DECISION_GOVERNANCE" ||
+    nextActionValue === "RERUN_BOUNDED_READ_ONLY_S2_ACCEPTANCE_VALIDATION";
+  var options = [];
+  if (needsOpenDecisionGovernanceOptions) {
+    options.push({
+      id: "ACCEPT_DERIVED_SNAPSHOT_PRESERVE_UNKNOWN",
+      text: "Accept this derived on-demand briefing as a Wings-held snapshot while preserving OPEN_DECISIONS=UNKNOWN. S3 and S4 remain unauthorized. This option does not mutate runtime.",
+      executes_mutation: false
+    });
+    options.push({
+      id: "AUTHORIZE_BOUNDED_OPEN_DECISION_GOVERNANCE",
+      text: "Authorize bounded OPEN_DECISION_* governance work. S3 and S4 remain unauthorized. This option does not implement catalog consumption and does not select a decision.",
+      executes_mutation: false
+    });
+    options.push({
+      id: "KEEP_UNKNOWN_AND_DEFER",
+      text: "Keep OPEN_DECISIONS=UNKNOWN and defer governance and runtime changes. S3 and S4 remain unauthorized.",
+      executes_mutation: false
+    });
+    if (nextActionValue === "RERUN_BOUNDED_READ_ONLY_S2_ACCEPTANCE_VALIDATION") {
+      options.push({
+        id: "RERUN_BOUNDED_READ_ONLY_ACCEPTANCE_VALIDATION",
+        text: "Rerun bounded read-only acceptance validation of this S2 snapshot while preserving OPEN_DECISIONS=UNKNOWN. S3 and S4 remain unauthorized. This option does not mutate runtime.",
+        executes_mutation: false
+      });
+    }
+  } else {
+    options.push({
       id: "ACCEPT_DERIVED_SNAPSHOT",
       text: "Accept this derived on-demand briefing as a Wings-held snapshot. Keep S3/S4 unauthorized.",
       executes_mutation: false
-    }
-  ];
+    });
+  }
   if (derivationGap) {
     options.push({
       id: "REJECT_FOR_DERIVATION_GAP",
@@ -1066,7 +1125,7 @@ function assemble(git, sources, deps) {
       text: "Supply missing explicit KEY=VALUE evidence listed as UNKNOWN; do not read child repositories, AI.History, or the live web.",
       executes_mutation: false
     });
-  } else {
+  } else if (!needsOpenDecisionGovernanceOptions) {
     options.push({
       id: "NO_FURTHER_RUNTIME_CHANGE",
       text: "Make no further briefing-runtime change. Keep S3/S4 unauthorized.",
@@ -1079,6 +1138,7 @@ function assemble(git, sources, deps) {
     lastDecision: lastDecision,
     changes: changes,
     open: open,
+    openDecisionsState: openDecisionsState,
     recommended: recommended,
     options: options,
     warnings: warnings,
@@ -1267,7 +1327,12 @@ function renderMarkdown(model) {
 
   lines.push("## 4. OPEN_DECISIONS");
   lines.push("");
-  if (!model.open.length) {
+  if (model.openDecisionsState === "VALIDATED_EMPTY") {
+    lines.push("- FACT: OPEN_DECISIONS is a validated empty set.");
+    lines.push("  - why: " + OPEN_DECISIONS_VALIDATED_EMPTY_WHY);
+    lines.push("  - source: `" + ALLOWLIST_BY_ID.START_HERE.rel + "`; `" + ALLOWLIST_BY_ID.BATON.rel + "`");
+    lines.push("  - confidence: HIGH");
+  } else if (!model.open.length) {
     var uOpen = model.unknowns.filter(function (u) {
       return u.what === "open_decisions";
     })[0];
@@ -1277,9 +1342,9 @@ function renderMarkdown(model) {
         renderUnknown(
           unknownBlock(
             "open_decisions",
-            "No currently open OPEN_DECISION_* items",
-            "OPEN_DECISION_* keys in START_HERE and/or BATON",
-            "Keep UNKNOWN; do not infer a catalog from narrative prose"
+            OPEN_DECISIONS_UNKNOWN_WHY,
+            "A valid governed OPEN_DECISION_* instance catalog, or explicit non-meta OPEN_DECISION_* KEY=VALUE items",
+            "Keep UNKNOWN; do not infer a catalog from narrative prose; do not describe the set as empty"
           )
         )
       );
@@ -1429,6 +1494,8 @@ var api = {
   SUPPORTED_TRIGGER: SUPPORTED_TRIGGER,
   BRIEFING_RUNTIME_LEVEL: BRIEFING_RUNTIME_LEVEL,
   EMPTY_MATERIAL_CHANGES: EMPTY_MATERIAL_CHANGES,
+  OPEN_DECISIONS_UNKNOWN_WHY: OPEN_DECISIONS_UNKNOWN_WHY,
+  OPEN_DECISIONS_VALIDATED_EMPTY_WHY: OPEN_DECISIONS_VALIDATED_EMPTY_WHY,
   SEMANTIC_LAG_RULE: SEMANTIC_LAG_RULE,
   MAX_MATERIAL_COMMITS: MAX_MATERIAL_COMMITS,
   CANONICAL_SECTIONS: CANONICAL_SECTIONS,

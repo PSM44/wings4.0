@@ -153,6 +153,8 @@ Only changes evidenced in allowed sources (new decisions, BATON next-action chan
 
 ### 4. OPEN_DECISIONS
 
+Operative `OPEN_DECISION_*` governance contract: `PORTFOLIO.ARCHITECTURE/WINGS4.OPEN_DECISION.CONTRACT.md` (DEC-W4-083). This design section is not an instance catalog and does not authorize runtime catalog consumption.
+
 Decisions still pending, deferred, or separately authorized later. Include deferred items that this slice must not absorb:
 
 - WHOAMI/`finding_class` terminology (DEC-W4-055);
