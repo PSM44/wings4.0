@@ -1,0 +1,6 @@
+# Local lab artifacts only. Repository root already ignores node_modules.
+checkpoints/
+*.sqlite
+.env
+.tmp/
+lab-output/

@@ -81,7 +81,8 @@
 | W4_HARDEN_S2_4_DESIGN_BEFORE_IMPLEMENTATION_051 | Harden S2.4 design/canon before implementation | P0 | COMPLETED_THIS_COMMIT | DEC-W4-087; HUMAN_SELECTION=OPTION_B; S2_4_DESIGN_HARDENING_STATUS=PASS; accepted as design by DEC-W4-089; S2.4 unauthorized; no catalog; OPEN_DECISIONS=UNKNOWN; RM-W4-006. |
 | W4_ESTABLISH_CANONICAL_PRODUCT_ROADMAP_052 | Establish canonical Wings4 product roadmap | P0 | COMPLETED_THIS_COMMIT | DEC-W4-088; CANONICAL_ROADMAP_PATH=`PORTFOLIO.ROADMAP.md`; accepted by DEC-W4-089; RM-W4-007 HUMAN_ACCEPTED; S2.4 unauthorized; no catalog. |
 | W4_ACCEPT_ROADMAP_AND_HARDENED_S2_4_DESIGN_053 | Accept canonical roadmap and hardened S2.4 design | P0 | COMPLETED_PUSHED | DEC-W4-089; ROADMAP_HUMAN_ACCEPTANCE=ACCEPTED; commit `9fe857b622f7970bf6e9a1286628986ae723ec25`; S2.4 remains unauthorized; HUMAN/DOCUMENTATION.MAP.md inherited dirty and not staged. |
-| W4_IMPLEMENT_HUMAN_AI_WORKFLOW_FOUNDATION_054 | Implement project-local HUMAN-AI workflow foundation | P0 | COMPLETED_THIS_COMMIT | DEC-W4-090; RM-W4-013; foundation `PORTFOLIO.ARCHITECTURE/WINGS4.HUMAN_AI.WORKFLOW.FOUNDATION.md`; Coordinator is a responsibility; Q&A/prompt/loop/graph contracts; no Skills copy; no HUMAN/ mutation; S2.4 unauthorized. |
+| W4_IMPLEMENT_HUMAN_AI_WORKFLOW_FOUNDATION_054 | Implement project-local HUMAN-AI workflow foundation | P0 | COMPLETED_PUSHED | DEC-W4-090; RM-W4-013; foundation `PORTFOLIO.ARCHITECTURE/WINGS4.HUMAN_AI.WORKFLOW.FOUNDATION.md`; commit `2df515376b07cda4125a59b06ded49891af1c0a4`; Coordinator is a responsibility; no Skills copy; no HUMAN/ mutation; S2.4 unauthorized. |
+| W4_ADD_ISOLATED_LANGGRAPH_LAB_055 | Add isolated LangGraph learning laboratory | P0 | COMPLETED_THIS_COMMIT | DEC-W4-091; RM-W4-014; `EXPERIMENTS/LANGGRAPH_WINGS4_LAB/`; JS `@langchain/langgraph@1.4.12`; product adoption unauthorized; S2.4 unauthorized. |
 
 ## Ring0–Ring2 regression / eval inventory (compact)
 

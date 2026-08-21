@@ -25,6 +25,7 @@ Wings4.0 does not require every project to integrate. `UNRELATED` is a valid rel
 
 Canonical product roadmap: `PORTFOLIO.ROADMAP.md` (DEC-W4-088 established; DEC-W4-089 accepted).
 HUMAN-AI workflow foundation: `PORTFOLIO.ARCHITECTURE/WINGS4.HUMAN_AI.WORKFLOW.FOUNDATION.md` (DEC-W4-090). Coordinator is a responsibility, not a second persona.
+Isolated LangGraph lab: `EXPERIMENTS/LANGGRAPH_WINGS4_LAB/` (DEC-W4-091). Product adoption is not authorized.
 The "Current phase" heading below is historical handbook text. It is not the executive roadmap and must not be used as current product direction.
 
 ## Current phase

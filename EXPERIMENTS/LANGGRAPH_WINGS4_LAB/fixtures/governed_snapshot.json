@@ -1,0 +1,23 @@
+{
+  "snapshot_id": "FIXTURE_W4_LAB06_001",
+  "source": "lab_fixture_not_live_portfolio",
+  "S2_HUMAN_ACCEPTANCE": "ACCEPTED",
+  "S2_3_HUMAN_ACCEPTANCE": "ACCEPTED",
+  "S2_4_AUTHORIZED": "NO",
+  "S2_4_IMPLEMENTED": "NO",
+  "OPEN_DECISIONS": "UNKNOWN",
+  "OPERATIVE_OPEN_DECISION_CATALOG_CREATED": "NO",
+  "facts": [
+    "Bounded S2/S2.3 is accepted.",
+    "No operative OPEN_DECISION catalog exists in this fixture."
+  ],
+  "inferences": [
+    "OPEN_DECISIONS remains UNKNOWN because the catalog is absent, not because the portfolio is empty."
+  ],
+  "recommendations": [
+    "Keep S2.4 implementation unauthorized until a separate human decision."
+  ],
+  "unknowns": [
+    "Live child-repository state is not available to this fixture."
+  ]
+}

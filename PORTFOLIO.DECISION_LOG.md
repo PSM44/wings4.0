@@ -1726,3 +1726,35 @@ Decision:
 
 Foundation: `PORTFOLIO.ARCHITECTURE/WINGS4.HUMAN_AI.WORKFLOW.FOUNDATION.md`
 Roadmap: `PORTFOLIO.ROADMAP.md`
+
+## DEC-W4-091 — Isolated LangGraph learning laboratory
+
+Status: IMPLEMENTED_EXPERIMENTAL_LAB
+Date: 2026-08-21
+Scope: EXPERIMENTS/LANGGRAPH_WINGS4_LAB ONLY
+Authority: Pablo; authorization `20260821.120000_W4_EXECUTOR_DURABLE_ROADMAP_AI_WORKFLOW_FOUNDATION_AND_LANGGRAPH_LAB_001`
+DECISION_SUBJECT=ISOLATED_LANGGRAPH_LEARNING_LABORATORY
+LANGGRAPH_LANGUAGE=JavaScript
+LANGGRAPH_VERSION=1.4.12
+LANGGRAPH_PRODUCT_ADOPTION_AUTHORIZED=NO
+LANGGRAPH_PRODUCTION_INTEGRATION_IMPLEMENTED=NO
+S2_4_AUTHORIZED=NO
+S2_4_IMPLEMENTED=NO
+OPERATIVE_OPEN_DECISION_CATALOG_CREATED=NO
+OPEN_DECISIONS=UNKNOWN
+S3_AUTHORIZED=NO
+S4_AUTHORIZED=NO
+HUMAN_DIRECTORY_MUTATION_AUTHORIZED=NO
+ROADMAP_ITEM_ID=RM-W4-014
+SCORECARD_RECOMMENDATION=CONTINUE_EXPERIMENT
+
+Decision:
+
+- An isolated LangGraph learning and evaluation laboratory is authorized and implemented at `EXPERIMENTS/LANGGRAPH_WINGS4_LAB/`.
+- Language is JavaScript because the accepted Wings4 runtime is JavaScript. Dependencies are lab-local: `@langchain/langgraph@1.4.12`, `@langchain/core@1.2.9`, `zod@4.4.3`, retrieved 2026-08-21 from official npm/docs.
+- LangGraph product adoption is not authorized. Production integration is not implemented. Future adoption requires a separate human decision supported by `EXPERIMENTS/LANGGRAPH_WINGS4_LAB/WINGS4.LANGGRAPH.ADOPTION.SCORECARD.md`.
+- The laboratory must not replace, wrap, or become a dependency of the accepted S2/S2.3 runtime.
+- This decision does not authorize S2.4, catalog creation, S3, S4, or HUMAN/ edits.
+
+Lab: `EXPERIMENTS/LANGGRAPH_WINGS4_LAB/README.md`
+Scorecard: `EXPERIMENTS/LANGGRAPH_WINGS4_LAB/WINGS4.LANGGRAPH.ADOPTION.SCORECARD.md`

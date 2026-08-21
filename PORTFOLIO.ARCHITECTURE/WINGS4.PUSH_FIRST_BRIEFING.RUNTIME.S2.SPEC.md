@@ -400,3 +400,5 @@ When the governed `NEXT_PRODUCT_ACTION` is `HUMAN_REVIEW_HARDENED_S2_4_AND_CANON
 When the governed `NEXT_PRODUCT_ACTION` is `IMPLEMENT_AUTHORIZED_WORKFLOW_FOUNDATION`, the briefing must not treat that as S2.4 authorization. S2.4 remains a separate later human decision.
 
 When the governed `NEXT_PRODUCT_ACTION` is `IMPLEMENT_AUTHORIZED_LANGGRAPH_LAB`, the briefing must treat that as experimental non-production work. It must not imply LangGraph product adoption or S2.4 authorization.
+
+When the governed `NEXT_PRODUCT_ACTION` is `HUMAN_REVIEW_WORKFLOW_FOUNDATION_AND_LANGGRAPH_LAB`, options must distinguish lab/workflow acceptance from any later S2.4 decision. The briefing must not combine LangGraph adoption with S2.4 authorization.
