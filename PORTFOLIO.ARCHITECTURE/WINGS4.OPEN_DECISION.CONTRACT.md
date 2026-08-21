@@ -4,7 +4,8 @@ Status: APPROVED_DESIGN_CANONIZED
 Authority: Pablo; DEC-W4-083
 Authorization: `20260820.141500_W4_EXECUTOR_RECORD_OPEN_DECISION_CONTRACT_AND_CORRECT_S2_3_GAPS`
 Runtime consumption: NOT_IMPLEMENTED / NOT_AUTHORIZED_BY_THIS_CONTRACT
-Consumption design: `PORTFOLIO.ARCHITECTURE/WINGS4.OPEN_DECISION.RUNTIME.CONSUMPTION.DESIGN.md` (DEC-W4-085 planning; DEC-W4-086 DESIGN_STATUS=APPROVED D1–D5; S2.4 IMPLEMENTATION_AUTHORIZED=NO)
+Consumption design: `PORTFOLIO.ARCHITECTURE/WINGS4.OPEN_DECISION.RUNTIME.CONSUMPTION.DESIGN.md` (DEC-W4-085 planning; DEC-W4-086 DESIGN_STATUS=APPROVED D1–D5; DEC-W4-087 HARDENING_STATUS=PASS; DEC-W4-089 design accepted; S2.4 IMPLEMENTATION_AUTHORIZED=NO)
+Canonical product roadmap: `PORTFOLIO.ROADMAP.md` (DEC-W4-088; not decision authority)
 Approved catalog path: `00_STATE/WINGS4.OPEN_DECISION.CATALOG.md` (not created)
 S3: UNAUTHORIZED
 S4: UNAUTHORIZED
@@ -93,7 +94,7 @@ A validated empty set is allowed only when a valid applicable catalog exists, `C
 | `OPEN_DECISIONS` | When |
 |---|---|
 | `UNKNOWN` | No authoritative catalog exists; or the catalog cannot be read; or schema/lifecycle/authority validation fails; or required governed evidence is missing; or valid governed sources conflict; or applicability cannot be established. Do not describe this set as empty. |
-| `EMPTY` | A valid applicable catalog exists, `CATALOG_VALIDATION=PASS`, and zero records are `OPEN` or `BLOCKED`. |
+| `EMPTY` | A valid applicable catalog exists, `CATALOG_VALIDATION=PASS`, and zero records are `OPEN` or `BLOCKED`. This EMPTY describes the catalog snapshot only. It is not proof that the portfolio has no open human decisions outside the catalog. Catalog creation is a separate human decision. File creation alone is not authority. |
 | `POPULATED` | A valid applicable catalog exists, `CATALOG_VALIDATION=PASS`, and one or more records are `OPEN` or `BLOCKED`. |
 
 | `CATALOG_VALIDATION` | When |
@@ -117,19 +118,21 @@ When sources disagree, apply this order:
 
 1. Latest explicit human decision
 2. Valid decision-log record
-3. Valid `OPEN_DECISION_*` contract
+3. Valid operative OPEN_DECISION catalog instance data
 4. BATON/START_HERE derived state
 5. Narrative prose
 
-A conflict between valid governed records must fail closed as `UNKNOWN` and expose the conflicting identifiers. Do not silently choose a winner. Narrative prose never wins.
+This architecture contract defines validation rules. It is not an instance source and must never be treated as the catalog.
+
+A conflict between valid governed records must fail closed as `UNKNOWN` with `CATALOG_VALIDATION=FAIL` and expose the conflicting identifiers. Do not silently choose a winner. Narrative prose never wins.
 
 ## 8. S2 boundary
 
 S2 remains `ON_DEMAND_TEXT_ONLY / SESSION_OUTPUT_ONLY`. This contract does not authorize S2 to read this file as an instance catalog. Until a separately authorized consumption slice exists, S2 must fail closed to `OPEN_DECISIONS=UNKNOWN` when no valid instance catalog is available.
 
-DEC-W4-085 records the consumption design and planning packet. DEC-W4-086 approves D1–D5. Neither decision authorizes S2.4 implementation, creates an operative catalog, or changes accepted S2/S2.3 runtime behavior.
+DEC-W4-085 records the consumption design and planning packet. DEC-W4-086 approves D1–D5. DEC-W4-087 hardens the consumption design before implementation. None of those decisions authorizes S2.4 implementation, creates an operative catalog, or changes accepted S2/S2.3 runtime behavior.
 
-Approved future catalog path: `00_STATE/WINGS4.OPEN_DECISION.CATALOG.md`. The file does not exist and must not be treated as present.
+Approved future catalog path: `00_STATE/WINGS4.OPEN_DECISION.CATALOG.md`. The file does not exist and must not be treated as present. A valid empty catalog, if later separately authorized, still does not by itself prove the portfolio has no open decisions.
 
 Future slice identifier: `S2.4`. S2.4 is not S3 or S4.
 

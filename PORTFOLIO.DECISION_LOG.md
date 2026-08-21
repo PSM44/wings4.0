@@ -1577,3 +1577,122 @@ Contract: `PORTFOLIO.ARCHITECTURE/WINGS4.OPEN_DECISION.CONTRACT.md`
 Spec: `PORTFOLIO.ARCHITECTURE/WINGS4.PUSH_FIRST_BRIEFING.RUNTIME.S2.SPEC.md`
 Implementation: `PRODUCT/PUSH_FIRST_BRIEFING_RUNTIME/briefing.runtime.js`
 Tests: `PRODUCT/PUSH_FIRST_BRIEFING_RUNTIME/briefing.runtime.logical.test.js`
+
+HISTORICAL_NON_OPERATIVE_NOTE: The statements `NO_COMMIT_AUTHORIZED=YES` and next action `HUMAN_DECIDE_WHETHER_TO_AUTHORIZE_S2_4_IMPLEMENTATION` were true at DEC-W4-086 recording. Later exact-staging commit and push of the eight-file design set are `05791742f5e0bbf5da986634d9c9d48a3441dcc8`. Pablo later selected Option B to harden S2.4 design before implementation (DEC-W4-087) and required a canonical product roadmap (DEC-W4-088). This decision itself remains the D1–D5 design-approval record. S2.4 implementation remains unauthorized. No operative catalog was created.
+
+## DEC-W4-087 — S2.4 design hardening approved before implementation
+
+Status: APPROVED_DESIGN_HARDENED_NOT_IMPLEMENTED
+Date: 2026-08-21
+Scope: S2_4 DESIGN HARDENING ONLY
+Authority: Pablo; HUMAN_SELECTION=OPTION_B_HARDEN_S2_4_DESIGN_AND_CANON_BEFORE_IMPLEMENTATION; authorization `20260821.101500_W4_EXECUTOR_HARDEN_S2_4_AND_ESTABLISH_CANONICAL_PRODUCT_ROADMAP`
+DECISION_SUBJECT=S2_4_DESIGN_HARDENING_APPROVED_BEFORE_IMPLEMENTATION
+HUMAN_SELECTION=OPTION_B
+S2_4_DESIGN_HARDENING_STATUS=PASS
+MATERIAL_UNRESOLVED_DESIGN_GAPS=0
+IMPLEMENTATION_AUTHORIZED=NO
+S2_4_AUTHORIZED=NO
+S2_4_IMPLEMENTED=NO
+OPERATIVE_OPEN_DECISION_CATALOG_CREATED=NO
+OPEN_DECISIONS=UNKNOWN
+S2_HUMAN_ACCEPTANCE=ACCEPTED
+S2_3_HUMAN_ACCEPTANCE=ACCEPTED
+S3_AUTHORIZED=NO
+S3_IMPLEMENTED=NO
+S4_AUTHORIZED=NO
+S4_IMPLEMENTED=NO
+WINGS4_COMPLETE=NO
+PRODUCTION_COMPLETE=NO
+NO_COMMIT_AUTHORIZED=YES
+ROADMAP_ITEM_ID=RM-W4-006
+
+Decision:
+
+- Pablo selected Option B: harden the S2.4 design and canon before implementation.
+- Hardening rules are recorded in `PORTFOLIO.ARCHITECTURE/WINGS4.OPEN_DECISION.RUNTIME.CONSUMPTION.DESIGN.md` section 22 and in the OPEN_DECISION contract precedence correction.
+- F-001: S2.4 must not create the catalog. A valid empty catalog does not prove the portfolio has no open decisions. Catalog creation is a separate human decision. Absence remains UNKNOWN / NOT_AVAILABLE.
+- F-003: UTF-8 with optional stripped BOM; CRLF/LF; first-`=` KEY=VALUE; no invented escapes; no multiline values; OPTIONS indexed keys only; ISO-8601 with Z or numeric offset; size caps MAX_CATALOG_BYTES=1048576, MAX_RECORD_COUNT=1000, MAX_LINE_BYTES=16384, MAX_FIELD_VALUE_BYTES=8192, MAX_OPTIONS_PER_RECORD=20.
+- F-006: precedence item 3 is valid operative catalog instance data, not the architecture contract file. Conflicts fail closed to UNKNOWN + FAIL.
+- F-009: extend the S2.3 meta-key denylist before singular OPEN_DECISION_* flags; keep plural OPEN_DECISIONS_* until then; catalog path must not emit VALIDATED_EMPTY as an OPEN_DECISIONS state.
+- F-010: exact path only; header cannot relocate; reject NUL/ESC; neutralize Markdown in rendered fields; no glob, network, child read, persistence, or mutation.
+- Full-line `#` comments are allowed only outside record field values. Inline comments are prohibited.
+- Sequence gaps fail unless the missing ID is documented reserved or retired. Supersession cycles fail closed. Append-only: no deletion of historical governed records.
+- S2.4 implementation remains unauthorized. No operative catalog was created. OPEN_DECISIONS remains UNKNOWN.
+- Continuity next product action after DEC-W4-088 is `HUMAN_REVIEW_HARDENED_S2_4_AND_CANONICAL_ROADMAP`. This decision does not select a next-session option and does not authorize commit or push.
+
+Design: `PORTFOLIO.ARCHITECTURE/WINGS4.OPEN_DECISION.RUNTIME.CONSUMPTION.DESIGN.md`
+Contract: `PORTFOLIO.ARCHITECTURE/WINGS4.OPEN_DECISION.CONTRACT.md`
+Spec: `PORTFOLIO.ARCHITECTURE/WINGS4.PUSH_FIRST_BRIEFING.RUNTIME.S2.SPEC.md`
+Roadmap: `PORTFOLIO.ROADMAP.md`
+
+## DEC-W4-088 — Canonical Wings4 product roadmap established
+
+Status: APPROVED_ROADMAP_CANON_RECORDED
+Date: 2026-08-21
+Scope: CANONICAL PRODUCT ROADMAP ESTABLISHMENT ONLY
+Authority: Pablo; HUMAN_AUTHORITY=Pablo; authorization `20260821.101500_W4_EXECUTOR_HARDEN_S2_4_AND_ESTABLISH_CANONICAL_PRODUCT_ROADMAP`
+DECISION_SUBJECT=CANONICAL_WINGS4_PRODUCT_ROADMAP_ESTABLISHED
+CANONICAL_ROADMAP_PATH=PORTFOLIO.ROADMAP.md
+CANONICAL_ROADMAP_ESTABLISHED=YES
+ROADMAP_ID=W4_PRODUCT_ROADMAP
+ROADMAP_CURRENT_ITEM_ID=RM-W4-007
+ROADMAP_NEXT_GATE=HUMAN_REVIEW_HARDENED_S2_4_AND_CANONICAL_ROADMAP
+S2_4_AUTHORIZED=NO
+S2_4_IMPLEMENTED=NO
+OPERATIVE_OPEN_DECISION_CATALOG_CREATED=NO
+OPEN_DECISIONS=UNKNOWN
+S2_HUMAN_ACCEPTANCE=ACCEPTED
+S2_3_HUMAN_ACCEPTANCE=ACCEPTED
+S3_AUTHORIZED=NO
+S3_IMPLEMENTED=NO
+S4_AUTHORIZED=NO
+S4_IMPLEMENTED=NO
+WINGS4_COMPLETE=NO
+PRODUCTION_COMPLETE=NO
+NO_COMMIT_AUTHORIZED=YES
+ROADMAP_ITEM_ID=RM-W4-007
+
+Decision:
+
+- Pablo required one visible, current, governed, human-readable product roadmap from global strategy to implementation detail, without creating a duplicate decision authority.
+- Repository inspection found no `*ROADMAP*` file. `HUMAN/DOCUMENTATION.MAP.md` previously assigned the Roadmap role to `MIGRATION.BACKLOG.md`, which is a work register, not an executive product roadmap. BATON, START_HERE, architecture plans, Q&A, prompts, loops, and graphs are not roadmap canon.
+- Portfolio-wide principles and decision authority already live at repository root. Therefore the canonical path is `PORTFOLIO.ROADMAP.md`.
+- The roadmap is canonical for sequencing, status view, dependencies, and pointers. Decision authority remains `PORTFOLIO.DECISION_LOG.md`. Detailed work remains `MIGRATION.BACKLOG.md`. BATON and START_HERE remain derived.
+- Roadmap item convention is `RM-W4-NNN`, independent from `DEC-W4-*` and `OD-W4-*`.
+- Current next product action is `HUMAN_REVIEW_HARDENED_S2_4_AND_CANONICAL_ROADMAP`. No next-session option is selected.
+- This decision does not authorize S2.4 implementation, catalog creation, S3, S4, commit, or push.
+
+Roadmap: `PORTFOLIO.ROADMAP.md`
+Documentation map: `HUMAN/DOCUMENTATION.MAP.md`
+Backlog: `MIGRATION.BACKLOG.md`
+
+## DEC-W4-089 — Canonical roadmap and hardened S2.4 design accepted
+
+Status: ACCEPTED_ROADMAP_AND_HARDENED_DESIGN
+Date: 2026-08-21
+Scope: ACCEPT DEC-W4-087 DESIGN HARDENING AND DEC-W4-088 CANONICAL ROADMAP; MAKE DURABLE
+Authority: Pablo; authorization `20260821.120000_W4_EXECUTOR_DURABLE_ROADMAP_AI_WORKFLOW_FOUNDATION_AND_LANGGRAPH_LAB_001`
+DECISION_SUBJECT=ACCEPT_CANONICAL_ROADMAP_AND_HARDENED_S2_4_DESIGN
+S2_4_DESIGN_HARDENING_STATUS=PASS
+S2_4_AUTHORIZED=NO
+S2_4_IMPLEMENTED=NO
+OPERATIVE_OPEN_DECISION_CATALOG_CREATED=NO
+OPEN_DECISIONS=UNKNOWN
+S2_HUMAN_ACCEPTANCE=ACCEPTED
+S2_3_HUMAN_ACCEPTANCE=ACCEPTED
+ROADMAP_HUMAN_ACCEPTANCE=ACCEPTED
+CANONICAL_ROADMAP_PATH=PORTFOLIO.ROADMAP.md
+HUMAN_DIRECTORY_MUTATION_AUTHORIZED=NO
+HUMAN_EDIT_BLOCKED_PENDING_DEDICATED_TEXTUAL_AUTHORIZATION=YES
+ROADMAP_ITEM_ID=RM-W4-007
+
+Decision:
+
+- Pablo accepts the canonical product roadmap at `PORTFOLIO.ROADMAP.md` (DEC-W4-088), including GRAPH_R0, subject to verified minimal consistency corrections in this recording.
+- Pablo accepts the hardened S2.4 design (DEC-W4-087) as design. S2.4 implementation remains unauthorized. No operative catalog is created. OPEN_DECISIONS remains UNKNOWN.
+- S2/S2.3 human acceptance remains ACCEPTED.
+- `HUMAN/DOCUMENTATION.MAP.md` contains inherited DEC-W4-088 pointer work. This decision does not authorize staging or mutating any HUMAN/ path. That file remains unstaged pending dedicated HUMAN/ textual authorization.
+- This decision authorizes exact-staging commit and push of the non-HUMAN Phase 1 allowlist only. It does not authorize S3, S4, LangGraph product adoption, or HUMAN/ edits.
+
+Roadmap: `PORTFOLIO.ROADMAP.md`
+Design: `PORTFOLIO.ARCHITECTURE/WINGS4.OPEN_DECISION.RUNTIME.CONSUMPTION.DESIGN.md`

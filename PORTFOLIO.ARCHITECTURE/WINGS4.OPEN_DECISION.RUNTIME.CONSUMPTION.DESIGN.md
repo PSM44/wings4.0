@@ -1,9 +1,14 @@
 # Wings4 OPEN_DECISION_* Runtime Consumption — Design and Planning
 
 DESIGN_STATUS=APPROVED
+DESIGN_HARDENING_STATUS=PASS
+DESIGN_HARDENING_DECISION_ID=DEC-W4-087
+DESIGN_HARDENING_ACCEPTANCE_DECISION_ID=DEC-W4-089
 DESIGN_APPROVAL=HUMAN_APPROVED_D1_TO_D5
 DESIGN_APPROVAL_DECISION_ID=DEC-W4-086
+CANONICAL_ROADMAP=PORTFOLIO.ROADMAP.md
 HUMAN_SELECTION=OPTION_A_APPROVE_D1_TO_D5
+HARDENING_HUMAN_SELECTION=OPTION_B_HARDEN_S2_4_DESIGN_AND_CANON_BEFORE_IMPLEMENTATION
 D1_CATALOG_LOCATION=00_STATE/WINGS4.OPEN_DECISION.CATALOG.md
 D2_SLICE_IDENTIFIER=S2.4
 D3_ABSENT_CATALOG_RESULT=OPEN_DECISIONS_UNKNOWN
@@ -17,14 +22,15 @@ S2_4_AUTHORIZED=NO
 S2_4_IMPLEMENTED=NO
 S3_AUTHORIZED=NO
 S4_AUTHORIZED=NO
-Authority: Pablo; Post-S2 Option A (DEC-W4-085); Option A approve D1–D5 (DEC-W4-086)
-Authorization: `20260820.164500_W4_EXECUTOR_FINALIZE_OPEN_DECISION_CONSUMPTION_DESIGN`
+Authority: Pablo; Post-S2 Option A (DEC-W4-085); Option A approve D1–D5 (DEC-W4-086); Option B harden before implementation (DEC-W4-087)
+Authorization: `20260821.101500_W4_EXECUTOR_HARDEN_S2_4_AND_ESTABLISH_CANONICAL_PRODUCT_ROADMAP`
+Prior D1–D5 approval: DEC-W4-086 / `20260820.164500_W4_EXECUTOR_FINALIZE_OPEN_DECISION_CONSUMPTION_DESIGN`
 Prior design/planning record: DEC-W4-085
 Contract: `PORTFOLIO.ARCHITECTURE/WINGS4.OPEN_DECISION.CONTRACT.md`
 S2 spec: `PORTFOLIO.ARCHITECTURE/WINGS4.PUSH_FIRST_BRIEFING.RUNTIME.S2.SPEC.md`
 S2 runtime: `PRODUCT/PUSH_FIRST_BRIEFING_RUNTIME/briefing.runtime.js`
 
-This file is the bounded non-operative design and implementation-planning packet for future S2.4 consumption of a governed `OPEN_DECISION_*` instance catalog. It is implementation-ready and not product functionality. It does not implement runtime. It does not create an operative catalog. It does not select a human option. It does not authorize S2.4, S3, or S4.
+This file is the bounded non-operative design and implementation-planning packet for future S2.4 consumption of a governed `OPEN_DECISION_*` instance catalog. DEC-W4-087 hardens the parse, EMPTY, authority, and security rules. It is not product functionality. It does not implement runtime. It does not create an operative catalog. It does not select a human option. It does not authorize S2.4, S3, or S4.
 
 ---
 
@@ -33,6 +39,8 @@ This file is the bounded non-operative design and implementation-planning packet
 | Label | Value |
 |---|---|
 | DESIGN_STATUS | APPROVED |
+| DESIGN_HARDENING_STATUS | PASS |
+| DESIGN_HARDENING_DECISION_ID | DEC-W4-087 |
 | DESIGN_APPROVAL | HUMAN_APPROVED_D1_TO_D5 |
 | DESIGN_APPROVAL_DECISION_ID | DEC-W4-086 |
 | IMPLEMENTATION_AUTHORIZED | NO |
@@ -43,6 +51,7 @@ This file is the bounded non-operative design and implementation-planning packet
 | S2_HUMAN_ACCEPTANCE | ACCEPTED |
 | S2_3_HUMAN_ACCEPTANCE | ACCEPTED |
 | OPEN_DECISIONS | UNKNOWN |
+| CANONICAL_ROADMAP | PORTFOLIO.ROADMAP.md |
 | S3_AUTHORIZED | NO |
 | S4_AUTHORIZED | NO |
 | WINGS4_COMPLETE | NO |
@@ -334,13 +343,15 @@ If the cited human decision is missing, duplicated, historical/non-operative, or
 
 ## 8. Conflict detection and precedence
 
-Contract precedence:
+Contract precedence (DEC-W4-087 correction of F-006):
 
 1. Latest explicit human decision
 2. Valid decision-log record
-3. Valid `OPEN_DECISION_*` contract/catalog
+3. Valid operative OPEN_DECISION catalog instance data
 4. BATON/START_HERE derived state
 5. Narrative prose
+
+The architecture contract defines validation rules. It is not an instance source and must never be treated as the catalog.
 
 Runtime application without turning narrative into catalog data:
 
@@ -423,6 +434,8 @@ CATALOG_VALIDATION=PASS
 ```
 
 EMPTY is a known validated result. It must not be represented as UNKNOWN.
+
+EMPTY is still not proof that the portfolio has no open human decisions outside the catalog. S2.4 must not create the catalog. See section 22.1.
 
 Historical mapping: DEC-W4-083 used condition name `VALIDATED_EMPTY`. DEC-W4-086 approves `EMPTY` as the public `OPEN_DECISIONS` token. `VALIDATED_EMPTY` is not a fourth `OPEN_DECISIONS` state. Current accepted S2.3 runtime may still emit `VALIDATED_EMPTY` until S2.4 is separately authorized.
 
@@ -839,3 +852,160 @@ This design/planning recording also does not authorize commit or push.
 - Do not claim `OPEN_DECISIONS` is empty or known
 - Do not close the ORCHESTRATOR session
 - Do not create a new continuation package
+
+---
+
+## 22. S2.4 design hardening (DEC-W4-087)
+
+S2_4_DESIGN_HARDENING_STATUS=PASS
+S2_4_AUTHORIZED=NO
+S2_4_IMPLEMENTED=NO
+MATERIAL_UNRESOLVED_DESIGN_GAPS=0
+HARDENING_RESOLVES=F-001;F-003;F-006;F-009;F-010
+CANONICAL_ROADMAP=PORTFOLIO.ROADMAP.md
+
+This section is operative design canon for a later S2.4 implementation. It does not authorize implementation, catalog creation, tests mutation, or commit.
+
+### 22.1 False EMPTY protection (F-001)
+
+- S2.4 implementation must not create `00_STATE/WINGS4.OPEN_DECISION.CATALOG.md`.
+- A technically valid empty catalog does not by itself prove that the portfolio has no open decisions.
+- Catalog creation requires a separate explicit human decision (roadmap RM-W4-009).
+- Before `OPEN_DECISIONS=EMPTY` can be trusted, either relevant active/deferred governed subjects are migrated into catalog scope, or a human decision explicitly defines them as outside catalog scope.
+- File creation alone is not authority.
+- Catalog absence remains `OPEN_DECISIONS=UNKNOWN` and `CATALOG_VALIDATION=NOT_AVAILABLE`.
+
+### 22.2 Encoding (F-003)
+
+- Encoding must be UTF-8.
+- UTF-8 BOM may be accepted only if stripped deterministically before parsing.
+- Invalid UTF-8 fails closed.
+- Binary or NUL content fails closed.
+- Parser errors must not echo raw sensitive content.
+
+### 22.3 Line endings and whitespace
+
+- Accept CRLF and LF.
+- Normalize internally to LF before parsing.
+- Ignore fully blank lines outside records.
+- Trailing spaces may be trimmed from keys and structural tokens only.
+- Material field values must not be silently semantically trimmed beyond that normalization.
+
+### 22.4 Comments
+
+Approved rule (ambiguity closed; comments were previously unspecified):
+
+- Full-line comments beginning with `#` are allowed only outside record field values (header narrative and between records).
+- Inline comments are prohibited.
+- `#` inside a field value is literal text.
+- Unknown or ambiguous comment placement fails closed.
+
+### 22.5 KEY=VALUE grammar
+
+- Split at the first ASCII `=`.
+- Key must match the closed permitted-key set.
+- Empty key is invalid.
+- Unknown key fails validation.
+- Duplicate key within one record fails validation.
+- Unescaped physical newlines inside a value are prohibited.
+- Backslash escape sequences must not be invented.
+- Multiline values are prohibited.
+- `=` after the first delimiter is part of the value for permitted fields.
+- OPTIONS uses indexed keys only (`OPTIONS_COUNT` plus `OPTION_<i>_*`).
+- A single `OPTIONS=` field is invalid.
+
+### 22.6 Record boundaries
+
+- `RECORD_SEPARATOR` token `---` remains the only record delimiter.
+- Separator must occupy the complete normalized line.
+- Empty or partial records fail validation.
+- Header metadata must not be parsed as an instance.
+- Contract and design files must never be parsed as catalog instances.
+
+### 22.7 Timestamps
+
+- ISO-8601 only.
+- Must include `Z` or an explicit numeric UTC offset.
+- Local time without offset is invalid.
+- `CREATED_AT` must be present where required.
+- `RESOLVED_AT` must be present for `RESOLVED`.
+- Temporal ordering contradictions fail closed to UNKNOWN/FAIL.
+
+### 22.8 Size and performance limits
+
+Selected for current Wings4 scale:
+
+MAX_CATALOG_BYTES=1048576
+MAX_RECORD_COUNT=1000
+MAX_LINE_BYTES=16384
+MAX_FIELD_VALUE_BYTES=8192
+MAX_OPTIONS_PER_RECORD=20
+
+Exceeding any maximum fails closed. No partial acceptance. No truncation that could alter decision meaning. Deterministic validation errors. No unbounded recursion.
+
+### 22.9 ID sequencing and append-only history
+
+- Pattern `OD-W4-NNNN`. Unique. Immutable. Never reused.
+- Retired IDs remain reserved.
+- Duplicate IDs fail closed.
+- Deletion of a historical governed record is prohibited unless a separately governed archival mechanism exists.
+- Status transition, supersession, or cancellation replaces deletion.
+- Sequence gaps are allowed only if the missing ID is documented as reserved or retired; otherwise validation returns FAIL and OPEN_DECISIONS=UNKNOWN.
+- The parser must not infer missing records.
+
+### 22.10 Lifecycle and graph integrity
+
+- Only OPEN and BLOCKED are active.
+- PROPOSED, RESOLVED, SUPERSEDED, and CANCELLED are inactive.
+- RESOLVED requires RESOLUTION_DECISION_ID and RESOLVED_AT.
+- SUPERSEDED requires SUPERSEDED_BY pointing to an existing valid record.
+- Self-supersession is invalid.
+- Circular supersession is invalid.
+- Supersession chains must terminate.
+- A record cannot be both RESOLVED and SUPERSEDED.
+- Invalid lifecycle graphs fail closed.
+
+### 22.11 Security and rendering (F-010)
+
+- Exact catalog path only.
+- Catalog header cannot relocate the path.
+- No globs or recursive discovery.
+- Preserve realpath containment.
+- Reject NUL and terminal ESC/control characters except permitted CR/LF/TAB normalization.
+- Escape or neutralize Markdown structural characters in rendered user-controlled fields.
+- Never emit raw invalid records in errors.
+- Never execute field values.
+- No shell interpolation, network, child-repository reads, persistence, or repository mutation.
+- Deterministic output ordering.
+
+### 22.12 Authority precedence (F-006)
+
+See section 8 as corrected. Conflict between governed sources fails closed to OPEN_DECISIONS=UNKNOWN and CATALOG_VALIDATION=FAIL.
+
+### 22.13 S2.3 meta-key hazard (F-009)
+
+Before adding any new singular `OPEN_DECISION_*` continuity keys:
+
+- Extend `OPEN_DECISION_META_KEYS` exactly.
+- Test that metadata cannot be misclassified as an instance.
+- Preserve current plural `OPEN_DECISIONS_*` keys until the denylist is deployed.
+- On the catalog path, do not emit `VALIDATED_EMPTY` as an OPEN_DECISIONS state.
+- Preserve exactly UNKNOWN | EMPTY | POPULATED.
+
+Accepted S2.3 may still emit VALIDATED_EMPTY on the START_HERE/BATON instance-key path until S2.4 is separately authorized.
+
+### 22.14 Future human-option wording
+
+When NEXT_PRODUCT_ACTION is `HUMAN_DECIDE_WHETHER_TO_AUTHORIZE_S2_4_IMPLEMENTATION`, generated options must distinguish:
+
+- Authorize bounded S2.4 implementation.
+- Keep S2.4 unauthorized.
+- Request additional design correction.
+- Select another governed priority.
+
+The briefing recommends and must not select. This is a future implementation requirement, not authorization in DEC-W4-087.
+
+### 22.15 Negative-case matrix (required during later implementation)
+
+Absent catalog; empty file; whitespace-only; malformed KEY=VALUE; duplicate key; unknown key; missing required key; duplicate ID; invalid ID; reused retired ID; invalid lifecycle; PROPOSED/RESOLVED/SUPERSEDED/CANCELLED not active; OPEN/BLOCKED active; RESOLVED missing evidence; SUPERSEDED missing or circular SUPERSEDED_BY; OPTIONS= field; comment misuse; BOM; CRLF; oversize; path relocation header; contract-as-catalog; narrative-as-catalog; BATON conflict; missing citation; no write; no network; no child read.
+

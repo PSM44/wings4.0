@@ -21,6 +21,11 @@ Project HUMAN
 
 Wings4.0 does not require every project to integrate. `UNRELATED` is a valid relationship.
 
+## Current product roadmap
+
+Canonical product roadmap: `PORTFOLIO.ROADMAP.md` (DEC-W4-088 established; DEC-W4-089 accepted).
+The "Current phase" heading below is historical handbook text. It is not the executive roadmap and must not be used as current product direction.
+
 ## Current phase
 
 `WINGS4_GOV_002_FIRST_PROJECT_ASSIMILATION`
@@ -34,6 +39,7 @@ Portfolio diagrams and dashboards remain planned, but they follow validated gove
 1. `HUMAN\HUMAN.WINGS4.md`
 2. `PORTFOLIO.PRINCIPLES.md`
 3. `PORTFOLIO.DECISION_LOG.md`
-4. `HUMAN\Q_AND_A.md`
-5. `ASSIMILATION.RUNBOOK.md`
-6. `00_STATE\BATON.WINGS4.ACTIVE.md`
+4. `PORTFOLIO.ROADMAP.md`
+5. `HUMAN\Q_AND_A.md`
+6. `ASSIMILATION.RUNBOOK.md`
+7. `00_STATE\BATON.WINGS4.ACTIVE.md`

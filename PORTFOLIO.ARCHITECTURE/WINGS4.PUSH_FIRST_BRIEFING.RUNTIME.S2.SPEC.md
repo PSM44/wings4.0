@@ -7,7 +7,8 @@ Planning record: `PORTFOLIO.ARCHITECTURE/WINGS4.P4.PUSH_FIRST_BRIEFING.RUNTIME.P
 Implementation: `PRODUCT/PUSH_FIRST_BRIEFING_RUNTIME/briefing.runtime.js`
 Tests: `PRODUCT/PUSH_FIRST_BRIEFING_RUNTIME/briefing.runtime.logical.test.js`
 Open-decision contract: `PORTFOLIO.ARCHITECTURE/WINGS4.OPEN_DECISION.CONTRACT.md` (DEC-W4-083; design canonized; runtime catalog consumption not implemented)
-Open-decision consumption design: `PORTFOLIO.ARCHITECTURE/WINGS4.OPEN_DECISION.RUNTIME.CONSUMPTION.DESIGN.md` (DEC-W4-085 planning; DEC-W4-086 DESIGN_STATUS=APPROVED D1–D5; S2.4 not authorized; runtime catalog consumption not implemented)
+Open-decision consumption design: `PORTFOLIO.ARCHITECTURE/WINGS4.OPEN_DECISION.RUNTIME.CONSUMPTION.DESIGN.md` (DEC-W4-085 planning; DEC-W4-086 DESIGN_STATUS=APPROVED D1–D5; DEC-W4-087 HARDENING_STATUS=PASS; S2.4 not authorized; runtime catalog consumption not implemented)
+Canonical product roadmap: `PORTFOLIO.ROADMAP.md` (DEC-W4-088; sequencing/status only)
 Approved future catalog path: `00_STATE/WINGS4.OPEN_DECISION.CATALOG.md` (not created; absence remains UNKNOWN)
 
 This file records the implemented S2 contract only. It does not rewrite or supersede the design or planning packet.
@@ -352,7 +353,15 @@ Distinguish set states:
 - `VALIDATED_EMPTY` only when a valid instance KEY=VALUE catalog exists and contains zero currently active items.
 - `POPULATED` when a valid instance catalog exists and contains one or more currently active items.
 
-Do not infer a catalog from narrative prose. Aligning runtime classification to the DEC-W4-083 lifecycle (`PROPOSED`/`OPEN`/`BLOCKED`/`RESOLVED`/`SUPERSEDED`/`CANCELLED`) requires a later authorized S2.4 consumption slice (DEC-W4-086 design approved; implementation unauthorized). Future S2.4 `OPEN_DECISIONS` values are exactly `UNKNOWN|EMPTY|POPULATED` with separate `CATALOG_VALIDATION`. Current accepted S2.3 may still emit `VALIDATED_EMPTY` on the START_HERE/BATON instance-key path; that is not a fourth future `OPEN_DECISIONS` state and is not catalog consumption.
+Do not infer a catalog from narrative prose. Aligning runtime classification to the DEC-W4-083 lifecycle (`PROPOSED`/`OPEN`/`BLOCKED`/`RESOLVED`/`SUPERSEDED`/`CANCELLED`) requires a later authorized S2.4 consumption slice (DEC-W4-086 design approved; DEC-W4-087 hardening recorded; implementation unauthorized). Future S2.4 `OPEN_DECISIONS` values are exactly `UNKNOWN|EMPTY|POPULATED` with separate `CATALOG_VALIDATION`. Current accepted S2.3 may still emit `VALIDATED_EMPTY` on the START_HERE/BATON instance-key path; that is not a fourth future `OPEN_DECISIONS` state and is not catalog consumption.
+
+Future S2.4 implementation requirements (not authorized by this spec change):
+
+- Extend `OPEN_DECISION_META_KEYS` before adding any new singular `OPEN_DECISION_*` continuity flags. Preserve plural `OPEN_DECISIONS_*` flags until that denylist is deployed.
+- On the catalog path, do not emit `VALIDATED_EMPTY` as an `OPEN_DECISIONS` state.
+- Do not create the operative catalog. Catalog absence remains UNKNOWN / NOT_AVAILABLE.
+- Exact catalog path only. The architecture contract is never an instance catalog.
+- Parser grammar, size caps, lifecycle graph, and security rules are in `WINGS4.OPEN_DECISION.RUNTIME.CONSUMPTION.DESIGN.md` section 22.
 
 ### 11.7 Next-action conflict handling
 
@@ -379,4 +388,13 @@ When `OPEN_DECISIONS` is `UNKNOWN` or the governed `NEXT_PRODUCT_ACTION` is `HUM
 2. Authorize bounded `OPEN_DECISION_*` governance work without authorizing S3/S4.
 3. Keep `UNKNOWN` and defer governance/runtime changes.
 
-The briefing may recommend the governed next action. It must not select a human option.
+When the governed `NEXT_PRODUCT_ACTION` is `HUMAN_DECIDE_WHETHER_TO_AUTHORIZE_S2_4_IMPLEMENTATION`, future S2.4 implementation (not this recording) must distinguish at least:
+
+1. Authorize bounded S2.4 implementation.
+2. Keep S2.4 unauthorized.
+3. Request additional design correction.
+4. Select another governed priority.
+
+When the governed `NEXT_PRODUCT_ACTION` is `HUMAN_REVIEW_HARDENED_S2_4_AND_CANONICAL_ROADMAP`, options must distinguish accepting, correcting, or rejecting the hardened design and canonical roadmap. The briefing may recommend. It must not select a human option.
+
+When the governed `NEXT_PRODUCT_ACTION` is `IMPLEMENT_AUTHORIZED_WORKFLOW_FOUNDATION`, the briefing must not treat that as S2.4 authorization. S2.4 remains a separate later human decision.
