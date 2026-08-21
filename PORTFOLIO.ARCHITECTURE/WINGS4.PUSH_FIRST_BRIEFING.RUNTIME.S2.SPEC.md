@@ -398,3 +398,5 @@ When the governed `NEXT_PRODUCT_ACTION` is `HUMAN_DECIDE_WHETHER_TO_AUTHORIZE_S2
 When the governed `NEXT_PRODUCT_ACTION` is `HUMAN_REVIEW_HARDENED_S2_4_AND_CANONICAL_ROADMAP`, options must distinguish accepting, correcting, or rejecting the hardened design and canonical roadmap. The briefing may recommend. It must not select a human option.
 
 When the governed `NEXT_PRODUCT_ACTION` is `IMPLEMENT_AUTHORIZED_WORKFLOW_FOUNDATION`, the briefing must not treat that as S2.4 authorization. S2.4 remains a separate later human decision.
+
+When the governed `NEXT_PRODUCT_ACTION` is `IMPLEMENT_AUTHORIZED_LANGGRAPH_LAB`, the briefing must treat that as experimental non-production work. It must not imply LangGraph product adoption or S2.4 authorization.

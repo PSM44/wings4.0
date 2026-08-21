@@ -1696,3 +1696,33 @@ Decision:
 
 Roadmap: `PORTFOLIO.ROADMAP.md`
 Design: `PORTFOLIO.ARCHITECTURE/WINGS4.OPEN_DECISION.RUNTIME.CONSUMPTION.DESIGN.md`
+
+## DEC-W4-090 — Project-local HUMAN-AI workflow foundation
+
+Status: IMPLEMENTED_GOVERNANCE
+Date: 2026-08-21
+Scope: WORKFLOW FOUNDATION ONLY; NOT PRODUCT RUNTIME
+Authority: Pablo; authorization `20260821.120000_W4_EXECUTOR_DURABLE_ROADMAP_AI_WORKFLOW_FOUNDATION_AND_LANGGRAPH_LAB_001`
+DECISION_SUBJECT=WINGS4_HUMAN_AI_WORKFLOW_FOUNDATION
+COORDINATOR_IS_RESPONSIBILITY=YES
+QA_IS_NOT_DECISION_LOG=YES
+GRAPH_IS_NOT_AUTHORITY=YES
+S2_4_AUTHORIZED=NO
+S2_4_IMPLEMENTED=NO
+OPERATIVE_OPEN_DECISION_CATALOG_CREATED=NO
+OPEN_DECISIONS=UNKNOWN
+LANGGRAPH_PRODUCT_ADOPTION_AUTHORIZED=NO
+HUMAN_DIRECTORY_MUTATION_AUTHORIZED=NO
+ROADMAP_ITEM_ID=RM-W4-013
+
+Decision:
+
+- Wings4 now has a project-local HUMAN → ORCHESTRATOR → COORDINATOR responsibility → EXECUTOR workflow contract.
+- Coordinator is a responsibility, not a second visible persona or a new authority layer.
+- Identity/repository gates, unknown-worktree preservation, Q&A lifecycle, prompt readiness, loop contract, graph contract, and TEMP taxonomy are recorded in `PORTFOLIO.ARCHITECTURE/WINGS4.HUMAN_AI.WORKFLOW.FOUNDATION.md`.
+- Q&A compiled current view is `00_STATE/WINGS4.QA.COMPILED.CURRENT.md`. Raw append-only evidence is `00_STATE/WINGS4.QA.RAW.EVIDENCE.md`. These files are not a second decision log. HUMAN/ is not mutated.
+- C1 remains a Pablo-requested optional collaboration preference, not a product gap and not product doctrine.
+- This decision does not copy SkillsLake, GRCLake, or Skills HUMAN. It does not authorize S2.4, catalog creation, S3, S4, LangGraph product adoption, or HUMAN/ edits.
+
+Foundation: `PORTFOLIO.ARCHITECTURE/WINGS4.HUMAN_AI.WORKFLOW.FOUNDATION.md`
+Roadmap: `PORTFOLIO.ROADMAP.md`

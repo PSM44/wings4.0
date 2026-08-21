@@ -24,6 +24,7 @@ Wings4.0 does not require every project to integrate. `UNRELATED` is a valid rel
 ## Current product roadmap
 
 Canonical product roadmap: `PORTFOLIO.ROADMAP.md` (DEC-W4-088 established; DEC-W4-089 accepted).
+HUMAN-AI workflow foundation: `PORTFOLIO.ARCHITECTURE/WINGS4.HUMAN_AI.WORKFLOW.FOUNDATION.md` (DEC-W4-090). Coordinator is a responsibility, not a second persona.
 The "Current phase" heading below is historical handbook text. It is not the executive roadmap and must not be used as current product direction.
 
 ## Current phase
@@ -40,6 +41,7 @@ Portfolio diagrams and dashboards remain planned, but they follow validated gove
 2. `PORTFOLIO.PRINCIPLES.md`
 3. `PORTFOLIO.DECISION_LOG.md`
 4. `PORTFOLIO.ROADMAP.md`
-5. `HUMAN\Q_AND_A.md`
-6. `ASSIMILATION.RUNBOOK.md`
-7. `00_STATE\BATON.WINGS4.ACTIVE.md`
+5. `PORTFOLIO.ARCHITECTURE/WINGS4.HUMAN_AI.WORKFLOW.FOUNDATION.md`
+6. `HUMAN\Q_AND_A.md`
+7. `ASSIMILATION.RUNBOOK.md`
+8. `00_STATE\BATON.WINGS4.ACTIVE.md`

@@ -48,9 +48,9 @@ Presentations, reports, BATON, RADAR, GRC, architecture, and planning alone are 
 
 Verified baseline at roadmap generation. Runtime Git remains current HEAD truth. This hash is not permanently current.
 
-CURRENT_DURABLE_HEAD=05791742f5e0bbf5da986634d9c9d48a3441dcc8
-LATEST_DURABLE_DECISION_AT_GENERATION=DEC-W4-086
-LATEST_WORKING_TREE_DECISION=DEC-W4-089
+CURRENT_DURABLE_HEAD=9fe857b622f7970bf6e9a1286628986ae723ec25
+LATEST_DURABLE_DECISION_AT_GENERATION=DEC-W4-089
+LATEST_WORKING_TREE_DECISION=DEC-W4-090
 S2_HUMAN_ACCEPTANCE=ACCEPTED
 S2_3_HUMAN_ACCEPTANCE=ACCEPTED
 S2_4_DESIGN_STATUS=APPROVED
@@ -63,19 +63,19 @@ S3_AUTHORIZED=NO
 S4_AUTHORIZED=NO
 WINGS4_COMPLETE=NO
 PRODUCTION_COMPLETE=NO
-ROADMAP_CURRENT_ITEM_ID=RM-W4-007
+ROADMAP_CURRENT_ITEM_ID=RM-W4-013
 ROADMAP_HUMAN_ACCEPTANCE=ACCEPTED
-ROADMAP_NEXT_GATE=IMPLEMENT_AUTHORIZED_WORKFLOW_FOUNDATION
-NEXT_PRODUCT_ACTION=IMPLEMENT_AUTHORIZED_WORKFLOW_FOUNDATION
+ROADMAP_NEXT_GATE=IMPLEMENT_AUTHORIZED_LANGGRAPH_LAB
+NEXT_PRODUCT_ACTION=IMPLEMENT_AUTHORIZED_LANGGRAPH_LAB
 NEXT_SESSION_OPTION_SELECTED=NO
-COMMIT=AUTHORIZED_PHASE_1
-PUSH=AUTHORIZED_PHASE_1
+COMMIT=AUTHORIZED_PHASE_2
+PUSH=AUTHORIZED_PHASE_2
 
 FACT: Bounded S2/S2.3 is accepted. S2.4 design is approved and hardened. S2.4 implementation is not authorized. No operative catalog exists. OPEN_DECISIONS remains UNKNOWN.
 
 ### GRAPH_R0_COMPLETE_ROADMAP_AND_CURRENT_POSITION
 
-YOU_ARE_HERE=RM-W4-006_DESIGN_ACCEPTED_RM-W4-007_ROADMAP_ACCEPTED_NEXT_WORKFLOW_FOUNDATION
+YOU_ARE_HERE=RM-W4-013_WORKFLOW_FOUNDATION_THEN_LANGGRAPH_LAB
 
 This diagram is the first-class complete-roadmap view. Status labels below are visual only. They do not change RM-W4 item STATUS fields. The reference-adoption study is a temporary review activity, not a new roadmap item.
 
@@ -89,42 +89,42 @@ flowchart TD
     R4[RM-W4-004 S2 S2.3]
     R7[RM-W4-007 roadmap]
   end
+  subgraph Gov[GOVERNANCE]
+    R13[RM-W4-013 workflow]
+    Here[YOU ARE HERE]
+  end
   subgraph Des[DESIGNED]
     R3[RM-W4-003 briefing design]
     R5[RM-W4-005 contract]
     R6[RM-W4-006 S2.4 hardened]
   end
-  subgraph Now[CURRENT]
-    Here[YOU ARE HERE]
-    Wf[Workflow foundation next]
+  subgraph Exp[EXPERIMENTAL]
+    Lab[LangGraph lab next]
   end
-  subgraph Gate[HUMAN_GATES]
-    G2{Authorize S2.4?}
-  end
-  subgraph Later[UNAUTHORIZED_OR_DEFERRED]
+  subgraph Later[UNAUTHORIZED]
     R8[RM-W4-008 S2.4 impl]
     R9[RM-W4-009 catalog]
     R10[RM-W4-010 S3]
     R11[RM-W4-011 S4]
     R12[RM-W4-012 deferred]
   end
-  Acc --> Des
-  R7 --> Here
-  R6 --> Here
-  Here --> Wf
-  Wf -.-> G2
-  G2 -.-> R8
+  Acc --> Gov
+  Gov --> Des
+  R13 --> Here
+  Here --> Lab
+  Lab -.-> R6
+  R6 -.-> R8
   R8 -.-> R9
   R4 -.-> R10
   R10 -.-> R11
   R4 -.-> R12
 ```
 
-What it proves: RM-W4-007 is accepted. RM-W4-006 remains designed, not implemented. Later slices stay unauthorized.
-What it does not prove: That the workflow foundation is already durable, or that S2.4 is authorized.
-Current governed decision: DEC-W4-089 accepted the roadmap and hardened design. Next authorized work in this program is the project-local workflow foundation.
-How to update YOU ARE HERE: after Phase 2 lands, move Here to the workflow-foundation item; do not treat graphs as authority.
-Evidence pointers: DEC-W4-087; DEC-W4-088; DEC-W4-089; this file sections 5–8.
+What it proves: Accepted product baseline, current governance foundation, experimental lab next, S2.4 still unauthorized.
+What it does not prove: LangGraph product adoption or S2.4 implementation.
+Current governed decision: DEC-W4-090 implements RM-W4-013. Next authorized work in this program is the isolated LangGraph lab.
+How to update YOU ARE HERE: after Phase 3 lands, move Here onto the lab item without implying product adoption.
+Evidence pointers: DEC-W4-089; DEC-W4-090; PORTFOLIO.ARCHITECTURE/WINGS4.HUMAN_AI.WORKFLOW.FOUNDATION.md.
 
 ## 3. Delivered and Human-Accepted Baseline
 
@@ -418,6 +418,26 @@ NEXT_ACTION=Do not absorb into S2.4
 OWNER_ROLE=ORCHESTRATOR
 UPDATED_AT_DECISION=DEC-W4-088
 
+### RM-W4-013 — HUMAN-AI workflow foundation
+
+ROADMAP_ITEM_ID=RM-W4-013
+TITLE=Project-local HUMAN-AI workflow foundation
+OUTCOME=Governed roles, identity/worktree gates, Q&A/prompt/loop/graph contracts without duplicate authority
+STATUS=IMPLEMENTED
+TRACK=GOVERNANCE_FOUNDATION
+HUMAN_VALUE=Safe HUMAN to EXECUTOR work without copying Skills lakes
+DEPENDENCIES=RM-W4-007
+BLOCKED_BY=NONE
+DECISION_ID=DEC-W4-090
+AUTHORIZATION_STATUS=AUTHORIZED
+IMPLEMENTATION_STATUS=IMPLEMENTED
+ACCEPTANCE_STATUS=RECORDED_THIS_PROGRAM
+EVIDENCE_POINTERS=PORTFOLIO.ARCHITECTURE/WINGS4.HUMAN_AI.WORKFLOW.FOUNDATION.md
+NEXT_GATE=KEEP_DISTINCT_FROM_PRODUCT_RUNTIME
+NEXT_ACTION=Use the foundation; do not treat it as S2.4
+OWNER_ROLE=ORCHESTRATOR
+UPDATED_AT_DECISION=DEC-W4-090
+
 ## 7. Dependencies and Decision Gates
 
 Required sequence for catalog-aware briefing:
@@ -549,8 +569,8 @@ flowchart TD
 ```
 
 What it proves: Design does not skip to implementation.
-What it does not prove: Commit is authorized now (it is not).
-Current decision relevance: DEC-W4-087 is DESIGN, not AUTH.
+What it does not prove: That S2.4 is authorized.
+Current decision relevance: DEC-W4-089 accepted hardened design; S2.4 remains DESIGN, not AUTH.
 
 ### GRAPH_R4_AUTHORITY_AND_INFORMATION_FLOW
 
@@ -577,5 +597,30 @@ What it proves: Decision log owns decisions; this file owns sequencing/status; B
 What it does not prove: Q&A or prompts are canon.
 Current decision relevance: Do not reconstruct the roadmap from chat.
 
-ROADMAP_GRAPH_COUNT=5
-ROADMAP_ITEM_COUNT=12
+### GRAPH_R5_PRODUCT_GOVERNANCE_EXPERIMENT_BOUNDARY
+
+GRAPH_ID=GRAPH_R5_PRODUCT_GOVERNANCE_EXPERIMENT_BOUNDARY
+QUESTION_ANSWERED=What is product, what is governance, and what is experimental?
+NODE_SEMANTICS=Track
+EDGE_SEMANTICS=Does not authorize
+STATE_SOURCE=DEC-W4-089; DEC-W4-090
+AUTHORITY_LIMIT=Visual only
+UPDATE_TRIGGER=New governed track
+WHAT_IT_PROVES=LangGraph lab is not product adoption
+WHAT_IT_DOES_NOT_PROVE=S2.4, catalog, S3, or S4 authorization
+CURRENT_DECISION_RELEVANCE=DEC-W4-090
+
+```mermaid
+flowchart TD
+  P[Accepted product S2 S2.3]
+  G[Governance foundation RM-W4-013]
+  E[Experimental LangGraph lab]
+  N[Next product decision S2.4]
+  U[Unauthorized catalog S3 S4]
+  P --> G --> E
+  G -.-> N
+  N -.-> U
+```
+
+ROADMAP_GRAPH_COUNT=6
+ROADMAP_ITEM_COUNT=13
