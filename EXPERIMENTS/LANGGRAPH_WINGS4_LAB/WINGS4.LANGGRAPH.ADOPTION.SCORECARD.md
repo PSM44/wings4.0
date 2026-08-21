@@ -16,12 +16,12 @@ This scorecard does not authorize adoption.
 |---|---|---|---|---|---|---|
 | A_HUMAN_AUTHORITY_VISIBILITY | HUMAN and DEC-W4 outrank runtime | interrupt() pauses; HUMAN still outranks | SECURITY.AND.GOVERNANCE.md; DEC-W4-091 | PASS | HIGH | Mechanism ≠ authority |
 | B_DETERMINISTIC_BEHAVIOR | S2 CLI deterministic | LAB_01 deterministic; LAB_02 bounded | tests | PASS | HIGH | No LLM in core tests |
-| C_DURABLE_EXECUTION | Git + files are durable canon | MemorySaver is RAM-only | official persistence docs | FAIL | HIGH | Not production durability |
-| D_CHECKPOINT_RECOVERY | Git/worktree gates | In-process resume works | LAB_03 test | PASS | MEDIUM | Lost on process restart |
+| C_DURABLE_EXECUTION | Git + files are durable canon | Lab SqliteSaver resumes after reconstructed saver; MemorySaver does not | LAB_09 tests; official SqliteSaver docs | FAIL | HIGH | Lab file persistence is not production durability or git canon |
+| D_CHECKPOINT_RECOVERY | Git/worktree gates | MemorySaver in-process; SqliteSaver reconstructed saver | LAB_03; LAB_09 | PASS | MEDIUM | SQLite file is disposable lab scratch |
 | E_HUMAN_IN_THE_LOOP_QUALITY | Explicit human options in briefing | approve/edit/reject after interrupt | LAB_04 tests | PASS | HIGH | Side effects after approval |
 | F_REPLAY_IDEMPOTENCY_SAFETY | S2 has no mutating apply path | applied flag skips second side effect | LAB_04 replay test | PASS | HIGH | Nodes restart before interrupt |
 | G_STATE_TRANSPARENCY | Markdown briefing + BATON | getState + __interrupt__ | LAB_03 | PASS | MEDIUM | Lab-only state |
-| H_TESTABILITY | 77 product tests | 18 lab tests | npm test | PASS | HIGH | node:test |
+| H_TESTABILITY | 77 product tests | 21 lab tests | npm test | PASS | HIGH | node:test |
 | I_OBSERVABILITY | stdout briefing | getState; streamMode=updates; no LangSmith required | README; LAB_07 | PASS | LOW | Tracing optional and off |
 | J_DEPENDENCY_COMPLEXITY | No root package.json | lab-local 22 packages | package.json | FAIL | HIGH | New stack vs current JS runtime |
 | K_MAINTENANCE_COST | Small local runtime | LangGraph + core + zod | package-lock.json | FAIL | MEDIUM | Extra API surface |
@@ -31,7 +31,7 @@ This scorecard does not authorize adoption.
 | O_FAILURE_RECOVERY | Fail-closed gates | LAB_02 fail-closed after 3 | tests | PASS | MEDIUM | Recursion still a risk if misused |
 | P_PORTABILITY | Node stdlib runtime | Requires lab npm install | README | FAIL | MEDIUM | Extra install step |
 | Q_VENDOR_FRAMEWORK_LOCK_IN | Project-local contracts | LangGraph-specific interrupt/Command | official docs | FAIL | HIGH | |
-| R_LEARNING_VALUE | Workflow foundation docs | Eight runnable exercises | LEARNING.ROADMAP.md | PASS | HIGH | Includes stream and measurement |
+| R_LEARNING_VALUE | Workflow foundation docs | Ten runnable exercises | LEARNING.ROADMAP.md | PASS | HIGH | Includes durable sqlite and time travel |
 | S_MEASURABLE_PRODUCT_VALUE | Accepted S2 briefing | No product capability added | DEC-W4-091 | FAIL | HIGH | Lab is not product delivery |
 | T_MIGRATION_RISK | Keep S2 accepted | Replacing S2 would be high risk | this scorecard | FAIL | HIGH | Do not migrate now |
 

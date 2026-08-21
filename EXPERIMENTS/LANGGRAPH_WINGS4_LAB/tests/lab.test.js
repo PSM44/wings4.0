@@ -142,6 +142,7 @@ test("lab sources do not import product runtime", () => {
 test("dependency isolation: lab package is local", () => {
   const labPkg = JSON.parse(fs.readFileSync(path.join(LAB_ROOT, "package.json"), "utf8"));
   assert.equal(labPkg.dependencies["@langchain/langgraph"], "1.4.12");
+  assert.equal(labPkg.dependencies["@langchain/langgraph-checkpoint-sqlite"], "1.0.4");
   assert.equal(fs.existsSync(path.join(REPO_ROOT, "package.json")), false);
 });
 

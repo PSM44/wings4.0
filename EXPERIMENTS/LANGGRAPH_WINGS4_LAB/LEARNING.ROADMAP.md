@@ -1,7 +1,7 @@
 # LangGraph lab learning roadmap
 
 LEARNING_ROADMAP_ID=W4_LANGGRAPH_LAB
-CURRENT_POSITION=LAB_08_MEASUREMENT_ADDED_PRODUCT_ADOPTION_NOT_AUTHORIZED
+CURRENT_POSITION=LAB_10_TIME_TRAVEL_ADDED_PRODUCT_ADOPTION_NOT_AUTHORIZED
 LANGGRAPH_VERSION=1.4.12
 RETRIEVAL_DATE=2026-08-21
 
@@ -17,6 +17,8 @@ This file is a learning track. It is not `PORTFOLIO.ROADMAP.md`.
 - Fixture-only Wings4-like briefing, not S2 equivalence
 - Streaming updates
 - Measured wall-clock evidence (not a product SLA)
+- Lab-local SqliteSaver durability (not production)
+- Time travel from stored checkpoints
 
 ## Exercises
 
@@ -30,6 +32,8 @@ This file is a learning track. It is not `PORTFOLIO.ROADMAP.md`.
 | LAB_06 | Fixture-only FACT/INFERENCE/RECOMMENDATION/UNKNOWN | interrupt then text output |
 | LAB_07 | Stream node updates without LLM | `npm run lab07`; tests |
 | LAB_08 | Measure lab wall-clock; do not invent numbers | `npm run lab08`; MEASUREMENT.EVIDENCE.md |
+| LAB_09 | Durable SqliteSaver across reconstructed saver | `npm run lab09`; tests |
+| LAB_10 | Time travel from `getStateHistory` | `npm run lab10`; tests |
 
 ## GRAPH_L0_LEARNING_PATH
 
@@ -40,7 +44,7 @@ EDGE_SEMANTICS=Learning sequence
 STATE_SOURCE=this file
 AUTHORITY_LIMIT=Visual only
 UPDATE_TRIGGER=Exercise set change
-WHAT_IT_PROVES=Six exercises exist
+WHAT_IT_PROVES=Ten exercises exist
 WHAT_IT_DOES_NOT_PROVE=Product adoption
 CURRENT_DECISION_RELEVANCE=DEC-W4-091
 
@@ -54,8 +58,10 @@ flowchart TD
   L6[LAB_06]
   L7[LAB_07 stream]
   L8[LAB_08 measure]
-  Here[YOU ARE HERE after eight exercises]
-  L1 --> L2 --> L3 --> L4 --> L5 --> L6 --> L7 --> L8 --> Here
+  L9[LAB_09 durable]
+  L10[LAB_10 time travel]
+  Here[YOU ARE HERE after ten exercises]
+  L1 --> L2 --> L3 --> L4 --> L5 --> L6 --> L7 --> L8 --> L9 --> L10 --> Here
 ```
 
 ## GRAPH_L1_STATE_NODE_EDGE_MODEL
@@ -231,4 +237,60 @@ flowchart TD
   M[Measure lab graphs] --> E[Evidence file]
   E --> C[Scorecard N]
   C -.-> A[Adoption still unauthorized]
+```
+
+## GRAPH_L9_DURABLE_CHECKPOINT
+
+GRAPH_ID=GRAPH_L9_DURABLE_CHECKPOINT
+QUESTION_ANSWERED=Can a reconstructed checkpointer resume a stable thread_id?
+NODE_SEMANTICS=Process/checkpointer reconstruction
+EDGE_SEMANTICS=Same thread_id
+STATE_SOURCE=src/lab09_durable.js
+AUTHORITY_LIMIT=Visual only
+UPDATE_TRIGGER=LAB_09 change
+WHAT_IT_PROVES=Lab-local SqliteSaver can persist across a new saver instance
+WHAT_IT_DOES_NOT_PROVE=Production durability, cloud storage, or S2 replacement
+CURRENT_DECISION_RELEVANCE=DEC-W4-091
+IMPLEMENTATION_STATUS=IMPLEMENTED_LAB_ONLY
+SQLITE_PACKAGE=@langchain/langgraph-checkpoint-sqlite@1.0.4
+SOURCE_URL=https://docs.langchain.com/oss/javascript/langgraph/checkpointers
+RETRIEVAL_DATE=2026-08-21
+
+```mermaid
+flowchart LR
+    Start[Initial invocation]
+    Node[Graph node]
+    Store[(Durable checkpoint)]
+    Stop[Process ends]
+    Restore[New process/checkpointer]
+    Thread[Same thread_id]
+    Resume[Resume graph]
+    Verify[Verify final state]
+
+    Start --> Node --> Store --> Stop
+    Stop --> Restore --> Thread --> Resume --> Verify
+```
+
+## GRAPH_L10_TIME_TRAVEL
+
+GRAPH_ID=GRAPH_L10_TIME_TRAVEL
+QUESTION_ANSWERED=Can a prior sqlite checkpoint be replayed?
+NODE_SEMANTICS=Historical checkpoint
+EDGE_SEMANTICS=Replay from checkpoint_id
+STATE_SOURCE=src/lab10_timetravel.js
+AUTHORITY_LIMIT=Visual only
+UPDATE_TRIGGER=LAB_10 change
+WHAT_IT_PROVES=getStateHistory plus invoke from a prior config replays later nodes
+WHAT_IT_DOES_NOT_PROVE=Idempotent production replay or S2 time travel
+CURRENT_DECISION_RELEVANCE=DEC-W4-091
+SOURCE_URL=https://docs.langchain.com/oss/javascript/langgraph/use-time-travel
+RETRIEVAL_DATE=2026-08-21
+PROMPT_NOTE=LAB-10 body was truncated in the executor prompt; this exercise uses the official time-travel guide that follows durable checkpoints.
+
+```mermaid
+flowchart TD
+  Run[Complete run] --> Hist[getStateHistory]
+  Hist --> Prior[Checkpoint before step_b]
+  Prior --> Replay[invoke with prior config]
+  Replay --> Verify[Final state still n=2]
 ```

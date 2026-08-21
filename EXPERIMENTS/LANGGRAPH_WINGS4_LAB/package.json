@@ -16,11 +16,14 @@
     "lab05": "node src/run_lab05.js",
     "lab06": "node src/run_lab06.js",
     "lab07": "node src/run_lab07.js",
-    "lab08": "node src/run_lab08.js"
+    "lab08": "node src/run_lab08.js",
+    "lab09": "node src/run_lab09.js",
+    "lab10": "node src/run_lab10.js"
   },
   "dependencies": {
     "@langchain/core": "1.2.9",
     "@langchain/langgraph": "1.4.12",
+    "@langchain/langgraph-checkpoint-sqlite": "1.0.4",
     "zod": "4.4.3"
   }
 }

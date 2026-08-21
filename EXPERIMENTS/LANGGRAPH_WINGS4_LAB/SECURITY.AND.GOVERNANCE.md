@@ -52,6 +52,8 @@ Official JS interrupt docs: on resume the node restarts from the beginning, so c
 
 - Replaying a node can repeat pre-interrupt work.
 - `MemorySaver` is lost on process restart.
+- Lab `SqliteSaver` writes disposable files under `checkpoints/` (gitignored). Do not treat them as audit evidence or production durability.
+- Official JS interrupt docs: replay/resume restarts the node from the beginning, so pre-interrupt work can run again. Time travel also re-executes later nodes.
 - Do not treat lab checkpoints as audit evidence.
 
 ## Dependency and license evidence
@@ -59,6 +61,7 @@ Official JS interrupt docs: on resume the node restarts from the beginning, so c
 - `@langchain/langgraph@1.4.12` MIT, retrieved 2026-08-21 from npm and https://docs.langchain.com/oss/javascript/langgraph/overview
 - `@langchain/core@1.2.9`
 - `zod@4.4.3` (peer of LangGraph)
+- `@langchain/langgraph-checkpoint-sqlite@1.0.4` MIT, retrieved 2026-08-21 from npm and https://docs.langchain.com/oss/javascript/langgraph/checkpointers. Uses `better-sqlite3` locally. Not a production database.
 
 ## No production mutation
 
