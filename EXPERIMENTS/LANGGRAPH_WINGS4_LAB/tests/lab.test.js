@@ -149,3 +149,25 @@ test("LAB_01 compiled graph exists for static inspection", () => {
   const graph = buildLab01Graph();
   assert.ok(graph);
 });
+
+test("LAB_07 streams node updates then matches invoke", async () => {
+  const { streamLab07 } = await import("../src/lab07_streaming.js");
+  const { updates, finalState } = await streamLab07("streamed");
+  assert.equal(updates.length, 2);
+  assert.ok(Object.prototype.hasOwnProperty.call(updates[0], "validate_input"));
+  assert.ok(Object.prototype.hasOwnProperty.call(updates[1], "produce_result"));
+  assert.equal(finalState.result, "LAB07:streamed");
+});
+
+test("LAB_08 measurement returns bounded numeric samples", async () => {
+  const { measureLabPerformance } = await import("../src/lab08_measurement.js");
+  const report = await measureLabPerformance({ iterations: 8 });
+  assert.equal(report.results.length, 3);
+  for (const row of report.results) {
+    assert.equal(typeof row.median_ms, "number");
+    assert.equal(Number.isNaN(row.median_ms), false);
+    assert.ok(row.n >= 8 || row.label !== "LAB_01_invoke");
+  }
+  const lab01 = report.results.find((row) => row.label === "LAB_01_invoke");
+  assert.ok(lab01.median_ms < 1000);
+});

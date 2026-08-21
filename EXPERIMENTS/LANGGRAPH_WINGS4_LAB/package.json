@@ -14,7 +14,9 @@
     "lab03": "node src/run_lab03.js",
     "lab04": "node src/run_lab04.js",
     "lab05": "node src/run_lab05.js",
-    "lab06": "node src/run_lab06.js"
+    "lab06": "node src/run_lab06.js",
+    "lab07": "node src/run_lab07.js",
+    "lab08": "node src/run_lab08.js"
   },
   "dependencies": {
     "@langchain/core": "1.2.9",

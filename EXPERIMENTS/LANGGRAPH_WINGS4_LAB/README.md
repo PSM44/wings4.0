@@ -51,6 +51,8 @@ Dependencies stay inside this folder's `node_modules`.
 4. LAB_04 human-in-the-loop
 5. LAB_05 subgraphs and serial integration
 6. LAB_06 Wings4 read-only fixture pilot
+7. LAB_07 streaming updates
+8. LAB_08 measurement
 
 ## How to run
 
@@ -61,6 +63,8 @@ npm run lab03
 npm run lab04
 npm run lab05
 npm run lab06
+npm run lab07
+npm run lab08
 ```
 
 ## How to test
@@ -91,5 +95,5 @@ Automated tests must not call external LLM APIs.
 - https://docs.langchain.com/oss/javascript/langgraph/persistence
 - https://docs.langchain.com/oss/javascript/langgraph/checkpointers
 - https://docs.langchain.com/oss/javascript/langgraph/interrupts
-- https://docs.langchain.com/oss/javascript/langgraph/graph-api
+- https://docs.langchain.com/oss/javascript/langgraph/streaming
 - https://www.npmjs.com/package/@langchain/langgraph

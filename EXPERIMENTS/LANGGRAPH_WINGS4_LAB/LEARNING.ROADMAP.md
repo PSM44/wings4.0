@@ -1,7 +1,7 @@
 # LangGraph lab learning roadmap
 
 LEARNING_ROADMAP_ID=W4_LANGGRAPH_LAB
-CURRENT_POSITION=LAB_06_IMPLEMENTED_PRODUCT_ADOPTION_NOT_AUTHORIZED
+CURRENT_POSITION=LAB_08_MEASUREMENT_ADDED_PRODUCT_ADOPTION_NOT_AUTHORIZED
 LANGGRAPH_VERSION=1.4.12
 RETRIEVAL_DATE=2026-08-21
 
@@ -15,6 +15,8 @@ This file is a learning track. It is not `PORTFOLIO.ROADMAP.md`.
 - Interrupts versus HUMAN authority
 - Subgraphs and serialized integration
 - Fixture-only Wings4-like briefing, not S2 equivalence
+- Streaming updates
+- Measured wall-clock evidence (not a product SLA)
 
 ## Exercises
 
@@ -26,6 +28,8 @@ This file is a learning track. It is not `PORTFOLIO.ROADMAP.md`.
 | LAB_04 | Side effects only after approve | approve/edit/reject + replay tests |
 | LAB_05 | Independent reads, one integrator | writeLog length = 1 |
 | LAB_06 | Fixture-only FACT/INFERENCE/RECOMMENDATION/UNKNOWN | interrupt then text output |
+| LAB_07 | Stream node updates without LLM | `npm run lab07`; tests |
+| LAB_08 | Measure lab wall-clock; do not invent numbers | `npm run lab08`; MEASUREMENT.EVIDENCE.md |
 
 ## GRAPH_L0_LEARNING_PATH
 
@@ -48,8 +52,10 @@ flowchart TD
   L4[LAB_04]
   L5[LAB_05]
   L6[LAB_06]
-  Here[YOU ARE HERE after six exercises]
-  L1 --> L2 --> L3 --> L4 --> L5 --> L6 --> Here
+  L7[LAB_07 stream]
+  L8[LAB_08 measure]
+  Here[YOU ARE HERE after eight exercises]
+  L1 --> L2 --> L3 --> L4 --> L5 --> L6 --> L7 --> L8 --> Here
 ```
 
 ## GRAPH_L1_STATE_NODE_EDGE_MODEL
@@ -187,4 +193,42 @@ flowchart TD
   H -->|CONTINUE_EXPERIMENT| E[Keep lab only]
   H -->|DEFER or REJECT| N[No product graph]
   H -->|later bounded pilot design| P[Separate decision]
+```
+
+## GRAPH_L8_STREAMING_UPDATES
+
+GRAPH_ID=GRAPH_L8_STREAMING_UPDATES
+QUESTION_ANSWERED=Can node updates be observed without an LLM?
+NODE_SEMANTICS=Stream event
+EDGE_SEMANTICS=Update order
+STATE_SOURCE=src/lab07_streaming.js
+AUTHORITY_LIMIT=Visual only
+UPDATE_TRIGGER=LAB_07 change
+WHAT_IT_PROVES=streamMode=updates emits per-node payloads
+WHAT_IT_DOES_NOT_PROVE=Observability of the accepted S2 runtime
+CURRENT_DECISION_RELEVANCE=DEC-W4-091
+
+```mermaid
+flowchart TD
+  S[START] --> V[validate_input] --> P[produce_result] --> E[END]
+```
+
+## GRAPH_L9_MEASUREMENT_BOUNDARY
+
+GRAPH_ID=GRAPH_L9_MEASUREMENT_BOUNDARY
+QUESTION_ANSWERED=What do lab timings prove?
+NODE_SEMANTICS=Evidence class
+EDGE_SEMANTICS=Does not authorize
+STATE_SOURCE=src/lab08_measurement.js
+AUTHORITY_LIMIT=Visual only
+UPDATE_TRIGGER=New measurement run
+WHAT_IT_PROVES=Wall-clock samples for isolated graphs
+WHAT_IT_DOES_NOT_PROVE=Production SLA or LangGraph adoption
+CURRENT_DECISION_RELEVANCE=DEC-W4-091
+
+```mermaid
+flowchart TD
+  M[Measure lab graphs] --> E[Evidence file]
+  E --> C[Scorecard N]
+  C -.-> A[Adoption still unauthorized]
 ```
