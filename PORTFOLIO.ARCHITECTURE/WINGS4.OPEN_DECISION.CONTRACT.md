@@ -4,6 +4,8 @@ Status: APPROVED_DESIGN_CANONIZED
 Authority: Pablo; DEC-W4-083
 Authorization: `20260820.141500_W4_EXECUTOR_RECORD_OPEN_DECISION_CONTRACT_AND_CORRECT_S2_3_GAPS`
 Runtime consumption: NOT_IMPLEMENTED / NOT_AUTHORIZED_BY_THIS_CONTRACT
+Consumption design: `PORTFOLIO.ARCHITECTURE/WINGS4.OPEN_DECISION.RUNTIME.CONSUMPTION.DESIGN.md` (DEC-W4-085 planning; DEC-W4-086 DESIGN_STATUS=APPROVED D1–D5; S2.4 IMPLEMENTATION_AUTHORIZED=NO)
+Approved catalog path: `00_STATE/WINGS4.OPEN_DECISION.CATALOG.md` (not created)
 S3: UNAUTHORIZED
 S4: UNAUTHORIZED
 
@@ -14,8 +16,8 @@ This file is the bounded architecture contract for explicit `OPEN_DECISION_*` it
 Define governed fields, lifecycle, ownership, conflict handling, and completion/supersession rules for `OPEN_DECISION_*` items so Wings4 can later distinguish:
 
 - `UNKNOWN` — current open-decision state cannot be determined;
-- validated empty — a valid contract/catalog exists and contains zero active items;
-- populated — a valid contract/catalog exists and contains one or more active items.
+- `EMPTY` — a valid applicable catalog exists, `CATALOG_VALIDATION=PASS`, and it contains zero active items;
+- `POPULATED` — a valid applicable catalog exists, `CATALOG_VALIDATION=PASS`, and it contains one or more active items.
 
 Narrative prose cannot create this catalog. Wings4 may classify, recommend, and present options. Pablo remains human decision authority. Wings4 must not select an option.
 
@@ -38,7 +40,7 @@ Every `OPEN_DECISION_*` item must record these fields:
 
 | Field | Meaning |
 |---|---|
-| `OPEN_DECISION_ID` | Stable unique identifier. |
+| `OPEN_DECISION_ID` | Stable unique identifier. Approved pattern `OD-W4-NNNN` (DEC-W4-086). Distinct from `DEC-W4-*`. |
 | `TITLE` | Short human-readable name. |
 | `STATUS` | One permitted lifecycle state. |
 | `OWNER` | Responsible party. Ownership is responsibility, not decision authority. |
@@ -74,7 +76,7 @@ Rules:
 - `SUPERSEDED` requires `SUPERSEDED_BY`.
 - `CANCELLED` requires a human decision. Narrative prose is not cancellation.
 
-A validated empty set is allowed only when a valid contract/catalog exists and contains zero active items (`OPEN` or `BLOCKED`). Absence of a valid contract/catalog is `UNKNOWN`, not empty.
+A validated empty set is allowed only when a valid applicable catalog exists, `CATALOG_VALIDATION=PASS`, and the catalog contains zero active items (`OPEN` or `BLOCKED`). Absence of a valid catalog is `UNKNOWN`, not empty. `VALIDATED_EMPTY` is not a fourth `OPEN_DECISIONS` state.
 
 ## 5. Authority
 
@@ -86,13 +88,28 @@ A validated empty set is allowed only when a valid contract/catalog exists and c
 
 ## 6. Set states
 
-| Set state | When |
-|---|---|
-| `UNKNOWN` | No valid governed `OPEN_DECISION_*` contract or catalog is available; or evidence is missing, malformed, or conflicting. The current open-decision state cannot be determined. Do not describe this set as empty. |
-| `VALIDATED_EMPTY` | A valid contract/catalog exists and contains zero active items. |
-| `POPULATED` | A valid contract/catalog exists and contains one or more active items. |
+`OPEN_DECISIONS` has exactly three values. Validation is a separate dimension.
 
-`UNKNOWN` and `VALIDATED_EMPTY` are not interchangeable.
+| `OPEN_DECISIONS` | When |
+|---|---|
+| `UNKNOWN` | No authoritative catalog exists; or the catalog cannot be read; or schema/lifecycle/authority validation fails; or required governed evidence is missing; or valid governed sources conflict; or applicability cannot be established. Do not describe this set as empty. |
+| `EMPTY` | A valid applicable catalog exists, `CATALOG_VALIDATION=PASS`, and zero records are `OPEN` or `BLOCKED`. |
+| `POPULATED` | A valid applicable catalog exists, `CATALOG_VALIDATION=PASS`, and one or more records are `OPEN` or `BLOCKED`. |
+
+| `CATALOG_VALIDATION` | When |
+|---|---|
+| `NOT_AVAILABLE` | No catalog file at the approved path. |
+| `FAIL` | Catalog present but unreadable, invalid, conflicting, or inapplicable. |
+| `PASS` | Catalog exists, validates, and applies to current Wings4 state. |
+
+Required combinations:
+
+1. No catalog: `OPEN_DECISIONS=UNKNOWN`; `CATALOG_VALIDATION=NOT_AVAILABLE`
+2. Invalid or conflicting catalog: `OPEN_DECISIONS=UNKNOWN`; `CATALOG_VALIDATION=FAIL`
+3. Valid catalog, zero active records: `OPEN_DECISIONS=EMPTY`; `OPEN_DECISION_ACTIVE_COUNT=0`; `CATALOG_VALIDATION=PASS`
+4. Valid catalog, one or more active records: `OPEN_DECISIONS=POPULATED`; `OPEN_DECISION_ACTIVE_COUNT=<N>`; `CATALOG_VALIDATION=PASS`
+
+`UNKNOWN` and `EMPTY` are not interchangeable. DEC-W4-083 used condition name `VALIDATED_EMPTY`; that name is not a fourth `OPEN_DECISIONS` state. Current accepted S2.3 runtime may still emit `VALIDATED_EMPTY` until S2.4 is separately authorized.
 
 ## 7. Conflict precedence
 
@@ -109,6 +126,12 @@ A conflict between valid governed records must fail closed as `UNKNOWN` and expo
 ## 8. S2 boundary
 
 S2 remains `ON_DEMAND_TEXT_ONLY / SESSION_OUTPUT_ONLY`. This contract does not authorize S2 to read this file as an instance catalog. Until a separately authorized consumption slice exists, S2 must fail closed to `OPEN_DECISIONS=UNKNOWN` when no valid instance catalog is available.
+
+DEC-W4-085 records the consumption design and planning packet. DEC-W4-086 approves D1–D5. Neither decision authorizes S2.4 implementation, creates an operative catalog, or changes accepted S2/S2.3 runtime behavior.
+
+Approved future catalog path: `00_STATE/WINGS4.OPEN_DECISION.CATALOG.md`. The file does not exist and must not be treated as present.
+
+Future slice identifier: `S2.4`. S2.4 is not S3 or S4.
 
 Existing S2.3 parsing of explicit non-meta `OPEN_DECISION_*` KEY=VALUE lines in START_HERE/BATON is a bounded semantic source, not consumption of this architecture contract. Meta keys such as `OPEN_DECISION_CONTRACT` are status flags, not instance items.
 

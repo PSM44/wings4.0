@@ -1463,6 +1463,116 @@ Decision:
 - Continuity next product action after this record is `HUMAN_DECIDE_POST_S2_NEXT_GOVERNED_ACTION`. No next-session option is selected. This decision does not authorize or auto-select a new development slice.
 - This decision does not authorize staging, commit, push, S3, S4, OPEN_DECISION_* catalog consumption, UI, persistence, monitoring, RADAR, live web, child-repository read, child mutation, COPY lifecycle change, capture, auto-delivery, or a Wings4-complete claim.
 
+HISTORICAL_NON_OPERATIVE_NOTE: The next-action statement `HUMAN_DECIDE_POST_S2_NEXT_GOVERNED_ACTION` and “catalog consumption remains unimplemented and is not authorized by this decision” were true at DEC-W4-084 recording. Pablo later selected Post-S2 Option A. Design and planning for OPEN_DECISION_* runtime consumption are recorded in DEC-W4-085. This decision itself remains the bounded S2/S2.3 human-acceptance record. Runtime catalog consumption remains unauthorized and unimplemented.
+
+Contract: `PORTFOLIO.ARCHITECTURE/WINGS4.OPEN_DECISION.CONTRACT.md`
+Spec: `PORTFOLIO.ARCHITECTURE/WINGS4.PUSH_FIRST_BRIEFING.RUNTIME.S2.SPEC.md`
+Implementation: `PRODUCT/PUSH_FIRST_BRIEFING_RUNTIME/briefing.runtime.js`
+Tests: `PRODUCT/PUSH_FIRST_BRIEFING_RUNTIME/briefing.runtime.logical.test.js`
+
+## DEC-W4-085 — OPEN_DECISION_* runtime consumption design and planning
+
+Status: APPROVED_DESIGN_RECORDED_NOT_IMPLEMENTED
+Date: 2026-08-20
+Scope: OPEN_DECISION_RUNTIME_CONSUMPTION DESIGN AND PLANNING ONLY
+Authority: Pablo; Post-S2 Option A; authorization `20260820.161500_W4_EXECUTOR_DESIGN_OPEN_DECISION_RUNTIME_CONSUMPTION`
+DECISION_SUBJECT=OPEN_DECISION_RUNTIME_CONSUMPTION_DESIGN_AND_PLANNING
+DESIGN_STATUS=PROPOSED
+IMPLEMENTATION_AUTHORIZED=NO
+IMPLEMENTATION_COMPLETED=NO
+OPEN_DECISION_RUNTIME_CONSUMPTION_DESIGNED=YES
+OPEN_DECISION_RUNTIME_CONSUMPTION_PLANNED=YES
+OPEN_DECISION_RUNTIME_CONSUMPTION_AUTHORIZED=NO
+OPEN_DECISION_RUNTIME_CONSUMPTION_IMPLEMENTED=NO
+OPERATIVE_OPEN_DECISION_CATALOG_CREATED=NO
+OPEN_DECISIONS=UNKNOWN
+S2_HUMAN_ACCEPTANCE=ACCEPTED
+S2_3_HUMAN_ACCEPTANCE=ACCEPTED
+S3_AUTHORIZED=NO
+S3_IMPLEMENTED=NO
+S4_AUTHORIZED=NO
+S4_IMPLEMENTED=NO
+WINGS4_COMPLETE=NO
+PRODUCTION_COMPLETE=NO
+NO_COMMIT_AUTHORIZED=YES
+
+Decision:
+
+- Pablo selected Post-S2 Option A: authorize a bounded design and planning task defining how the existing S2 briefing runtime may validate and consume governed OPEN_DECISION_* records.
+- Design and planning are authorized and recorded in `PORTFOLIO.ARCHITECTURE/WINGS4.OPEN_DECISION.RUNTIME.CONSUMPTION.DESIGN.md`.
+- Runtime implementation is not authorized.
+- No operative catalog was created. Narrative decisions were not migrated into structured records.
+- `OPEN_DECISIONS` remains UNKNOWN. This record does not describe the set as empty or known.
+- S2/S2.3 remain accepted and closed for bounded `ON_DEMAND_TEXT_ONLY / SESSION_OUTPUT_ONLY`.
+- S3 and S4 remain unauthorized and unimplemented.
+- Recommended catalog location is `00_STATE/WINGS4.OPEN_DECISION.CATALOG.md` (KEY=VALUE). That path is a recommendation, not an irreversible structure and not a created file.
+- Five material design choices remain for human review: catalog location, slice identifier, absent-catalog fallback, empty-token unification, and OPEN_DECISION_ID pattern.
+- A separate explicit human decision is required before implementation.
+- Continuity next product action after this record is `HUMAN_REVIEW_OPEN_DECISION_RUNTIME_CONSUMPTION_DESIGN`. This decision does not select a next-session option.
+- This decision does not authorize staging, commit, push, S3, S4, UI, persistence, monitoring, RADAR, live web, child-repository read, child mutation, COPY lifecycle change, capture, auto-delivery, automatic decision selection, or a Wings4-complete claim.
+
+HISTORICAL_NON_OPERATIVE_NOTE: The statements `DESIGN_STATUS=PROPOSED`, “five material design choices remain for human review”, and next action `HUMAN_REVIEW_OPEN_DECISION_RUNTIME_CONSUMPTION_DESIGN` were true at DEC-W4-085 recording. Pablo later selected Option A and approved D1–D5 under DEC-W4-086. This decision itself remains the design-and-planning record. S2.4 implementation remains unauthorized. No operative catalog was created.
+
+Design: `PORTFOLIO.ARCHITECTURE/WINGS4.OPEN_DECISION.RUNTIME.CONSUMPTION.DESIGN.md`
+Planning: `PORTFOLIO.ARCHITECTURE/WINGS4.OPEN_DECISION.RUNTIME.CONSUMPTION.DESIGN.md`
+Contract: `PORTFOLIO.ARCHITECTURE/WINGS4.OPEN_DECISION.CONTRACT.md`
+Spec: `PORTFOLIO.ARCHITECTURE/WINGS4.PUSH_FIRST_BRIEFING.RUNTIME.S2.SPEC.md`
+Implementation: `PRODUCT/PUSH_FIRST_BRIEFING_RUNTIME/briefing.runtime.js`
+Tests: `PRODUCT/PUSH_FIRST_BRIEFING_RUNTIME/briefing.runtime.logical.test.js`
+
+## DEC-W4-086 — OPEN_DECISION_* runtime consumption design approved (D1–D5)
+
+Status: APPROVED_DESIGN_D1_TO_D5
+Date: 2026-08-20
+Scope: OPEN_DECISION_RUNTIME_CONSUMPTION DESIGN APPROVAL ONLY
+Authority: Pablo; HUMAN_SELECTION=OPTION_A_APPROVE_D1_TO_D5; authorization `20260820.164500_W4_EXECUTOR_FINALIZE_OPEN_DECISION_CONSUMPTION_DESIGN`
+DECISION_SUBJECT=OPEN_DECISION_RUNTIME_CONSUMPTION_DESIGN_APPROVED
+HUMAN_SELECTION=OPTION_A_APPROVE_D1_TO_D5
+DESIGN_STATUS=APPROVED
+DESIGN_APPROVAL=HUMAN_APPROVED_D1_TO_D5
+D1_CATALOG_LOCATION=00_STATE/WINGS4.OPEN_DECISION.CATALOG.md
+D2_SLICE_IDENTIFIER=S2.4
+D3_ABSENT_CATALOG_RESULT=OPEN_DECISIONS_UNKNOWN
+D4_EMPTY_STATE=OPEN_DECISIONS_EMPTY_WITH_CATALOG_VALIDATION_PASS
+D5_OPEN_DECISION_ID_PATTERN=OD-W4-NNNN
+IMPLEMENTATION_AUTHORIZED=NO
+S2_4_AUTHORIZED=NO
+S2_4_IMPLEMENTED=NO
+OPEN_DECISION_RUNTIME_CONSUMPTION_DESIGNED=YES
+OPEN_DECISION_RUNTIME_CONSUMPTION_PLANNED=YES
+OPEN_DECISION_RUNTIME_CONSUMPTION_AUTHORIZED=NO
+OPEN_DECISION_RUNTIME_CONSUMPTION_IMPLEMENTED=NO
+OPERATIVE_OPEN_DECISION_CATALOG_CREATED=NO
+OPEN_DECISIONS=UNKNOWN
+S2_HUMAN_ACCEPTANCE=ACCEPTED
+S2_3_HUMAN_ACCEPTANCE=ACCEPTED
+S3_AUTHORIZED=NO
+S3_IMPLEMENTED=NO
+S4_AUTHORIZED=NO
+S4_IMPLEMENTED=NO
+WINGS4_COMPLETE=NO
+PRODUCTION_COMPLETE=NO
+NO_COMMIT_AUTHORIZED=YES
+
+Decision:
+
+- Pablo selected Option A and approved all five ORCHESTRATOR recommendations for the OPEN_DECISION_* runtime-consumption design.
+- D1: authoritative future catalog path is `00_STATE/WINGS4.OPEN_DECISION.CATALOG.md`. The file does not exist and is not created by this decision.
+- D2: future slice identifier is `S2.4`. S2.4 is a bounded extension of accepted S2. It is not S3 or S4. No parallel `ODC-1` lineage.
+- D3: catalog absence produces `OPEN_DECISIONS=UNKNOWN` and `CATALOG_VALIDATION=NOT_AVAILABLE`. Absence is never EMPTY, zero, none, or no pending decisions.
+- D4: `OPEN_DECISIONS` has exactly three values: `UNKNOWN|EMPTY|POPULATED`. `EMPTY` requires `CATALOG_VALIDATION=PASS` and zero `OPEN` or `BLOCKED` records. `VALIDATED_EMPTY` is not a fourth `OPEN_DECISIONS` state.
+- D5: `OPEN_DECISION_ID` pattern is `OD-W4-NNNN` (example `OD-W4-0001`). IDs are project-scoped, immutable, sequential, zero-padded to four digits, unique, never reused, and distinct from `DEC-W4-*`.
+- The consumption design in `PORTFOLIO.ARCHITECTURE/WINGS4.OPEN_DECISION.RUNTIME.CONSUMPTION.DESIGN.md` is now APPROVED.
+- S2.4 implementation remains unauthorized. A separate explicit human decision is required before S2.4 implementation.
+- No operative catalog was created. Narrative decisions were not migrated into structured records.
+- `OPEN_DECISIONS` remains UNKNOWN.
+- S2/S2.3 remain accepted and closed for bounded `ON_DEMAND_TEXT_ONLY / SESSION_OUTPUT_ONLY`.
+- S3 and S4 remain unauthorized and unimplemented.
+- Continuity next product action after this record is `HUMAN_DECIDE_WHETHER_TO_AUTHORIZE_S2_4_IMPLEMENTATION`. That is a decision request, not implementation authorization. No next-session option is selected.
+- This decision does not authorize staging, commit, push, S2.4 implementation, S3, S4, UI, persistence, monitoring, RADAR, live web, child-repository read, child mutation, COPY lifecycle change, capture, auto-delivery, automatic decision selection, or a Wings4-complete claim.
+
+Design: `PORTFOLIO.ARCHITECTURE/WINGS4.OPEN_DECISION.RUNTIME.CONSUMPTION.DESIGN.md`
+Planning: `PORTFOLIO.ARCHITECTURE/WINGS4.OPEN_DECISION.RUNTIME.CONSUMPTION.DESIGN.md`
 Contract: `PORTFOLIO.ARCHITECTURE/WINGS4.OPEN_DECISION.CONTRACT.md`
 Spec: `PORTFOLIO.ARCHITECTURE/WINGS4.PUSH_FIRST_BRIEFING.RUNTIME.S2.SPEC.md`
 Implementation: `PRODUCT/PUSH_FIRST_BRIEFING_RUNTIME/briefing.runtime.js`

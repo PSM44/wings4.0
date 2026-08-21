@@ -7,6 +7,8 @@ Planning record: `PORTFOLIO.ARCHITECTURE/WINGS4.P4.PUSH_FIRST_BRIEFING.RUNTIME.P
 Implementation: `PRODUCT/PUSH_FIRST_BRIEFING_RUNTIME/briefing.runtime.js`
 Tests: `PRODUCT/PUSH_FIRST_BRIEFING_RUNTIME/briefing.runtime.logical.test.js`
 Open-decision contract: `PORTFOLIO.ARCHITECTURE/WINGS4.OPEN_DECISION.CONTRACT.md` (DEC-W4-083; design canonized; runtime catalog consumption not implemented)
+Open-decision consumption design: `PORTFOLIO.ARCHITECTURE/WINGS4.OPEN_DECISION.RUNTIME.CONSUMPTION.DESIGN.md` (DEC-W4-085 planning; DEC-W4-086 DESIGN_STATUS=APPROVED D1–D5; S2.4 not authorized; runtime catalog consumption not implemented)
+Approved future catalog path: `00_STATE/WINGS4.OPEN_DECISION.CATALOG.md` (not created; absence remains UNKNOWN)
 
 This file records the implemented S2 contract only. It does not rewrite or supersede the design or planning packet.
 
@@ -350,7 +352,7 @@ Distinguish set states:
 - `VALIDATED_EMPTY` only when a valid instance KEY=VALUE catalog exists and contains zero currently active items.
 - `POPULATED` when a valid instance catalog exists and contains one or more currently active items.
 
-Do not infer a catalog from narrative prose. Aligning runtime classification to the DEC-W4-083 lifecycle (`PROPOSED`/`OPEN`/`BLOCKED`/`RESOLVED`/`SUPERSEDED`/`CANCELLED`) requires a later authorized consumption slice.
+Do not infer a catalog from narrative prose. Aligning runtime classification to the DEC-W4-083 lifecycle (`PROPOSED`/`OPEN`/`BLOCKED`/`RESOLVED`/`SUPERSEDED`/`CANCELLED`) requires a later authorized S2.4 consumption slice (DEC-W4-086 design approved; implementation unauthorized). Future S2.4 `OPEN_DECISIONS` values are exactly `UNKNOWN|EMPTY|POPULATED` with separate `CATALOG_VALIDATION`. Current accepted S2.3 may still emit `VALIDATED_EMPTY` on the START_HERE/BATON instance-key path; that is not a fourth future `OPEN_DECISIONS` state and is not catalog consumption.
 
 ### 11.7 Next-action conflict handling
 

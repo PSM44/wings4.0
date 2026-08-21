@@ -153,7 +153,7 @@ Only changes evidenced in allowed sources (new decisions, BATON next-action chan
 
 ### 4. OPEN_DECISIONS
 
-Operative `OPEN_DECISION_*` governance contract: `PORTFOLIO.ARCHITECTURE/WINGS4.OPEN_DECISION.CONTRACT.md` (DEC-W4-083). This design section is not an instance catalog and does not authorize runtime catalog consumption.
+Operative `OPEN_DECISION_*` governance contract: `PORTFOLIO.ARCHITECTURE/WINGS4.OPEN_DECISION.CONTRACT.md` (DEC-W4-083). Approved consumption design/planning: `PORTFOLIO.ARCHITECTURE/WINGS4.OPEN_DECISION.RUNTIME.CONSUMPTION.DESIGN.md` (DEC-W4-085 planning; DEC-W4-086 D1–D5 approved; S2.4 not authorized). Approved future catalog path: `00_STATE/WINGS4.OPEN_DECISION.CATALOG.md` (not created). This design section is not an instance catalog and does not authorize runtime catalog consumption.
 
 Decisions still pending, deferred, or separately authorized later. Include deferred items that this slice must not absorb:
 
