@@ -25,7 +25,7 @@ HUMAN remains the transitional human-first entry point. BATON remains outside HU
 | Constitution | `PORTFOLIO.PRINCIPLES.md` | Stable, non-negotiable portfolio principles and governance doctrine | STABLE | Principles remain authoritative in their governed source; pedagogical explanation must identify that source |
 | Current Status | Transitional status explanations distributed across HUMAN and governed state artifacts | Comprehensive, human-readable explanation of the present state, including context, known limitations and links to supporting evidence | PHASE_02 | May summarize and explain BATON or other evidence, but must not replace BATON as operational continuity or create conflicting state claims |
 | Architecture Documentation | `PORTFOLIO.RELATIONSHIP_MAP.yaml` and `PORTFOLIO.CAPABILITY_MAP.yaml` | Human-readable architecture overview, ownership explanations and pointers to governed technical representations | PHASE_04 | Preserve authoritative technical maps; explanatory restatement is allowed with explicit attribution |
-| Roadmap | `MIGRATION.BACKLOG.md` | Human-readable future direction, priorities and migration sequencing | PHASE_03 | Distinguish future direction from operational continuity; do not present BATON as roadmap |
+| Roadmap | `PORTFOLIO.ROADMAP.md` | Human-readable product direction, sequencing, status, dependencies and next governed decisions | ACCEPTED_DEC_W4_089 | Canonical for sequencing/status only; do not treat as decision authority. `MIGRATION.BACKLOG.md` remains the detailed work register, not the executive product roadmap. Do not present BATON as roadmap. |
 | User Guide, Tutorials and How-to Guides | Distributed project-specific and repository-local documentation; no governed portfolio-wide index yet | Comprehensive instructional documentation, tutorials, procedures, examples and troubleshooting material | PHASE_05 | Pedagogical repetition is allowed; project-local authoritative instructions must be linked and not silently overridden |
 | Q&A or FAQ | `HUMAN/Q_AND_A.md` | Human-facing questions, answers, clarifications and provenance | PHASE_05 | May repeat explanatory context; decisions and principles must retain their authoritative sources |
 | Decision Log | `PORTFOLIO.DECISION_LOG.md` | Canonical record of material portfolio decisions, provenance and supporting evidence | STABLE | The Decision Log remains authoritative for recorded portfolio decisions |
@@ -67,15 +67,15 @@ HUMAN remains the transitional human-first entry point. BATON remains outside HU
 
 **Objective:** Separate future direction and priorities from immediate operational continuity.
 
-**Minimum action:** Establish a human-readable Roadmap responsibility linked to `MIGRATION.BACKLOG.md`, while BATON remains outside HUMAN.
+**Minimum action:** Establish a human-readable Roadmap responsibility linked to `PORTFOLIO.ROADMAP.md` (DEC-W4-088). `MIGRATION.BACKLOG.md` remains the detailed work register. BATON remains outside HUMAN and is not the roadmap.
 
-**Acceptance evidence:** Roadmap and BATON responsibilities are separately defined and human-approved.
+**Acceptance evidence:** Roadmap and BATON responsibilities are separately defined. DEC-W4-089 records human acceptance. The canonical roadmap is durable in the repository.
 
 **Rollback rule:** Remove roadmap references without modifying BATON.
 
-**Human approval:** Required.
+**Human approval:** Required; recorded as DEC-W4-088 (establishment) and DEC-W4-089 (acceptance). Durable commit completed.
 
-**Status:** `PLANNED`
+**Status:** `ACCEPTED_DEC_W4_089_DURABLE`
 
 ### Phase 04 — Architecture-documentation responsibilities
 
