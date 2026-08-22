@@ -1,466 +1,158 @@
+TASK_ID=20260822.125422_W4_ORCHESTRATOR_PREPARE_BLANK_AI_CONTINUATION_WITH_BATON_AND_PACKAGE_001
+TARGET_ROLE=ORCHESTRATOR
 PACKAGE_TYPE=WINGS4_ORCHESTRATOR_SESSION_CONTINUE
 PACKAGE_FORMAT=SINGLE_FILE_MINIMAL
 PACKAGE_STATUS=READY
 ENTRYPOINT=THIS_FILE
-SESSION_CONTINUE_IS_OUTPUT=YES
-SESSION_CONTINUE_IS_CANON=NO
+PURPOSE=BLANK_AI_ORCHESTRATOR_CONTINUATION_WITH_BATON
 ROLE_ACTIVE=ORCHESTRATOR
 HUMAN_AUTHORITY=Pablo
-PLANNING_PACKET_TASK=20260817.233000_W4_RECORD_BRIEFING_RUNTIME_PLANNING_PACKET_ONLY_033
-PLANNING_PACKET_COMMITTED_PUSHED=YES
-PURPOSE=SAME_AI_PROJECT_WORKSPACE_CONTINUATION
-BATON_IS_NOT_THIS_PACKAGE=YES
-EXPECTED_CONTEXT_INSTANCES_NEXT_SESSION=1
-
+PROJECT_ID=Wings4.0
+ROOT=C:\01. GitHub\Wings4.0
+EXPECTED_BRANCH=main
+EXPECTED_HEAD=70ab904683ac278bff6642d251ff64aafd122eb6
+EXPECTED_ORIGIN_MAIN=70ab904683ac278bff6642d251ff64aafd122eb6
+EXPECTED_AHEAD=0
+EXPECTED_BEHIND=0
+EXPECTED_TRACKED_WORKTREE_CLEAN=YES
+EXPECTED_INDEX_CLEAN=YES
+EXPECTED_STAGED_PATH_COUNT=0
+UNTRACKED_PROHIBITED_TREE_PRESENT=YES
+UNTRACKED_PROHIBITED_TREE_PATH=AI.SYS.N.ACTORS/
+UNTRACKED_PROHIBITED_TREE_POLICY=DO_NOT_ADOPT_DO_NOT_STAGE_DO_NOT_MUTATE
+AI_HISTORY_POLICY=DO_NOT_INSPECT
+HUMAN_MUTATION_AUTHORIZED=NO
+S2_4_IMPLEMENTATION_AUTHORIZED=NO
+TEST_EXECUTION_AUTHORIZED=NO
+PUSH_AUTHORIZED=NO
 PACKAGE_SUFFICIENCY_FOR_SESSION_START=PASS
 ADDITIONAL_PROMPT_REQUIRED_FOR_SESSION_START=NO
-EXTERNAL_FILE_LOOKUP_REQUIRED_FOR_SESSION_START=NO
-ADDITIONAL_EVIDENCE_COLLECTION_DURING_SESSION=ALLOWED_WHEN_NEEDED
 MISSING_EVIDENCE_POLICY=REQUEST_OR_MARK_UNKNOWN
-DO_NOT_CLAIM_EXTERNAL_EVIDENCE_WILL_NEVER_BE_REQUIRED=YES
-PROJECT_CONTEXT_ISOLATION=MANDATORY
-AI_HISTORY_POLICY=DO_NOT_INSPECT_AI_HISTORY
-NO_CROSS_PROJECT_CONTAMINATION=YES
-NO_SKILLSMACHINE_SCOPE=YES
-NO_CHILD_REPOSITORY_OR_AI_HISTORY_EVIDENCE=YES
-NO_LIVE_WEB_EVIDENCE=YES
 
-TARGET_MAX_ACTIVATION_ITERATIONS=3
-ITERATION_1=ACTIVATE_AND_RUNTIME_GATE
-ITERATION_2=CONSUME_OPTIONAL_CONSOLIDATED_EVIDENCE_IF_NEEDED
-ITERATION_3=HUMAN_REVIEW_HARDENED_S2_4_AND_CANONICAL_ROADMAP
-ITERATION_4=PACKAGE_1_GOVERNANCE_RECONCILIATION_COMPLETED
-ITERATION_5=LANGGRAPH_OUTPUT_ISOLATION_BLOCKED_HISTORICAL_DEC_W4_096
-ITERATION_6=LANGGRAPH_OS_TEMP_ISOLATION_ACCEPTED_DEC_W4_097
-ITERATION_7=HUMAN_DECIDE_NEXT_AUTHORIZED_SCOPE_OR_CONFIRM_DEFERRAL
+## 01 Activation contract
 
-PRIMARY_INTERACTION_LANGUAGE=ENGLISH
-CAMBRIDGE_C1_COACHING=ACTIVE
-CAMBRIDGE_C1_CONTINUITY=YES
-CAMBRIDGE_C1_SCOPE=PABLO_SPECIFIC_COLLABORATION_PREFERENCE_ONLY
-CAMBRIDGE_C1_IS_WINGS4_PRODUCT_DOCTRINE=NO
-CAMBRIDGE_C1_IS_TRANSVERSAL_WORKFLOW=NO
-CAMBRIDGE_C1_GENERIC_WINGS4_PRODUCT_DOCTRINE=NO
-C1_PROFILE_USER_SPECIFIC=YES
-C1_PROFILE_GENERIC_PRODUCT_RULE=NO
-ENGLISH_CORRECTION_MODE=CONTINUOUS_NON_BLOCKING
-PERIODIC_LANGUAGE_WEAKNESS_REVIEW=YES
-SPANISH_ONLY_ON_HUMAN_REQUEST=YES
-LANGUAGE_CANON=HUMAN/HUMAN.WINGS4.md
+1. Assume TARGET_ROLE=ORCHESTRATOR and scope Wings4.0 only.
+2. Read the repository canon copy of this package at `SESSIONS/ORCHESTRATOR/03.SESSION_CONTINUE/00.START_HERE.ORCHESTRATOR.txt` and compare SHA-256 or byte-for-byte text with the uploaded package. If mismatch, STOP_FAIL_CLOSED.
+3. Read `00_STATE/BATON.WINGS4.ACTIVE.md` and confirm the BATON snapshot section in this file still matches the repository BATON on identity, authority, next action, and prohibitions. If mismatch, STOP_FAIL_CLOSED.
+4. Resolve runtime Git state from the repository. Required at activation: root `C:\01. GitHub\Wings4.0`, branch `main`, HEAD `70ab904683ac278bff6642d251ff64aafd122eb6`, origin/main `70ab904683ac278bff6642d251ff64aafd122eb6`, ahead/behind `0/0`, tracked worktree clean, index clean, staged path count `0`.
+5. If tracked worktree or index is dirty, or if any staged path exists, STOP_FAIL_CLOSED unless Pablo issues new explicit authorization.
+6. Preserve `AI.SYS.N.ACTORS/**` as untracked and nonadopted if still present. Do not move, adopt, stage, mutate, or use it as session evidence.
+7. If activation would require HUMAN mutation, AI.History inspection, actor-tree mutation, checkpoint cleanup, S2.4 implementation, test execution, or push, STOP_FAIL_CLOSED and ask Pablo.
 
-DESTINATARIO=ORCHESTRATOR
-PROJECT_ID=Wings4.0
-ROLE_NEXT=ORCHESTRATOR
-ROLE_TO_ASSUME=ORCHESTRATOR
-ROOT=C:\01. GitHub\Wings4.0
-PROJECT_ROOT=C:\01. GitHub\Wings4.0
-EXPECTED_BRANCH=main
-RING0_BASELINE_COMMIT=1e8315d3836c941ba8cc6ef4a1b7c6981bb0c33c
-RING1_COMMIT=16b28d19c6342271b4e5e417a84649a69a14443e
-RING1_RING2_BASELINE_COMMIT=03a589dd3f6b8e7c4d3314c340d550327cb203f3
-PRODUCT_NORTH_STAR_COMMIT=d23d29294e39287c75140b767bee300a42958a73
-TEMP_HYGIENE_COMMIT=e199d8b8296c290d018b4b2b282c9618ceb121f4
-MD1_UX_COMMIT=6bb3bfcede2fbe0417191bdcf76115fcf1eab483
-CONTINUITY_CANON_COMMIT=9e301acfd3d2c633777650d3518d58ed19690826
-POST_MD1_CONTINUITY_COMMIT=edc3b86f752f7c464c15c8873843ddad79b127e9
-PLANNING_PACKET_COMMIT=f8d8d2f3a973409e6028ca9fb3fe55bc95cf1f14
-S2_IMPLEMENTATION_COMMIT=eb5758448932a3376788f15128177087866cb41f
-S2_1_CORRECTION_COMMIT=6db8963ecfa9d1ad2c8c9c511fbbd34b9df09641
-S2_S2_1_CANON_SYNC_COMMIT=b0380d756d1ffa676e8649e5f7df79e540886be4
-S2_2_SEMANTIC_WORDING_COMMIT=87ddb8ac8da7f59889fac54c203ed09a8517dc47
-S2_3_STATE_DERIVATION_COMMIT=f1efb2a78a2429c5ab10328a77a9f66bd88cd831
-HEAD_AT_GENERATION=f1efb2a78a2429c5ab10328a77a9f66bd88cd831
-CURRENT_HEAD_AT_RESUME=RESOLVE_FROM_GIT
-HEAD_AT_GENERATION_SEMANTICS=HISTORICAL_EVIDENCE_ONLY
-CURRENT_HEAD_SEMANTICS=RUNTIME_GIT_IS_SOURCE_OF_TRUTH
-REMOTE_COUNT_AT_GENERATION=1
-PLANNING_PACKET_COMMITTED=YES
-PLANNING_PACKET_PUSHED=YES
-MANAGEMENT_READY=YES
-MANAGEMENT_READY_SCOPE=BOUNDED_MD1
-MANAGEMENT_DELIVERY_1=ACCEPTED_BY_GERENCIA
-MANAGEMENT_DELIVERY_1_STATUS=CLOSED
+## 02 Repository state at handoff
 
-INSTRUCTION_TO_NEW_SESSION=Read this file as the complete current continuation package and start without requesting another prompt or additional files for session start. Later in the session, request bounded additional evidence when needed; never guess missing evidence. Optional consolidated evidence may exist at C:\Users\aazcl\Downloads\T.Wings4.0\WINGS4_NEXT_ORCHESTRATOR_CONSOLIDATED.txt; it is not required for session start. Conduct substantive conversation in English with continuous non-blocking Cambridge C1 coaching as Pablo's personal collaboration preference only, not as Wings4 product doctrine and not as a transversal workflow. Do not inspect AI.History/.
-FIRST_RUNTIME_GATE=Run the durable PowerShell runtime gate below from any directory before opening new work. Do not treat HEAD_AT_GENERATION as permanently current. Never call .ToUpper() on a Boolean; use ($expr).ToString().ToUpperInvariant().
+- Project identity: Wings4.0 only.
+- Active role: ORCHESTRATOR.
+- Local repository and origin/main were aligned at `70ab904683ac278bff6642d251ff64aafd122eb6` when this package was generated.
+- Tracked worktree clean = YES at baseline.
+- Index clean = YES at baseline.
+- Staged path count = 0 at baseline.
+- Pre-existing untracked prohibited path family exists: `AI.SYS.N.ACTORS/**`.
+- `AI.SYS.N.ACTORS/**` remains unadopted and untouched.
+- Checkpoints are retained; cleanup/restoration remains unauthorized.
+- LangGraph product adoption remains unauthorized.
+- Push is not needed and not authorized.
 
-## 00 Additional evidence protocol
+## 03 Governance state to preserve
 
-1. Use available current context first. This file already contains Iteration 1 activation state.
-2. If evidence is insufficient, identify what is missing; ask the human; do not infer or fabricate.
-3. If one small file is enough, request that file directly.
-4. If multiple/large/distributed files are needed, provide a PowerShell consolidation script that runs from any directory, uses absolute paths, collects only required evidence, excludes AI.History/, avoids unnecessary content, consolidates to minimum reliable output, and prints heartbeat when long.
-5. Upload-ready output only to C:\Users\aazcl\Downloads\T.Wings4.0: purge before write; flat only; no subfolders; minimum files/size; no node_modules, package-manager files, scripts, logs, or intermediate artifacts left behind.
-6. Missing evidence remains UNKNOWN until obtained. Evidence collection does not authorize child-project mutation, child-repository read, S3/S4 implementation, live web, RADAR, MARKET_MONITORING, capture form, broad dumps, unrestricted collection, or AI.History inspection. Running the already-authorized S2 CLI does not authorize fetching child-project evidence to improve the briefing.
-7. Session start does not require extra files. That does not mean external evidence will never be required later.
-8. Optional Iteration 2 file: C:\Users\aazcl\Downloads\T.Wings4.0\WINGS4_NEXT_ORCHESTRATOR_CONSOLIDATED.txt. Consume only if useful; do not block session start if absent.
+- Decision range `DEC-W4-092` through `DEC-W4-098` exists and must be preserved as current continuity canon.
+- `DEC-W4-092` finalizes the HUMAN -> ORCHESTRATOR -> HUMAN_DECISION_OR_AUTHORIZATION -> COORDINATOR -> POLICY_GATE -> EXECUTOR path and preserves the independent verifier as evidence/envelope validation only.
+- `DEC-W4-093` preserves parallel HUMAN conflict analysis as read-only evidence work only; it does not authorize HUMAN mutation or reinterpretation of local canon.
+- `DEC-W4-094` and `DEC-W4-095` record provisional untracked CLINE / actor-tree status only: future proposed target at most, no move, no adoption, no stage, no mutation, no product use.
+- `DEC-W4-096` is historical block evidence for LangGraph runner-path allowlist mismatch; it is not current authorization to mutate those paths.
+- `DEC-W4-097` remains immutable historical evidence and must not be rewritten.
+- `DEC-W4-098` is the latest forward correction: it corrects retained evidence/hash associations without rewriting `DEC-W4-097`, without rerunning tests, and without changing HUMAN, checkpoints, external evidence, or actor-tree files.
+- `DEC-W4-098` also preserves: no actor adoption, no push, no S2.4 implementation, no S3/S4, no HUMAN mutation, and no checkpoint mutation.
 
-## 01 What Wings4 is
+## 04 Current S2.4 state to preserve exactly
 
-Wings4.0 is Pablo's portfolio architecture and governance product and the repository used to develop and operate it. One unified user-facing Wings product. ORCHESTRATOR/EXECUTOR are internal roles, not separate user-facing products. This SESSION_CONTINUE package continues work in the same AI project/workspace; it is not BATON blank-context bootstrap.
-
-## 02 Activation / durable runtime gate
-
-ITERATION_1=ACTIVATE_AND_RUNTIME_GATE. This section is sufficient for Iteration 1.
-
-1. Assume ROLE=ORCHESTRATOR at C:\01. GitHub\Wings4.0.
-2. Validate BRANCH=main via the script below.
-3. Resolve CURRENT HEAD from Git. HEAD_AT_GENERATION `f1efb2a78a2429c5ab10328a77a9f66bd88cd831` (S2.3 correction commit) is historical package evidence only, not permanently current state. After later canon/continuity commits, that hash is a valid historical ancestor and must not be labeled stale merely because a later commit exists. Runtime Git is the source of truth for the current HEAD. Confirm origin alignment and clean-tree state before opening new work. The planning packet is committed and pushed. S2/S2.1/S2.2/S2.3 are implemented or corrected as recorded. S2.3 technical status is PASS. Bounded S2/S2.3 human acceptance is ACCEPTED (DEC-W4-084, H1) at basis commit `20313dd1fc48e0ed2fde4379a213ee53da42481c`. OPEN_DECISION_* runtime consumption design is approved and hardened (DEC-W4-086, DEC-W4-087). Canonical roadmap is `PORTFOLIO.ROADMAP.md` (DEC-W4-088). DESIGN_STATUS=APPROVED. S2_4_DESIGN_HARDENING_STATUS=PASS. S2.4 implementation remains unauthorized.
-4. Expect index clean. Do not expect dirty MD1 UX product files. PRODUCT_UX_RESIDUAL=0. Do not reopen PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/ unless a real integrity failure proves commit `6bb3bfc` invalid.
-5. Do not expect the planning-packet write set to remain uncommitted. Do not expect S2, S2.1, S2.2, or S2.3 to remain unimplemented. Do not expect bounded S2/S2.3 human acceptance to remain pending. Do not expect OPEN_DECISION_* consumption design/planning to remain unrecorded. Do not expect D1–D5 to remain unresolved. MD1 is accepted by gerencia and closed. This SESSION_CONTINUE file is the continuation entrypoint after DEC-W4-086. Do not treat HEAD_AT_GENERATION as permanently current.
-6. Confirm ancestors include Ring0 `1e8315d`, Ring1 `16b28d1`, Ring1/Ring2 `03a589d`, North Star `d23d292`, temp hygiene `e199d8b`, MD1 UX `6bb3bfc`, continuity contracts `9e301acf`, post-MD1 continuity `edc3b86`, DEC-W4-077 Option B `0e47b32`, DEC-W4-078 design commit `8bf885b`, START_HERE refresh `8558f9f`, planning packet `f8d8d2f`, S2 implementation `eb5758448932a3376788f15128177087866cb41f`, S2.1 correction `6db8963ecfa9d1ad2c8c9c511fbbd34b9df09641`, S2/S2.1 canon sync `b0380d756d1ffa676e8649e5f7df79e540886be4`, S2.2 wording `87ddb8ac8da7f59889fac54c203ed09a8517dc47`, S2.3 derivation `f1efb2a78a2429c5ab10328a77a9f66bd88cd831`, OPEN_DECISION contract / S2.3 gap-correction `20313dd1fc48e0ed2fde4379a213ee53da42481c`, and bounded S2/S2.3 human acceptance `5eb61a92b3a116d62de51bb0949a8d2871e4c232`.
-7. Do not inspect AI.History/.
-8. Do not mutate SkillsMachine, Brainy, Wings3 or any child project. Do not read `C:\01. GitHub\Skills`.
-9. Keep PRIMARY_INTERACTION_LANGUAGE=ENGLISH with CAMBRIDGE_C1_COACHING as Pablo's personal collaboration preference only, not generic Wings4 product doctrine.
-
-### RUNTIME_GATE_POWERSHELL (copy/run verbatim; absolute paths; any cwd)
-
-```powershell
-$ErrorActionPreference = 'Stop'
-$Root = 'C:\01. GitHub\Wings4.0'
-Set-Location -LiteralPath $Root
-$Branch = (git branch --show-current).Trim()
-$Head = (git rev-parse HEAD).Trim()
-$WorktreeDiff = @(git diff --name-only --)
-$IndexDiff = @(git diff --cached --name-only --)
-$ExpectedAncestors = @(
-  '1e8315d3836c941ba8cc6ef4a1b7c6981bb0c33c',
-  '16b28d19c6342271b4e5e417a84649a69a14443e',
-  '03a589dd3f6b8e7c4d3314c340d550327cb203f3',
-  'd23d29294e39287c75140b767bee300a42958a73',
-  'e199d8b8296c290d018b4b2b282c9618ceb121f4',
-  '6bb3bfcede2fbe0417191bdcf76115fcf1eab483',
-  '9e301acfd3d2c633777650d3518d58ed19690826',
-  'edc3b86f752f7c464c15c8873843ddad79b127e9',
-  '0e47b32e10c45465ba1f1653c7a9f477d608bd9e',
-  '8bf885b3e1e5e20de0d76d83d64ac1b0d7b0dd3e',
-  '8558f9f4bc8bbbadd44ab28f7a46d028aee5bf9b',
-  'f8d8d2f3a973409e6028ca9fb3fe55bc95cf1f14',
-  'eb5758448932a3376788f15128177087866cb41f',
-  '6db8963ecfa9d1ad2c8c9c511fbbd34b9df09641',
-  'b0380d756d1ffa676e8649e5f7df79e540886be4',
-  '87ddb8ac8da7f59889fac54c203ed09a8517dc47',
-  'f1efb2a78a2429c5ab10328a77a9f66bd88cd831',
-  '20313dd1fc48e0ed2fde4379a213ee53da42481c',
-  '5eb61a92b3a116d62de51bb0949a8d2871e4c232'
-)
-$AncestorFail = New-Object System.Collections.Generic.List[string]
-foreach ($c in $ExpectedAncestors) {
-  git merge-base --is-ancestor $c HEAD 2>$null | Out-Null
-  if ($LASTEXITCODE -ne 0) { [void]$AncestorFail.Add($c) }
-}
-$WorktreeClean = ($WorktreeDiff.Count -eq 0).ToString().ToUpperInvariant()
-$IndexClean = ($IndexDiff.Count -eq 0).ToString().ToUpperInvariant()
-$BaselineIsAncestor = ($AncestorFail.Count -eq 0).ToString().ToUpperInvariant()
-$Lines = New-Object System.Collections.Generic.List[string]
-[void]$Lines.Add("ROOT=$Root")
-[void]$Lines.Add("BRANCH=$Branch")
-[void]$Lines.Add("HEAD=$Head")
-[void]$Lines.Add("WORKTREE_CLEAN=$WorktreeClean")
-[void]$Lines.Add("INDEX_CLEAN=$IndexClean")
-[void]$Lines.Add("BASELINE_IS_ANCESTOR=$BaselineIsAncestor")
-[void]$Lines.Add("WORKTREE_FILE_COUNT=$($WorktreeDiff.Count)")
-[void]$Lines.Add("INDEX_FILE_COUNT=$($IndexDiff.Count)")
-if ($AncestorFail.Count -gt 0) { [void]$Lines.Add("ANCESTOR_FAIL=$($AncestorFail -join ';')") }
-$Lines | ForEach-Object { $_ }
-```
-
-## 03 Product baseline
-
-- PATH=PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/
-- PRODUCT_NORTH_STAR canonized under DEC-W4-061.
-- RING0+RING1+RING2 baseline committed; Ring2 = RETURN_VERIFICATION only.
-- MD1 UX correction set committed in `6bb3bfc` (four product files only).
-- TEMP canonical = C:\Users\aazcl\Downloads\T.Wings4.0 (committed hygiene e199d8b).
-- Retired temp = C:\Users\aazcl\Downloads\GlobalTempWings4 (not active staging).
-- INDEPENDENT_RESYNCHRONIZATION_IMPLEMENTED=NO
-- MARKET_CHECK_RUNTIME_IMPLEMENTED=BOUNDED_ON_DEMAND_SLICE
-- MARKET_CHECK_RUNTIME_COMPLETE=YES_BOUNDED_RING0_RUNTIME_DEMO_ONLY
-- MARKET_CHECK_GENERALIZATION_BEYOND_RING0_DEMO=NO
-- MARKET_MONITORING_IMPLEMENTED=NO
-- RING3_IMPLEMENTED=NO
-- RADAR_IMPLEMENTED=NO
-- LIVE_WEB_MONITORING=NO
-- CAPTURE_FORM_IMPLEMENTED=NO
-- AUTO_DELIVERY_IMPLEMENTED=NO
-- CHILD_REPOSITORY_READ=NO
-- MULTI_PROJECT_COMBINED_ANALYSIS_IMPLEMENTED=NO
-- PUSH_FIRST_PORTFOLIO_BRIEFING_IMPLEMENTED=YES_S2_ON_DEMAND_TEXT_SESSION_OUTPUT_ONLY
-- PUSH_FIRST_DAILY_BRIEF_IMPLEMENTED=NO
-- BRIEFING_RUNTIME_IMPLEMENTED=YES_S2_ONLY
-- BRIEFING_RUNTIME_AUTHORIZED=YES_S2_ONLY
-- BRIEFING_RUNTIME_IMPLEMENTATION_LEVEL=ON_DEMAND_TEXT_SESSION_OUTPUT_ONLY
-- BRIEFING_TRIGGER=ON_DEMAND_REQUEST_ONLY
-- BRIEFING_OUTPUT=DETERMINISTIC_MARKDOWN_STDOUT_CURRENT_SESSION_ONLY
-- BRIEFING_PERSISTENCE=NO
-- S2_IMPLEMENTATION_COMMIT=eb5758448932a3376788f15128177087866cb41f
-- S2_1_CORRECTION_COMMIT=6db8963ecfa9d1ad2c8c9c511fbbd34b9df09641
-- S2_S2_1_CANON_SYNC_COMMIT=b0380d756d1ffa676e8649e5f7df79e540886be4
-- S2_2_SEMANTIC_WORDING_COMMIT=87ddb8ac8da7f59889fac54c203ed09a8517dc47
-- S2_3_STATE_DERIVATION_COMMIT=f1efb2a78a2429c5ab10328a77a9f66bd88cd831
-- S2_IMPLEMENTED=YES
-- S2_IMPLEMENTATION_LEVEL=ON_DEMAND_TEXT_SESSION_OUTPUT_ONLY
-- S2_1_ANCESTRY_CORRECTION=COMPLETE
-- S2_2_SEMANTIC_WORDING_CORRECTION=COMPLETE
-- S2_3_STATE_DERIVATION_CORRECTION=COMPLETE
-- S2_3_TECHNICAL_STATUS=PASS
-- S2_3_TESTS_PASS_COUNT=77
-- S2_3_BR_01_TO_BR_20=PASS
-- S2_HUMAN_ACCEPTANCE=ACCEPTED
-- S2_3_HUMAN_ACCEPTANCE=ACCEPTED
-- S2_HUMAN_ACCEPTANCE_SCOPE=BOUNDED_S2_ON_DEMAND_TEXT_SESSION_OUTPUT_ONLY
-- S2_HUMAN_ACCEPTANCE_DECISION=DEC_W4_084_H1
-- S2_HUMAN_ACCEPTANCE_BASIS_COMMIT=20313dd1fc48e0ed2fde4379a213ee53da42481c
-- OPEN_DECISION_CONTRACT=DESIGN_CANONIZED_NOT_CONSUMED
-- OPEN_DECISIONS_RUNTIME_CONSUMPTION_DESIGNED=YES
-- OPEN_DECISIONS_RUNTIME_CONSUMPTION_PLANNED=YES
-- OPEN_DECISIONS_RUNTIME_CONSUMPTION_AUTHORIZED=NO
-- OPEN_DECISIONS_RUNTIME_CONSUMPTION_IMPLEMENTED=NO
-- OPERATIVE_OPEN_DECISION_CATALOG_CREATED=NO
-- DESIGN_STATUS=APPROVED
-- S2_4_DESIGN_HARDENING_STATUS=PASS
-- S2_4_DESIGN_HARDENING_DECISION=DEC_W4_087
-- CANONICAL_ROADMAP_PATH=PORTFOLIO.ROADMAP.md
-- CANONICAL_ROADMAP_ESTABLISHED=YES
-- ROADMAP_ID=W4_PRODUCT_ROADMAP
-- ROADMAP_CURRENT_ITEM_ID=RM-W4-014
-- ROADMAP_NEXT_GATE=HUMAN_AUTHORIZE_RUNNER_PATHS_FOR_LANGGRAPH_OUTPUT_ISOLATION_OR_CONFIRM_DEFERRAL
-- DESIGN_APPROVAL=HUMAN_APPROVED_D1_TO_D5
-- DESIGN_APPROVAL_DECISION=DEC_W4_086
-- D1_CATALOG_LOCATION=00_STATE/WINGS4.OPEN_DECISION.CATALOG.md
-- D2_SLICE_IDENTIFIER=S2.4
-- D3_ABSENT_CATALOG_RESULT=OPEN_DECISIONS_UNKNOWN
-- D4_EMPTY_STATE=OPEN_DECISIONS_EMPTY_WITH_CATALOG_VALIDATION_PASS
-- D5_OPEN_DECISION_ID_PATTERN=OD-W4-NNNN
-- S2_4_AUTHORIZED=NO
-- S2_4_IMPLEMENTED=NO
-- OPEN_DECISIONS=UNKNOWN
-- OPEN_DECISIONS_RUNTIME_CONSUMPTION=NO
-- STALE_HEAD_SEMANTICS=ANCESTRY_BASED
-- VALID_HISTORICAL_ANCESTOR_IS_STALE=NO
-- CONFIRMED_NON_ANCESTOR_IS_STALE=YES
-- SEMANTIC_LAG_SEPARATE_FROM_HEAD_DIVERGENCE=YES
-- S3_AUTHORIZED=NO
-- S3_IMPLEMENTED=NO
-- S4_AUTHORIZED=NO
-- S4_IMPLEMENTED=NO
-- WINGS4_COMPLETE=NO
-- PRODUCTION_COMPLETE=NO
-- DEC_W4_077=OPTION_B_AUTHORIZE_BOUNDED_PUSH_FIRST_BRIEFING_DESIGN_ONLY
-- DEC_W4_078=DESIGN_RECORDED_NOT_RUNTIME
-- DEC_W4_079=PLANNING_RECORDED_NOT_RUNTIME
-- DEC_W4_080=S2_AUTHORIZED_AND_IMPLEMENTED
-- DEC_W4_081=S2_1_ANCESTRY_SEMANTICS_CORRECTED
-- DEC_W4_082=S2_3_STATE_DERIVATION_CORRECTION_RECORDED
-- DEC_W4_083=OPEN_DECISION_CONTRACT_CANONIZED_S2_3_GAPS_CORRECTED
-- DEC_W4_084=S2_S2_3_HUMAN_ACCEPTANCE_H1
-- DEC_W4_085=OPEN_DECISION_RUNTIME_CONSUMPTION_DESIGN_AND_PLANNING
-- DEC_W4_086=OPEN_DECISION_RUNTIME_CONSUMPTION_DESIGN_APPROVED
-- DESIGN_PUSH_FIRST_BRIEFING=PORTFOLIO.ARCHITECTURE/WINGS4.PUSH_FIRST_BRIEFING.DESIGN.md
-- PLANNING_PUSH_FIRST_BRIEFING_RUNTIME=PORTFOLIO.ARCHITECTURE/WINGS4.P4.PUSH_FIRST_BRIEFING.RUNTIME.PLANNING.md
-- SPEC_PUSH_FIRST_BRIEFING_RUNTIME_S2=PORTFOLIO.ARCHITECTURE/WINGS4.PUSH_FIRST_BRIEFING.RUNTIME.S2.SPEC.md
-- CONTRACT_OPEN_DECISION=PORTFOLIO.ARCHITECTURE/WINGS4.OPEN_DECISION.CONTRACT.md
-- DESIGN_OPEN_DECISION_RUNTIME_CONSUMPTION=PORTFOLIO.ARCHITECTURE/WINGS4.OPEN_DECISION.RUNTIME.CONSUMPTION.DESIGN.md
-- CANONICAL_ROADMAP=PORTFOLIO.ROADMAP.md
-- RUNTIME_PUSH_FIRST_BRIEFING_S2=PRODUCT/PUSH_FIRST_BRIEFING_RUNTIME/briefing.runtime.js
-- PLANNING_PACKET_COMMITTED=YES
-- PLANNING_PACKET_PUSHED=YES
-- PLANNING_PACKET_COMMIT=f8d8d2f3a973409e6028ca9fb3fe55bc95cf1f14
-
-## 04 Management Delivery #1 status
-
-MANAGEMENT_DELIVERY_1=ACCEPTED_BY_GERENCIA
-MANAGEMENT_DELIVERY_1_STATUS=CLOSED
-MANAGEMENT_READY=YES
-MANAGEMENT_READY_SCOPE=BOUNDED_MD1
-HUMAN_MD1_ACCEPTANCE=PASS_8_OF_8
-GERENCIA_READY_VERDICT=READY_FOR_GERENCIA_ACCEPTANCE_WITH_NON_BLOCKING_GAPS
-GERENCIA_ACCEPTANCE_BASIS=READY_FOR_GERENCIA_ACCEPTANCE_WITH_NON_BLOCKING_GAPS
-GERENCIA_DECISION_DATE=2026-08-13
-DEC_W4_062=MD1_ACCEPTED_BY_GERENCIA_BOUNDED
-BLOCKING_GAP_COUNT=0
-NET_MANAGEMENT_VALUE=PARTIAL
-UX_MD1_001_TO_008=PASS_8_OF_8
-EV_R2_001_TO_010=PASS_10_OF_10
-MD1_UX_CORRECTION_SET=CLOSED
-MD1_UX_COMMIT=6bb3bfcede2fbe0417191bdcf76115fcf1eab483
-CONTINUITY_CANON_COMMIT=9e301acfd3d2c633777650d3518d58ed19690826
-POST_MD1_CONTINUITY_COMMIT=edc3b86f752f7c464c15c8873843ddad79b127e9
-PRODUCT_UX_RESIDUAL=0
-CONTRACT_GAP_001=FIXED
-VR_PUSH_001=PASS_HUMAN_VALIDATED
-PUSH=NO
-
-MANAGEMENT_READY does not mean Wings4 is feature-complete or production-complete across future capabilities. Bounded Market Check runtime complete (DEC-W4-071) applies only to the Ring0 demo and is not Wings4 complete.
-
-Historical Ring2 human functional evidence (do not rewrite):
-- Package W4IP-20260812-0001
-- UNKNOWN_ID = PASS
-- SCOPE_CONFLICT = PASS
-- UNAUTHORIZED_PUSH function = PASS
-- VALID_RETURN = PASS
-
-Historical DEC-W4-062 accepted non-blocking MD1 limitation list (do not rewrite that decision):
-- GAP_01=STAGE_INDICATORS_LOOK_CLICKABLE_BUT_ARE_NOT_NAVIGATION
-- GAP_02=ABOUT_ORIENTATION_PARTLY_COLLAPSED_OR_HIDDEN
-- GAP_03=RESIDUAL_JARGON_AND_FACT_FALLBACK_IN_SOME_FINDINGS
-- GAP_04=MANUAL_INTERVENTION_PACKAGE_TRANSFER
-- GAP_05=FIXTURE_OR_WINGS_HELD_EVIDENCE_NOT_LIVE_CHILD_REPOSITORY_READ
-
-Current post-MD1 handling (additive; MD1 remains CLOSED):
-- GAP_01=ADDRESSED_POST_MD1_DEC_W4_073
-- GAP_02=ADDRESSED_POST_MD1_DEC_W4_073
-- GAP_03=FACT_FALLBACK_AND_CLASS_HELP_ADDRESSED_DEC_W4_074; WHOAMI_AND_CLASS_CODES_DEFERRED_DEC_W4_055
-- GAP_04=TRANSFER_HELP_ADDRESSED_DEC_W4_075; MANUAL_HANDOFF_REMAINS; COPY_LIFECYCLE_UNCHANGED
-- GAP_05=ACCEPTED_LIMITATION_FOR_RING0; OPTION_A_DEC_W4_076; LIVE_CHILD_READ_UNAUTHORIZED
-
-Do not reopen the accepted/closed MD1 delivery. Do not rewrite historical automated PASS evidence. Do not convert future-capability absence into an MD1 blocker. Fixture/Wings-held Ring0 evidence is not live child-repository intelligence.
-
-## 05 Continuity architecture
-
-BATON_IS_BLANK_CONTEXT_BOOTSTRAP=YES
-SESSION_CONTINUE_IS_SAME_WORKSPACE_CONTINUATION=YES
-STABLE_ORCHESTRATOR_CONTRACT=SESSIONS/ORCHESTRATOR/ORCHESTRATOR.CONTINUE.CONTRACT.txt
-STABLE_CONTRACT_IS_NOT_SESSION_START_PACKAGE=YES
-EXECUTOR_STABLE_CONTRACT=SESSIONS/EXECUTOR/03.SESSION_CONTINUE/EXECUTOR.CONTINUE.CONTRACT.txt
-HUMAN_IS_STABLE_SEMANTIC_CANON=YES
-HUMAN_MUST_NOT_HOLD_RUNTIME_GIT_STATE=YES
-MD1_DECISION_AUTHORITY=PORTFOLIO.DECISION_LOG.md DEC-W4-062
-MD1_DELIVERY_MODEL=PORTFOLIO.ARCHITECTURE/WINGS4.INCREMENTAL.DELIVERY.MODEL.md
-EXPECTED_CONTEXT_INSTANCES_NEXT_SESSION=1
-
-## 06 Exact next action
-
-NEXT_PRODUCT_ACTION=HUMAN_DECIDE_NEXT_AUTHORIZED_SCOPE_OR_CONFIRM_DEFERRAL
-NEXT_PRODUCT_MINIBATTLE=HUMAN_AUTHORIZE_RUNNER_PATHS_FOR_LANGGRAPH_OUTPUT_ISOLATION_OR_CONFIRM_DEFERRAL
-NEXT_CONTINUITY_ACTION=HUMAN_AUTHORIZE_RUNNER_PATHS_FOR_LANGGRAPH_OUTPUT_ISOLATION_OR_CONFIRM_DEFERRAL
-NEXT_SESSION_OPTION_SELECTED=NO
-LANGGRAPH_OUTPUT_ISOLATION_STATUS=IMPLEMENTATION_BLOCKED_AND_ISOLATION_FAILURE_RECORDED
-LANGGRAPH_RUNNER_CHANGE=NO
-TEST_STATUS=FAIL_OUTPUT_ISOLATION
-REPOSITORY_RUNTIME_OUTPUT_COUNT=2
-EXISTING_CHECKPOINT_HASH_CHANGES=2
-EXISTING_CHECKPOINT_FILES_DELETED=0
-CHECKPOINT_CLEANUP_OR_RESTORATION_AUTHORIZED=NO
-S2_3_TECHNICAL_STATUS=PASS
-S2_HUMAN_ACCEPTANCE=ACCEPTED
-S2_3_HUMAN_ACCEPTANCE=ACCEPTED
-OPEN_DECISION_CONTRACT=DESIGN_CANONIZED_NOT_CONSUMED
-OPEN_DECISIONS_RUNTIME_CONSUMPTION_DESIGNED=YES
-OPEN_DECISIONS_RUNTIME_CONSUMPTION_PLANNED=YES
-OPEN_DECISIONS_RUNTIME_CONSUMPTION_AUTHORIZED=NO
-OPEN_DECISIONS_RUNTIME_CONSUMPTION_IMPLEMENTED=NO
-OPERATIVE_OPEN_DECISION_CATALOG_CREATED=NO
-DESIGN_STATUS=APPROVED
-S2_4_DESIGN_HARDENING_STATUS=PASS
-CANONICAL_ROADMAP_PATH=PORTFOLIO.ROADMAP.md
-CANONICAL_ROADMAP_ESTABLISHED=YES
-ROADMAP_CURRENT_ITEM_ID=RM-W4-014
-ROADMAP_NEXT_GATE=HUMAN_AUTHORIZE_RUNNER_PATHS_FOR_LANGGRAPH_OUTPUT_ISOLATION_OR_CONFIRM_DEFERRAL
-DESIGN_APPROVAL=HUMAN_APPROVED_D1_TO_D5
-D1_CATALOG_LOCATION=00_STATE/WINGS4.OPEN_DECISION.CATALOG.md
-D2_SLICE_IDENTIFIER=S2.4
-D3_ABSENT_CATALOG_RESULT=OPEN_DECISIONS_UNKNOWN
-D4_EMPTY_STATE=OPEN_DECISIONS_EMPTY_WITH_CATALOG_VALIDATION_PASS
-D5_OPEN_DECISION_ID_PATTERN=OD-W4-NNNN
-S2_4_AUTHORIZED=NO
+S2_4_IMPLEMENTATION_AUTHORIZED=NO
 S2_4_IMPLEMENTED=NO
-OPEN_DECISIONS=UNKNOWN
-OPEN_DECISIONS_RUNTIME_CONSUMPTION=NO
-SCOPE=MD1 is accepted and closed. DEC-W4-077 Option B selected. DEC-W4-078 design recorded. DEC-W4-079 planning packet recorded and pushed at `f8d8d2f`. DEC-W4-080 authorizes and records S2 implementation at `eb5758448932a3376788f15128177087866cb41f`. DEC-W4-081 records the S2.1 ancestry-semantics correction at `6db8963ecfa9d1ad2c8c9c511fbbd34b9df09641`. S2/S2.1 canon sync is `b0380d756d1ffa676e8649e5f7df79e540886be4`. S2.2 semantic-wording correction is `87ddb8ac8da7f59889fac54c203ed09a8517dc47`. DEC-W4-082 records S2.3 current-state derivation correction at `f1efb2a78a2429c5ab10328a77a9f66bd88cd831`. DEC-W4-083 records the OPEN_DECISION_* governance contract in `PORTFOLIO.ARCHITECTURE/WINGS4.OPEN_DECISION.CONTRACT.md` and corrects S2.3 UNKNOWN/empty and human-option semantics; later committed and pushed at `20313dd1fc48e0ed2fde4379a213ee53da42481c`. DEC-W4-084 records Pablo’s H1: bounded S2/S2.3 human acceptance is ACCEPTED. Acceptance scope is ON_DEMAND_TEXT_SESSION_OUTPUT_ONLY. Pablo selected Post-S2 Option A. DEC-W4-085 records OPEN_DECISION_* runtime consumption design and planning in `PORTFOLIO.ARCHITECTURE/WINGS4.OPEN_DECISION.RUNTIME.CONSUMPTION.DESIGN.md`. Pablo selected Option A and approved D1–D5 (DEC-W4-086). DESIGN_STATUS=APPROVED. S2.4 implementation is not authorized. No operative catalog was created. Contract-driven runtime catalog consumption is not implemented. S2 is implemented at ON_DEMAND_TEXT_SESSION_OUTPUT_ONLY. S2.3 technical status is PASS. Human acceptance is ACCEPTED for bounded S2/S2.3 only. OPEN_DECISIONS current derived value is UNKNOWN because no explicit OPEN_DECISION_* instance catalog is consumed; do not mark it empty or known. Trigger is ON_DEMAND_REQUEST only. Output is deterministic Markdown to stdout/current session only. Persistence is absent. S3/S4 remain unauthorized and unimplemented. Do not claim Wings4 complete. Do not treat DEC-W4-078, DEC-W4-079, or DEC-W4-085 as runtime authorization. Running the already-authorized S2 CLI remains allowed. Running S2 does not authorize S3/S4 or catalog consumption. Any S3/S4 or consumption implementation requires a new explicit human decision. No child-project evidence may be fetched to improve the briefing. Missing evidence remains UNKNOWN.
+S2_4_OPTION_SELECTED=B
+S2_4_BLOCKERS_REMAINING_COUNT=2
+BLK-S24-001=CATALOG_PATH_AND_PROOF_BOUNDARY_AMBIGUITY_FOR_CATALOG_PRESENT_SCENARIOS;UNRESOLVED;BLOCKING_ACCEPTANCE_ONLY
+BLK-S24-002=MINIMUM_FIRST_SLICE_ACCEPTANCE_SCOPE_AMBIGUITY_ABSENT_ONLY_VS_EMPTY_AND_POPULATED;UNRESOLVED;BLOCKING_IMPLEMENTATION
+S2_4_PROPOSED_MINIMUM_ALLOWLIST=PRODUCT/PUSH_FIRST_BRIEFING_RUNTIME/briefing.runtime.js;PRODUCT/PUSH_FIRST_BRIEFING_RUNTIME/briefing.runtime.logical.test.js
+S2_4_FINAL_ALLOWLIST_SAFE=NO
+NEXT_ACTION_OWNER=Pablo
+NEXT_ACTION=PABLO_AUTHORIZE_NARROWER_READ_ONLY_S2_4_SCOPE_CLARIFICATION_OR_DEFER
 
-ITERATION_2=CONSUME_OPTIONAL_CONSOLIDATED_EVIDENCE_IF_NEEDED
-OPTIONAL_EVIDENCE=C:\Users\aazcl\Downloads\T.Wings4.0\WINGS4_NEXT_ORCHESTRATOR_CONSOLIDATED.txt
-ITERATION_2_REQUIRED_FOR_SESSION_START=NO
+Pending questions to preserve:
+- Q1 / BLK-S24-001: For catalog-present scenarios, what exact catalog path and proof boundary must acceptance use?
+- Q2 / BLK-S24-002: What is the minimum first-slice acceptance scope: absent-only, or absent + empty + populated?
 
-ITERATION_3=HUMAN_REVIEW_HARDENED_S2_4_AND_CANONICAL_ROADMAP
-Pablo selected Option B and required a canonical product roadmap (DEC-W4-087, DEC-W4-088). DEC-W4-089 accepts that roadmap and hardened S2.4 design. S2.4 implementation remains unauthorized. Canonical roadmap is `PORTFOLIO.ROADMAP.md`. Do not auto-select S2.4 implementation. NEXT_SESSION_OPTION_SELECTED=NO. H1 remains the accepted S2/S2.3 human-acceptance record. D1–D5 remain the approved design dispositions. Hardening rules in DEC-W4-087 remain operative for any later S2.4 implementation.
+## 05 HUMAN protection contract
 
-ITERATION_4=PACKAGE_1_GOVERNANCE_RECONCILIATION_COMPLETED
-DEC-W4-092/093 complete workflow final-acceptance and independent-verifier governance. No HUMAN/ mutation; the verifier validates evidence/envelope only and is not a permanent agent or new authority.
+- HUMAN is the governing spirit of the project.
+- Do not edit `HUMAN/**` unless Pablo provides dedicated textual authorization naming exact HUMAN path(s), purpose, bounded scope, preserved meaning, prohibitions, validation, and stage/commit/push boundary.
+- HUMAN conflicts may be identified read-only.
+- HUMAN conflicts must not be resolved by inference.
+- HUMAN meaning must not be normalized, rewritten, compressed, migrated, or silently corrected.
+- HUMAN mutation count must remain 0.
 
-ITERATION_5=LANGGRAPH_OUTPUT_ISOLATION_BLOCKED_BY_EXACT_ALLOWLIST
-DEC-W4-094/095 record provisional untracked CLINE pending classification: future proposed target only; no move, adoption, stage, or mutation; isolated tests and existing checkpoint retention are required. DEC-W4-096 blocks the required LangGraph runner changes because `src/run_lab09.js` and `src/run_lab10.js` are outside the exact allowlist; no runner change. Configured `npm test` was inadvertently invoked before output-isolation correction: TEST_STATUS=FAIL_OUTPUT_ISOLATION; REPOSITORY_RUNTIME_OUTPUT_COUNT=2; retained existing repository checkpoints `lab09-test.sqlite` and `lab10-test.sqlite` were written, evidenced by changed SHA-256; EXISTING_CHECKPOINT_HASH_CHANGES=2; `lab10-test.sqlite` size changed 36864→57344; EXISTING_CHECKPOINT_FILES_DELETED=0; checkpoint cleanup/restoration is unauthorized. No product adoption occurred.
+## 06 Pablo working profile to preserve
 
-ITERATION_6=HUMAN_AUTHORIZE_RUNNER_PATHS_FOR_LANGGRAPH_OUTPUT_ISOLATION_OR_CONFIRM_DEFERRAL
-S2.4, S3, and S4 remain unauthorized. No commit or push.
+- Use WBS-style outputs.
+- Use direct corporate wording.
+- Put recommendations first.
+- Call out risks, gaps, conflicts, omissions, and options explicitly.
+- Do not invent context or evidence.
+- Start operational prompts with a unique timestamp task ID on line 1.
+- State `TARGET_ROLE` explicitly.
+- Use loops/graphs and maximum safe non-interfering parallelism.
+- Keep continuation packages minimal, flat, upload-ready, and sufficient for session start.
+- Request missing evidence or mark UNKNOWN; never guess.
 
-The authorized S2 CLI remains available for review:
+## 07 BATON snapshot
 
-node "C:\01. GitHub\Wings4.0\PRODUCT\PUSH_FIRST_BRIEFING_RUNTIME\briefing.runtime.js" --trigger ON_DEMAND_REQUEST
+BATON_PURPOSE=BLANK_AI_CONTEXT_BOOTSTRAP
+BATON_SESSION_CONTINUE_ENTRYPOINT=SESSIONS/ORCHESTRATOR/03.SESSION_CONTINUE/00.START_HERE.ORCHESTRATOR.txt
+BATON_PROJECT_ROOT=C:\01. GitHub\Wings4.0
+BATON_TEMP_PATH=C:\Users\aazcl\Downloads\T.Wings4.0
+BATON_BRANCH=main
+BATON_EXPECTED_HEAD=70ab904683ac278bff6642d251ff64aafd122eb6
+BATON_EXPECTED_ORIGIN_MAIN=70ab904683ac278bff6642d251ff64aafd122eb6
+BATON_TRACKED_WORKTREE_CLEAN_EXPECTED=YES
+BATON_INDEX_CLEAN_EXPECTED=YES
+BATON_UNTRACKED_PROHIBITED_TREE_PRESENT=YES
+BATON_AI_HISTORY_POLICY=DO_NOT_INSPECT
+BATON_DECISION_RANGE_PRESERVED=DEC-W4-092_THROUGH_DEC-W4-098
+BATON_LATEST_FORWARD_CORRECTION=DEC-W4-098
+BATON_DEC_W4_097_HISTORICAL_IMMUTABLE=YES
+BATON_S2_4_IMPLEMENTATION_AUTHORIZED=NO
+BATON_S2_4_OPTION_SELECTED=B
+BATON_S2_4_BLOCKERS_REMAINING=2
+BATON_NEXT_ACTION_OWNER=Pablo
+BATON_NEXT_ACTION=PABLO_AUTHORIZE_NARROWER_READ_ONLY_S2_4_SCOPE_CLARIFICATION_OR_DEFER
+BATON_PUSH_POLICY=NO_PUSH_WITHOUT_EXPLICIT_HUMAN_AUTHORIZATION
 
-Do not automatically select or authorize a future development slice.
+## 08 Exact next decision path
 
-Deferred slices (not auto-selected; require separate authorization):
-- OPEN_DECISION_* catalog/runtime consumption implementation (design APPROVED as S2.4; implementation unauthorized)
-- Operative OPEN_DECISION_* catalog creation (not created)
-- S3 AFTER_RECORDED_HUMAN_DECISION (unauthorized; unimplemented)
-- S4 Ring0 visible panel / UX (unauthorized; unimplemented)
-- WHOAMI/finding_class terminology overlay (DEC-W4-055)
-- COPY-as-export versus clipboard-only lifecycle (DEC-W4-075)
-- second-entity diagnostic (DEC-W4-077 Option A, not selected)
-- independent resynchronization beyond Ring2
+1. Upload this single file to the new blank ORCHESTRATOR session.
+2. Activate the runtime gates in section 01 and fail closed on any mismatch.
+3. Preserve repository, governance, blocker, prohibition, and working-method state exactly as recorded here.
+4. Ask Pablo only for the next bounded decision: authorize a narrower read-only S2.4 scope clarification, or defer S2.4.
+5. Do not implement S2.4 unless Pablo gives a new explicit authorization after the clarification boundary is resolved.
 
-Historical design/planning context preserved: DEC-W4-078 design recorded; DEC-W4-079 planning recorded; recommended first implemented slice was ON_DEMAND_TEXT_ONLY / SESSION_OUTPUT_ONLY and is now implemented as S2 (DEC-W4-080). Equality-based stale-HEAD detection is historical and non-operative; current semantics are ancestry-based (DEC-W4-081). Frozen operational catalogs are historical and non-operative; current derivation is S2.3 (DEC-W4-082). OPEN_DECISION_* contract design is DEC-W4-083. Bounded S2/S2.3 human acceptance is DEC-W4-084 (H1). OPEN_DECISION_* runtime consumption design and planning is DEC-W4-085. D1–D5 design approval is DEC-W4-086. S2.4 design hardening is DEC-W4-087. Canonical product roadmap is DEC-W4-088. DEC-W4-092/093 complete governance reconciliation; DEC-W4-094/095 record provisional untracked CLINE, future proposed target only, no move/adoption/stage, isolated tests, and checkpoint retention; DEC-W4-096 blocks output isolation because runner paths are outside the exact write allowlist. No LangGraph implementation or test pass is claimed.
+## 09 Prohibitions to preserve
 
-DO_NOT_IMPLEMENT_IN_THIS_RESUME=S3; S4; Ring3; RADAR; MARKET_MONITORING; live web; capture form; auto-delivery; child read; child mutation; COPY lifecycle change; Market Check generalization beyond Ring0 demo; MD1 reopen; OPEN_DECISION_* catalog/runtime consumption. Running authorized S2 CLI is allowed and is not S3/S4 implementation.
+- Do not edit `HUMAN/**`.
+- Do not inspect `AI.History/**`.
+- Do not mutate `AI.SYS.N.ACTORS/**`.
+- Do not mutate `PRODUCT/PUSH_FIRST_BRIEFING_RUNTIME/**` in this continuation task.
+- Do not mutate `00_STATE/WINGS4.OPEN_DECISION.CATALOG.md`.
+- Do not mutate `EXPERIMENTS/LANGGRAPH_WINGS4_LAB/**`.
+- Do not mutate checkpoints.
+- Do not mutate external evidence except the single continuation package file.
+- Do not run tests.
+- Do not push.
+- Do not pull, merge, rebase, reset, amend, revert, or force-push.
+- Do not create broad repository documentation updates.
+- Do not rewrite history.
+- Do not execute S2.4 implementation.
+- `PACKAGE_2_HUMAN_DEDICATED` remains unauthorized.
+- `S3` and `S4` remain unauthorized.
 
-Missing capabilities (separate; not auto-selected; not MD1 blockers):
-- S3 after-decision refresh / S4 Ring0 panel (unauthorized)
-- OPEN_DECISION_* instance catalog and runtime consumption (design/planning recorded; not consumed; OPEN_DECISIONS=UNKNOWN)
-- fresh independent project evidence / independent resynchronization
-- multi-project combined analysis
-- Ring3 / RADAR / MARKET_MONITORING / live web
+## 10 Session-start sufficiency statement
 
-## 07 Prohibitions
-
-CHILD_PROJECT_MUTATION=PROHIBITED
-SKILLSMACHINE_MUTATION=PROHIBITED
-AI_HISTORY_INSPECTION=PROHIBITED
-CHILD_REPOSITORY_READ=PROHIBITED
-BRIEFING_RUNTIME_AUTHORIZED=YES_S2_ONLY
-BRIEFING_RUNTIME_IMPLEMENTED=YES_S2_ONLY
-BRIEFING_RUNTIME_IMPLEMENTATION_LEVEL=ON_DEMAND_TEXT_SESSION_OUTPUT_ONLY
-S3_AUTHORIZED=NO
-S3_IMPLEMENTED=NO
-S4_AUTHORIZED=NO
-S4_IMPLEMENTED=NO
-DEC_W4_078_IS_NOT_RUNTIME_AUTHORIZATION=YES
-DEC_W4_079_IS_NOT_RUNTIME_AUTHORIZATION=YES
-DEC_W4_085_IS_NOT_RUNTIME_AUTHORIZATION=YES
-DEC_W4_086_IS_NOT_RUNTIME_AUTHORIZATION=YES
-RING3_PLUS_IMPLEMENTATION_AUTHORIZED=NO
-MARKET_MONITORING_AUTHORIZED=NO
-RADAR_IMPLEMENTATION_AUTHORIZED=NO
-LIVE_WEB_MONITORING_AUTHORIZED=NO
-CAPTURE_FORM_AUTHORIZED=NO
-AUTO_DELIVERY_AUTHORIZED=NO
-COPY_LIFECYCLE_CHANGE_AUTHORIZED=NO
-INDEPENDENT_RESYNCHRONIZATION_AUTHORIZED=NO
-MARKET_CHECK_GENERALIZATION_BEYOND_RING0_DEMO=PROHIBITED
-PRODUCT_UX_REOPEN=NO
-MD1_REOPEN=NO
-PUSH_POLICY=NO_PUSH_WITHOUT_EXPLICIT_HUMAN_AUTHORIZATION
-COMMIT_POLICY=NO_COMMIT_WITHOUT_EXPLICIT_HUMAN_AUTHORIZATION_AND_EXACT_STAGING
-WINGS4_COMPLETE_CLAIM=PROHIBITED
-PRODUCTION_COMPLETE_FOR_ALL_FUTURE_CAPABILITIES_CLAIM=PROHIBITED
-WINGS4_COMPLETE=NO
-PRODUCTION_COMPLETE=NO
-
-## 08 Singular next action
-
-Return to Wings4 ORCHESTRATOR, run Iteration 1 runtime gate from this file (verify runtime HEAD, ancestry, origin alignment, and clean-tree state), optionally consume the consolidated temp evidence in Iteration 2, then in Iteration 3 present the governed next action without selecting a new development slice. Next governed action:
-
-NEXT_PRODUCT_ACTION=HUMAN_DECIDE_NEXT_AUTHORIZED_SCOPE_OR_CONFIRM_DEFERRAL
-
-The authorized S2 CLI remains available for review and does not mutate product:
-
-node "C:\01. GitHub\Wings4.0\PRODUCT\PUSH_FIRST_BRIEFING_RUNTIME\briefing.runtime.js" --trigger ON_DEMAND_REQUEST
-
-S2.3 technical status is PASS. Bounded S2/S2.3 human acceptance is ACCEPTED (DEC-W4-084, H1) at basis commit `20313dd1fc48e0ed2fde4379a213ee53da42481c`. OPEN_DECISION_* contract design is canonized (DEC-W4-083). OPEN_DECISION_* runtime consumption design is approved and hardened (DEC-W4-086, DEC-W4-087). Canonical product roadmap is `PORTFOLIO.ROADMAP.md` (DEC-W4-088). S2.4 is not authorized. OPEN_DECISIONS remains UNKNOWN because no instance catalog is consumed. Running S2 does not authorize S3, S4, or S2.4. Any S3/S4 or S2.4 implementation requires a new explicit human decision. No child-project evidence may be fetched to improve the briefing. Missing evidence remains UNKNOWN. No additional prompt required for session start; request later evidence only when needed. Do not treat DEC-W4-078, DEC-W4-079, DEC-W4-085, DEC-W4-086, DEC-W4-087, or DEC-W4-088 as S2.4 runtime authorization. Do not automatically select or authorize a future development slice. Do not consume the OPEN_DECISION_* architecture contract as a runtime instance catalog. Do not create an operative catalog from this recording. Bounded S2/S2.3 acceptance is not Wings4 complete.
-
-## 09 DEC-W4-097 current continuation
-
-LOOP_6_7_STATUS=EXECUTION_EVIDENCE_PASS_WITH_INVALID_VERIFIER_ARTIFACT; LAB10_EXECUTION_EVIDENCE=PASS; VERIFICATION_MACHINE_READABLE=NOT_ESTABLISHED; OS_TEMP_OUTPUT_ONLY=YES; REPOSITORY_RUNTIME_OUTPUT=0; CHECKPOINT_MUTATION_THIS_LOOP=0; HUMAN_MUTATION_THIS_LOOP=0. Retained checkpoints: `EXPERIMENTS/LANGGRAPH_WINGS4_LAB/checkpoints/lab09-test.sqlite` SHA-256 `50fecc58253747d497b5403a4d55c6d1c3957e8882b3a27dedceae5c233fd410`; `EXPERIMENTS/LANGGRAPH_WINGS4_LAB/checkpoints/lab10-test.sqlite` SHA-256 `a650f1d445cf7553333eb03ce37630bfcd55c7bdbbf78f23bca62fec0f4b74da`. Retained external execution evidence: `C:\Users\aazcl\Downloads\T.Wings4.0.Evidence\W4.LAB10.EXECUTION.EVIDENCE.json` SHA-256 `60383dccb4f692968decb4d296f65a9c7b66e3004b26682d2cdaf0719ce96f55`. Retained external verifier artifact: `C:\Users\aazcl\Downloads\T.Wings4.0.Evidence\W4.LAB10.INDEPENDENT.VERIFICATION.json` SHA-256 `79d5766283a499b53f10a874ab6da992fbc41660cbf128f9a42b2b10176a9141`; UTF-8 valid, JSON invalid; do not treat it as a machine-readable independent verification record. No cleanup or restoration.
-
-LOOP_3_1_TO_3_3=UNSUBSTANTIATED; ACTOR=RETAINED_NONADOPTED. HUMAN conflict policy remains read-only analysis with Pablo/HUMAN authority prevailing. LangGraph is not product adoption; S2.4/S3/S4 remain unauthorized. Do not push, start Package 2, or create a continuation package.
+This file is intended to be sufficient for a blank ORCHESTRATOR session start without another startup prompt. Additional evidence may still be requested later when needed. Any missing evidence must be requested explicitly or marked UNKNOWN.

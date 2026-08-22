@@ -1,4 +1,4 @@
-# BATON — Wings4.0 Active
+# BATON â€” Wings4.0 Active
 
 PURPOSE: BLANK_AI_CONTEXT_BOOTSTRAP
 NOT_SESSION_CONTINUE: YES
@@ -88,7 +88,7 @@ Management Delivery #1 remains accepted and closed for bounded MD1 scope. Bounde
 
 Additive GAP_01/GAP_02 operator UX cleanup is recorded (DEC-W4-073) and does not reopen MD1. Bounded GAP_03 fact-fallback and class-help microcopy is recorded (DEC-W4-074); remaining WHOAMI/class-code jargon stays deferred under DEC-W4-055. Bounded GAP_04 transfer help is recorded (DEC-W4-075) and committed locally at `480443a` (validated in W4_GAP_04_BOUNDED_TRANSFER_HELP_018; committed in W4_GAP_04_TRANSFER_HELP_LOCAL_COMMIT_019): Wings prepares the package and does not send it; COPY lifecycle is unchanged; the handoff remains manual. Pablo selected DEC-W4-076 Option A: GAP_05 is an accepted bounded Ring0 fixture/Wings-held evidence-source limitation (`ACCEPTED_LIMITATION_FOR_RING0`). Live child-repository read remains unauthorized. `C:\01. GitHub\Skills` was not read. GAP_05 is not a product implementation task.
 
-Pablo selected DEC-W4-077 Option B: bounded push-first briefing design-only. DEC-W4-078 records that design in `PORTFOLIO.ARCHITECTURE/WINGS4.PUSH_FIRST_BRIEFING.DESIGN.md` and remains design-only, not runtime authorization. DEC-W4-079 records the bounded briefing-runtime planning packet in `PORTFOLIO.ARCHITECTURE/WINGS4.P4.PUSH_FIRST_BRIEFING.RUNTIME.PLANNING.md`; that packet is committed and pushed (`f8d8d2f3a973409e6028ca9fb3fe55bc95cf1f14`). DEC-W4-080 authorizes and records the bounded S2 implementation: `ON_DEMAND_TEXT_ONLY / SESSION_OUTPUT_ONLY`, trigger `ON_DEMAND_REQUEST` only, deterministic Markdown to stdout/current session, no persistence, no UI, no browser, no child read, no live web, no RADAR, no monitoring, no automatic delivery. Implementation commit: `eb5758448932a3376788f15128177087866cb41f`. DEC-W4-081 records the S2.1 ancestry-semantics correction. Correction commit: `6db8963ecfa9d1ad2c8c9c511fbbd34b9df09641`. S2.2 semantic-wording correction commit: `87ddb8ac8da7f59889fac54c203ed09a8517dc47`. DEC-W4-082 records the S2.3 current-state derivation correction. Technical implementation commit: `f1efb2a78a2429c5ab10328a77a9f66bd88cd831`. DEC-W4-083 records the approved OPEN_DECISION_* governance contract in `PORTFOLIO.ARCHITECTURE/WINGS4.OPEN_DECISION.CONTRACT.md` and corrects S2.3 UNKNOWN/empty and human-option semantics. Contract-driven runtime catalog consumption is not implemented. S2.3 technical status is PASS. DEC-W4-084 records Pablo’s H1: bounded S2/S2.3 human acceptance is ACCEPTED. Acceptance basis commit is `20313dd1fc48e0ed2fde4379a213ee53da42481c`. Pablo selected Post-S2 Option A. DEC-W4-085 records the bounded OPEN_DECISION_* runtime consumption design and planning packet in `PORTFOLIO.ARCHITECTURE/WINGS4.OPEN_DECISION.RUNTIME.CONSUMPTION.DESIGN.md`. Pablo selected Option A and approved D1–D5 (DEC-W4-086). DESIGN_STATUS=APPROVED. D1_CATALOG_LOCATION=00_STATE/WINGS4.OPEN_DECISION.CATALOG.md (not created). D2_SLICE_IDENTIFIER=S2.4. D3_ABSENT_CATALOG_RESULT=OPEN_DECISIONS_UNKNOWN. D4_EMPTY_STATE=OPEN_DECISIONS_EMPTY_WITH_CATALOG_VALIDATION_PASS. D5_OPEN_DECISION_ID_PATTERN=OD-W4-NNNN. S2.4 implementation is not authorized. No operative catalog was created. OPEN_DECISION_CONTRACT=DESIGN_CANONIZED_NOT_CONSUMED. OPEN_DECISIONS_RUNTIME_CONSUMPTION_DESIGNED=YES. OPEN_DECISIONS_RUNTIME_CONSUMPTION_PLANNED=YES. OPEN_DECISIONS_RUNTIME_CONSUMPTION_AUTHORIZED=NO. OPEN_DECISIONS_RUNTIME_CONSUMPTION_IMPLEMENTED=NO. OPERATIVE_OPEN_DECISION_CATALOG_CREATED=NO. OPEN_DECISIONS current derived value is UNKNOWN, not empty and not known. DEC-W4-078 and DEC-W4-079 are not treated as runtime authorization. DEC-W4-085 is not implementation authorization. S3 and S4 remain unauthorized and unimplemented. The briefing must summarize Wings-held state and decisions only; it is not MARKET_MONITORING, not RADAR, not live web, and not Ring3. It must not read or mutate child repositories. Wings4 complete: no. Production complete: no.
+Pablo selected DEC-W4-077 Option B: bounded push-first briefing design-only. DEC-W4-078 records that design in `PORTFOLIO.ARCHITECTURE/WINGS4.PUSH_FIRST_BRIEFING.DESIGN.md` and remains design-only, not runtime authorization. DEC-W4-079 records the bounded briefing-runtime planning packet in `PORTFOLIO.ARCHITECTURE/WINGS4.P4.PUSH_FIRST_BRIEFING.RUNTIME.PLANNING.md`; that packet is committed and pushed (`f8d8d2f3a973409e6028ca9fb3fe55bc95cf1f14`). DEC-W4-080 authorizes and records the bounded S2 implementation: `ON_DEMAND_TEXT_ONLY / SESSION_OUTPUT_ONLY`, trigger `ON_DEMAND_REQUEST` only, deterministic Markdown to stdout/current session, no persistence, no UI, no browser, no child read, no live web, no RADAR, no monitoring, no automatic delivery. Implementation commit: `eb5758448932a3376788f15128177087866cb41f`. DEC-W4-081 records the S2.1 ancestry-semantics correction. Correction commit: `6db8963ecfa9d1ad2c8c9c511fbbd34b9df09641`. S2.2 semantic-wording correction commit: `87ddb8ac8da7f59889fac54c203ed09a8517dc47`. DEC-W4-082 records the S2.3 current-state derivation correction. Technical implementation commit: `f1efb2a78a2429c5ab10328a77a9f66bd88cd831`. DEC-W4-083 records the approved OPEN_DECISION_* governance contract in `PORTFOLIO.ARCHITECTURE/WINGS4.OPEN_DECISION.CONTRACT.md` and corrects S2.3 UNKNOWN/empty and human-option semantics. Contract-driven runtime catalog consumption is not implemented. S2.3 technical status is PASS. DEC-W4-084 records Pabloâ€™s H1: bounded S2/S2.3 human acceptance is ACCEPTED. Acceptance basis commit is `20313dd1fc48e0ed2fde4379a213ee53da42481c`. Pablo selected Post-S2 Option A. DEC-W4-085 records the bounded OPEN_DECISION_* runtime consumption design and planning packet in `PORTFOLIO.ARCHITECTURE/WINGS4.OPEN_DECISION.RUNTIME.CONSUMPTION.DESIGN.md`. Pablo selected Option A and approved D1â€“D5 (DEC-W4-086). DESIGN_STATUS=APPROVED. D1_CATALOG_LOCATION=00_STATE/WINGS4.OPEN_DECISION.CATALOG.md (not created). D2_SLICE_IDENTIFIER=S2.4. D3_ABSENT_CATALOG_RESULT=OPEN_DECISIONS_UNKNOWN. D4_EMPTY_STATE=OPEN_DECISIONS_EMPTY_WITH_CATALOG_VALIDATION_PASS. D5_OPEN_DECISION_ID_PATTERN=OD-W4-NNNN. S2.4 implementation is not authorized. No operative catalog was created. OPEN_DECISION_CONTRACT=DESIGN_CANONIZED_NOT_CONSUMED. OPEN_DECISIONS_RUNTIME_CONSUMPTION_DESIGNED=YES. OPEN_DECISIONS_RUNTIME_CONSUMPTION_PLANNED=YES. OPEN_DECISIONS_RUNTIME_CONSUMPTION_AUTHORIZED=NO. OPEN_DECISIONS_RUNTIME_CONSUMPTION_IMPLEMENTED=NO. OPERATIVE_OPEN_DECISION_CATALOG_CREATED=NO. OPEN_DECISIONS current derived value is UNKNOWN, not empty and not known. DEC-W4-078 and DEC-W4-079 are not treated as runtime authorization. DEC-W4-085 is not implementation authorization. S3 and S4 remain unauthorized and unimplemented. The briefing must summarize Wings-held state and decisions only; it is not MARKET_MONITORING, not RADAR, not live web, and not Ring3. It must not read or mutate child repositories. Wings4 complete: no. Production complete: no.
 
 Next product action is `HUMAN_REVIEW_WORKFLOW_FOUNDATION_AND_LANGGRAPH_LAB`. No next-session option is selected. DEC-W4-091 records the isolated LangGraph lab. LangGraph product adoption remains unauthorized. S2.4 implementation remains unauthorized. Running the authorized S2 CLI remains allowed and does not authorize S3, S4, or catalog consumption. Any S3/S4 or S2.4 implementation requires a new explicit human decision. No child-project evidence may be fetched to improve the briefing. Missing evidence remains UNKNOWN. WHOAMI/`finding_class` terminology, COPY-as-export lifecycle, and second-entity diagnostic remain separate later decisions. Capture form, live web, monitoring, RADAR, and Ring3 remain unauthorized.
 
@@ -296,6 +296,7 @@ DECISION_PROVISIONAL_CLINE=PORTFOLIO.DECISION_LOG.md#dec-w4-094
 DECISION_ISOLATED_TESTS_CHECKPOINT_RETENTION=PORTFOLIO.DECISION_LOG.md#dec-w4-095
 DECISION_LANGGRAPH_OUTPUT_ISOLATION_BLOCK=PORTFOLIO.DECISION_LOG.md#dec-w4-096
 DECISION_LANGGRAPH_OS_TEMP_ISOLATION_ACCEPTANCE=PORTFOLIO.DECISION_LOG.md#dec-w4-097
+DECISION_LANGGRAPH_EVIDENCE_FORWARD_CORRECTION=PORTFOLIO.DECISION_LOG.md#dec-w4-098
 CANONICAL_ROADMAP=PORTFOLIO.ROADMAP.md
 WORKFLOW_FOUNDATION=PORTFOLIO.ARCHITECTURE/WINGS4.HUMAN_AI.WORKFLOW.FOUNDATION.md
 LANGGRAPH_LAB=EXPERIMENTS/LANGGRAPH_WINGS4_LAB/README.md
@@ -309,62 +310,64 @@ HUMAN_CANON=HUMAN/HUMAN.WINGS4.md
 
 ## Next action
 
-CURRENT_MINIBATTLE=RM-W4-014_LANGGRAPH_OS_TEMP_ISOLATION_ACCEPTED
-LANGGRAPH_OUTPUT_ISOLATION_STATUS=PASS_OS_TEMP_ONLY
-LANGGRAPH_RUNNER_CHANGE=YES
-TEST_STATUS=PASS
-VERIFICATION_STATUS=INVALID_VERIFIER_ARTIFACT_NOT_MACHINE_VERIFIED
-REPOSITORY_RUNTIME_OUTPUT_COUNT=0
-REPOSITORY_CHECKPOINT_MUTATION_THIS_LOOP=0
-HUMAN_MUTATION_THIS_LOOP=0
-RETAINED_CHECKPOINT_LAB09=EXPERIMENTS/LANGGRAPH_WINGS4_LAB/checkpoints/lab09-test.sqlite#50fecc58253747d497b5403a4d55c6d1c3957e8882b3a27dedceae5c233fd410
-RETAINED_CHECKPOINT_LAB10=EXPERIMENTS/LANGGRAPH_WINGS4_LAB/checkpoints/lab10-test.sqlite#a650f1d445cf7553333eb03ce37630bfcd55c7bdbbf78f23bca62fec0f4b74da
-RETAINED_EXECUTION_EVIDENCE=C:\Users\aazcl\Downloads\T.Wings4.0.Evidence\W4.LAB10.EXECUTION.EVIDENCE.json#60383dccb4f692968decb4d296f65a9c7b66e3004b26682d2cdaf0719ce96f55
-RETAINED_VERIFIER_ARTIFACT=C:\Users\aazcl\Downloads\T.Wings4.0.Evidence\W4.LAB10.INDEPENDENT.VERIFICATION.json#79d5766283a499b53f10a874ab6da992fbc41660cbf128f9a42b2b10176a9141
-RETAINED_VERIFIER_ARTIFACT_JSON_VALID=NO
+CURRENT_MINIBATTLE=BLANK_AI_CONTINUATION_READY_PENDING_PABLO_S2_4_SCOPE_DECISION
+PACKAGE_CONTINUATION_TASK=20260822.125422_W4_ORCHESTRATOR_PREPARE_BLANK_AI_CONTINUATION_WITH_BATON_AND_PACKAGE_001
+PACKAGE_CONTINUATION_STATUS=READY
+SESSION_CONTINUE_ENTRYPOINT=SESSIONS/ORCHESTRATOR/03.SESSION_CONTINUE/00.START_HERE.ORCHESTRATOR.txt
+EXTERNAL_PACKAGE_PATH=C:\Users\aazcl\Downloads\T.Wings4.0\00.START_HERE.ORCHESTRATOR.txt
+REPOSITORY_STATE_EXPECTED_BRANCH=main
+REPOSITORY_STATE_EXPECTED_HEAD=70ab904683ac278bff6642d251ff64aafd122eb6
+REPOSITORY_STATE_EXPECTED_ORIGIN_MAIN=70ab904683ac278bff6642d251ff64aafd122eb6
+REPOSITORY_STATE_EXPECTED_AHEAD=0
+REPOSITORY_STATE_EXPECTED_BEHIND=0
+TRACKED_WORKTREE_CLEAN_EXPECTED=YES
+INDEX_CLEAN_EXPECTED=YES
+STAGED_PATH_COUNT_EXPECTED=0
+UNTRACKED_PROHIBITED_TREE_PRESENT=YES
+UNTRACKED_PROHIBITED_TREE_PATH=AI.SYS.N.ACTORS/
+UNTRACKED_PROHIBITED_TREE_POLICY=DO_NOT_ADOPT_DO_NOT_STAGE_DO_NOT_MUTATE
+LANGGRAPH_OUTPUT_ISOLATION_STATUS=FORWARD_CORRECTION_RECORDED_DEC_W4_098
+LANGGRAPH_PRODUCT_ADOPTION_AUTHORIZED=NO
+REPOSITORY_RUNTIME_OUTPUT_COUNT_THIS_TASK=0
+REPOSITORY_CHECKPOINT_MUTATION_THIS_TASK=0
+HUMAN_MUTATION_THIS_TASK=0
+ACTOR_TREE_MUTATION_THIS_TASK=0
 CHECKPOINT_CLEANUP_OR_RESTORATION_AUTHORIZED=NO
+DECISION_RANGE_PRESERVED=DEC-W4-092_THROUGH_DEC-W4-098
+LATEST_FORWARD_CORRECTION=DEC-W4-098
+DEC_W4_097_HISTORICAL_IMMUTABLE=YES
+S2_4_IMPLEMENTATION_AUTHORIZED=NO
+S2_4_IMPLEMENTED=NO
+S2_4_OPTION_SELECTED=B
+S2_4_BLOCKERS_REMAINING=2
+BLK_S24_001=CATALOG_PATH_AND_PROOF_BOUNDARY_AMBIGUITY_FOR_CATALOG_PRESENT_SCENARIOS;UNRESOLVED;BLOCKING_ACCEPTANCE_ONLY
+BLK_S24_002=MINIMUM_FIRST_SLICE_ACCEPTANCE_SCOPE_AMBIGUITY_ABSENT_ONLY_VS_EMPTY_AND_POPULATED;UNRESOLVED;BLOCKING_IMPLEMENTATION
+S2_4_PROPOSED_MINIMUM_ALLOWLIST=PRODUCT/PUSH_FIRST_BRIEFING_RUNTIME/briefing.runtime.js;PRODUCT/PUSH_FIRST_BRIEFING_RUNTIME/briefing.runtime.logical.test.js
+S2_4_FINAL_ALLOWLIST_SAFE=NO
 NEXT_ROLE=ORCHESTRATOR
 NEXT_ROOT=C:\01. GitHub\Wings4.0
-NEXT_PRODUCT_ACTION=HUMAN_DECIDE_NEXT_AUTHORIZED_SCOPE_OR_CONFIRM_DEFERRAL
-NEXT_PRODUCT_MINIBATTLE=HUMAN_DECIDE_NEXT_AUTHORIZED_SCOPE_OR_CONFIRM_DEFERRAL
-NEXT_CANDIDATE_1=S3_AFTER_RECORDED_HUMAN_DECISION_NOT_AUTHORIZED
-NEXT_CANDIDATE_2=DEFERRED_WHOAMI_FINDING_CLASS_OR_COPY_EXPORT
-NEXT_CANDIDATE_3=DEFERRED_SECOND_ENTITY_DIAGNOSTIC
-NEXT_CONTINUITY_ACTION=HUMAN_DECIDE_NEXT_AUTHORIZED_SCOPE_OR_CONFIRM_DEFERRAL
+NEXT_ACTION_OWNER=Pablo
+NEXT_PRODUCT_ACTION=PABLO_AUTHORIZE_NARROWER_READ_ONLY_S2_4_SCOPE_CLARIFICATION_OR_DEFER
+NEXT_PRODUCT_MINIBATTLE=PABLO_AUTHORIZE_NARROWER_READ_ONLY_S2_4_SCOPE_CLARIFICATION_OR_DEFER
+NEXT_CONTINUITY_ACTION=UPLOAD_SINGLE_FILE_ORCHESTRATOR_PACKAGE_AND_ACTIVATE_RUNTIME_GATES
 NEXT_SESSION_OPTION_SELECTED=NO
-RECOMMENDED_FIRST_FUTURE_SLICE=S2_4_REQUIRES_NEW_EXPLICIT_HUMAN_DECISION
+AWAITING_HUMAN_DECISION_IDS=BLK-S24-001;BLK-S24-002
+RECOMMENDED_FIRST_FUTURE_SLICE=S2_4_SCOPE_CLARIFICATION_READ_ONLY_ONLY_OR_DEFER
 RECOMMENDED_FIRST_FUTURE_SLICE_AUTHORIZED=NO
 S3_AUTHORIZED=NO
 S4_AUTHORIZED=NO
 RING3_IMPLEMENTATION_AUTHORIZED=NO
+PACKAGE_2_HUMAN_DEDICATED_AUTHORIZED=NO
 COMMIT_POLICY=NO_COMMIT_WITHOUT_EXACT_STAGING_VALIDATION_AND_EXPLICIT_HUMAN_AUTHORIZATION
 PUSH_POLICY=NO_PUSH_WITHOUT_EXPLICIT_HUMAN_AUTHORIZATION
 
 ## Resume instruction (blank AI context)
 
-1. Resolve root, branch, HEAD, worktree and index from Git. Serialize Booleans only via ($expr).ToString().ToUpperInvariant().
-2. Do not reopen MD1 as an open delivery. PRODUCT_UX_RESIDUAL=0 for MD1. Additive Market Check files may exist in PRODUCT/RING0_SKILLSMACHINE_DIAGNOSTIC/; they do not reopen MD1.
-3. Task-start committed HEAD baseline for this canon sync is `f1efb2a78a2429c5ab10328a77a9f66bd88cd831` (`HEAD_AT_GENERATION`). After this sync commits, that hash is a valid historical ancestor and must not be labeled stale merely because a later commit exists. Runtime Git is the source of truth for current HEAD.
-   DEC-W4-078 remains design-only. DEC-W4-079 remains planning-only. DEC-W4-080 is the S2 runtime authorization and implementation record. DEC-W4-081 is the S2.1 ancestry-semantics correction. DEC-W4-082 is the S2.3 current-state derivation correction record. DEC-W4-083 is the OPEN_DECISION_* contract canon and S2.3 semantic-gap correction record. DEC-W4-084 is bounded S2/S2.3 human acceptance H1. DEC-W4-085 is OPEN_DECISION_* runtime consumption design and planning only. DEC-W4-086 approves D1–D5; DESIGN_STATUS=APPROVED; S2.4 implementation remains unauthorized. DEC-W4-087 hardens S2.4 design. DEC-W4-088 establishes canonical roadmap `PORTFOLIO.ROADMAP.md`. S2 is implemented at `ON_DEMAND_TEXT_SESSION_OUTPUT_ONLY`. S2.3 technical status is PASS. Human acceptance is ACCEPTED for bounded S2/S2.3 only. OPEN_DECISION_CONTRACT=DESIGN_CANONIZED_NOT_CONSUMED. OPEN_DECISIONS_RUNTIME_CONSUMPTION_DESIGNED=YES. OPEN_DECISIONS_RUNTIME_CONSUMPTION_PLANNED=YES. OPEN_DECISIONS_RUNTIME_CONSUMPTION_AUTHORIZED=NO. OPEN_DECISIONS_RUNTIME_CONSUMPTION_IMPLEMENTED=NO. OPERATIVE_OPEN_DECISION_CATALOG_CREATED=NO. OPEN_DECISIONS=UNKNOWN. Trigger is `ON_DEMAND_REQUEST` only. Persistence is absent. S3/S4 remain unauthorized and unimplemented.
-   Next product action is `HUMAN_REVIEW_WORKFLOW_FOUNDATION_AND_LANGGRAPH_LAB`. No next-session option is selected. Running the authorized S2 CLI remains allowed and does not authorize S3, S4, or S2.4. Missing evidence remains UNKNOWN. No child-project evidence may be fetched to improve the briefing.
-    DEC-W4-092..096: PACKAGE_1 governance reconciliation is completed; CLINE is provisional and untracked pending classification, with a future proposed target only and no move, adoption, staging, or mutation. Isolated tests are required and existing checkpoints are retained. DEC-W4-096 records blocked LangGraph output isolation: required runner corrections remain blocked because `src/run_lab09.js` and `src/run_lab10.js` are outside the exact allowlist; no runner change. Configured `npm test` was inadvertently invoked before output-isolation correction: TEST_STATUS=FAIL_OUTPUT_ISOLATION; REPOSITORY_RUNTIME_OUTPUT_COUNT=2; retained existing repository checkpoints `lab09-test.sqlite` and `lab10-test.sqlite` were written, evidenced by changed SHA-256; EXISTING_CHECKPOINT_HASH_CHANGES=2; `lab10-test.sqlite` size changed 36864→57344; EXISTING_CHECKPOINT_FILES_DELETED=0. Checkpoint cleanup/restoration is unauthorized. Next product action is `HUMAN_AUTHORIZE_RUNNER_PATHS_FOR_LANGGRAPH_OUTPUT_ISOLATION_OR_CONFIRM_DEFERRAL`; S2.4, S3, and S4 remain unauthorized; no commit or push.
-
-   GAP_05 is ACCEPTED_LIMITATION_FOR_RING0 (DEC-W4-076 Option A). GAP_04 transfer help is committed at `480443a`. MD1 is accepted and closed; do not reopen MD1 as an open delivery. Do not start MD1 gap cleanup.
-4. Treat Ring0 `1e8315d`, Ring1 `16b28d1`, Ring1/Ring2 `03a589d`, North Star `d23d292`, temp hygiene `e199d8b`, MD1 UX `6bb3bfc`, continuity contracts `9e301acf`, post-MD1 continuity `edc3b86`, Market Check runtime `5a6714d`, BUILD/INTEGRATE coverage `3063dad`, planning packet `f8d8d2f`, S2 implementation `eb5758448932a3376788f15128177087866cb41f`, S2.1 correction `6db8963ecfa9d1ad2c8c9c511fbbd34b9df09641`, S2/S2.1 canon sync `b0380d756d1ffa676e8649e5f7df79e540886be4`, S2.2 wording `87ddb8ac8da7f59889fac54c203ed09a8517dc47`, S2.3 derivation `f1efb2a78a2429c5ab10328a77a9f66bd88cd831`, OPEN_DECISION contract / S2.3 gap-correction `20313dd1fc48e0ed2fde4379a213ee53da42481c`, and bounded S2/S2.3 human acceptance `5eb61a92b3a116d62de51bb0949a8d2871e4c232` as ancestors.
-5. Keep English/C1 coaching active; request missing evidence or mark UNKNOWN; never guess.
-6. Do not implement Ring3+, RADAR, MARKET_MONITORING, or independent resynchronization without separate authorization. Bounded Market Check runtime complete (DEC-W4-071) is not Wings4 complete. Post-complete live UI PASS is recorded (DEC-W4-072); no dedicated COMPLETE badge.
-   GAP_01/GAP_02 additive UX cleanup is recorded (DEC-W4-073) and does not reopen MD1. GAP_03 fact-fallback and class-help microcopy is recorded (DEC-W4-074); remaining WHOAMI/class-code jargon stays deferred under DEC-W4-055. GAP_04 transfer help is recorded (DEC-W4-075) and committed at `480443a` (validated 018, committed 019); COPY lifecycle is unchanged; DOWNLOAD behavior is unchanged; manual handoff remains. GAP_05 is ACCEPTED_LIMITATION_FOR_RING0 (DEC-W4-076 Option A); live child-repository read remains unauthorized; do not implement GAP_05 as a product task.
-   DEC-W4-077 Option B and DEC-W4-078 record bounded push-first briefing design-only; they do not authorize briefing runtime. DEC-W4-079 records the planning packet only. DEC-W4-080 authorizes S2 only. DEC-W4-081 corrects stale-HEAD ancestry semantics. DEC-W4-082 records S2.3 current-state derivation correction. DEC-W4-083 records the OPEN_DECISION_* contract design and S2.3 semantic-gap corrections. DEC-W4-084 records bounded S2/S2.3 human acceptance H1. DEC-W4-085 records OPEN_DECISION_* runtime consumption design and planning only. DEC-W4-086 approves D1–D5. Do not treat DEC-W4-078, DEC-W4-079, DEC-W4-085, or DEC-W4-086 as S2.4 runtime authorization. Do not implement S3, S4, or S2.4 catalog consumption without a new explicit human decision. Do not treat OPEN_DECISIONS as empty or known. Do not consume the OPEN_DECISION_* architecture contract as a runtime instance catalog. Do not create an operative catalog from this recording. Bounded S2/S2.3 acceptance is not Wings4 complete and is not S3/S4 authorization.
-   Deferred separately: WHOAMI/`finding_class` terminology; COPY-as-export lifecycle; second-entity diagnostic; S3 after-decision refresh; S4 Ring0 panel. Do not add a capture form, COMPLETE UI badge, auto-delivery, temp-path write, or live web search. Keep English/C1 coaching as Pablo's personal collaboration preference only, not product doctrine.
-7. Do not inspect AI.History/.
-8. Do not mutate SkillsMachine or any child project.
-9. Do not push without explicit authorization.
-10. For same-workspace delta continuity after bootstrap, use SESSION_CONTINUE_ENTRYPOINT; do not treat BATON as SESSION_CONTINUE.
-LAST_REFRESHED_AT: 2026-08-20T19:55:00-04:00
-
-## Estado operativo actual — DEC-W4-097
-
-- Loop 6/7: valid execution evidence records LAB10 PASS, OS TEMP laboratory output, no repository runtime output, and no checkpoint/HUMAN mutation according to retained comparisons. The verifier artifact is UTF-8 but invalid JSON; do not declare machine-readable independent verification PASS.
-- Retained checkpoints: `checkpoints/lab09-test.sqlite` SHA-256 `50fecc58253747d497b5403a4d55c6d1c3957e8882b3a27dedceae5c233fd410`; `checkpoints/lab10-test.sqlite` SHA-256 `a650f1d445cf7553333eb03ce37630bfcd55c7bdbbf78f23bca62fec0f4b74da`. External execution evidence `W4.LAB10.EXECUTION.EVIDENCE.json` SHA-256 `60383dccb4f692968decb4d296f65a9c7b66e3004b26682d2cdaf0719ce96f55`; retained verifier artifact `W4.LAB10.INDEPENDENT.VERIFICATION.json` SHA-256 `79d5766283a499b53f10a874ab6da992fbc41660cbf128f9a42b2b10176a9141`, invalid JSON. No cleanup/restoration.
-- Loop 3.1–3.3: UNSUBSTANTIATED. Actor: RETAINED_NONADOPTED. S2.4/S3/S4: NOT_AUTHORIZED. Conflictos HUMAN: autoridad humana y lectura paralela solamente.
-- Prohibiciones: cleanup, push, Package 2 y paquete de continuación.
+1. Use SESSION_CONTINUE_ENTRYPOINT as the primary blank-session entrypoint. BATON is the bootstrap summary, not the full continuation package.
+2. Resolve runtime Git state from the repository. At package generation the expected activation baseline was main at HEAD/origin-main `70ab904683ac278bff6642d251ff64aafd122eb6`, ahead/behind 0/0, tracked worktree clean, index clean, staged path count 0. A pre-existing untracked prohibited actor tree may remain at `AI.SYS.N.ACTORS/`; preserve it untouched and unadopted.
+3. Preserve governance state DEC-W4-092 through DEC-W4-098. DEC-W4-097 remains immutable historical evidence. DEC-W4-098 is the latest forward correction and must be preserved without rewriting DEC-W4-097.
+4. Preserve HUMAN zero-mutation doctrine. Do not inspect `AI.History/`. Do not mutate `AI.SYS.N.ACTORS/`. Do not mutate checkpoints. Do not implement S2.4, S3, S4, LangGraph product adoption, or PACKAGE_2_HUMAN_DEDICATED. Do not run tests. Do not push.
+5. Preserve current S2.4 state exactly: Option B selected; implementation unauthorized and unimplemented; BLK-S24-001 and BLK-S24-002 unresolved; proposed minimum allowlist remains unsafe until scope clarification.
+6. Preserve Pablo working preferences: WBS-style outputs, direct corporate wording, recommendations first, explicit risks/gaps/options, no invented context, unique timestamp task ID on operational prompts first line, explicit TARGET_ROLE, loops/graphs, and maximum safe non-interfering parallelism.
+7. Exact next action after activation: Pablo decides whether to authorize a narrower read-only S2.4 scope clarification or to defer. Until then, stop short of any S2.4 implementation work.
+LAST_REFRESHED_AT: 2026-08-22T13:14:12-04:00
