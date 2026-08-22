@@ -1,7 +1,7 @@
 # Wings4 HUMAN-AI Workflow Foundation
 
 FOUNDATION_ID=W4_HUMAN_AI_WORKFLOW
-AUTHORITY_DECISION=DEC-W4-090
+AUTHORITY_DECISION=DEC-W4-092; DEC-W4-093
 STATUS=IMPLEMENTED_GOVERNANCE
 PRODUCT_CAPABILITY=NO
 REPLACES_DECISION_LOG=NO
@@ -76,14 +76,13 @@ flowchart TD
 
 Required conceptual flow:
 
-HUMAN authorizes a governed outcome.
-ORCHESTRATOR analyzes, proposes, verifies, and presents gates.
-COORDINATOR responsibility decomposes bounded work, controls dependencies, and prevents collisions.
-EXECUTOR applies authorized mutations and validations.
-WORK_UNITS produce isolated evidence or proposed outputs.
-INTEGRATOR performs the single serialized integration.
-ORCHESTRATOR independently verifies.
-HUMAN accepts, corrects, rejects, or authorizes the next gate.
+HUMAN → ORCHESTRATOR → HUMAN_DECISION_OR_AUTHORIZATION → COORDINATOR → POLICY_GATE → EXECUTOR.
+
+EXECUTOR result → Independent verifier responsibility → Coordinator acceptance check → ORCHESTRATOR result → HUMAN acceptance.
+
+ORCHESTRATOR analyzes, proposes, and presents gates. COORDINATOR responsibility decomposes bounded work, controls dependencies, and prevents collisions. EXECUTOR applies authorized mutations and validations. WORK_UNITS produce isolated evidence or proposed outputs. INTEGRATOR performs the single serialized integration.
+
+The Independent verifier is an independent responsibility that validates evidence and the authorization/envelope only. It is not a permanent agent, a new authority, or a replacement for HUMAN acceptance.
 
 The Coordinator is a responsibility, not necessarily a separate person, a separate visible AI persona, a permanent agent, or a new authority layer.
 
@@ -122,20 +121,22 @@ EDGE_SEMANTICS=Hands off a bounded packet
 STATE_SOURCE=this file section 1
 AUTHORITY_LIMIT=Visual only
 UPDATE_TRIGGER=Role contract change by decision
-WHAT_IT_PROVES=Coordinator is inside the flow, not a second HUMAN
-WHAT_IT_DOES_NOT_PROVE=That Pablo must approve every mechanical step
-CURRENT_DECISION_RELEVANCE=DEC-W4-090
+WHAT_IT_PROVES=Coordinator is inside the flow, not a second HUMAN; evidence/envelope validation remains independent from acceptance
+WHAT_IT_DOES_NOT_PROVE=That Pablo must approve every mechanical step or that the verifier creates authority
+CURRENT_DECISION_RELEVANCE=DEC-W4-092; DEC-W4-093
 
 ```mermaid
 flowchart TD
   H[HUMAN]
   O1[ORCHESTRATOR]
+  HD[HUMAN_DECISION_OR_AUTHORIZATION]
   C[COORDINATOR responsibility]
+  P[POLICY_GATE]
   E[EXECUTOR]
-  W[Work units]
-  I[Integrator]
-  O2[ORCHESTRATOR verify]
-  H --> O1 --> C --> E --> W --> I --> O2 --> H
+  V[Independent verifier responsibility]
+  A[Coordinator acceptance check]
+  O2[ORCHESTRATOR result]
+  H --> O1 --> HD --> C --> P --> E --> V --> A --> O2 --> H
 ```
 
 ### GRAPH_W3_PARALLEL_READ_SERIAL_WRITE
@@ -467,3 +468,9 @@ This foundation does not:
 - change accepted S2/S2.3 runtime behavior;
 - add LangGraph to the production runtime;
 - copy SkillsLake or GRCLake.
+
+## 11. Reconciliación operativa DEC-W4-097
+
+El laboratorio LangGraph aceptado bajo DEC-W4-097 permanece experimental y fuera del producto. Loop 6/7 verificó LAB10=PASS y VERIFICATION=PASS con salida de ejecución en OS TEMP; no produjo salida de laboratorio en el repositorio ni mutó checkpoints o HUMAN en este loop. La evidencia retenida es `EXPERIMENTS/LANGGRAPH_WINGS4_LAB/checkpoints/lab09-test.sqlite` SHA-256 `60383dccb4f692968decb4d296f65a9c7b66e3004b26682d2cdaf0719ce96f55` y `EXPERIMENTS/LANGGRAPH_WINGS4_LAB/checkpoints/lab10-test.sqlite` SHA-256 `79d5766283a499b53f10a874ab6da992fbc41660cbf128f9a42b2b10176a9141`; cleanup/restauración sigue prohibido.
+
+Loop 3.1–3.3 carecen de sustanciación. El actor se conserva como RETAINED_NONADOPTED y no gana autoridad, adopción ni permiso de mutación. La política de conflicto HUMAN permanece: el canon humano local y la autoridad de Pablo prevalecen; análisis paralelo es sólo lectura/evidencia y no permite reinterpretar ni mutar HUMAN. S2.4, S3 y S4 no están autorizados. Push, Package 2 y paquete de continuación siguen prohibidos.

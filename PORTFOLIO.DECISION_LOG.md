@@ -1758,3 +1758,98 @@ Decision:
 
 Lab: `EXPERIMENTS/LANGGRAPH_WINGS4_LAB/README.md`
 Scorecard: `EXPERIMENTS/LANGGRAPH_WINGS4_LAB/WINGS4.LANGGRAPH.ADOPTION.SCORECARD.md`
+
+## DEC-W4-092 — Workflow final-acceptance and independent-verifier governance
+
+Status: IMPLEMENTED_GOVERNANCE
+Date: 2026-08-22
+Scope: PACKAGE_1 WORKFLOW GOVERNANCE RECONCILIATION ONLY
+Authority: Pablo; authorization `20260822.100000_W4_ORCHESTRATOR_AUTHORIZE_NARROW_PACKAGE1_AND_PARALLEL_HUMAN_CONFLICT_ANALYSIS_001`
+DECISION_SUBJECT=WORKFLOW_FINAL_ACCEPTANCE_AND_INDEPENDENT_VERIFIER
+HUMAN_DIRECTORY_MUTATION_AUTHORIZED=NO
+
+Decision:
+
+- The workflow records the explicit final-acceptance path: HUMAN → ORCHESTRATOR → HUMAN_DECISION_OR_AUTHORIZATION → COORDINATOR → POLICY_GATE → EXECUTOR; then Executor result → Independent verifier responsibility → Coordinator acceptance check → Orchestrator result → Human acceptance.
+- The verifier is an independent responsibility for validating evidence and the authorization/envelope only. It is not a permanent agent, a new authority, or a replacement for human acceptance.
+- No HUMAN/ path is mutated. All nonauthorization boundaries remain in force.
+
+Foundation: `PORTFOLIO.ARCHITECTURE/WINGS4.HUMAN_AI.WORKFLOW.FOUNDATION.md`
+
+## DEC-W4-093 — Parallel HUMAN conflict-analysis boundary
+
+Status: IMPLEMENTED_GOVERNANCE
+Date: 2026-08-22
+Scope: PACKAGE_1 GOVERNANCE RECONCILIATION ONLY
+Authority: Pablo; authorization `20260822.100000_W4_ORCHESTRATOR_AUTHORIZE_NARROW_PACKAGE1_AND_PARALLEL_HUMAN_CONFLICT_ANALYSIS_001`
+DECISION_SUBJECT=PARALLEL_HUMAN_CONFLICT_ANALYSIS_BOUNDARY
+HUMAN_DIRECTORY_MUTATION_AUTHORIZED=NO
+
+Decision:
+
+- Parallel analysis of HUMAN conflict is read-only evidence work; it does not authorize HUMAN mutation, reinterpret project-local canon, or create a new authority.
+- Shared writes remain serialized through the integrator. Human decision or authorization remains the gate before Coordinator, Policy Gate, and Executor action.
+- The independent verifier validates evidence/envelope only and does not adopt or govern the analysis result.
+
+Foundation: `PORTFOLIO.ARCHITECTURE/WINGS4.HUMAN_AI.WORKFLOW.FOUNDATION.md`
+
+## DEC-W4-094 — Provisional untracked CLINE record
+
+Status: RECORDED_PENDING_CLASSIFICATION
+Date: 2026-08-22
+Scope: CLINE OBSERVATION ONLY
+Authority: Pablo; authorization `20260822.100000_W4_ORCHESTRATOR_AUTHORIZE_NARROW_PACKAGE1_AND_PARALLEL_HUMAN_CONFLICT_ANALYSIS_001`
+DECISION_SUBJECT=PROVISIONAL_UNTRACKED_CLINE
+
+Decision:
+
+- CLINE is recorded as provisional and untracked pending classification.
+- A future proposed target may be considered only after separate human decision; this record authorizes no move, adoption, staging, mutation, or product use.
+- Existing checkpoints are retained. No product adoption follows from this record.
+
+## DEC-W4-095 — Isolated test and checkpoint-retention boundary
+
+Status: RECORDED_PENDING_CLASSIFICATION
+Date: 2026-08-22
+Scope: CLINE / LANGGRAPH OBSERVATION BOUNDARY ONLY
+Authority: Pablo; authorization `20260822.100000_W4_ORCHESTRATOR_AUTHORIZE_NARROW_PACKAGE1_AND_PARALLEL_HUMAN_CONFLICT_ANALYSIS_001`
+DECISION_SUBJECT=ISOLATED_TESTS_AND_CHECKPOINT_RETENTION
+
+Decision:
+
+- Any future classification or evaluation must use isolated tests, retain existing checkpoints, and make no product adoption claim.
+- No CLINE move, adoption, staging, or mutation is authorized. A future proposed target remains proposal-only pending separate human decision.
+
+## DEC-W4-096 — LangGraph output-isolation implementation block
+
+Status: IMPLEMENTATION_BLOCKED_AND_ISOLATION_FAILURE_RECORDED
+Date: 2026-08-22
+Scope: LANGGRAPH LAB OUTPUT ISOLATION
+Authority: Pablo; authorization `20260822.100000_W4_ORCHESTRATOR_AUTHORIZE_NARROW_PACKAGE1_AND_PARALLEL_HUMAN_CONFLICT_ANALYSIS_001`
+DECISION_SUBJECT=LANGGRAPH_RUNNER_OUTPUT_ISOLATION
+LANGGRAPH_PRODUCT_ADOPTION_AUTHORIZED=NO
+
+Decision:
+
+- Required implementation is blocked by the exact write allowlist: `EXPERIMENTS/LANGGRAPH_WINGS4_LAB/src/run_lab09.js` and `EXPERIMENTS/LANGGRAPH_WINGS4_LAB/src/run_lab10.js` must change to meet the demo external-path requirement, but both are outside the write allowlist.
+- No LangGraph runner file is changed. Before output-isolation correction, configured `npm test` was inadvertently invoked; it wrote retained existing repository checkpoints `lab09-test.sqlite` and `lab10-test.sqlite`, evidenced by changed SHA-256. `lab10-test.sqlite` changed size from 36864 to 57344. TEST_STATUS=FAIL_OUTPUT_ISOLATION; REPOSITORY_RUNTIME_OUTPUT_COUNT=2; EXISTING_CHECKPOINT_HASH_CHANGES=2; EXISTING_CHECKPOINT_FILES_DELETED=0.
+- Existing checkpoints are retained. Checkpoint cleanup or restoration is unauthorized. This block does not authorize product adoption, S2.4, S3, S4, HUMAN mutation, staging, commit, or push.
+
+Next gate: `HUMAN_AUTHORIZE_RUNNER_PATHS_FOR_LANGGRAPH_OUTPUT_ISOLATION_OR_CONFIRM_DEFERRAL`
+
+## DEC-W4-097 — Aceptación de aislamiento OS TEMP de LangGraph
+
+Status: ACCEPTED_HUMAN_AUTHORIZATION_EXECUTED
+Date: 2026-08-22
+Scope: LAB09/LAB10 OUTPUT ISOLATION ONLY
+Authority: Pablo; authorization `Loop 6 & 7 now authorized`
+DECISION_SUBJECT=LANGGRAPH_OS_TEMP_ISOLATION_ACCEPTANCE
+LANGGRAPH_PRODUCT_ADOPTION_AUTHORIZED=NO
+
+Decision:
+
+- La disposición previa Option A/Lab09 queda aceptada como evidencia de laboratorio; no constituye adopción de producto. Se retiene evidencia en `EXPERIMENTS/LANGGRAPH_WINGS4_LAB/checkpoints/lab09-test.sqlite` (SHA-256 `60383dccb4f692968decb4d296f65a9c7b66e3004b26682d2cdaf0719ce96f55`) y `EXPERIMENTS/LANGGRAPH_WINGS4_LAB/checkpoints/lab10-test.sqlite` (SHA-256 `79d5766283a499b53f10a874ab6da992fbc41660cbf128f9a42b2b10176a9141`); los checkpoints existentes no se limpian ni restauran.
+- LAB10=PASS y VERIFICATION=PASS: LAB09/LAB10 escriben la salida de ejecución solamente en un directorio temporal del sistema suministrado por el proceso de prueba (`os.tmpdir()`), no en el repositorio. No hubo salida de ejecución del laboratorio en el repositorio ni mutación de checkpoint o HUMAN en este loop.
+- Loop 3.1, Loop 3.2 y Loop 3.3 permanecen sin sustanciación; el actor permanece retenido y no adoptado. Esta decisión no autoriza su clasificación, movimiento, staging, mutación ni adopción.
+- S2.4, S3 y S4 permanecen no autorizados. La política de conflicto HUMAN conserva precedencia humana y prohíbe reinterpretar o mutar canon local; análisis paralelo sólo puede ser evidencia de lectura.
+- Quedan prohibidos cleanup, push y Package 2. No crear paquete de continuación con esta autorización.

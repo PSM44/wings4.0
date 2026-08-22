@@ -29,9 +29,10 @@ TARGET_MAX_ACTIVATION_ITERATIONS=3
 ITERATION_1=ACTIVATE_AND_RUNTIME_GATE
 ITERATION_2=CONSUME_OPTIONAL_CONSOLIDATED_EVIDENCE_IF_NEEDED
 ITERATION_3=HUMAN_REVIEW_HARDENED_S2_4_AND_CANONICAL_ROADMAP
-ITERATION_4=IMPLEMENT_AUTHORIZED_WORKFLOW_FOUNDATION
-ITERATION_5=IMPLEMENT_AUTHORIZED_LANGGRAPH_LAB
-ITERATION_6=HUMAN_REVIEW_WORKFLOW_FOUNDATION_AND_LANGGRAPH_LAB
+ITERATION_4=PACKAGE_1_GOVERNANCE_RECONCILIATION_COMPLETED
+ITERATION_5=LANGGRAPH_OUTPUT_ISOLATION_BLOCKED_HISTORICAL_DEC_W4_096
+ITERATION_6=LANGGRAPH_OS_TEMP_ISOLATION_ACCEPTED_DEC_W4_097
+ITERATION_7=HUMAN_DECIDE_NEXT_AUTHORIZED_SCOPE_OR_CONFIRM_DEFERRAL
 
 PRIMARY_INTERACTION_LANGUAGE=ENGLISH
 CAMBRIDGE_C1_COACHING=ACTIVE
@@ -222,8 +223,8 @@ $Lines | ForEach-Object { $_ }
 - CANONICAL_ROADMAP_PATH=PORTFOLIO.ROADMAP.md
 - CANONICAL_ROADMAP_ESTABLISHED=YES
 - ROADMAP_ID=W4_PRODUCT_ROADMAP
-- ROADMAP_CURRENT_ITEM_ID=RM-W4-007
-- ROADMAP_NEXT_GATE=HUMAN_REVIEW_WORKFLOW_FOUNDATION_AND_LANGGRAPH_LAB
+- ROADMAP_CURRENT_ITEM_ID=RM-W4-014
+- ROADMAP_NEXT_GATE=HUMAN_AUTHORIZE_RUNNER_PATHS_FOR_LANGGRAPH_OUTPUT_ISOLATION_OR_CONFIRM_DEFERRAL
 - DESIGN_APPROVAL=HUMAN_APPROVED_D1_TO_D5
 - DESIGN_APPROVAL_DECISION=DEC_W4_086
 - D1_CATALOG_LOCATION=00_STATE/WINGS4.OPEN_DECISION.CATALOG.md
@@ -330,10 +331,17 @@ EXPECTED_CONTEXT_INSTANCES_NEXT_SESSION=1
 
 ## 06 Exact next action
 
-NEXT_PRODUCT_ACTION=HUMAN_REVIEW_WORKFLOW_FOUNDATION_AND_LANGGRAPH_LAB
-NEXT_PRODUCT_MINIBATTLE=HUMAN_REVIEW_WORKFLOW_FOUNDATION_AND_LANGGRAPH_LAB
-NEXT_CONTINUITY_ACTION=ORCHESTRATOR_REVIEW_AND_REQUEST_EXPLICIT_COMMIT_PUSH_AUTHORIZATION
+NEXT_PRODUCT_ACTION=HUMAN_DECIDE_NEXT_AUTHORIZED_SCOPE_OR_CONFIRM_DEFERRAL
+NEXT_PRODUCT_MINIBATTLE=HUMAN_AUTHORIZE_RUNNER_PATHS_FOR_LANGGRAPH_OUTPUT_ISOLATION_OR_CONFIRM_DEFERRAL
+NEXT_CONTINUITY_ACTION=HUMAN_AUTHORIZE_RUNNER_PATHS_FOR_LANGGRAPH_OUTPUT_ISOLATION_OR_CONFIRM_DEFERRAL
 NEXT_SESSION_OPTION_SELECTED=NO
+LANGGRAPH_OUTPUT_ISOLATION_STATUS=IMPLEMENTATION_BLOCKED_AND_ISOLATION_FAILURE_RECORDED
+LANGGRAPH_RUNNER_CHANGE=NO
+TEST_STATUS=FAIL_OUTPUT_ISOLATION
+REPOSITORY_RUNTIME_OUTPUT_COUNT=2
+EXISTING_CHECKPOINT_HASH_CHANGES=2
+EXISTING_CHECKPOINT_FILES_DELETED=0
+CHECKPOINT_CLEANUP_OR_RESTORATION_AUTHORIZED=NO
 S2_3_TECHNICAL_STATUS=PASS
 S2_HUMAN_ACCEPTANCE=ACCEPTED
 S2_3_HUMAN_ACCEPTANCE=ACCEPTED
@@ -347,8 +355,8 @@ DESIGN_STATUS=APPROVED
 S2_4_DESIGN_HARDENING_STATUS=PASS
 CANONICAL_ROADMAP_PATH=PORTFOLIO.ROADMAP.md
 CANONICAL_ROADMAP_ESTABLISHED=YES
-ROADMAP_CURRENT_ITEM_ID=RM-W4-007
-ROADMAP_NEXT_GATE=HUMAN_REVIEW_WORKFLOW_FOUNDATION_AND_LANGGRAPH_LAB
+ROADMAP_CURRENT_ITEM_ID=RM-W4-014
+ROADMAP_NEXT_GATE=HUMAN_AUTHORIZE_RUNNER_PATHS_FOR_LANGGRAPH_OUTPUT_ISOLATION_OR_CONFIRM_DEFERRAL
 DESIGN_APPROVAL=HUMAN_APPROVED_D1_TO_D5
 D1_CATALOG_LOCATION=00_STATE/WINGS4.OPEN_DECISION.CATALOG.md
 D2_SLICE_IDENTIFIER=S2.4
@@ -368,14 +376,14 @@ ITERATION_2_REQUIRED_FOR_SESSION_START=NO
 ITERATION_3=HUMAN_REVIEW_HARDENED_S2_4_AND_CANONICAL_ROADMAP
 Pablo selected Option B and required a canonical product roadmap (DEC-W4-087, DEC-W4-088). DEC-W4-089 accepts that roadmap and hardened S2.4 design. S2.4 implementation remains unauthorized. Canonical roadmap is `PORTFOLIO.ROADMAP.md`. Do not auto-select S2.4 implementation. NEXT_SESSION_OPTION_SELECTED=NO. H1 remains the accepted S2/S2.3 human-acceptance record. D1–D5 remain the approved design dispositions. Hardening rules in DEC-W4-087 remain operative for any later S2.4 implementation.
 
-ITERATION_4=IMPLEMENT_AUTHORIZED_WORKFLOW_FOUNDATION
-This program authorizes the project-local HUMAN-AI workflow foundation after Phase 1 lands. It does not authorize S2.4 implementation, catalog creation, S3, S4, or HUMAN/ mutation.
+ITERATION_4=PACKAGE_1_GOVERNANCE_RECONCILIATION_COMPLETED
+DEC-W4-092/093 complete workflow final-acceptance and independent-verifier governance. No HUMAN/ mutation; the verifier validates evidence/envelope only and is not a permanent agent or new authority.
 
-ITERATION_5=IMPLEMENT_AUTHORIZED_LANGGRAPH_LAB
-Isolated experimental laboratory only. LangGraph product adoption is not authorized.
+ITERATION_5=LANGGRAPH_OUTPUT_ISOLATION_BLOCKED_BY_EXACT_ALLOWLIST
+DEC-W4-094/095 record provisional untracked CLINE pending classification: future proposed target only; no move, adoption, stage, or mutation; isolated tests and existing checkpoint retention are required. DEC-W4-096 blocks the required LangGraph runner changes because `src/run_lab09.js` and `src/run_lab10.js` are outside the exact allowlist; no runner change. Configured `npm test` was inadvertently invoked before output-isolation correction: TEST_STATUS=FAIL_OUTPUT_ISOLATION; REPOSITORY_RUNTIME_OUTPUT_COUNT=2; retained existing repository checkpoints `lab09-test.sqlite` and `lab10-test.sqlite` were written, evidenced by changed SHA-256; EXISTING_CHECKPOINT_HASH_CHANGES=2; `lab10-test.sqlite` size changed 36864→57344; EXISTING_CHECKPOINT_FILES_DELETED=0; checkpoint cleanup/restoration is unauthorized. No product adoption occurred.
 
-ITERATION_6=HUMAN_REVIEW_WORKFLOW_FOUNDATION_AND_LANGGRAPH_LAB
-Present governed options without selecting LangGraph product adoption or S2.4 implementation.
+ITERATION_6=HUMAN_AUTHORIZE_RUNNER_PATHS_FOR_LANGGRAPH_OUTPUT_ISOLATION_OR_CONFIRM_DEFERRAL
+S2.4, S3, and S4 remain unauthorized. No commit or push.
 
 The authorized S2 CLI remains available for review:
 
@@ -393,7 +401,7 @@ Deferred slices (not auto-selected; require separate authorization):
 - second-entity diagnostic (DEC-W4-077 Option A, not selected)
 - independent resynchronization beyond Ring2
 
-Historical design/planning context preserved: DEC-W4-078 design recorded; DEC-W4-079 planning recorded; recommended first implemented slice was ON_DEMAND_TEXT_ONLY / SESSION_OUTPUT_ONLY and is now implemented as S2 (DEC-W4-080). Equality-based stale-HEAD detection is historical and non-operative; current semantics are ancestry-based (DEC-W4-081). Frozen operational catalogs are historical and non-operative; current derivation is S2.3 (DEC-W4-082). OPEN_DECISION_* contract design is DEC-W4-083. Bounded S2/S2.3 human acceptance is DEC-W4-084 (H1). OPEN_DECISION_* runtime consumption design and planning is DEC-W4-085. D1–D5 design approval is DEC-W4-086. S2.4 design hardening is DEC-W4-087. Canonical product roadmap is DEC-W4-088.
+Historical design/planning context preserved: DEC-W4-078 design recorded; DEC-W4-079 planning recorded; recommended first implemented slice was ON_DEMAND_TEXT_ONLY / SESSION_OUTPUT_ONLY and is now implemented as S2 (DEC-W4-080). Equality-based stale-HEAD detection is historical and non-operative; current semantics are ancestry-based (DEC-W4-081). Frozen operational catalogs are historical and non-operative; current derivation is S2.3 (DEC-W4-082). OPEN_DECISION_* contract design is DEC-W4-083. Bounded S2/S2.3 human acceptance is DEC-W4-084 (H1). OPEN_DECISION_* runtime consumption design and planning is DEC-W4-085. D1–D5 design approval is DEC-W4-086. S2.4 design hardening is DEC-W4-087. Canonical product roadmap is DEC-W4-088. DEC-W4-092/093 complete governance reconciliation; DEC-W4-094/095 record provisional untracked CLINE, future proposed target only, no move/adoption/stage, isolated tests, and checkpoint retention; DEC-W4-096 blocks output isolation because runner paths are outside the exact write allowlist. No LangGraph implementation or test pass is claimed.
 
 DO_NOT_IMPLEMENT_IN_THIS_RESUME=S3; S4; Ring3; RADAR; MARKET_MONITORING; live web; capture form; auto-delivery; child read; child mutation; COPY lifecycle change; Market Check generalization beyond Ring0 demo; MD1 reopen; OPEN_DECISION_* catalog/runtime consumption. Running authorized S2 CLI is allowed and is not S3/S4 implementation.
 
@@ -443,10 +451,16 @@ PRODUCTION_COMPLETE=NO
 
 Return to Wings4 ORCHESTRATOR, run Iteration 1 runtime gate from this file (verify runtime HEAD, ancestry, origin alignment, and clean-tree state), optionally consume the consolidated temp evidence in Iteration 2, then in Iteration 3 present the governed next action without selecting a new development slice. Next governed action:
 
-NEXT_PRODUCT_ACTION=HUMAN_REVIEW_WORKFLOW_FOUNDATION_AND_LANGGRAPH_LAB
+NEXT_PRODUCT_ACTION=HUMAN_DECIDE_NEXT_AUTHORIZED_SCOPE_OR_CONFIRM_DEFERRAL
 
 The authorized S2 CLI remains available for review and does not mutate product:
 
 node "C:\01. GitHub\Wings4.0\PRODUCT\PUSH_FIRST_BRIEFING_RUNTIME\briefing.runtime.js" --trigger ON_DEMAND_REQUEST
 
 S2.3 technical status is PASS. Bounded S2/S2.3 human acceptance is ACCEPTED (DEC-W4-084, H1) at basis commit `20313dd1fc48e0ed2fde4379a213ee53da42481c`. OPEN_DECISION_* contract design is canonized (DEC-W4-083). OPEN_DECISION_* runtime consumption design is approved and hardened (DEC-W4-086, DEC-W4-087). Canonical product roadmap is `PORTFOLIO.ROADMAP.md` (DEC-W4-088). S2.4 is not authorized. OPEN_DECISIONS remains UNKNOWN because no instance catalog is consumed. Running S2 does not authorize S3, S4, or S2.4. Any S3/S4 or S2.4 implementation requires a new explicit human decision. No child-project evidence may be fetched to improve the briefing. Missing evidence remains UNKNOWN. No additional prompt required for session start; request later evidence only when needed. Do not treat DEC-W4-078, DEC-W4-079, DEC-W4-085, DEC-W4-086, DEC-W4-087, or DEC-W4-088 as S2.4 runtime authorization. Do not automatically select or authorize a future development slice. Do not consume the OPEN_DECISION_* architecture contract as a runtime instance catalog. Do not create an operative catalog from this recording. Bounded S2/S2.3 acceptance is not Wings4 complete.
+
+## 09 DEC-W4-097 current continuation
+
+LOOP_6_7_STATUS=PASS; LAB10=PASS; VERIFICATION=PASS; OS_TEMP_OUTPUT_ONLY=YES; REPOSITORY_RUNTIME_OUTPUT=0; CHECKPOINT_MUTATION_THIS_LOOP=0; HUMAN_MUTATION_THIS_LOOP=0. Retained evidence only: `EXPERIMENTS/LANGGRAPH_WINGS4_LAB/checkpoints/lab09-test.sqlite` SHA-256 `60383dccb4f692968decb4d296f65a9c7b66e3004b26682d2cdaf0719ce96f55`; `EXPERIMENTS/LANGGRAPH_WINGS4_LAB/checkpoints/lab10-test.sqlite` SHA-256 `79d5766283a499b53f10a874ab6da992fbc41660cbf128f9a42b2b10176a9141`. No cleanup or restoration.
+
+LOOP_3_1_TO_3_3=UNSUBSTANTIATED; ACTOR=RETAINED_NONADOPTED. HUMAN conflict policy remains read-only analysis with Pablo/HUMAN authority prevailing. LangGraph is not product adoption; S2.4/S3/S4 remain unauthorized. Do not push, start Package 2, or create a continuation package.

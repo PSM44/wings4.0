@@ -15,7 +15,7 @@ HISTORICAL_CHAT_REQUIRED_TO_UNDERSTAND_ROADMAP=NO
 ESTABLISHING_DECISION=DEC-W4-088
 S2_4_HARDENING_DECISION=DEC-W4-087
 ROADMAP_ACCEPTANCE_DECISION=DEC-W4-089
-UPDATED_AT_DECISION=DEC-W4-089
+UPDATED_AT_DECISION=DEC-W4-097
 
 ## 0. Roadmap Identity and Authority
 
@@ -50,7 +50,7 @@ Verified baseline at roadmap generation. Runtime Git remains current HEAD truth.
 
 CURRENT_DURABLE_HEAD=2df515376b07cda4125a59b06ded49891af1c0a4
 LATEST_DURABLE_DECISION_AT_GENERATION=DEC-W4-090
-LATEST_WORKING_TREE_DECISION=DEC-W4-091
+LATEST_WORKING_TREE_DECISION=DEC-W4-096
 S2_HUMAN_ACCEPTANCE=ACCEPTED
 S2_3_HUMAN_ACCEPTANCE=ACCEPTED
 S2_4_DESIGN_STATUS=APPROVED
@@ -65,8 +65,8 @@ WINGS4_COMPLETE=NO
 PRODUCTION_COMPLETE=NO
 ROADMAP_CURRENT_ITEM_ID=RM-W4-014
 ROADMAP_HUMAN_ACCEPTANCE=ACCEPTED
-ROADMAP_NEXT_GATE=HUMAN_REVIEW_WORKFLOW_FOUNDATION_AND_LANGGRAPH_LAB
-NEXT_PRODUCT_ACTION=HUMAN_REVIEW_WORKFLOW_FOUNDATION_AND_LANGGRAPH_LAB
+ROADMAP_NEXT_GATE=HUMAN_DECIDE_NEXT_AUTHORIZED_SCOPE_OR_CONFIRM_DEFERRAL
+NEXT_PRODUCT_ACTION=HUMAN_DECIDE_NEXT_AUTHORIZED_SCOPE_OR_CONFIRM_DEFERRAL
 NEXT_SESSION_OPTION_SELECTED=NO
 COMMIT=AUTHORIZED_PHASE_3
 PUSH=AUTHORIZED_PHASE_3
@@ -75,7 +75,7 @@ FACT: Bounded S2/S2.3 is accepted. S2.4 design is approved and hardened. S2.4 im
 
 ### GRAPH_R0_COMPLETE_ROADMAP_AND_CURRENT_POSITION
 
-YOU_ARE_HERE=RM-W4-014_EXPERIMENTAL_LAB_COMPLETE_PRODUCT_ADOPTION_NOT_AUTHORIZED
+YOU_ARE_HERE=RM-W4-014_LANGGRAPH_OS_TEMP_ISOLATION_ACCEPTED
 
 This diagram is the first-class complete-roadmap view. Status labels below are visual only. They do not change RM-W4 item STATUS fields. The reference-adoption study is a temporary review activity, not a new roadmap item.
 
@@ -121,9 +121,9 @@ flowchart TD
 
 What it proves: Accepted product baseline, current governance foundation, experimental lab present, S2.4 still unauthorized.
 What it does not prove: LangGraph product adoption or S2.4 implementation.
-Current governed decision: DEC-W4-091 implements RM-W4-014 as an experimental lab only.
+Current governed decision: DEC-W4-097 accepts RM-W4-014 OS TEMP isolation. LAB10=PASS and verification=PASS; repository runtime output=0, with no checkpoint or HUMAN mutation in Loop 6/7. Retained evidence/checkpoint cleanup boundary remains governed by DEC-W4-097.
 How to update YOU ARE HERE: after a later human decision, move Here to the selected product gate; do not treat graphs as authority.
-Evidence pointers: DEC-W4-090; DEC-W4-091; EXPERIMENTS/LANGGRAPH_WINGS4_LAB/README.md.
+Evidence pointers: DEC-W4-092; DEC-W4-093; DEC-W4-096; EXPERIMENTS/LANGGRAPH_WINGS4_LAB/README.md.
 
 ## 3. Delivered and Human-Accepted Baseline
 
@@ -422,40 +422,44 @@ UPDATED_AT_DECISION=DEC-W4-088
 ROADMAP_ITEM_ID=RM-W4-013
 TITLE=Project-local HUMAN-AI workflow foundation
 OUTCOME=Governed roles, identity/worktree gates, Q&A/prompt/loop/graph contracts without duplicate authority
-STATUS=IMPLEMENTED
+STATUS=COMPLETED
 TRACK=GOVERNANCE_FOUNDATION
 HUMAN_VALUE=Safe HUMAN to EXECUTOR work without copying Skills lakes
 DEPENDENCIES=RM-W4-007
 BLOCKED_BY=NONE
-DECISION_ID=DEC-W4-090
+DECISION_ID=DEC-W4-092; DEC-W4-093
 AUTHORIZATION_STATUS=AUTHORIZED
-IMPLEMENTATION_STATUS=IMPLEMENTED
-ACCEPTANCE_STATUS=RECORDED_THIS_PROGRAM
+IMPLEMENTATION_STATUS=IMPLEMENTED_GOVERNANCE
+ACCEPTANCE_STATUS=COMPLETED_GOVERNANCE_RECONCILIATION
 EVIDENCE_POINTERS=PORTFOLIO.ARCHITECTURE/WINGS4.HUMAN_AI.WORKFLOW.FOUNDATION.md
 NEXT_GATE=KEEP_DISTINCT_FROM_PRODUCT_RUNTIME
 NEXT_ACTION=Use the foundation; do not treat it as S2.4
 OWNER_ROLE=ORCHESTRATOR
-UPDATED_AT_DECISION=DEC-W4-090
+UPDATED_AT_DECISION=DEC-W4-093
 
 ### RM-W4-014 — Isolated LangGraph learning laboratory
 
 ROADMAP_ITEM_ID=RM-W4-014
-TITLE=Isolated LangGraph learning and evaluation laboratory
-OUTCOME=Six runnable non-production exercises plus scorecard; no product adoption
-STATUS=IMPLEMENTED
+TITLE=LangGraph output isolation
+OUTCOME=Required demo external-path output isolation is not implemented; existing lab remains non-product
+STATUS=BLOCKED
 TRACK=EXPERIMENTAL_LEARNING
-HUMAN_VALUE=Learn and evaluate LangGraph without changing accepted S2
+HUMAN_VALUE=Preserve isolated evaluation without changing accepted S2
 DEPENDENCIES=RM-W4-013
-BLOCKED_BY=NONE
-DECISION_ID=DEC-W4-091
-AUTHORIZATION_STATUS=AUTHORIZED_LAB_ONLY
-IMPLEMENTATION_STATUS=IMPLEMENTED
-ACCEPTANCE_STATUS=RECORDED_THIS_PROGRAM
-EVIDENCE_POINTERS=EXPERIMENTS/LANGGRAPH_WINGS4_LAB/README.md
-NEXT_GATE=SEPARATE_ADOPTION_DECISION
-NEXT_ACTION=Keep product adoption unauthorized
+BLOCKED_BY=EXACT_WRITE_ALLOWLIST_EXCLUDES_run_lab09.js_AND_run_lab10.js
+DECISION_ID=DEC-W4-096
+AUTHORIZATION_STATUS=RUNNER_PATHS_NOT_AUTHORIZED
+IMPLEMENTATION_STATUS=NOT_IMPLEMENTED_BLOCKED_AND_ISOLATION_FAILURE_RECORDED
+ACCEPTANCE_STATUS=NOT_APPLICABLE_BLOCKED
+TEST_STATUS=FAIL_OUTPUT_ISOLATION
+REPOSITORY_RUNTIME_OUTPUT_COUNT=2
+EXISTING_CHECKPOINT_HASH_CHANGES=2
+EXISTING_CHECKPOINT_FILES_DELETED=0
+EVIDENCE_POINTERS=PORTFOLIO.DECISION_LOG.md#dec-w4-096
+NEXT_GATE=HUMAN_AUTHORIZE_RUNNER_PATHS_FOR_LANGGRAPH_OUTPUT_ISOLATION_OR_CONFIRM_DEFERRAL
+NEXT_ACTION=HUMAN_AUTHORIZE_RUNNER_PATHS_FOR_LANGGRAPH_OUTPUT_ISOLATION_OR_CONFIRM_DEFERRAL
 OWNER_ROLE=ORCHESTRATOR
-UPDATED_AT_DECISION=DEC-W4-091
+UPDATED_AT_DECISION=DEC-W4-096
 
 ## 7. Dependencies and Decision Gates
 
@@ -643,3 +647,41 @@ flowchart TD
 
 ROADMAP_GRAPH_COUNT=6
 ROADMAP_ITEM_COUNT=14
+
+## 15. Hoja de ruta operativa actual (DEC-W4-097)
+
+### Estado actual
+RM-W4-014 está aceptado como aislamiento de salida en OS TEMP: LAB10=PASS y VERIFICATION=PASS; no hay salida de ejecución en el repositorio ni mutación de checkpoint/HUMAN en Loop 6/7. LangGraph sigue siendo laboratorio, no producto.
+
+### Trabajo completado
+Se modificaron los seis archivos permitidos de LAB09/LAB10 y se validaron 21 pruebas PASS. La disposición previa Option A/Lab09 queda aceptada únicamente como evidencia experimental.
+
+### Evidencia verificada
+`EXPERIMENTS/LANGGRAPH_WINGS4_LAB/checkpoints/lab09-test.sqlite` — SHA-256 `60383dccb4f692968decb4d296f65a9c7b66e3004b26682d2cdaf0719ce96f55`; `EXPERIMENTS/LANGGRAPH_WINGS4_LAB/checkpoints/lab10-test.sqlite` — SHA-256 `79d5766283a499b53f10a874ab6da992fbc41660cbf128f9a42b2b10176a9141`. Son evidencia retenida; no autoriza cleanup ni restauración.
+
+### Decisiones vigentes
+DEC-W4-097 acepta aislamiento OS TEMP. DEC-W4-091 conserva el límite de laboratorio; DEC-W4-092/093 conservan flujo y conflicto HUMAN. S2.4 permanece diseñado/no autorizado; S3/S4 permanecen no autorizados.
+
+### Dependencias
+Cualquier trabajo futuro depende de nueva autorización humana explícita, del límite exacto de archivos y de la precedencia HUMAN → Decision Log → Roadmap. No existe catálogo operativo OPEN_DECISION.
+
+### Bloqueos reales
+No hay bloqueo de aislamiento para LAB09/LAB10. Loop 3.1, Loop 3.2 y Loop 3.3 son UNSUBSTANTIATED; por ello no justifican adopción, clasificación ni trabajo posterior del actor.
+
+### Conflictos HUMAN abiertos
+La política permanece conservadora: Pablo y HUMAN local prevalecen; análisis paralelo es sólo evidencia de lectura y no puede reinterpretar ni mutar canon local. No hay resolución automática de conflictos HUMAN.
+
+### Trabajo pendiente autorizado
+No se selecciona una nueva porción de producto. Sólo corresponde presentar a Pablo el siguiente límite/decisión autorizable o confirmar aplazamiento.
+
+### Trabajo propuesto no autorizado
+Adopción de LangGraph, clasificación/movimiento/adopción del actor retenido, catálogo OPEN_DECISION, S2.4, S3, S4, Ring3, RADAR y Package 2.
+
+### Concurrencia segura
+Una sola integración serializada por artefacto compartido; trabajo paralelo sólo de lectura/evidencia y verificador independiente sólo del sobre/evidencia. No mutar HUMAN ni checkpoints.
+
+### Próxima acción recomendada
+`HUMAN_DECIDE_NEXT_AUTHORIZED_SCOPE_OR_CONFIRM_DEFERRAL`; no seleccionar automáticamente S2.4, S3, S4 ni una adopción de LangGraph.
+
+### Prohibiciones vigentes
+Push, cleanup/restauración de checkpoints, Package 2, paquete de continuación, mutación HUMAN, mutación de proyectos hijos, adopción de actor y salida de ejecución del laboratorio en el repositorio están prohibidos sin nueva autorización explícita.
