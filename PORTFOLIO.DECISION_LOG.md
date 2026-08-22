@@ -1853,3 +1853,18 @@ Decision:
 - Loop 3.1, Loop 3.2 y Loop 3.3 permanecen sin sustanciación; el actor permanece retenido y no adoptado. Esta decisión no autoriza su clasificación, movimiento, staging, mutación ni adopción.
 - S2.4, S3 y S4 permanecen no autorizados. La política de conflicto HUMAN conserva precedencia humana y prohíbe reinterpretar o mutar canon local; análisis paralelo sólo puede ser evidencia de lectura.
 - Quedan prohibidos cleanup, push y Package 2. No crear paquete de continuación con esta autorización.
+
+## DEC-W4-098 - Forward correction of LAB10 evidence references
+
+Status: APPROVED_HUMAN_DIRECTION
+Date: 2026-08-22
+Scope: Q-W4-POSTAUDIT-001=A; Q-W4-POSTAUDIT-002=A; Q-W4-POSTAUDIT-003=A; forward correction only
+
+Decision:
+
+- DEC-W4-097 remains immutable historical evidence. Commits `860cec0d0a3a9983a486a2ef6317b2d2b8a5d27c` and `42835c15dfd500f2930b5caee128406a3d14c75f` remain retained and are not rewritten.
+- False checkpoint/external-evidence hash associations are corrected forward. Retained checkpoints are `EXPERIMENTS/LANGGRAPH_WINGS4_LAB/checkpoints/lab09-test.sqlite` SHA-256 `50fecc58253747d497b5403a4d55c6d1c3957e8882b3a27dedceae5c233fd410` and `EXPERIMENTS/LANGGRAPH_WINGS4_LAB/checkpoints/lab10-test.sqlite` SHA-256 `a650f1d445cf7553333eb03ce37630bfcd55c7bdbbf78f23bca62fec0f4b74da`.
+- Retained external execution evidence is `C:\Users\aazcl\Downloads\T.Wings4.0.Evidence\W4.LAB10.EXECUTION.EVIDENCE.json`, SHA-256 `60383dccb4f692968decb4d296f65a9c7b66e3004b26682d2cdaf0719ce96f55`; it is UTF-8 and valid JSON.
+- Retained external verifier artifact is `C:\Users\aazcl\Downloads\T.Wings4.0.Evidence\W4.LAB10.INDEPENDENT.VERIFICATION.json`, SHA-256 `79d5766283a499b53f10a874ab6da992fbc41660cbf128f9a42b2b10176a9141`; it is UTF-8 valid but invalid JSON and is not a machine-readable independent-verifier record. Its hash proves artifact identity, not JSON validity or factual correctness. No replacement is created.
+- Only independently reproducible technical facts from valid execution evidence are retained: one recorded LAB10 command invocation, status 0, TAP 1 PASS/0 FAIL, empty stderr, one OS TEMP output, and retained comparisons declaring equality. No cumulative historical execution count or EXACTLY_ONCE authorization breach is declared.
+- No test was rerun; no implementation, HUMAN, checkpoint, external evidence, or actor-tree file changed. The actor tree remains unadopted. Push remains unauthorized.

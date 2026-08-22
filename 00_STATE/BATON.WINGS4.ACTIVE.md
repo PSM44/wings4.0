@@ -313,12 +313,15 @@ CURRENT_MINIBATTLE=RM-W4-014_LANGGRAPH_OS_TEMP_ISOLATION_ACCEPTED
 LANGGRAPH_OUTPUT_ISOLATION_STATUS=PASS_OS_TEMP_ONLY
 LANGGRAPH_RUNNER_CHANGE=YES
 TEST_STATUS=PASS
-VERIFICATION_STATUS=PASS
+VERIFICATION_STATUS=INVALID_VERIFIER_ARTIFACT_NOT_MACHINE_VERIFIED
 REPOSITORY_RUNTIME_OUTPUT_COUNT=0
 REPOSITORY_CHECKPOINT_MUTATION_THIS_LOOP=0
 HUMAN_MUTATION_THIS_LOOP=0
-RETAINED_EVIDENCE_LAB09=EXPERIMENTS/LANGGRAPH_WINGS4_LAB/checkpoints/lab09-test.sqlite#60383dccb4f692968decb4d296f65a9c7b66e3004b26682d2cdaf0719ce96f55
-RETAINED_EVIDENCE_LAB10=EXPERIMENTS/LANGGRAPH_WINGS4_LAB/checkpoints/lab10-test.sqlite#79d5766283a499b53f10a874ab6da992fbc41660cbf128f9a42b2b10176a9141
+RETAINED_CHECKPOINT_LAB09=EXPERIMENTS/LANGGRAPH_WINGS4_LAB/checkpoints/lab09-test.sqlite#50fecc58253747d497b5403a4d55c6d1c3957e8882b3a27dedceae5c233fd410
+RETAINED_CHECKPOINT_LAB10=EXPERIMENTS/LANGGRAPH_WINGS4_LAB/checkpoints/lab10-test.sqlite#a650f1d445cf7553333eb03ce37630bfcd55c7bdbbf78f23bca62fec0f4b74da
+RETAINED_EXECUTION_EVIDENCE=C:\Users\aazcl\Downloads\T.Wings4.0.Evidence\W4.LAB10.EXECUTION.EVIDENCE.json#60383dccb4f692968decb4d296f65a9c7b66e3004b26682d2cdaf0719ce96f55
+RETAINED_VERIFIER_ARTIFACT=C:\Users\aazcl\Downloads\T.Wings4.0.Evidence\W4.LAB10.INDEPENDENT.VERIFICATION.json#79d5766283a499b53f10a874ab6da992fbc41660cbf128f9a42b2b10176a9141
+RETAINED_VERIFIER_ARTIFACT_JSON_VALID=NO
 CHECKPOINT_CLEANUP_OR_RESTORATION_AUTHORIZED=NO
 NEXT_ROLE=ORCHESTRATOR
 NEXT_ROOT=C:\01. GitHub\Wings4.0
@@ -361,7 +364,7 @@ LAST_REFRESHED_AT: 2026-08-20T19:55:00-04:00
 
 ## Estado operativo actual — DEC-W4-097
 
-- Loop 6/7: PASS; LAB10 y verificación PASS; salida de laboratorio aislada en OS TEMP, sin salida de ejecución de repositorio, mutación de checkpoint ni HUMAN en este loop.
-- Evidencia retenida: `checkpoints/lab09-test.sqlite` SHA-256 `60383dccb4f692968decb4d296f65a9c7b66e3004b26682d2cdaf0719ce96f55`; `checkpoints/lab10-test.sqlite` SHA-256 `79d5766283a499b53f10a874ab6da992fbc41660cbf128f9a42b2b10176a9141`. No cleanup/restauración.
+- Loop 6/7: valid execution evidence records LAB10 PASS, OS TEMP laboratory output, no repository runtime output, and no checkpoint/HUMAN mutation according to retained comparisons. The verifier artifact is UTF-8 but invalid JSON; do not declare machine-readable independent verification PASS.
+- Retained checkpoints: `checkpoints/lab09-test.sqlite` SHA-256 `50fecc58253747d497b5403a4d55c6d1c3957e8882b3a27dedceae5c233fd410`; `checkpoints/lab10-test.sqlite` SHA-256 `a650f1d445cf7553333eb03ce37630bfcd55c7bdbbf78f23bca62fec0f4b74da`. External execution evidence `W4.LAB10.EXECUTION.EVIDENCE.json` SHA-256 `60383dccb4f692968decb4d296f65a9c7b66e3004b26682d2cdaf0719ce96f55`; retained verifier artifact `W4.LAB10.INDEPENDENT.VERIFICATION.json` SHA-256 `79d5766283a499b53f10a874ab6da992fbc41660cbf128f9a42b2b10176a9141`, invalid JSON. No cleanup/restoration.
 - Loop 3.1–3.3: UNSUBSTANTIATED. Actor: RETAINED_NONADOPTED. S2.4/S3/S4: NOT_AUTHORIZED. Conflictos HUMAN: autoridad humana y lectura paralela solamente.
 - Prohibiciones: cleanup, push, Package 2 y paquete de continuación.

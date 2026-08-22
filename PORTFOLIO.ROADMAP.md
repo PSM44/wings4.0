@@ -121,7 +121,7 @@ flowchart TD
 
 What it proves: Accepted product baseline, current governance foundation, experimental lab present, S2.4 still unauthorized.
 What it does not prove: LangGraph product adoption or S2.4 implementation.
-Current governed decision: DEC-W4-097 accepts RM-W4-014 OS TEMP isolation. LAB10=PASS and verification=PASS; repository runtime output=0, with no checkpoint or HUMAN mutation in Loop 6/7. Retained evidence/checkpoint cleanup boundary remains governed by DEC-W4-097.
+Current governed decision: DEC-W4-097 accepts RM-W4-014 OS TEMP isolation. Valid execution evidence records LAB10=PASS; repository runtime output=0, with no checkpoint or HUMAN mutation in Loop 6/7 according to retained comparisons. The retained verifier artifact is invalid JSON, so machine-readable independent verification PASS is not established. Retained evidence/checkpoint cleanup boundary remains governed by DEC-W4-097 and its forward clarification.
 How to update YOU ARE HERE: after a later human decision, move Here to the selected product gate; do not treat graphs as authority.
 Evidence pointers: DEC-W4-092; DEC-W4-093; DEC-W4-096; EXPERIMENTS/LANGGRAPH_WINGS4_LAB/README.md.
 
@@ -651,13 +651,13 @@ ROADMAP_ITEM_COUNT=14
 ## 15. Hoja de ruta operativa actual (DEC-W4-097)
 
 ### Estado actual
-RM-W4-014 está aceptado como aislamiento de salida en OS TEMP: LAB10=PASS y VERIFICATION=PASS; no hay salida de ejecución en el repositorio ni mutación de checkpoint/HUMAN en Loop 6/7. LangGraph sigue siendo laboratorio, no producto.
+RM-W4-014 esta aceptado como aislamiento de salida en OS TEMP: la evidencia de ejecucion valida registra LAB10=PASS, sin salida de ejecucion en el repositorio ni mutacion de checkpoint/HUMAN segun sus comparaciones retenidas. El artefacto externo del verificador no es JSON valido, por lo que VERIFICATION=PASS no se presenta como verificacion independiente legible por maquina. LangGraph sigue siendo laboratorio, no producto.
 
 ### Trabajo completado
 Se modificaron los seis archivos permitidos de LAB09/LAB10 y se validaron 21 pruebas PASS. La disposición previa Option A/Lab09 queda aceptada únicamente como evidencia experimental.
 
 ### Evidencia verificada
-`EXPERIMENTS/LANGGRAPH_WINGS4_LAB/checkpoints/lab09-test.sqlite` — SHA-256 `60383dccb4f692968decb4d296f65a9c7b66e3004b26682d2cdaf0719ce96f55`; `EXPERIMENTS/LANGGRAPH_WINGS4_LAB/checkpoints/lab10-test.sqlite` — SHA-256 `79d5766283a499b53f10a874ab6da992fbc41660cbf128f9a42b2b10176a9141`. Son evidencia retenida; no autoriza cleanup ni restauración.
+Checkpoints retenidos: `EXPERIMENTS/LANGGRAPH_WINGS4_LAB/checkpoints/lab09-test.sqlite` - SHA-256 `50fecc58253747d497b5403a4d55c6d1c3957e8882b3a27dedceae5c233fd410`; `EXPERIMENTS/LANGGRAPH_WINGS4_LAB/checkpoints/lab10-test.sqlite` - SHA-256 `a650f1d445cf7553333eb03ce37630bfcd55c7bdbbf78f23bca62fec0f4b74da`. Evidencia externa de ejecucion: `C:\Users\aazcl\Downloads\T.Wings4.0.Evidence\W4.LAB10.EXECUTION.EVIDENCE.json` - SHA-256 `60383dccb4f692968decb4d296f65a9c7b66e3004b26682d2cdaf0719ce96f55`. Artefacto externo de verificacion retenido: `C:\Users\aazcl\Downloads\T.Wings4.0.Evidence\W4.LAB10.INDEPENDENT.VERIFICATION.json` - SHA-256 `79d5766283a499b53f10a874ab6da992fbc41660cbf128f9a42b2b10176a9141`; UTF-8 valido pero JSON invalido, no usable como verificacion independiente legible por maquina. No autoriza cleanup ni restauracion.
 
 ### Decisiones vigentes
 DEC-W4-097 acepta aislamiento OS TEMP. DEC-W4-091 conserva el límite de laboratorio; DEC-W4-092/093 conservan flujo y conflicto HUMAN. S2.4 permanece diseñado/no autorizado; S3/S4 permanecen no autorizados.
