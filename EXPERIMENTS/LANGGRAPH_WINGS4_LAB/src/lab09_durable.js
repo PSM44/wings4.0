@@ -1,6 +1,5 @@
 import fs from "node:fs";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
 import { z } from "zod";
 import {
   StateSchema,
@@ -19,8 +18,6 @@ export const LAB09_RETRIEVAL_DATE = "2026-08-21";
 export const LAB09_SQLITE_PACKAGE = "@langchain/langgraph-checkpoint-sqlite@1.0.4";
 export const LAB09_PRODUCTION_READY = false;
 
-const LAB_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-export const CHECKPOINTS_DIR = path.join(LAB_ROOT, "checkpoints");
 
 const State = new StateSchema({
   input: z.string(),
@@ -47,9 +44,20 @@ export function buildLab09Graph(checkpointer) {
     .compile({ checkpointer });
 }
 
-export function sqlitePath(name) {
-  fs.mkdirSync(CHECKPOINTS_DIR, { recursive: true });
-  return path.join(CHECKPOINTS_DIR, name);
+export function requireLabOutputDir(outputDir) {
+  if (typeof outputDir !== "string" || !outputDir.trim()) {
+    throw new Error("LANGGRAPH_LAB_OUTPUT_DIR must be a nonempty directory path");
+  }
+  return outputDir;
+}
+
+export function sqlitePath(outputDir, dbName) {
+  requireLabOutputDir(outputDir);
+  if (typeof dbName !== "string" || !dbName.trim()) {
+    throw new Error("sqlitePath requires a nonempty database name");
+  }
+  fs.mkdirSync(outputDir, { recursive: true });
+  return path.join(outputDir, dbName);
 }
 
 export function openSqliteSaver(dbPath) {

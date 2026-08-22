@@ -3,10 +3,12 @@ import {
   pauseLab09Sqlite,
   resumeLab09Sqlite,
   sqlitePath,
+  requireLabOutputDir,
   compareMemorySaverCannotSurviveReconstruction,
 } from "./lab09_durable.js";
 
-const dbPath = sqlitePath("lab09-demo.sqlite");
+const outputDir = requireLabOutputDir(process.env.LANGGRAPH_LAB_OUTPUT_DIR);
+const dbPath = sqlitePath(outputDir, "lab09-demo.sqlite");
 if (fs.existsSync(dbPath)) fs.unlinkSync(dbPath);
 const threadId = "lab09-demo";
 await pauseLab09Sqlite("durable", threadId, dbPath);

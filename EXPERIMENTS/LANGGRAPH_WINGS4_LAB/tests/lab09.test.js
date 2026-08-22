@@ -1,23 +1,30 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
+import { execFile } from "node:child_process";
+import { promisify } from "node:util";
 import { test } from "node:test";
 import {
-  pauseLab09Sqlite,
-  resumeLab09Sqlite,
-  sqlitePath,
   compareMemorySaverCannotSurviveReconstruction,
   LAB09_PRODUCTION_READY,
 } from "../src/lab09_durable.js";
 
+const execFileAsync = promisify(execFile);
+
+async function runLab09(outputDir) {
+  return execFileAsync(process.execPath, ["src/run_lab09.js"], {
+    cwd: path.resolve("."),
+    env: { ...process.env, LANGGRAPH_LAB_OUTPUT_DIR: outputDir },
+  });
+}
+
 test("LAB_09 sqlite checkpoint survives reconstructed saver on same thread_id", async () => {
-  const dbPath = sqlitePath("lab09-test.sqlite");
-  if (fs.existsSync(dbPath)) fs.unlinkSync(dbPath);
-  const threadId = "lab09-persist";
-  const { paused } = await pauseLab09Sqlite("persist", threadId, dbPath);
-  assert.ok(paused.__interrupt__);
-  assert.ok(fs.existsSync(dbPath));
-  const resumed = await resumeLab09Sqlite(threadId, dbPath);
-  assert.equal(resumed.result, "LAB09:persist:resumed=true");
+  const outputDir = fs.mkdtempSync(path.join(os.tmpdir(), "20260822.103000_W4_LANGGRAPH_ISOLATION-lab09-"));
+  const { stdout } = await runLab09(outputDir);
+  assert.match(stdout, /LAB09:durable:resumed=true/);
+  assert.match(stdout, /MEMORY_RECONSTRUCT_ERROR=false/);
+  assert.ok(fs.existsSync(path.join(outputDir, "lab09-demo.sqlite")));
   assert.equal(LAB09_PRODUCTION_READY, false);
 });
 

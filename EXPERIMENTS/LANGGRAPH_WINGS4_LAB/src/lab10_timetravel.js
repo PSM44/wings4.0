@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { StateSchema, StateGraph, START, END } from "@langchain/langgraph";
-import { openSqliteSaver, sqlitePath } from "./lab09_durable.js";
+import path from "node:path";
+import { openSqliteSaver } from "./lab09_durable.js";
 
 const State = new StateSchema({
   n: z.number(),
@@ -17,8 +18,10 @@ export function buildLab10Graph(checkpointer) {
     .compile({ checkpointer });
 }
 
-export async function runLab10History(threadId, dbName = "lab10.sqlite") {
-  const dbPath = sqlitePath(dbName);
+export async function runLab10History(threadId, dbPath) {
+  if (typeof dbPath !== "string" || !dbPath.trim() || !path.isAbsolute(dbPath)) {
+    throw new Error("runLab10History requires an explicit absolute dbPath");
+  }
   const checkpointer = openSqliteSaver(dbPath);
   const graph = buildLab10Graph(checkpointer);
   const config = { configurable: { thread_id: threadId } };
